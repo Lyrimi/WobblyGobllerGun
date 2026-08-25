@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
-    enum SpawnerType (straight, Wave)
+    enum SpawnerType {straight, Wave }
 
     [Header("Bullet Attributes")]
     public GameObject bullet;
