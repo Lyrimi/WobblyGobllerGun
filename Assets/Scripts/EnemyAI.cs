@@ -1,27 +1,30 @@
 using UnityEngine;
-using UnityEngine.AI;
+using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
     public enum EnemyType {musket, bomber};
     [SerializeField] EnemyType enemyType;
+    [SerializeField] float speed;
     [SerializeField] Transform target;
     [SerializeField] Transform playerTrans;
 
-    NavMeshAgent agent;
+    private AIPath path;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
+        path = GetComponent<AIPath>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.up = target.position - this.transform.position;
-        agent.SetDestination(target.position);
+
+        path.maxSpeed = speed;
+        path.destination = target.position;
+
+        transform.up = playerTrans.position - this.transform.position;
 
         if (enemyType == EnemyType.musket)
         {
