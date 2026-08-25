@@ -1,10 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovementScript : MonoBehaviour
 {
     public float speed;
+    public float rotationSpeed;
     InputAction moveAction;
     Rigidbody2D rb;
     InputAction MousePosition;
@@ -26,8 +26,10 @@ public class PlayerMovementScript : MonoBehaviour
         Vector2 move = moveAction.ReadValue<Vector2>();
         
         rb.linearVelocity = move*speed;
-        //rb.AddForce(speed * move);
+
         /*
+        rb.AddForce(speed * move);
+        
         if (move.magnitude * speed  > rb.linearVelocity.magnitude)
         {
             Vector2 movedir = move.normalized;
@@ -36,18 +38,15 @@ public class PlayerMovementScript : MonoBehaviour
 
             rb.AddForce( speed * movedir);
         }
-        */
-
-        /*
+       
         Vector2 rbvelocity = rb.linearVelocity;
 
         Vector2 corectedDirVel = rbvelocity.magnitude * transform.up;
 
         rb.linearVelocity = corectedDirVel;
-
         */
     }
-    
+
 
     private void OnEnable()
     {
@@ -61,21 +60,29 @@ public class PlayerMovementScript : MonoBehaviour
     void FixedUpdate()
     {
         Move();
-        rb.angularVelocity = 0;
+        Rotate();
+        
+
+        
+        
+        
+    }
+    
+    void Rotate()
+    {
+
 
         Vector3 mousePosition = Mouse.current.position.ReadValue();
         Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mousePosition);
         mousePosWorld.z = 0;
-        Vector3 lookDirection = mousePosWorld - transform.position;
 
-        transform.up = lookDirection.normalized;
+        Vector3 lookDirection = mousePosWorld - transform.position;
+        transform.up = Vector3.RotateTowards(transform.up , lookDirection, (rotationSpeed*Time.fixedDeltaTime)*Mathf.Deg2Rad,0);
         
         
-    }
-    private void Update()
-    {
+
         
-       
+        
     }
 
 }

@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementScript
   speed: 5
+  rotationSpeed: 450
 --- !u!50 &175888231
 Rigidbody2D:
   serializedVersion: 5
