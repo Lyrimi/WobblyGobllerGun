@@ -1,8 +1,13 @@
+using System.Collections;
+using Pathfinding;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovementScript : MonoBehaviour
 {
+    Animator animator;
+    
     public float speed;
     public float rotationSpeed;
     InputAction moveAction;
@@ -14,6 +19,8 @@ public class PlayerMovementScript : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         
         rb = GetComponent<Rigidbody2D>();
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     /*void Move()
@@ -26,6 +33,9 @@ public class PlayerMovementScript : MonoBehaviour
         Vector2 move = moveAction.ReadValue<Vector2>();
         
         rb.linearVelocity = move*speed;
+        StartCoroutine("CheckMoving");
+        
+        
 
         /*
         rb.AddForce(speed * move);
@@ -46,7 +56,27 @@ public class PlayerMovementScript : MonoBehaviour
         rb.linearVelocity = corectedDirVel;
         */
     }
+    
+    private IEnumerator CheckMoving()
+    {
+        Debug.Log("IEnum");
+        Vector3 startPos = transform.position;
+        yield return new WaitForEndOfFrame();
+        Vector3 finalPos = transform.position;
 
+        if (startPos.x != finalPos.x || startPos.y != finalPos.y
+            || startPos.z != finalPos.z) { 
+        
+            Debug.Log("true");
+            animator.SetBool("Moving", true);
+        }
+        else
+        {
+            Debug.Log("False");
+            animator.SetBool("Moving", false);
+        }
+        
+    }
 
     private void OnEnable()
     {
