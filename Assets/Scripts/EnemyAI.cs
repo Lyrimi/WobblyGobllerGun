@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour
 
         if (enemyType == EnemyType.musket)
         {
-            target.position = playerTrans.position;
+            target.position = playerTrans.position + (this.transform.position - playerTrans.position).normalized * 5;
         }
 
     }
