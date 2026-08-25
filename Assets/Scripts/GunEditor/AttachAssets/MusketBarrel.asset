@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: TestBarrel
+  m_Name: MusketBarrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
-  DamageMod: 0.9
+  DamageMod: 0

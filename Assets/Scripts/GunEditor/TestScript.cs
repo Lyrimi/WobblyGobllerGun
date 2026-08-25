@@ -34,7 +34,7 @@ public class TestScript : MonoBehaviour
         {
             DebugButtonPop = !DebugButtonPop;
 
-            attachment1.RemoveChild(0);
+            attachment1.RemoveChild(0, null);
         }
     }
 }

@@ -1,9 +1,12 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GunEditor : MonoBehaviour
 {
+    [SerializeField]
+    Transform GunEditorParrent;
     InputAction pointAction;
     InputAction clickAction;
 
@@ -17,12 +20,7 @@ public class GunEditor : MonoBehaviour
 
     AttachmentPoint[] attachmentPoints;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        pointAction = InputSystem.actions.FindAction("Point");
-        clickAction = InputSystem.actions.FindAction("Click");
-        clickAction.performed += CheckIfClicked;
-    }
+
 
     void CheckIfClicked(InputAction.CallbackContext callbackContext)
     {
@@ -56,7 +54,7 @@ public class GunEditor : MonoBehaviour
     {
         if (attachment.Parrent != null)
         {
-            attachment.Parrent.RemoveChild(attachment.index);
+            attachment.Parrent.RemoveChild(attachment.index, GunEditorParrent);
         }
         curObj = attachment.gameObject;
         curAttach = attachment;
@@ -83,11 +81,12 @@ public class GunEditor : MonoBehaviour
     void Drag()
     {
         Vector3 screenPos = Pointer.current.position.ReadValue();
-        screenPos.z = -Camera.main.transform.position.z;
 
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
 
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+        worldPos.z = curObj.transform.parent.position.z;
         curObj.transform.position = worldPos;
+
 
         if (curAttach.ConnectingPoint == null)
         {
@@ -161,6 +160,7 @@ public class GunEditor : MonoBehaviour
 
         foreach (AttachmentPoint point in attachmentPoints)
         {
+            print(point.transform.parent.name);
             if (point.IsAvailable() && point.IsCompatiable(curAttach.attachmentData.AttachmentType))
             {
                 if (point.parrent == curAttach)
@@ -196,5 +196,64 @@ public class GunEditor : MonoBehaviour
             Drag();
         }
 
+        CheckIfHovering();
+
+    }
+
+    void CheckIfHovering()
+    {
+
+        Vector3 screenPos = Pointer.current.position.ReadValue();
+        screenPos.z = -Camera.main.transform.position.z;
+
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+
+        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+
+        Debug.DrawRay(worldPos, Vector2.zero, Color.blue);
+
+        if (hit.collider != null)
+        {
+
+            Attachment attachment = hit.collider.gameObject.GetComponent<Attachment>();
+
+            if (attachment == null || !attachment.MoveAble)
+            {
+                if (curMat != null)
+                {
+                    curMat.SetInt("_Enabled", 0);
+                }
+                return;
+            }
+
+            HoverHighLight(attachment.gameObject);
+
+        }
+        else
+        {
+            if (curMat != null)
+            {
+                curMat.SetInt("_Enabled", 0);
+            }
+        }
+    }
+    // _Enabled
+    Material curMat;
+    void HoverHighLight(GameObject obj)
+    {
+        if (curMat != null)
+        {
+            curMat.SetInt("_Enabled", 0);
+        }
+
+        curMat = obj.GetComponent<SpriteRenderer>().material;
+        curMat.SetInt("_Enabled", 1);
+    }
+
+    void Start()
+    {
+        pointAction = InputSystem.actions.FindAction("Point");
+        clickAction = InputSystem.actions.FindAction("Click");
+        clickAction.performed += CheckIfClicked;
     }
 }

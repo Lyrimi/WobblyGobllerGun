@@ -38,7 +38,7 @@ public class Attachment : MonoBehaviour
 
     }
 
-    public void RemoveChild(int index)
+    public void RemoveChild(int index, Transform newParrent)
     {
         if (Children[index] == null)
         {
@@ -47,7 +47,7 @@ public class Attachment : MonoBehaviour
         Attachment child = Children[index];
         child.Parrent = null;
         Children[index] = null;
-        child.transform.parent = null;
+        child.transform.parent = newParrent;
         child.index = 0;
         child.Redraw();
 
