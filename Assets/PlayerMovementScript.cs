@@ -102,7 +102,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
 
 
-        Vector3 mousePosition = Mouse.current.position.ReadValue();
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
         Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mousePosition);
         mousePosWorld.z = 0;
 
