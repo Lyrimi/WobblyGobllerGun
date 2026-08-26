@@ -57,6 +57,7 @@ public class GunEditor : MonoBehaviour
         if (attachment.Parrent != null)
         {
             attachment.Parrent.RemoveChild(attachment.index, GunEditorParrent);
+            RecalcData();
         }
         curObj = attachment.gameObject;
         curAttach = attachment;
@@ -269,6 +270,7 @@ public class GunEditor : MonoBehaviour
             GunData.FireRate = 0;
             GunData.TurnSpeedMult = 0;
             GunData.TopDownGunPrefab = null;
+            GunData.TopDownGunObj = null;
             GunData.bulletData.Damage = 0;
             GunData.bulletData.LifeTime = 0;
             GunData.bulletData.Spreed = 0;
