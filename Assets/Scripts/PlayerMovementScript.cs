@@ -3,6 +3,7 @@ using Pathfinding;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovementScript : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerMovementScript : MonoBehaviour
     InputAction moveAction;
     Rigidbody2D rb;
     InputAction MousePosition;
+    
 
     private void Start()
     {
@@ -61,7 +63,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         Debug.Log("IEnum");
         Vector3 startPos = transform.position;
-        yield return new WaitForEndOfFrame();
+        yield return new ();
         Vector3 finalPos = transform.position;
 
         if (startPos.x != finalPos.x || startPos.y != finalPos.y
@@ -114,5 +116,9 @@ public class PlayerMovementScript : MonoBehaviour
         
         
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+       
+    }
 }
