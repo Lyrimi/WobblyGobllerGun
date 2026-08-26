@@ -20,7 +20,7 @@ public class AttachmentPoint : MonoBehaviour
 
     public bool IsAvailable()
     {
-        print(parrent.name);
+        //print(parrent.name);
         return parrent.Children[index] == null;
     }
 
@@ -35,7 +35,7 @@ public class AttachmentPoint : MonoBehaviour
         if (DebugButton)
         {
             DebugButton = !DebugButton;
-            print($"{IsAvailable()} | {Time.time}");
+            //print($"{IsAvailable()} | {Time.time}");
         }
     }
 

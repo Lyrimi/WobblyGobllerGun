@@ -163,7 +163,7 @@ public class GunEditor : MonoBehaviour
 
         foreach (AttachmentPoint point in attachmentPoints)
         {
-            print(point.transform.parent.name);
+            //print(point.transform.parent.name);
             if (point.IsAvailable() && point.IsCompatiable(curAttach.attachmentData.AttachmentType))
             {
                 if (point.parrent == curAttach)
@@ -264,11 +264,11 @@ public class GunEditor : MonoBehaviour
     {
         if (MainAttachment.attachmentData is TriggerAttachment triggerAttachment)
         {
-            print("ran");
+            //print("ran");
             GunData.bulletData = new();
             GunData.FireRate = 0;
             GunData.TurnSpeedMult = 0;
-            GunData.TopDownGun = null;
+            GunData.TopDownGunPrefab = null;
             GunData.bulletData.Damage = 0;
             GunData.bulletData.LifeTime = 0;
             GunData.bulletData.Spreed = 0;
@@ -279,7 +279,7 @@ public class GunEditor : MonoBehaviour
 
         print($"FireRate: {GunData.FireRate} | {Time.time}");
         print($"TurnSpeedMult: {GunData.TurnSpeedMult} | {Time.time}");
-        print($"TopDownGun: {GunData.TopDownGun} | {Time.time}");
+        print($"TopDownGun: {GunData.TopDownGunPrefab} | {Time.time}");
         print($"Damage: {GunData.bulletData.Damage} | {Time.time}");
         print($"LifeTime: {GunData.bulletData.LifeTime} | {Time.time}");
         print($"Spreed: {GunData.bulletData.Spreed} | {Time.time}");

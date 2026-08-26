@@ -15,5 +15,5 @@ MonoBehaviour:
   DamageMult: 1
   SpreedMult: 0.7
   LifeTime: 2
-  Speed: 3
-  TopDownBarrelPrefab: {fileID: 0}
+  Speed: 9
+  TopDownBarrelPrefab: {fileID: 4611282135913401649, guid: 6a46c9b4b30bb044fb3094aa94a26268, type: 3}

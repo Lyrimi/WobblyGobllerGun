@@ -11,6 +11,10 @@ using Random = UnityEngine.Random;
 public class GunMenuEnabler : MonoBehaviour
 {
     [SerializeField]
+    GameObject GunObj;
+    [SerializeField]
+    Transform GunAttachPoint;
+    [SerializeField]
     GunEditor gunEditor;
     [SerializeField]
     Animator anim;
@@ -58,7 +62,7 @@ public class GunMenuEnabler : MonoBehaviour
             Vector2 randomPoint = new(Random.Range(-outWidth / 2, outWidth / 2), Random.Range(-outHight / 2, outHight / 2));
             if (randomPoint.x > -inWidth / 2 && randomPoint.x < inWidth / 2 && randomPoint.y > -inHight / 2 && randomPoint.y < inHight / 2)
             {
-                print("Tiggered");
+                //print("Tiggered");
                 if (Random.value > 0.5)
                 {
                     randomPoint.x = -inWidth / 2;
@@ -87,6 +91,7 @@ public class GunMenuEnabler : MonoBehaviour
     void DisableMenu()
     {
         isInAnim = true;
+        RebuildGun();
         DropEditorObjs();
         CleanUpRealObj();
         StartCoroutine(DisableMenuAnim());
@@ -211,6 +216,33 @@ public class GunMenuEnabler : MonoBehaviour
         {
             EnableMenu();
         }
+    }
+
+    void RebuildGun()
+    {
+        if (GunData.TopDownGunPrefab == null)
+        {
+            Debug.Log("Barrel Missing, Can't fire");
+            GunObj.GetComponent<SpriteRenderer>().enabled = false;
+            return;
+        }
+
+        Vector3 ConnectedOfset = GunData.TopDownGunPrefab.GetComponent<TopDownGunData>().Connector.localPosition;
+        Vector3 AttachPointPos = GunAttachPoint.transform.localPosition;
+
+        Vector3 finalPos = AttachPointPos - ConnectedOfset;
+
+
+        GameObject newObj = Instantiate(
+        GunData.TopDownGunPrefab,
+        position: finalPos,
+        rotation: GunObj.transform.rotation,
+        parent: GunObj.transform.parent
+        );
+        newObj.transform.localPosition = finalPos;
+        Destroy(GunObj);
+        GunObj = newObj;
+        GunData.TopDownGunObj = newObj;
     }
 
     // Update is called once per frame

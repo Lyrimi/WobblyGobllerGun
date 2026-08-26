@@ -17,7 +17,7 @@ public class BarrelAttachment : AttachmentData
         BData.Spreed *= SpreedMult;
         BData.LifeTime += LifeTime;
         BData.Speed += Speed;
-        GunData.TopDownGun = TopDownBarrelPrefab;
+        GunData.TopDownGunPrefab = TopDownBarrelPrefab;
 
     }
 }

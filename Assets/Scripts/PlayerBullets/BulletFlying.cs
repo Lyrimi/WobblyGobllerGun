@@ -9,8 +9,14 @@ class BulletFlying : MonoBehaviour
     float AliveTime = 0;
     void Start()
     {
+
+    }
+
+    public void Fire()
+    {
         rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = Vector2.up * bulletData.Speed;
+        bulletData = GunData.bulletData;
+        rb.linearVelocity = transform.up * bulletData.Speed;
     }
 
     void FixedUpdate()
@@ -26,6 +32,6 @@ class BulletFlying : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        print($"Hit Something {collision.gameObject.name} | {Time.time}");
+        //print($"Hit Something {collision.gameObject.name} | {Time.time}");
     }
 }

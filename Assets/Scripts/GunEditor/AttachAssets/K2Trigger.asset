@@ -15,3 +15,4 @@ MonoBehaviour:
   BaseDmg: 3
   FireRate: 0.05
   BaseSpreed: 25
+  Projectiles: 1

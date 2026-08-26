@@ -14,7 +14,25 @@ public class BulletData
 
     public void SpawnBullet()
     {
-        Transform[] SpawnPoints = GunData.TopDownGun.GetComponent<TopDownGunData>().EndPoints;
+        if (GunData.TopDownGunObj == null)
+        {
+            Debug.Log("Can't fire: No Barrel");
+            return;
+        }
+        Transform[] SpawnPoints = GunData.TopDownGunObj.GetComponent<TopDownGunData>().EndPoints;
+
+        foreach (var Point in SpawnPoints)
+        {
+            if (BulletInfo.Instance == null)
+            {
+                Debug.LogError("Missing BulletInfo Obj");
+                return;
+            }
+            GameObject obj = GameObject.Instantiate(BulletInfo.Instance.BulletPrefab);
+            obj.transform.position = Point.transform.position;
+            obj.transform.rotation = Point.transform.rotation;
+            obj.GetComponent<BulletFlying>().Fire();
+        }
     }
 
 }
@@ -23,7 +41,8 @@ public static class GunData
 {
     public static float FireRate;
     public static float TurnSpeedMult;
-    public static GameObject TopDownGun;
+    public static GameObject TopDownGunPrefab;
+    public static GameObject TopDownGunObj;
 
-    public static BulletData bulletData;
+    public static BulletData bulletData = new();
 }
