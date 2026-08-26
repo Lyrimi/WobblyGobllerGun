@@ -18,7 +18,7 @@ public class GunEditor : MonoBehaviour
     [SerializeField]
     float MaxSnapingDistance;
     [SerializeField]
-    Attachment MainAttachment;
+    Attachment MainAttachmentParrent;
 
     AttachmentPoint[] attachmentPoints;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -263,20 +263,29 @@ public class GunEditor : MonoBehaviour
 
     void RecalcData()
     {
-        if (MainAttachment.attachmentData is TriggerAttachment triggerAttachment)
+
+        Attachment mainAttachment = MainAttachmentParrent.Children[0];
+
+        GunData.bulletData = new();
+        GunData.FireRate = 0;
+        GunData.TurnSpeedMult = 0;
+        GunData.TopDownGunPrefab = null;
+        GunData.TopDownGunObj = null;
+        GunData.bulletData.Damage = 0;
+        GunData.bulletData.LifeTime = 0;
+        GunData.bulletData.Spreed = 0;
+        GunData.bulletData.Projectiles = 0;
+
+        if (mainAttachment == null)
+        {
+            return;
+        }
+        if (mainAttachment.attachmentData is TriggerAttachment triggerAttachment)
         {
             //print("ran");
-            GunData.bulletData = new();
-            GunData.FireRate = 0;
-            GunData.TurnSpeedMult = 0;
-            GunData.TopDownGunPrefab = null;
-            GunData.TopDownGunObj = null;
-            GunData.bulletData.Damage = 0;
-            GunData.bulletData.LifeTime = 0;
-            GunData.bulletData.Spreed = 0;
-            GunData.bulletData.Projectiles = 0;
-            MainAttachment.CalcDataWithChildren();
+            mainAttachment.CalcDataWithChildren();
         }
+
 
 
         print($"FireRate: {GunData.FireRate} | {Time.time}");
