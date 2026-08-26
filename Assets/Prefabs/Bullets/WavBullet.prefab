@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4128418739947805438}
   - component: {fileID: 6249359327782713442}
-  - component: {fileID: 1344441980780265668}
+  - component: {fileID: 2554024249077748749}
   m_Layer: 0
   m_Name: WavBullet
   m_TagString: Untagged
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &1344441980780265668
+--- !u!114 &2554024249077748749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,14 +101,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4975834475561290771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c83ac2213fb1a974d9ab3d9cf7f09156, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b7fdc6b17967d84996299e02f9c82b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   bulletType: 1
-  speed: 3
+  speed: 2
   lifetime: 5
-  rotation: 0
-  target: {fileID: 0}
-  targeth: {fileID: 0}
-  waveSpeed: 2
-  bonusHeight: 1
+  waveSpeed: 3
+  bonusHeight: -1
