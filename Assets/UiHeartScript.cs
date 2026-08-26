@@ -16,19 +16,19 @@ public class UiHeartScript : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
-       
+        
     }
     public void Damage()
     {
         
-        if (damage <= HeartStates.Count)
+        if (damage < HeartStates.Count)
         {
             image.sprite = HeartStates[damage++];
         }
-        //else (Killyourself)
+        else Debug.Log("Killyourself");
         
     }
-    // Update is called once per frame
+    
 
     
 }
