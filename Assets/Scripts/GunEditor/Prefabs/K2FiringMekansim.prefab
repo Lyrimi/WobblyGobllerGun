@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff3a59b53c51be498a118c9efc58fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attachment
-  attachmentData: {fileID: 11400000, guid: e5b20fed59e43834e839d96c21a39e08, type: 2}
+  attachmentData: {fileID: 11400000, guid: e1593a4bfbc616c4db289ee5c3f1baf2, type: 2}
   attachmentPoints:
   - {fileID: 6081007544196831152}
   - {fileID: 3550613703569965263}
