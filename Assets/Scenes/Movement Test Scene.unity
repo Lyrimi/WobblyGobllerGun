@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementScript
   speed: 5
   rotationSpeed: 450
+  Health: {fileID: 295657060}
 --- !u!50 &175888231
 Rigidbody2D:
   serializedVersion: 5
@@ -307,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -354.2, y: 193.5}
+  m_AnchoredPosition: {x: -432.40002, y: 177}
   m_SizeDelta: {x: 14, y: 19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295657062

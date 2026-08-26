@@ -14,7 +14,9 @@ public class PlayerMovementScript : MonoBehaviour
     InputAction moveAction;
     Rigidbody2D rb;
     InputAction MousePosition;
-    
+
+    public GameObject Health;
+    UiHeartScript HeartScript;
 
     private void Start()
     {
@@ -23,13 +25,11 @@ public class PlayerMovementScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         animator = GetComponentInChildren<Animator>();
+
+        HeartScript = Health.GetComponent<UiHeartScript>();
     }
 
-    /*void Move()
-     {
-         Vector2 move = moveAction.ReadValue<Vector2>();
-     }
-     */
+    
     void Move()
     {
         Vector2 move = moveAction.ReadValue<Vector2>();
@@ -116,9 +116,13 @@ public class PlayerMovementScript : MonoBehaviour
         
         
     }
-    private void OnCollisionEnter(Collision collision)
+    
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
+        Debug.Log("Colliding it");
+
+        HeartScript.Damage(); 
        
     }
 }
