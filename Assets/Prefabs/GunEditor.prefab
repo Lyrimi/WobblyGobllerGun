@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   GunEditorParrent: {fileID: 5294068036946941575}
   MaxSnapingDistance: 0.5
+  MainAttachment: {fileID: 3768036311749220913}
 --- !u!1001 &7180478409969866628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -216,6 +217,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}
+--- !u!114 &3768036311749220913 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6335700589108284853, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}
+  m_PrefabInstance: {fileID: 7180478409969866628}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff3a59b53c51be498a118c9efc58fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attachment
 --- !u!4 &5152063282568797297 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2655401205505002485, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}

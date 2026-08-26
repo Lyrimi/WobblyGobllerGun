@@ -17,6 +17,8 @@ public class GunEditor : MonoBehaviour
 
     [SerializeField]
     float MaxSnapingDistance;
+    [SerializeField]
+    Attachment MainAttachment;
 
     AttachmentPoint[] attachmentPoints;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -75,6 +77,7 @@ public class GunEditor : MonoBehaviour
     void SnapAttach()
     {
         curSnap.parrent.TryAddChild(curAttach, curSnap.index);
+        RecalcData();
 
     }
 
@@ -160,7 +163,7 @@ public class GunEditor : MonoBehaviour
 
         foreach (AttachmentPoint point in attachmentPoints)
         {
-            print(point.transform.parent.name);
+            //print(point.transform.parent.name);
             if (point.IsAvailable() && point.IsCompatiable(curAttach.attachmentData.AttachmentType))
             {
                 if (point.parrent == curAttach)
@@ -255,5 +258,32 @@ public class GunEditor : MonoBehaviour
         pointAction = InputSystem.actions.FindAction("Point");
         clickAction = InputSystem.actions.FindAction("Click");
         clickAction.performed += CheckIfClicked;
+    }
+
+    void RecalcData()
+    {
+        if (MainAttachment.attachmentData is TriggerAttachment triggerAttachment)
+        {
+            //print("ran");
+            GunData.bulletData = new();
+            GunData.FireRate = 0;
+            GunData.TurnSpeedMult = 0;
+            GunData.TopDownGunPrefab = null;
+            GunData.bulletData.Damage = 0;
+            GunData.bulletData.LifeTime = 0;
+            GunData.bulletData.Spreed = 0;
+            GunData.bulletData.Projectiles = 0;
+            MainAttachment.CalcDataWithChildren();
+        }
+
+
+        print($"FireRate: {GunData.FireRate} | {Time.time}");
+        print($"TurnSpeedMult: {GunData.TurnSpeedMult} | {Time.time}");
+        print($"TopDownGun: {GunData.TopDownGunPrefab} | {Time.time}");
+        print($"Damage: {GunData.bulletData.Damage} | {Time.time}");
+        print($"LifeTime: {GunData.bulletData.LifeTime} | {Time.time}");
+        print($"Spreed: {GunData.bulletData.Spreed} | {Time.time}");
+        print($"Projectiles: {GunData.bulletData.Projectiles} | {Time.time}");
+        print($"============================================== | {Time.time}");
     }
 }
