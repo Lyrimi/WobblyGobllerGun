@@ -91,8 +91,18 @@ public class Attachment : MonoBehaviour
             point.parrent = this;
             point.index = i;
         }
+    }
 
-
+    public void CalcDataWithChildren()
+    {
+        attachmentData.ApplyValues();
+        foreach (var child in Children)
+        {
+            if (child != null)
+            {
+                child.CalcDataWithChildren();
+            }
+        }
     }
 
     // Update is called once per frame

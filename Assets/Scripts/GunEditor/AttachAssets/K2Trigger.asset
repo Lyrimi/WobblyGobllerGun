@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90397fb34782cee438c8642d53ce5d60, type: 3}
   m_Name: K2Trigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
+  BaseDmg: 3
+  FireRate: 0.05
+  BaseSpreed: 25

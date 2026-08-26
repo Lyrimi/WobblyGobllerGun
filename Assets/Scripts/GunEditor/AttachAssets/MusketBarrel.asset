@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d2efe85400dac4fb0eb52b95848dc8, type: 3}
   m_Name: MusketBarrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
-  DamageMod: 0
+  DamageMult: 5
+  SpreedMult: 0.3
+  LifeTime: 3
+  Speed: 9
+  TopDownBarrelPrefab: {fileID: 0}

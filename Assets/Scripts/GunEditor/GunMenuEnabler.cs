@@ -219,20 +219,6 @@ public class GunMenuEnabler : MonoBehaviour
 
     }
 
-
-    Vector2 RandomPointInRingMath(float lowerRadius, float upperRadius, float minRadians, float maxRadians)
-    {
-
-        float angle = UnityEngine.Random.Range(minRadians, maxRadians);
-        float squareLength = UnityEngine.Random.Range(Mathf.Pow(lowerRadius, 2), Mathf.Pow(upperRadius, 2));
-        return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * Mathf.Sqrt(squareLength);
-    }
-
-    public Vector2 RandomPointInRing(float lowerRadius, float upperRadius)
-    {
-        return RandomPointInRingMath(lowerRadius, upperRadius, 0, Mathf.PI * 2);
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         Attachment attachment = collision.GetComponent<Attachment>();

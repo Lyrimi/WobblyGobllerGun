@@ -5,4 +5,9 @@ using static AttachmentTypes;
 public class MuzzelAttachment : AttachmentData
 {
     public override AttachmentType AttachmentType => AttachmentType.Muzzel;
+
+    public override void ApplyValues()
+    {
+        throw new System.NotImplementedException();
+    }
 }
