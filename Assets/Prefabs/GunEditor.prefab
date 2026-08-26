@@ -147,10 +147,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5294068036946941575}
     m_Modifications:
-    - target: {fileID: 6335700589108284853, guid: 735d339c4066e014295524e17605179d, type: 3}
-      propertyPath: MoveAble
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2655401205505002485, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -206,6 +202,14 @@ PrefabInstance:
     - target: {fileID: 6281500051335936726, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}
       propertyPath: m_Name
       value: K2FiringMekansim
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335700589108284853, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}
+      propertyPath: MoveAble
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335700589108284853, guid: 735d339c4066e014295524e17605179d, type: 3}
+      propertyPath: MoveAble
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

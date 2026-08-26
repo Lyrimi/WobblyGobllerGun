@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &100104608 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9221446081383191575, guid: 88515946b99396346b872d85cedd87b9, type: 3}
+  m_PrefabInstance: {fileID: 4827830676961643541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc327006d77c61445b15b8724030cf15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &195240798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -662,13 +673,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1731371418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50de0cbd041da9748884fa36b58d3e38, type: 3}
+  m_Script: {fileID: 11500000, guid: ff00f09cc058ac64489cb214c39d0758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunMenuEnabler
-  gunEditor: {fileID: 0}
-  anim: {fileID: 0}
+  gunEditor: {fileID: 100104608}
+  anim: {fileID: 1852042978}
   InnerSize: {x: 2, y: 1}
   OuterSize: {x: 7, y: 4}
+--- !u!95 &1852042978 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 497863002007424907, guid: 88515946b99396346b872d85cedd87b9, type: 3}
+  m_PrefabInstance: {fileID: 4827830676961643541}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4827830676961643541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -679,6 +695,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 221944893608793717, guid: a592d6a37fd5d9e4b95f8e26f5e7b40a, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715317011390682744, guid: a592d6a37fd5d9e4b95f8e26f5e7b40a, type: 3}
+      propertyPath: attachmentData
+      value: 
+      objectReference: {fileID: 11400000, guid: e5b20fed59e43834e839d96c21a39e08, type: 2}
+    - target: {fileID: 221944893608793717, guid: 88515946b99396346b872d85cedd87b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497863002007424907, guid: 88515946b99396346b872d85cedd87b9, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1501895640505204811, guid: 88515946b99396346b872d85cedd87b9, type: 3}
@@ -725,10 +753,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunEditorWithCam(USE THIS ONE)
       objectReference: {fileID: 0}
-    - target: {fileID: 8715317011390682744, guid: a592d6a37fd5d9e4b95f8e26f5e7b40a, type: 3}
-      propertyPath: attachmentData
+    - target: {fileID: 8334927151685571463, guid: 88515946b99396346b872d85cedd87b9, type: 3}
+      propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 11400000, guid: e5b20fed59e43834e839d96c21a39e08, type: 2}
+      objectReference: {fileID: 5760202260919997367, guid: 97069f70bb595fc4c98bd879d70ec725, type: 3}
+    - target: {fileID: 8334927151685571463, guid: 88515946b99396346b872d85cedd87b9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715317011390682744, guid: 88515946b99396346b872d85cedd87b9, type: 3}
+      propertyPath: MoveAble
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
