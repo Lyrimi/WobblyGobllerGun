@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9607a3d54f499c4c80b4fc6897f446b, type: 3}
   m_Name: PistolStock
   m_EditorClassIdentifier: Assembly-CSharp::StockAttachment
-  SpreedMult: 0
-  TurnSpeedMult: 0
+  SpreedMult: 1
+  TurnSpeedMult: 1

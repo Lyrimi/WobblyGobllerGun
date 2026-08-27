@@ -1,4 +1,5 @@
 using System;
+using Unity.Loading;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -54,6 +55,10 @@ public class GunEditor : MonoBehaviour
 
     void Click(Attachment attachment)
     {
+        if (attachment.transform.root != GunEditorParrent.parent)
+        {
+            return;
+        }
         if (attachment.Parrent != null)
         {
             attachment.Parrent.RemoveChild(attachment.index, GunEditorParrent);
@@ -122,14 +127,16 @@ public class GunEditor : MonoBehaviour
 
         if (distance < MaxSnapingDistance)
         {
-            HighlightSnap(index);
-            curSnap = attachmentPoints[index];
+            if (attachmentPoints[index].IsCompatiable(curAttach.attachmentData.AttachmentType))
+            {
+                HighlightSnap(index);
+                curSnap = attachmentPoints[index];
+                return;
+            }
+
         }
-        else
-        {
-            curSnap = null;
-            HightLightReset();
-        }
+        curSnap = null;
+        HightLightReset();
 
     }
 
@@ -164,6 +171,10 @@ public class GunEditor : MonoBehaviour
 
         foreach (AttachmentPoint point in attachmentPoints)
         {
+            if (point.transform.root != GunEditorParrent.parent)
+            {
+                continue;
+            }
             //print(point.transform.parent.name);
             if (point.IsAvailable() && point.IsCompatiable(curAttach.attachmentData.AttachmentType))
             {

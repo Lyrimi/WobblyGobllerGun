@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d2efe85400dac4fb0eb52b95848dc8, type: 3}
   m_Name: PistolBarrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
-  DamageMult: 0
-  SpreedMult: 0
-  LifeTime: 0
-  Speed: 0
+  DamageMult: 1
+  SpreedMult: 1
+  LifeTime: 2
+  Speed: 7
   TopDownBarrelPrefab: {fileID: 4862945310743846989, guid: af725b62cc8a6214b86ff39991899029, type: 3}

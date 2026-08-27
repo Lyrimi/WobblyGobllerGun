@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90397fb34782cee438c8642d53ce5d60, type: 3}
   m_Name: MusketTrigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
-  BaseDmg: 0
-  FireRate: 0
-  BaseSpreed: 0
-  Projectiles: 0
+  BaseDmg: 9
+  FireRate: 1
+  BaseSpreed: 5
+  Projectiles: 1

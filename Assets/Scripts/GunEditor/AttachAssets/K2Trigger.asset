@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: K2Trigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
   BaseDmg: 3
-  FireRate: 0.05
+  FireRate: 11
   BaseSpreed: 25
   Projectiles: 1

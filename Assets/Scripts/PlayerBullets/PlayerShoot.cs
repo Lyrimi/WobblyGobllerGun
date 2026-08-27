@@ -21,14 +21,17 @@ class PlayerShoot : MonoBehaviour
                 {
                     return;
                 }
-                GunData.bulletData.SpawnBullet();
-                cooldownTime = GunData.FireRate;
+                if (GunData.FireRate <= 0)
+                {
+                    return;
+                }
+                print("Bang");
+                GunData.bulletData.ShootBullets();
+                cooldownTime = 1f / GunData.FireRate;
             }
-            else
-            {
-                cooldownTime -= Time.fixedDeltaTime;
-            }
+
         }
+        cooldownTime -= Time.fixedDeltaTime;
 
     }
 
