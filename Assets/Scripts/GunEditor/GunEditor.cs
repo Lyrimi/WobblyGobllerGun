@@ -298,14 +298,11 @@ public class GunEditor : MonoBehaviour
         }
 
 
+        GunStats[] gunStats = FindObjectsByType<GunStats>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
 
-        print($"FireRate: {GunData.FireRate} | {Time.time}");
-        print($"TurnSpeedMult: {GunData.TurnSpeedMult} | {Time.time}");
-        print($"TopDownGun: {GunData.TopDownGunPrefab} | {Time.time}");
-        print($"Damage: {GunData.bulletData.Damage} | {Time.time}");
-        print($"LifeTime: {GunData.bulletData.LifeTime} | {Time.time}");
-        print($"Spreed: {GunData.bulletData.Spreed} | {Time.time}");
-        print($"Projectiles: {GunData.bulletData.Projectiles} | {Time.time}");
-        print($"============================================== | {Time.time}");
+        foreach (var stats in gunStats)
+        {
+            stats.UpdateText();
+        }
     }
 }
