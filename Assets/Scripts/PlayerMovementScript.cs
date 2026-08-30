@@ -1,5 +1,6 @@
 using System.Collections;
 using Pathfinding;
+using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -119,16 +120,22 @@ public class PlayerMovementScript : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Bullet")
+        
+
+
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
         {
             HeartScript.Damage();
+            Destroy(other.gameObject);
         }
         Debug.Log("Colliding it");
-        if (collision.collider.tag == "Food")
+        if (other.gameObject.CompareTag("Food"))
         {
             HeartScript.Heal();
+            Destroy(other.gameObject);
         }
-
-
     }
 }
