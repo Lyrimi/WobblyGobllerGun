@@ -9,18 +9,21 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] Transform playerTrans;
 
+    [SerializeField] float debugnumba;
+
     private AIPath path;
+    private float variableSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         path = GetComponent<AIPath>();
+        playerTrans = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         path.maxSpeed = speed;
         path.destination = target.position;
 
