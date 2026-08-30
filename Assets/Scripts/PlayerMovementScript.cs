@@ -119,10 +119,16 @@ public class PlayerMovementScript : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D collision)
     {
-
+        if (collision.collider.tag == "Bullet")
+        {
+            HeartScript.Damage();
+        }
         Debug.Log("Colliding it");
+        if (collision.collider.tag == "Food")
+        {
+            HeartScript.Heal();
+        }
 
-        HeartScript.Damage(); 
-       
+
     }
 }
