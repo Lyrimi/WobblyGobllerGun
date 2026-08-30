@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2efe85400dac4fb0eb52b95848dc8, type: 3}
+  m_Name: PistolBarrel
+  m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
+  DamageMult: 1
+  SpreedMult: 1
+  LifeTime: 2
+  Speed: 7
+  TopDownBarrelPrefab: {fileID: 4862945310743846989, guid: af725b62cc8a6214b86ff39991899029, type: 3}

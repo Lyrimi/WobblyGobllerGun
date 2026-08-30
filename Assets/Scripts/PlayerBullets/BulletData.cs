@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using static AttachmentTypes;
+using Random = UnityEngine.Random;
 
 public class BulletData
 {
@@ -12,25 +13,36 @@ public class BulletData
 
 
 
-    public void SpawnBullet()
+    public void ShootBullets()
     {
         if (GunData.TopDownGunObj == null)
         {
             Debug.Log("Can't fire: No Barrel");
             return;
         }
+        if (BulletInfo.Instance == null)
+        {
+            Debug.LogError("Missing BulletInfo Obj");
+            return;
+        }
+        for (int i = 0; i < Projectiles; i++)
+        {
+            Fire();
+        }
+    }
+
+    void Fire()
+    {
         Transform[] SpawnPoints = GunData.TopDownGunObj.GetComponent<TopDownGunData>().EndPoints;
 
         foreach (var Point in SpawnPoints)
         {
-            if (BulletInfo.Instance == null)
-            {
-                Debug.LogError("Missing BulletInfo Obj");
-                return;
-            }
+
             GameObject obj = GameObject.Instantiate(BulletInfo.Instance.BulletPrefab);
+            float RandomSpreed = Random.Range(-Spreed / 2, Spreed / 2);
             obj.transform.position = Point.transform.position;
             obj.transform.rotation = Point.transform.rotation;
+            obj.transform.Rotate(new(0, 0, RandomSpreed));
             obj.GetComponent<BulletFlying>().Fire();
         }
     }

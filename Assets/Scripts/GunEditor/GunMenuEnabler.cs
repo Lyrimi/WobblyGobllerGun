@@ -56,6 +56,10 @@ public class GunMenuEnabler : MonoBehaviour
             {
                 continue;
             }
+            if (attachment.Parrent != null)
+            {
+                continue;
+            }
 
 
 
@@ -75,13 +79,15 @@ public class GunMenuEnabler : MonoBehaviour
 
 
 
+            //GameObject cloneObj = Instantiate(attachment.gameObject, gunEditor.transform);
 
+            GameObject cloneObj = Instantiate(attachment.gameObject, attachment.transform.position, attachment.transform.rotation);
 
-            GameObject cloneObj = Instantiate(attachment.gameObject, gunEditor.transform);
-            cloneObj.transform.localPosition = randomPoint;
             ClonedObjs.Add(cloneObj);
 
-            Material mat = cloneObj.GetComponent<SpriteRenderer>().material;
+            attachment.transform.parent = gunEditor.transform;
+            attachment.transform.localPosition = randomPoint;
+            Material mat = attachment.GetComponent<SpriteRenderer>().material;
             mat.SetInt("_Enabled", 0);
 
             RealObjs.Add(attachment.gameObject);
@@ -93,7 +99,7 @@ public class GunMenuEnabler : MonoBehaviour
         isInAnim = true;
         RebuildGun();
         DropEditorObjs();
-        CleanUpRealObj();
+        CleanUpClonebObj();
         StartCoroutine(DisableMenuAnim());
         isInEditMode = false;
 
@@ -110,15 +116,33 @@ public class GunMenuEnabler : MonoBehaviour
         foreach (Attachment attach in attachments)
         {
             GameObject obj = attach.gameObject;
-            if (ClonedObjs.Contains(obj) || obj.transform.parent != GEditorObj.transform || !attach.MoveAble)
+            if (RealObjs.Contains(obj) || obj.transform.parent != GEditorObj.transform || !attach.MoveAble)
             {
                 continue;
             }
 
-            Instantiate(obj, transform.position, Quaternion.identity, null);
-            DelLater.Add(obj);
+            GameObject tempObj = Instantiate(obj, obj.transform.position, obj.transform.rotation, obj.transform.parent);
+            DelLater.Add(tempObj);
+            obj.transform.position = transform.position;
+            obj.transform.parent = null;
 
 
+        }
+    }
+
+    void CleanUpClonebObj()
+    {
+        for (int i = 0; i < ClonedObjs.Count; i++)
+        {
+            GameObject CloneObj = ClonedObjs[i];
+            GameObject realObj = RealObjs[i];
+
+            Attachment attach = realObj.GetComponent<Attachment>();
+
+            if (attach.Parrent != null)
+            {
+                Destroy(CloneObj);
+            }
         }
     }
 
@@ -129,26 +153,13 @@ public class GunMenuEnabler : MonoBehaviour
             GameObject editorObj = ClonedObjs[i];
             GameObject realObj = RealObjs[i];
 
-            Attachment attach = editorObj.GetComponent<Attachment>();
-
-            if (attach.Parrent != null)
-            {
-                Destroy(realObj);
-            }
-        }
-    }
-
-    void CleanUpCloneObj()
-    {
-        for (int i = 0; i < ClonedObjs.Count; i++)
-        {
-            GameObject editorObj = ClonedObjs[i];
-            GameObject realObj = RealObjs[i];
-
-            Attachment attach = editorObj.GetComponent<Attachment>();
+            Attachment attach = realObj.GetComponent<Attachment>();
 
             if (attach.Parrent == null)
             {
+                realObj.transform.position = editorObj.transform.position;
+                realObj.transform.rotation = editorObj.transform.rotation;
+                realObj.transform.parent = editorObj.transform.parent;
                 Destroy(editorObj);
             }
         }
@@ -189,7 +200,7 @@ public class GunMenuEnabler : MonoBehaviour
         float animationLength = stateInfo.length;
 
         yield return new WaitForSeconds(animationLength);
-        CleanUpCloneObj();
+        CleanUpRealObj();
         isInAnim = false;
 
 
@@ -258,6 +269,10 @@ public class GunMenuEnabler : MonoBehaviour
         {
             return;
         }
+        if (attachment.Parrent != null)
+        {
+            return;
+        }
 
         Material mat = attachment.GetComponent<SpriteRenderer>().material;
         mat.SetInt("_Enabled", 1);
@@ -268,6 +283,10 @@ public class GunMenuEnabler : MonoBehaviour
     {
         Attachment attachment = collision.GetComponent<Attachment>();
         if (attachment == null || isInEditMode)
+        {
+            return;
+        }
+        if (attachment.Parrent != null)
         {
             return;
         }

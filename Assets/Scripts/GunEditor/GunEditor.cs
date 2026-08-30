@@ -1,4 +1,5 @@
 using System;
+using Unity.Loading;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,7 +19,7 @@ public class GunEditor : MonoBehaviour
     [SerializeField]
     float MaxSnapingDistance;
     [SerializeField]
-    Attachment MainAttachment;
+    Attachment MainAttachmentParrent;
 
     AttachmentPoint[] attachmentPoints;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,6 +55,10 @@ public class GunEditor : MonoBehaviour
 
     void Click(Attachment attachment)
     {
+        if (attachment.transform.root != GunEditorParrent.parent)
+        {
+            return;
+        }
         if (attachment.Parrent != null)
         {
             attachment.Parrent.RemoveChild(attachment.index, GunEditorParrent);
@@ -122,14 +127,16 @@ public class GunEditor : MonoBehaviour
 
         if (distance < MaxSnapingDistance)
         {
-            HighlightSnap(index);
-            curSnap = attachmentPoints[index];
+            if (attachmentPoints[index].IsCompatiable(curAttach.attachmentData.AttachmentType))
+            {
+                HighlightSnap(index);
+                curSnap = attachmentPoints[index];
+                return;
+            }
+
         }
-        else
-        {
-            curSnap = null;
-            HightLightReset();
-        }
+        curSnap = null;
+        HightLightReset();
 
     }
 
@@ -164,6 +171,10 @@ public class GunEditor : MonoBehaviour
 
         foreach (AttachmentPoint point in attachmentPoints)
         {
+            if (point.transform.root != GunEditorParrent.parent)
+            {
+                continue;
+            }
             //print(point.transform.parent.name);
             if (point.IsAvailable() && point.IsCompatiable(curAttach.attachmentData.AttachmentType))
             {
@@ -263,29 +274,35 @@ public class GunEditor : MonoBehaviour
 
     void RecalcData()
     {
-        if (MainAttachment.attachmentData is TriggerAttachment triggerAttachment)
+
+        Attachment mainAttachment = MainAttachmentParrent.Children[0];
+
+        GunData.bulletData = new();
+        GunData.FireRate = 0;
+        GunData.TurnSpeedMult = 0;
+        GunData.TopDownGunPrefab = null;
+        GunData.TopDownGunObj = null;
+        GunData.bulletData.Damage = 0;
+        GunData.bulletData.LifeTime = 0;
+        GunData.bulletData.Spreed = 0;
+        GunData.bulletData.Projectiles = 0;
+
+        if (mainAttachment == null)
+        {
+            return;
+        }
+        if (mainAttachment.attachmentData is TriggerAttachment triggerAttachment)
         {
             //print("ran");
-            GunData.bulletData = new();
-            GunData.FireRate = 0;
-            GunData.TurnSpeedMult = 0;
-            GunData.TopDownGunPrefab = null;
-            GunData.TopDownGunObj = null;
-            GunData.bulletData.Damage = 0;
-            GunData.bulletData.LifeTime = 0;
-            GunData.bulletData.Spreed = 0;
-            GunData.bulletData.Projectiles = 0;
-            MainAttachment.CalcDataWithChildren();
+            mainAttachment.CalcDataWithChildren();
         }
 
 
-        print($"FireRate: {GunData.FireRate} | {Time.time}");
-        print($"TurnSpeedMult: {GunData.TurnSpeedMult} | {Time.time}");
-        print($"TopDownGun: {GunData.TopDownGunPrefab} | {Time.time}");
-        print($"Damage: {GunData.bulletData.Damage} | {Time.time}");
-        print($"LifeTime: {GunData.bulletData.LifeTime} | {Time.time}");
-        print($"Spreed: {GunData.bulletData.Spreed} | {Time.time}");
-        print($"Projectiles: {GunData.bulletData.Projectiles} | {Time.time}");
-        print($"============================================== | {Time.time}");
+        GunStats[] gunStats = FindObjectsByType<GunStats>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+
+        foreach (var stats in gunStats)
+        {
+            stats.UpdateText();
+        }
     }
 }

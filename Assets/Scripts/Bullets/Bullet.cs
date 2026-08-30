@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
 
     public float speed;
     public float lifetime;
-    public float rotation;
 
     private Vector2 spawnPoint;
     private float timer;
@@ -17,9 +16,9 @@ public class Bullet : MonoBehaviour
     private Vector3 basePosition; // This variable maintains the location of the object without applying sine changes
     private Vector3 startPosition;
 
-    public Transform target;
-    public Transform targeth;
+    private Vector3 target;
 
+    [Header("Wave bullet")]
     [SerializeField] float waveSpeed = 1f; // Higher make the wave faster
     [SerializeField] float bonusHeight = 1f; // Set higher if you want more wave intensity
     #endregion
@@ -31,9 +30,8 @@ public class Bullet : MonoBehaviour
         if (bulletType == BulletType.wave)
         {
             startPosition = transform.position;
-            targeth = GameObject.FindWithTag("Player").transform;
-            target = targeth;
-            transform.up = target.position - transform.position;
+            target = transform.position+transform.up;
+            transform.up = target - transform.position;
             basePosition = transform.position;
         }
     }
@@ -53,10 +51,15 @@ public class Bullet : MonoBehaviour
             case BulletType.wave:
                 cycle += Time.deltaTime * waveSpeed;
                 transform.position = basePosition + (transform.right * bonusHeight) * Mathf.Sin(cycle);
-                if (target) basePosition += (target.position - startPosition).normalized * Time.deltaTime * speed;
+                basePosition += (target - startPosition).normalized * Time.deltaTime * speed;
                 break;
         }
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //collision.collider
     }
 
     private Vector2 Movement(float timer)

@@ -20,7 +20,7 @@ public class AttachmentPoint : MonoBehaviour
 
     public bool IsAvailable()
     {
-        //print(parrent.name);
+
         return parrent.Children[index] == null;
     }
 
