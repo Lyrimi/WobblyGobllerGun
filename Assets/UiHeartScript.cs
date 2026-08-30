@@ -16,31 +16,33 @@ public class UiHeartScript : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
-        image.sprite = HeartStates[damage++];
+        image.sprite = HeartStates[damage];
     }
     public void Damage()
     {
 
         if (damage < HeartStates.Count)
         {
-            image.sprite = HeartStates[damage++];
-            if (damage == HeartStates.Count)
+            damage++;
+            image.sprite = HeartStates[damage];
+            if (damage == HeartStates.Count-1)
             {
                 Debug.Log("Killyourself");
             }
         }
-
+        Debug.Log("damage");
 
     }
     public void Heal()
     {
-
-        if (damage < HeartStates.Count)
+        
+        if (damage > 0)
         {
-            image.sprite = HeartStates[damage--];
-            
+            damage--;
+            image.sprite = HeartStates[damage];
+           
         }
-
+        Debug.Log("heal");
 
 
 
