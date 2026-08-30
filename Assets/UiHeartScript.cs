@@ -7,7 +7,7 @@ using System;
 public class UiHeartScript : MonoBehaviour
 {
     public List<Sprite> HeartStates = new List<Sprite>();
-    
+
     public Image image;
 
     int damage;
@@ -20,19 +20,29 @@ public class UiHeartScript : MonoBehaviour
     }
     public void Damage()
     {
-        
+
         if (damage < HeartStates.Count)
         {
             image.sprite = HeartStates[damage++];
-            if (damage == HeartStates.Count) 
+            if (damage == HeartStates.Count)
             {
-             Debug.Log("Killyourself");
+                Debug.Log("Killyourself");
             }
         }
-        
-        
-    }
-    
 
-    
+
+    }
+    public void Heal()
+    {
+
+        if (damage < HeartStates.Count)
+        {
+            image.sprite = HeartStates[damage--];
+            
+        }
+
+
+
+
+    }
 }
