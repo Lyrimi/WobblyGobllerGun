@@ -16,7 +16,7 @@ public class UiHeartScript : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
-        
+        image.sprite = HeartStates[damage++];
     }
     public void Damage()
     {
@@ -24,8 +24,12 @@ public class UiHeartScript : MonoBehaviour
         if (damage < HeartStates.Count)
         {
             image.sprite = HeartStates[damage++];
+            if (damage == HeartStates.Count) 
+            {
+             Debug.Log("Killyourself");
+            }
         }
-        else Debug.Log("Killyourself");
+        
         
     }
     
