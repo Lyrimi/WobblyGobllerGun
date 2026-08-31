@@ -21,9 +21,9 @@ public class UiHeartScript : MonoBehaviour
         HpUp.SetActive(false);
         
     }
-    public void Damage(int damagelevel)
+    public void Health(int damagelevel)
     {
-
+        Debug.Log("Healthing it");
         
         if(damage + damagelevel > HeartStates.Count-1)
         {
@@ -41,6 +41,10 @@ public class UiHeartScript : MonoBehaviour
        
 
     }
+
+    
+
+
     public void Heal(int healing)
     {
         Debug.Log("heal");
