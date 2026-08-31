@@ -128,4 +128,10 @@ public class PlayerMovementScript : MonoBehaviour
     {
         
     }
+
+    public void Damage(int damagelevel)
+    {
+        HeartScript.Damage(damagelevel);
+    }
+
 }
