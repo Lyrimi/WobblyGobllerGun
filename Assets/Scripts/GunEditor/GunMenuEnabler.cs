@@ -234,7 +234,8 @@ public class GunMenuEnabler : MonoBehaviour
         if (GunData.TopDownGunPrefab == null)
         {
             Debug.Log("Barrel Missing, Can't fire");
-            GunObj.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(GunObj);
+            GunObj = null;
             return;
         }
 
@@ -247,8 +248,8 @@ public class GunMenuEnabler : MonoBehaviour
         GameObject newObj = Instantiate(
         GunData.TopDownGunPrefab,
         position: finalPos,
-        rotation: GunObj.transform.rotation,
-        parent: GunObj.transform.parent
+        rotation: transform.rotation,
+        parent: transform
         );
         newObj.transform.localPosition = finalPos;
         Destroy(GunObj);
