@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
   BaseDmg: 3
   FireRate: 11
-  BaseSpreed: 25
+  BaseSpreed: 11
   Projectiles: 1

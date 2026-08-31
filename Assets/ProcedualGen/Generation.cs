@@ -17,7 +17,7 @@ public class Generation : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         if (_rnd == null)
         {
@@ -44,16 +44,24 @@ public class Generation : MonoBehaviour
             return;
 
         }
+        GameObject roomObj = null;
+
+        RoomData curRoom = PickRandomValidRoom();
         while (true)
         {
-            RoomData curRoom = PickRandomValidRoom();
             if (curRoom.ValidRoomAttachPoints.Count <= 0)
             {
-                break;
+                Debug.Log("Nothing Valid Found");
+                return;
+            }
+            if (curRoom.CurAttachments >= curRoom.MaxAttachments)
+            {
+                Debug.Log("To many attachments :(");
+                return;
             }
             RoomAttachPoint curPoint = curRoom.GetRandomAttachPoint(_rnd);
-            GameObject roomObj;
-            if (FindValidAttachRoom(out roomObj, curPoint))
+
+            if (FindRandomValidAttachRoom(out roomObj, curPoint))
             {
                 break;
             }
@@ -63,6 +71,9 @@ public class Generation : MonoBehaviour
             }
 
         }
+
+        curRoom.CurAttachments++;
+        Instantiate(roomObj);
 
     }
 
@@ -74,7 +85,7 @@ public class Generation : MonoBehaviour
         return _validRooms[index];
     }
 
-    bool FindValidAttachRoom(out GameObject obj, RoomAttachPoint point)
+    bool FindRandomValidAttachRoom(out GameObject obj, RoomAttachPoint point)
     {
 
         obj = null;
@@ -86,7 +97,7 @@ public class Generation : MonoBehaviour
             RoomData roomData = room.GetComponent<RoomData>();
             if (!IsRoomValid(roomData, point))
             {
-                validRoomPrefabs.RemoveAt(i);
+                validRoomPrefabs.Remove(room);
                 continue;
             }
 
@@ -108,6 +119,7 @@ public class Generation : MonoBehaviour
     {
         if (!point.ValidRoomTypes.Contains(roomData.RoomType))
         {
+            print($"Room doesn't have corect data type | {roomData.gameObject.name}");
             return false;
         }
 
@@ -122,6 +134,7 @@ public class Generation : MonoBehaviour
         }
         if (!hasValidAttachPoint)
         {
+            print($"Room doesn't have point with valid direction | {roomData.gameObject.name}");
             return false;
         }
         return true;
