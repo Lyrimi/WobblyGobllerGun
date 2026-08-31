@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MusketBarrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
   DamageMult: 5
-  SpreedMult: 0.3
+  SpreedMult: 2
   LifeTime: 3
   Speed: 45
   TopDownBarrelPrefab: {fileID: 4862945310743846989, guid: 29f5e266131c3ee4692a26d95a9e810c, type: 3}
