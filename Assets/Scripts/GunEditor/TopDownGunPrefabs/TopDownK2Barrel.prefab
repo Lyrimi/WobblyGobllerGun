@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 7018003199644345726}
   - component: {fileID: 7560297438845950687}
   - component: {fileID: 2356125427664683562}
+  - component: {fileID: -9186524827175184308}
   m_Layer: 0
   m_Name: TopDownK2Barrel
   m_TagString: Untagged
@@ -140,6 +141,18 @@ MonoBehaviour:
   EndPoints:
   - {fileID: 1711436361215727565}
   Connector: {fileID: 1392113291104637649}
+--- !u!114 &-9186524827175184308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611282135913401649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e26bf9fd647e24baf09ded4a686881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShoot
 --- !u!1 &7995089151166484378
 GameObject:
   m_ObjectHideFlags: 0

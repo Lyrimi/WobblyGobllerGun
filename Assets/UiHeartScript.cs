@@ -21,48 +21,55 @@ public class UiHeartScript : MonoBehaviour
         HpUp.SetActive(false);
         
     }
-    public void Damage()
+    public void Damage(int damagelevel)
     {
 
-        if (damage < HeartStates.Count)
+        
+        if(damage + damagelevel > HeartStates.Count-1)
         {
-            damage++;
-            
-            if (damage == HeartStates.Count-1)
+            Debug.Log("Do notin");
+        }
+        else
+        {
+            damage += damagelevel;
+        }
+            if (damage >= HeartStates.Count-1)
             {
                 Debug.Log("Killyourself");
             }
-        }
-        Debug.Log("damage");
+        
+       
 
     }
-    public void Heal()
+    public void Heal(int healing)
     {
-        
+        Debug.Log("heal");
         if (damage > 0)
         {
-            damage--;
-            HpUp.SetActive(true);
-            var col = gameObject.GetComponent<SpriteRenderer>().material.color;
+            if(damage - healing < 0)
+            {
+                damage = 0;
+            }
+            else
+            {
+                damage -= healing;
+            }
+                
+           
+            
             
 
-            for (int i = 100; i > 0; i--)
-            {
-                col.a = i/100;
-                if (i <= 0)
-                {
-                    HpUp.SetActive(false);
-                }
-            }
            
         }
-        Debug.Log("heal");
+       
 
 
 
     }
     private void FixedUpdate()
     {
+       
          image.sprite = HeartStates[damage].GetComponent<SpriteRenderer>().sprite;
+        
     }
 }

@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 5933007656847559401}
   - component: {fileID: 3098272874746265689}
   - component: {fileID: 4968813641532934875}
+  - component: {fileID: 3569490052505292713}
   m_Layer: 0
   m_Name: TopDownPistolBarrel
   m_TagString: Untagged
@@ -140,6 +141,18 @@ MonoBehaviour:
   EndPoints:
   - {fileID: 1911501068980235457}
   Connector: {fileID: 7087692526501289928}
+--- !u!114 &3569490052505292713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4862945310743846989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e26bf9fd647e24baf09ded4a686881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShoot
 --- !u!1 &6664048686475930987
 GameObject:
   m_ObjectHideFlags: 0

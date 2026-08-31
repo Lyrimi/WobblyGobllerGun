@@ -55,7 +55,7 @@ public class GunEditor : MonoBehaviour
 
     void Click(Attachment attachment)
     {
-        if (attachment.transform.root != GunEditorParrent.parent)
+        if (attachment.transform.root != GunEditorParrent.root)
         {
             return;
         }
@@ -171,7 +171,12 @@ public class GunEditor : MonoBehaviour
 
         foreach (AttachmentPoint point in attachmentPoints)
         {
-            if (point.transform.root != GunEditorParrent.parent)
+            if (point.parrent == null)
+            {
+                Debug.LogWarning($"Point: {point} missing parrent asigment ... skipping");
+                continue;
+            }
+            if (point.transform.root != GunEditorParrent.root)
             {
                 continue;
             }

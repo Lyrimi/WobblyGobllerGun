@@ -235,7 +235,6 @@ GameObject:
   - component: {fileID: 311962481}
   - component: {fileID: 311962480}
   - component: {fileID: 311962479}
-  - component: {fileID: 311962485}
   m_Layer: 0
   m_Name: PlayerObj (1)
   m_TagString: Untagged
@@ -291,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff00f09cc058ac64489cb214c39d0758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunMenuEnabler
-  GunObj: {fileID: 1667490774}
+  GunObj: {fileID: 0}
   GunAttachPoint: {fileID: 1328383309}
   gunEditor: {fileID: 100104608}
   anim: {fileID: 1852042978}
@@ -387,18 +386,6 @@ Transform:
   - {fileID: 1667490775}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &311962485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311962478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13e26bf9fd647e24baf09ded4a686881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerShoot
 --- !u!1 &465925636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,11 +1515,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29f5e266131c3ee4692a26d95a9e810c, type: 3}
---- !u!1 &1667490774 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4862945310743846989, guid: 29f5e266131c3ee4692a26d95a9e810c, type: 3}
-  m_PrefabInstance: {fileID: 1667490773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1667490775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5933007656847559401, guid: 29f5e266131c3ee4692a26d95a9e810c, type: 3}
