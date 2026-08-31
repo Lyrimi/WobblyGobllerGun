@@ -24,6 +24,7 @@ public class Attachment : MonoBehaviour
 
     public bool TryAddChild(Attachment attachment, int index)
     {
+
         if (Children[index] != null)
         {
             return false;

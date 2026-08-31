@@ -20,12 +20,21 @@ public class AttachmentPoint : MonoBehaviour
 
     public bool IsAvailable()
     {
-
+        if (parrent == null)
+        {
+            Debug.LogWarning($"Point: {gameObject} missing parrent asigment ... skipping");
+            return false;
+        }
         return parrent.Children[index] == null;
     }
 
     public bool IsCompatiable(AttachmentType attachmentType)
     {
+        if (parrent == null)
+        {
+            Debug.LogWarning($"Point: {gameObject} missing parrent asigment ... skipping");
+            return false;
+        }
         return attachmentType == ValidAttachment;
     }
 
