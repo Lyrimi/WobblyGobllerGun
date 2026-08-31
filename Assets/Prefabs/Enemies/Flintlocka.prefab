@@ -314,7 +314,7 @@ MonoBehaviour:
   speed: 3
   target: {fileID: 5054399411002747993}
   playerTrans: {fileID: 0}
-  health: 0
+  health: 100
   debugnumba: 0.2
   player: {fileID: 0}
 --- !u!114 &3607100694071306676
