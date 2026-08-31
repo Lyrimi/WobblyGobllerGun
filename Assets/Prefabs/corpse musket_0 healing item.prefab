@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5970312643497742531}
   - component: {fileID: 5144624339767743565}
   - component: {fileID: 7389431553551592962}
+  - component: {fileID: 8763836246203643594}
   m_Layer: 0
   m_Name: corpse musket_0 healing item
   m_TagString: Food
@@ -138,3 +139,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.02, y: 1.24}
   m_EdgeRadius: 0
+--- !u!114 &8763836246203643594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3795765158495974262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0f5723675391b45842deea53be9ce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoodScript
+  obj: {fileID: 0}

@@ -126,16 +126,6 @@ public class PlayerMovementScript : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            HeartScript.Damage();
-            Destroy(other.gameObject);
-        }
-        Debug.Log("Colliding it");
-        if (other.gameObject.CompareTag("Food"))
-        {
-            HeartScript.Heal();
-            Destroy(other.gameObject);
-        }
+        
     }
 }
