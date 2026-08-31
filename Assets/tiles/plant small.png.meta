@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6115406d2b9f2244d9993df4814bda53
+guid: 918938fea9e56174ab2ffdf9c3230f2f
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -103,10 +103,10 @@ TextureImporter:
       name: plant small_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 7
-        width: 49
-        height: 48
+        x: 8
+        y: 6
+        width: 51
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

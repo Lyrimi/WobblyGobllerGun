@@ -3,7 +3,7 @@ using UnityEngine;
 public class FoodScript : MonoBehaviour
 {
 
-    public GameObject obj;
+    
     public int healAmount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +19,8 @@ public class FoodScript : MonoBehaviour
   
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        obj.SendMessage("Heal",healAmount);
+        collision.gameObject.SendMessage("Healing",healAmount);
+        Destroy(gameObject);
     }
     /*
     if (other.gameObject.CompareTag("Bullet"))
