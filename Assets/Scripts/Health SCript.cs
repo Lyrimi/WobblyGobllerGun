@@ -64,6 +64,11 @@ public class HealthSCript : MonoBehaviour
         {
             TempColor.a -= 0.01f;
             HealthUp.GetComponent<SpriteRenderer>().color = TempColor;
+            if (TempColor.a<0.02f)
+            {
+                fade = false;
+                HealthUp.SetActive(false);
+            }
         }
         
         
