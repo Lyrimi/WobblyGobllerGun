@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 62fad6d52d98db74c9bb4061d3d182db
+guid: 62ca4dce591415441a5a4c8bf50e7144
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5935624994719516180
-    second: carpet tile edge_0
+      213: -671075752816168600
+    second: "table items turkey f\xE6rdig_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -74,7 +74,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: carpet tile edge_0
+      name: "table items turkey f\xE6rdig_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 26
-        width: 64
-        height: 38
+        x: 28
+        y: 4
+        width: 136
+        height: 186
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 416cf220c739f5250800000000000000
-      internalID: 5935624994719516180
+      spriteID: 861b308882cdfa6f0800000000000000
+      internalID: -671075752816168600
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      carpet tile edge_0: 5935624994719516180
+      "table items turkey f\xE6rdig_0": -671075752816168600
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
