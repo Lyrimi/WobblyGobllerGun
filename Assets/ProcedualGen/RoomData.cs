@@ -8,7 +8,7 @@ using static RoomTypes;
 public class RoomData : MonoBehaviour
 {
     public int MaxAttachments;
-    [NonSerialized]
+
     public int CurAttachments = 0;
 
     public RoomType RoomType;

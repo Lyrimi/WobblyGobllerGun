@@ -54,9 +54,14 @@ public class Generation : MonoBehaviour
                 Debug.Log("Nothing Valid Found");
                 return;
             }
+            if (curRoom.CurAttachments >= curRoom.MaxAttachments)
+            {
+                Debug.Log("To many attachments :(");
+                return;
+            }
             RoomAttachPoint curPoint = curRoom.GetRandomAttachPoint(_rnd);
 
-            if (FindValidAttachRoom(out roomObj, curPoint))
+            if (FindRandomValidAttachRoom(out roomObj, curPoint))
             {
                 break;
             }
@@ -67,6 +72,7 @@ public class Generation : MonoBehaviour
 
         }
 
+        curRoom.CurAttachments++;
         Instantiate(roomObj);
 
     }
@@ -79,7 +85,7 @@ public class Generation : MonoBehaviour
         return _validRooms[index];
     }
 
-    bool FindValidAttachRoom(out GameObject obj, RoomAttachPoint point)
+    bool FindRandomValidAttachRoom(out GameObject obj, RoomAttachPoint point)
     {
 
         obj = null;

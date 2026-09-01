@@ -10,11 +10,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] Transform playerTrans;
     [SerializeField] float health;
 
-    [SerializeField] float debugnumba;
 
     private AIPath path;
     BulletData bulletData;
-    public GameObject player;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

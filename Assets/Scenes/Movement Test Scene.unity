@@ -132,9 +132,10 @@ GameObject:
   - component: {fileID: 175888230}
   - component: {fileID: 175888231}
   - component: {fileID: 175888232}
+  - component: {fileID: 175888233}
   m_Layer: 0
   m_Name: PlayerObj
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,6 +274,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &175888233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175888226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b50e489f94f946489201d8785124872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSCript
+  health: 3
+  MaxHealth: 3
+  IsPlayer: 0
+  UiHeart: {fileID: 295657064}
 --- !u!1 &295657060
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -409.5, y: 218.6}
+  m_AnchoredPosition: {x: -362.5, y: 192.19998}
   m_SizeDelta: {x: 28, y: 39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295657062
@@ -362,10 +379,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   HeartStates:
-  - {fileID: 817480331}
-  - {fileID: 1314015217}
-  - {fileID: 1413953430}
   - {fileID: 480324546}
+  - {fileID: 1413953430}
+  - {fileID: 1314015217}
+  - {fileID: 817480331}
   HpUp: {fileID: 421960010}
 --- !u!1 &421960010
 GameObject:
@@ -723,7 +740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f090ace2ff03784b9340297b2f8b1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageScript
-  damage: {fileID: 295657060}
   damageLevel: 1
 --- !u!1 &628863488
 GameObject:
@@ -1127,7 +1143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f090ace2ff03784b9340297b2f8b1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageScript
-  damage: {fileID: 295657060}
   damageLevel: 1
 --- !u!1 &1314015215
 GameObject:
@@ -1508,7 +1523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f090ace2ff03784b9340297b2f8b1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageScript
-  damage: {fileID: 295657060}
   damageLevel: 1
 --- !u!1 &1715873161
 GameObject:
