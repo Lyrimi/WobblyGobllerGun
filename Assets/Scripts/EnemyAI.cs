@@ -3,17 +3,16 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
-    public enum EnemyType {musket, bomber, flintlock};
-    [SerializeField] EnemyType enemyType;
+    public enum EnemyType {musket, bomber, flintlock}; //what types of enemies are there, bomber unused
+    [SerializeField] EnemyType enemyType; //what kind of enemy is it, used to change AI depending on whatever
     [SerializeField] float speed; //movement speed, used only to change maxspeed
-    [SerializeField] Transform target;
-    [SerializeField] Transform playerTrans;
-    [SerializeField] float health;
+    [SerializeField] Transform target; //where does the fella walk to
+    [SerializeField] Transform playerTrans; //wheres the player, used to find out where to put target and other things
+    [SerializeField] float health; //how much health, pretty obvious huh
 
 
-    private AIPath path;
-    BulletData bulletData;
-    private bool outOfRange;
+    private AIPath path; //im not really sure to be honest, think its just where my boy walks
+    private bool outOfRange; //used to check if the enemy is out of the players range, and should stop AI-ing
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,49 +24,60 @@ public class EnemyAI : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   //Is the player out of range, if they are, stop doing ANYTHING
         if (Vector3.Distance(transform.position, playerTrans.position) < 10)
         {
             if (outOfRange == true)
             {
-                GetComponentInChildren<BulletSpawner>().enabled = true;
+                GetComponentInChildren<BulletSpawner>().shouldSpawn = true;
                 path.maxSpeed = speed;
                 outOfRange = false;
             }
+        //then put back all the stuff when it works again^^^^
 
-            path.maxSpeed = speed;
+            //look at the player and walk to the target type shit
             path.destination = target.position;
-
             transform.up = playerTrans.position - this.transform.position;
 
             switch (enemyType)
             {
-                case EnemyType.musket:
+                case EnemyType.musket:    //Walk over to the player, stop when within range
                     target.position = playerTrans.position + (this.transform.position - playerTrans.position).normalized * 5;
                     break;
+                                          //----------------------------------------------
 
-                case EnemyType.flintlock:
+                case EnemyType.flintlock: //walk around randomly,
+                                          //shoot a ray to check if theres a wall where its walking to, try again if there is
 
                     if (Vector2.Distance(this.transform.position, target.transform.position) < 0.3)
                     {
                         Vector2 randomDir;
                         randomDir = Random.insideUnitCircle * 4;
+
                         RaycastHit2D hit = Physics2D.Raycast(this.transform.position, randomDir, 4);
-                        Debug.DrawRay(this.transform.position, randomDir, Color.red, 2);
+
                         if (hit.collider == null)
                         {
                             target.position = transform.position + (Vector3)randomDir;
                         }
-                    }
+                    }                       //---------------------------------------------
+                    
+
                     break;
             }
         }
-        else { path.maxSpeed = 0; }
-        GetComponentInChildren<BulletSpawner>().enabled = false;
-        outOfRange = true;
+        //turn all the stuff off when out of range
+        else 
+        { 
+           path.maxSpeed = 0;
+           GetComponentInChildren<BulletSpawner>().shouldSpawn = false;
+           outOfRange = true;
+        }
+        
 
     }
 
+    //of you get hit take damage and ATOMIZE the bullet
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 7)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6249359327782713442}
   - component: {fileID: 2554024249077748749}
   - component: {fileID: 4022122746073682725}
+  - component: {fileID: 4207658269612752418}
   m_Layer: 2
   m_Name: WavBullet
   m_TagString: Bullet
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1913705195784120095, guid: aa36ffd9915649b448e0eb223c5f8340, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4639821, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -146,3 +147,16 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.0001
+--- !u!114 &4207658269612752418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975834475561290771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f090ace2ff03784b9340297b2f8b1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageScript
+  damageLevel: 1
