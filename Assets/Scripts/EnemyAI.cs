@@ -5,7 +5,7 @@ public class EnemyAI : MonoBehaviour
 {
     public enum EnemyType {musket, bomber, flintlock};
     [SerializeField] EnemyType enemyType;
-    [SerializeField] float speed;
+    [SerializeField] float speed; //movement speed, used only to change maxspeed
     [SerializeField] Transform target;
     [SerializeField] Transform playerTrans;
     [SerializeField] float health;
@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
 
     private AIPath path;
     BulletData bulletData;
+    private bool outOfRange;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,32 +26,46 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        path.maxSpeed = speed;
-        path.destination = target.position;
-
-        transform.up = playerTrans.position - this.transform.position;
-
-        switch (enemyType)
+        if (Vector3.Distance(transform.position, playerTrans.position) < 10)
         {
-            case EnemyType.musket:
-                target.position = playerTrans.position + (this.transform.position - playerTrans.position).normalized * 5;
-                break;
+            if (outOfRange == true)
+            {
+                GetComponentInChildren<BulletSpawner>().enabled = true;
+                path.maxSpeed = speed;
+                outOfRange = false;
+            }
 
-            case EnemyType.flintlock:
+            path.maxSpeed = speed;
+            path.destination = target.position;
 
-                if(Vector2.Distance(this.transform.position, target.transform.position) < 0.3 )
-                {
-                    Vector2 randomDir;
-                    randomDir = Random.insideUnitCircle * 4;
-                    RaycastHit2D hit = Physics2D.Raycast(this.transform.position, randomDir, 4);
-                    Debug.DrawRay(this.transform.position, randomDir, Color.red,2);
-                    if (hit.collider == null)
+            transform.up = playerTrans.position - this.transform.position;
+
+            switch (enemyType)
+            {
+                case EnemyType.musket:
+                    target.position = playerTrans.position + (this.transform.position - playerTrans.position).normalized * 5;
+                    break;
+
+                case EnemyType.flintlock:
+
+                    if (Vector2.Distance(this.transform.position, target.transform.position) < 0.3)
                     {
-                        target.position = transform.position + (Vector3)randomDir;
+                        Vector2 randomDir;
+                        randomDir = Random.insideUnitCircle * 4;
+                        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, randomDir, 4);
+                        Debug.DrawRay(this.transform.position, randomDir, Color.red, 2);
+                        if (hit.collider == null)
+                        {
+                            target.position = transform.position + (Vector3)randomDir;
+                        }
                     }
-                }
-                break;
+                    break;
+            }
         }
+        else { path.maxSpeed = 0; }
+        GetComponentInChildren<BulletSpawner>().enabled = false;
+        outOfRange = true;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
