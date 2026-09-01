@@ -5,11 +5,14 @@ using UnityEngine.UI;
 using System;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using UnityEditor.Animations;
 
 public class UiHeartScript : MonoBehaviour
 {
     public List<SpriteRenderer> HeartStates = new List<SpriteRenderer>();
     public GameObject HpUp;
+
+   
 
     Image image;
 
@@ -32,6 +35,7 @@ public class UiHeartScript : MonoBehaviour
     {
         image = GetComponent<Image>();
         HpUp.SetActive(false);
+        
     }
 
     //depricated
