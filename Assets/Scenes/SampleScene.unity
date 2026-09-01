@@ -157,6 +157,8 @@ MonoBehaviour:
   IsPlayer: 0
   HealthUp: {fileID: 2141039261}
   UiHeart: {fileID: 1269079168}
+  IFrames: 0
+  IFrameAmount: 30
 --- !u!61 &202995400
 BoxCollider2D:
   m_ObjectHideFlags: 0
