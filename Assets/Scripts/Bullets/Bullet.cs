@@ -57,11 +57,6 @@ public class Bullet : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //collision.collider
-    }
-
     private Vector2 Movement(float timer)
     {
                 float x = timer * speed * transform.right.x;

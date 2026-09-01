@@ -86,6 +86,7 @@ public class EnemyAI : MonoBehaviour
             Destroy(collision.gameObject);
             if (health<=0)
             {
+                GameObject.Find("winCon").GetComponent<AreAllEnemiesDead>().enemyKills++;
                 Destroy(this.gameObject);
             }
         }
