@@ -16,6 +16,10 @@ public class HealthSCript : MonoBehaviour
 
     Color TempColor;
     bool fade;
+    [SerializeField]
+    float IFrames;
+
+    public float IFrameAmount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -70,13 +74,19 @@ public class HealthSCript : MonoBehaviour
                 HealthUp.SetActive(false);
             }
         }
-        
+        if (IFrames>0)
+        {
+            IFrames--;
+        }
         
     }
 
     public void Damage(int damageAmount)
     {
-
+        if(IFrames > 0)
+        {
+            return;
+        }
         if (health > 0)
         {
             health -= damageAmount;
@@ -90,7 +100,11 @@ public class HealthSCript : MonoBehaviour
             gameObject.SendMessage("Die");
             
         }
-        
+
+        IFrames = IFrameAmount;
+
+
     }
+
 
 }
