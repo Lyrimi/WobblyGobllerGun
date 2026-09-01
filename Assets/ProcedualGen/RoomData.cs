@@ -7,6 +7,7 @@ using static RoomTypes;
 
 public class RoomData : MonoBehaviour
 {
+
     public int MaxAttachments;
 
     public int CurAttachments = 0;
