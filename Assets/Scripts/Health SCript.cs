@@ -51,7 +51,7 @@ public class HealthSCript : MonoBehaviour
 
         HPUPPos.x = gameObject.transform.position.x + 0.5f;
         HPUPPos.y = gameObject.transform.position.y + 0.5f;
-        HPUPPos = HealthUp.transform.right;
+        HPUPPos = HealthUp.transform.right*3;
     }
 
 
