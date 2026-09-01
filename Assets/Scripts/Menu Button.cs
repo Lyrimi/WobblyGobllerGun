@@ -1,4 +1,7 @@
+using Unity.VectorGraphics;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
@@ -17,6 +20,7 @@ public class MenuButton : MonoBehaviour
     public void Onclick()
     {
         Debug.Log("Pressed");
+        SceneManager.LoadScene("Movement Test Scene");
     }
 
 }

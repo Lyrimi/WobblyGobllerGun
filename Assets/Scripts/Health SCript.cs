@@ -9,6 +9,8 @@ public class HealthSCript : MonoBehaviour
     [SerializeField]
     bool IsPlayer;
 
+    public GameObject HealthUp;
+
     public UiHeartScript UiHeart;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,6 +20,7 @@ public class HealthSCript : MonoBehaviour
         {
             UiHeart.SetHealth(health);
         }
+        
     }
 
     // Update is called once per frame
@@ -41,6 +44,14 @@ public class HealthSCript : MonoBehaviour
         {
             UiHeart.SetHealth(health);
         }
+
+        HealthUp.SetActive(true);
+
+        Vector2 HPUPPos = HealthUp.transform.position;
+
+        HPUPPos.x = gameObject.transform.position.x + 0.5f;
+        HPUPPos.y = gameObject.transform.position.y + 0.5f;
+        HPUPPos = HealthUp.transform.right*3;
     }
 
 
@@ -58,6 +69,7 @@ public class HealthSCript : MonoBehaviour
         if (health <= 0)
         {
             gameObject.SendMessage("Die");
+            
         }
 
     }
