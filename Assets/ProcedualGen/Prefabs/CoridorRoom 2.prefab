@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143442446481161431}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -5.53, y: -0.21, z: 0}
   m_LocalScale: {x: 5, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 8348997230114731459}
   - {fileID: 3875091489673363769}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &2015900042648642436
 SpriteRenderer:
   serializedVersion: 2
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
   MaxAttachments: 2
+  CurAttachments: 0
   RoomType: 1
   RoomAttachPoints:
   - {fileID: 6278642384709910210}
@@ -157,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomAttachPoint
   ValidRoomTypes: 0000000002000000
-  Direction: 270
+  Direction: 180
 --- !u!1 &8577781834606830087
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,4 +204,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomAttachPoint
   ValidRoomTypes: 0000000002000000
-  Direction: 90
+  Direction: 0

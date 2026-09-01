@@ -154,7 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f394e007227d01241a80858f311905ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
-  MaxAttachments: 0
+  MaxAttachments: 4
+  CurAttachments: 0
   RoomType: 2
   RoomAttachPoints:
   - {fileID: 2332971487586085364}

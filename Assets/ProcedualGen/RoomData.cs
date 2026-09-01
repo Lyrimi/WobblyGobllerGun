@@ -22,9 +22,34 @@ public class RoomData : MonoBehaviour
         ValidRoomAttachPoints = RoomAttachPoints.ToList();
     }
 
-    public RoomAttachPoint GetRandomAttachPoint(Random rnd)
+    public RoomAttachPoint GetRandomAttachPoint()
     {
+        Random rnd = Generation.GenRnd;
         int index = rnd.Next(ValidRoomAttachPoints.Count);
         return ValidRoomAttachPoints[index];
+    }
+
+    public RoomAttachPoint PickRandomValidAttachPoint(RoomAttachPoint basePoint, RoomData PrefabRoom)
+    {
+        Random rnd = Generation.GenRnd;
+        List<RoomAttachPoint> curValidPoints = RoomAttachPoints.ToList();
+        foreach (var point in RoomAttachPoints)
+        {
+            if (!(basePoint.ConectingDir == (int)point.Direction))
+            {
+                curValidPoints.Remove(point);
+            }
+        }
+
+        if (curValidPoints.Count <= 0)
+        {
+            return null;
+        }
+
+        int index = rnd.Next(curValidPoints.Count);
+        return curValidPoints[index];
+
+
+
     }
 }
