@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HealthSCript : MonoBehaviour
@@ -13,6 +14,9 @@ public class HealthSCript : MonoBehaviour
 
     public UiHeartScript UiHeart;
 
+    Color TempColor;
+    bool fade;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +24,8 @@ public class HealthSCript : MonoBehaviour
         {
             UiHeart.SetHealth(health);
         }
-        
+        TempColor = HealthUp.GetComponent<SpriteRenderer>().color;
+        Debug.Log($"{HealthUp.GetComponent<SpriteRenderer>().color.a}");
     }
 
     // Update is called once per frame
@@ -45,15 +50,24 @@ public class HealthSCript : MonoBehaviour
             UiHeart.SetHealth(health);
         }
 
+        fade = true;
+        TempColor.a = 1;
         HealthUp.SetActive(true);
 
-        Vector2 HPUPPos = HealthUp.transform.position;
+        
+        
 
-        HPUPPos.x = gameObject.transform.position.x + 0.5f;
-        HPUPPos.y = gameObject.transform.position.y + 0.5f;
-        HPUPPos = HealthUp.transform.right*3;
     }
-
+    public void FixedUpdate()
+    {
+        if (fade)
+        {
+            TempColor.a -= 0.01f;
+            HealthUp.GetComponent<SpriteRenderer>().color = TempColor;
+        }
+        
+        
+    }
 
     public void Damage(int damageAmount)
     {
@@ -71,7 +85,7 @@ public class HealthSCript : MonoBehaviour
             gameObject.SendMessage("Die");
             
         }
-
+        
     }
 
 }
