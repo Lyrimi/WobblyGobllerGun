@@ -4,53 +4,62 @@ public class HealthSCript : MonoBehaviour
 {
 
     public int health;
+    [SerializeField]
+    int MaxHealth;
+    [SerializeField]
+    bool IsPlayer;
 
-    public GameObject UiHeart;
+    public UiHeartScript UiHeart;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        if (UiHeart)
+        {
+            UiHeart.SetHealth(health);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void Healing(int healingamount)
+    public void Healing(int healingAmount)
     {
-        if (gameObject.CompareTag("Player"))
+        if (health + healingAmount > MaxHealth)
         {
-            if (health + healingamount > 3)
-            {
-                health = 3;
-            }
-            else
-            {
-                health += healingamount;
-                
-            }
-            UiHeart.SendMessage("Heal", healingamount);
-        }  
-    }
-
-    
-    public void Damage(int damagelevel)
-    {
-        if (gameObject.CompareTag("Player"))
-        {
-            UiHeart.SendMessage("Health", damagelevel);
+            health = MaxHealth;
         }
+        else
+        {
+            health += healingAmount;
+
+        }
+        if (UiHeart)
+        {
+            UiHeart.SetHealth(health);
+        }
+    }
+
+
+    public void Damage(int damageAmount)
+    {
+
         if (health > 0)
         {
-            health -= damagelevel;
+            health -= damageAmount;
+        }
+        if (UiHeart)
+        {
+            UiHeart.SetHealth(health);
         }
         if (health <= 0)
         {
             gameObject.SendMessage("Die");
         }
+
     }
 
 }

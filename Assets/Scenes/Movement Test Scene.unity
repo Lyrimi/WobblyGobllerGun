@@ -287,7 +287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthSCript
   health: 3
-  UiHeart: {fileID: 295657060}
+  MaxHealth: 3
+  IsPlayer: 0
+  UiHeart: {fileID: 295657064}
 --- !u!1 &295657060
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,10 +379,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   HeartStates:
-  - {fileID: 817480331}
-  - {fileID: 1314015217}
-  - {fileID: 1413953430}
   - {fileID: 480324546}
+  - {fileID: 1413953430}
+  - {fileID: 1314015217}
+  - {fileID: 817480331}
   HpUp: {fileID: 421960010}
 --- !u!1 &421960010
 GameObject:

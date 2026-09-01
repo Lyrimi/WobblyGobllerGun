@@ -9,71 +9,83 @@ public class UiHeartScript : MonoBehaviour
 {
     public List<SpriteRenderer> HeartStates = new List<SpriteRenderer>();
     public GameObject HpUp;
-    
+
     Image image;
-    
-    int damage;
+
+    int _curHealthLevel;
+    int curHealthLevel
+    {
+        set
+        {
+            _curHealthLevel = value;
+            UpdateSprite();
+        }
+        get
+        {
+            return _curHealthLevel;
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         image = GetComponent<Image>();
         HpUp.SetActive(false);
-        
     }
-    public void Health(int damagelevel)
+
+    //depricated
+    public void Damage(int damagelevel)
     {
+        throw new Exception("Depricade function use SetHealth");
         Debug.Log("Healthing it");
-        
-        if(damage + damagelevel > HeartStates.Count-1)
+
+        if (curHealthLevel + damagelevel > HeartStates.Count - 1)
         {
             Debug.Log("Do notin");
         }
         else
         {
-            damage += damagelevel;
+            curHealthLevel += damagelevel;
         }
-            if (damage >= HeartStates.Count-1)
-            {
-                Debug.Log("Killyourself");
-            }
-        
-       
-
+        if (curHealthLevel >= HeartStates.Count - 1)
+        {
+            Debug.Log("Killyourself");
+        }
     }
 
-    
+    public void SetHealth(int Health)
+    {
+        curHealthLevel = Health;
+    }
 
 
+
+    //depricated
     public void Heal(int healing)
     {
+        throw new Exception("Depricade function use SetHealth");
         Debug.Log("heal");
-        if (damage > 0)
+        if (curHealthLevel > 0)
         {
-            if(damage - healing < 0)
+            if (curHealthLevel - healing < 0)
             {
-                damage = 0;
+                curHealthLevel = 0;
             }
             else
             {
-                damage -= healing;
+                curHealthLevel -= healing;
             }
-                
-           
-            
-            
-
-           
         }
-       
+    }
 
-
-
+    private void UpdateSprite()
+    {
+        image.sprite = HeartStates[curHealthLevel].GetComponent<SpriteRenderer>().sprite;
     }
     private void FixedUpdate()
     {
-       
-         image.sprite = HeartStates[damage].GetComponent<SpriteRenderer>().sprite;
-        
+
+
+
     }
 }
