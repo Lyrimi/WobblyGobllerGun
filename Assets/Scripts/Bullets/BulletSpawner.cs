@@ -23,19 +23,21 @@ public class BulletSpawner : MonoBehaviour
     private float firerateTimer;
     private float burstrateTimer;
     private float degreeBetween;
+    public bool shouldSpawn;
     // Update is called once per frame
     void Update()
     {
-        //Shoots if the timer is exceeded
-        firerateTimer += Time.deltaTime;
-        if (firerateTimer >= firingRate)
+        if (shouldSpawn == true)
         {
-            StartCoroutine(Fire());
-            firerateTimer = 0;
+            //Shoots if the timer is exceeded
+            firerateTimer += Time.deltaTime;
+            if (firerateTimer >= firingRate)
+            {
+                StartCoroutine(Fire());
+                firerateTimer = 0;
+            }
+            //
         }
-        //
-
-
     }
 
     private IEnumerator Fire()

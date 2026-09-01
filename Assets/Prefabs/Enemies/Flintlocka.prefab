@@ -195,11 +195,12 @@ MonoBehaviour:
   bulletLife: 6
   speed: 3
   spawnerType: 1
-  firingRate: 1
+  firingRate: 2
   burstAmount: 3
   burstRate: 0.1
   spreadAmount: 3
   spreadAngle: 360
+  shouldSpawn: 0
 --- !u!1 &5911618161073559924
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,8 +316,6 @@ MonoBehaviour:
   target: {fileID: 5054399411002747993}
   playerTrans: {fileID: 0}
   health: 100
-  debugnumba: 0.2
-  player: {fileID: 0}
 --- !u!114 &3607100694071306676
 MonoBehaviour:
   m_ObjectHideFlags: 0
