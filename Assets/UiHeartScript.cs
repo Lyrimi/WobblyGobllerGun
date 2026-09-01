@@ -83,11 +83,11 @@ public class UiHeartScript : MonoBehaviour
         }
     }
 
-   
+
 
     private void UpdateSprite()
     {
-        
+
     }
     private void FixedUpdate()
     {
