@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class UiHeartScript : MonoBehaviour
 {
@@ -78,14 +79,16 @@ public class UiHeartScript : MonoBehaviour
         }
     }
 
+   
+
     private void UpdateSprite()
     {
-        image.sprite = HeartStates[curHealthLevel].GetComponent<SpriteRenderer>().sprite;
+        
     }
     private void FixedUpdate()
     {
 
-
+        image.sprite = HeartStates[curHealthLevel].GetComponent<SpriteRenderer>().sprite;
 
     }
 }

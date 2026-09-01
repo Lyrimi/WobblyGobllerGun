@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerMovementScript : MonoBehaviour
@@ -129,6 +130,9 @@ public class PlayerMovementScript : MonoBehaviour
         
     }
 
-   
+    public void Die()
+    {
+        SceneManager.LoadScene("Menui scene");
+    }
 
 }
