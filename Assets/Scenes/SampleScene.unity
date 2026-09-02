@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 912769955830840623, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
+      propertyPath: Health
+      value: 
+      objectReference: {fileID: 559081725}
     - target: {fileID: 1830857698818642312, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
       propertyPath: m_Name
       value: PlayerObj
@@ -171,7 +175,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4401031299271167295, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 44.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401031299271167295, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4979496900696382757, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
+      propertyPath: UiHeart
+      value: 
+      objectReference: {fileID: 1284643306}
+    - target: {fileID: 5677866199922939909, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
       propertyPath: UiHeart
       value: 
       objectReference: {fileID: 1284643306}
@@ -279,7 +295,7 @@ PrefabInstance:
     - target: {fileID: 7140148878371223814, guid: 058cc4a4bdf166943895987511a2e62f, type: 3}
       propertyPath: HpUp
       value: 
-      objectReference: {fileID: 744176444}
+      objectReference: {fileID: 0}
     - target: {fileID: 7140148878371223814, guid: 058cc4a4bdf166943895987511a2e62f, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -474,19 +490,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ec0581f072c924d9ac9033e8ccd549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lerp
-  target: {fileID: 1392868706}
+  target: {fileID: 0}
   strength: 5
   gotransform: 1
   gorotate: 0
+--- !u!1 &559081725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8368160310676535718, guid: 058cc4a4bdf166943895987511a2e62f, type: 3}
+  m_PrefabInstance: {fileID: 10745202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &634493564 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 384373924031246413, guid: 8922339d1c9bb6f43af0c4b91ae75120, type: 3}
   m_PrefabInstance: {fileID: 246162628}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &744176444 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2914268315578389856, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
-  m_PrefabInstance: {fileID: 9430467}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &759140046
 GameObject:
@@ -695,7 +711,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7140148878371223814, guid: 058cc4a4bdf166943895987511a2e62f, type: 3}
   m_PrefabInstance: {fileID: 10745202}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 559081725}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d850f1263c59424db92d1c5a7be1c0c, type: 3}
@@ -846,16 +862,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 470097797}
   m_SourcePrefab: {fileID: 100100000, guid: 88515946b99396346b872d85cedd87b9, type: 3}
---- !u!1 &1392868706 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1830857698818642312, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
-  m_PrefabInstance: {fileID: 9430467}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1392868712 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2835506729932540881, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
-  m_PrefabInstance: {fileID: 9430467}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1440206567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 384373924031246413, guid: 8922339d1c9bb6f43af0c4b91ae75120, type: 3}
@@ -995,7 +1001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: AstarPathfindingProject::Pathfinding.ProceduralGridMover
   version: 1
   updateDistance: 5
-  target: {fileID: 1392868712}
+  target: {fileID: 0}
   graphIndex: 0
 --- !u!1 &1565171765
 GameObject:
