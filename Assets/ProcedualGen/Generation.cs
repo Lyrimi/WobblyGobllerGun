@@ -10,22 +10,22 @@ public class Generation : MonoBehaviour
 {
     [SerializeField]
 
-    GenData _genData;
-    List<RoomData> _validRooms;
+    private GenData _genData;
+    private List<RoomData> _validRooms;
 
 
     [SerializeField]
-    bool _debugButton;
+    private bool _debugButton;
 
     [SerializeField]
-    bool _debugButton2;
+    private bool _debugButton2;
 
     [SerializeField]
-    ContactFilter2D _filter;
+    private ContactFilter2D _filter;
 
     public static System.Random GenRnd;
 
-    int _roomsBuild = 0;
+    private int _roomsBuild = 0;
 
     private Dictionary<RoomType, int> _quotas;
 
@@ -36,7 +36,15 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private bool _debugTraversel;
 
+    [SerializeField]
+    private int _maxIterations = 10000;
+
     private int _totalQouta;
+
+    private int _stepBackAmount = 1;
+    private int _curBuildStreak = 0;
+
+    private int _lastBuildStrak = 0;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -66,13 +74,19 @@ public class Generation : MonoBehaviour
     {
         if (_debugButton)
         {
-            _debugButton = !_debugButton;
+            _debugButton = _debugButton;
             Step();
         }
 
         if (_debugButton2)
         {
             _debugButton2 = false;
+            Cleanup();
+            RoomData StartRoom = FindFarthestRoom(_curRooms[0]);
+            RoomData EndRoom = FindFarthestRoom(StartRoom);
+
+            StartRoom.GetComponent<SpriteRenderer>().color = new(0, 1, 0);
+            EndRoom.GetComponent<SpriteRenderer>().color = new(0, 0, 1);
 
         }
     }
@@ -81,9 +95,9 @@ public class Generation : MonoBehaviour
     #region  Main Loop
     void Step()
     {
-        while (LoopRooms())
+        if (LoopRooms())
         {
-
+            return;
         }
         Cleanup();
         RoomData StartRoom = FindFarthestRoom(_curRooms[0]);
@@ -103,6 +117,7 @@ public class Generation : MonoBehaviour
         RoomAttachPoint point = null;
         RoomData curRoom = null;
         int iterator = 0;
+        int problemCount = 0;
 
         while (true)
         {
@@ -113,13 +128,22 @@ public class Generation : MonoBehaviour
                 return false;
             }
 
-            if (iterator > 10000)
+            if (iterator > _maxIterations)
             {
                 throw new System.Exception("Loop exceted 9000 | LoopRooms");
             }
             if (_validRooms.Count <= 0)
             {
-                throw new System.Exception("No valid rooms found while qouta has not been meet");
+                //
+                Debug.Log("Problems");
+                if (problemCount >= 100)
+                {
+
+                    throw new System.Exception("No valid rooms found while qouta has not been meet");
+                }
+                problemCount++;
+                StepBack();
+
             }
 
 
@@ -140,6 +164,9 @@ public class Generation : MonoBehaviour
         TryAddRoom(curRoom, roomObj, point);
         return true;
     }
+
+
+
     #endregion
 
     #region Room Generation
@@ -220,6 +247,8 @@ public class Generation : MonoBehaviour
 
         curRoom.ValidRoomAttachPoints.Remove(point);
 
+        _curBuildStreak++;
+
 
 
 
@@ -242,7 +271,7 @@ public class Generation : MonoBehaviour
         {
             iterator++;
 
-            if (iterator > 10000)
+            if (iterator > _maxIterations)
             {
                 throw new System.Exception("Loop exceted 9000 | TryFindValidPrefabAndAttach");
             }
@@ -401,7 +430,7 @@ public class Generation : MonoBehaviour
         while (ToTraverse.Count > 0)
         {
             iterator++;
-            if (iterator > 10000)
+            if (iterator > _maxIterations)
             {
                 throw new System.Exception("Loop exceted 9000 | LoopRooms");
             }
@@ -476,10 +505,89 @@ public class Generation : MonoBehaviour
 
         foreach (RoomData room in ToDelete)
         {
+            room.ConnectedPoint.Parrent.CurAttachments--;
             room.ConnectedPoint.Connected = null;
+
             _curRooms.Remove(room);
             Destroy(room.gameObject);
         }
+    }
+
+    void StepBack()
+    {
+        //Recaculates how much to step back to increase build speed
+        if (_lastBuildStrak - 10 < _curBuildStreak && _curBuildStreak < _lastBuildStrak + 10)
+        {
+            _stepBackAmount++;
+            print($"Addedd: {_stepBackAmount}");
+        }
+        else
+        {
+            _stepBackAmount = 1;
+            print($" Reset{_stepBackAmount}");
+        }
+
+        _lastBuildStrak = _curBuildStreak;
+        _curBuildStreak = 0;
+
+        int count = _curRooms.Count;
+        RoomData lastRemovedRoom = null;
+        List<RoomData> roomsToRemove = new();
+        for (int i = 0; i < _stepBackAmount; i++)
+        {
+            count = _curRooms.Count;
+            RoomData removedRoom = _curRooms.Last();
+            if (removedRoom == _curRooms[0])
+            {
+                break;
+            }
+
+
+
+            _curRooms.RemoveAt(count - 1);
+
+            removedRoom.ConnectedPoint.Connected = null;
+            removedRoom.ConnectedPoint.Parrent.CurAttachments--;
+            removedRoom.ConnectedPoint.Parrent.ValidRoomAttachPoints.Remove(removedRoom.ConnectedPoint);
+            //Adds the qoutas for the removed objects
+            if (!(_quotas[removedRoom.RoomType] == -1))
+            {
+                _totalQouta++;
+                _quotas[removedRoom.RoomType]++;
+            }
+
+            lastRemovedRoom = removedRoom;
+
+            roomsToRemove.Add(removedRoom);
+
+        }
+
+        foreach (var removedRoom in roomsToRemove)
+        {
+            Destroy(removedRoom.gameObject);
+            Destroy(removedRoom);
+        }
+
+        _validRooms.Add(lastRemovedRoom.ConnectedPoint.Parrent);
+
+        count = _curRooms.Count;
+        for (int i = 0; i < 4; i++)
+        {
+            if ((count - i) > -1)
+            {
+                RoomData room = _curRooms[count - i - 1];
+                if (_validRooms.Contains(room))
+                {
+                    _validRooms.Add(room);
+                }
+            }
+        }
+
+
+
+
+
+
     }
 
     #endregion

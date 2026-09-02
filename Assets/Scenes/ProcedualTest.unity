@@ -686,6 +686,7 @@ MonoBehaviour:
   _curRooms:
   - {fileID: 1636163344}
   _debugTraversel: 1
+  _maxIterations: 10000
 --- !u!4 &2057957220
 Transform:
   m_ObjectHideFlags: 0
