@@ -33,6 +33,9 @@ public class Generation : MonoBehaviour
 
     private List<RoomData> _curRooms;
 
+    [SerializeField]
+    private bool _debugTraversel;
+
     private int _totalQouta;
 
 
@@ -63,14 +66,14 @@ public class Generation : MonoBehaviour
     {
         if (_debugButton)
         {
-            _debugButton = _debugButton;
+            _debugButton = !_debugButton;
             Step();
         }
 
         if (_debugButton2)
         {
             _debugButton2 = false;
-            Cleanup();
+
         }
     }
 
@@ -82,8 +85,13 @@ public class Generation : MonoBehaviour
         {
 
         }
-        _debugButton = false;
         Cleanup();
+        RoomData StartRoom = FindFarthestRoom(_curRooms[0]);
+        RoomData EndRoom = FindFarthestRoom(StartRoom);
+
+        StartRoom.GetComponent<SpriteRenderer>().color = new(0, 1, 0);
+        EndRoom.GetComponent<SpriteRenderer>().color = new(0, 0, 1);
+
 
 
     }
@@ -193,6 +201,7 @@ public class Generation : MonoBehaviour
             iRoomData.ValidRoomAttachPoints.Remove(otherPoint);
             iRoomData.CurAttachments++;
             iRoomData.ConnectedPoint = point;
+            otherPoint.Connected = curRoom;
 
             curRoom.CurAttachments++;
             _curRooms.Add(iRoomData);
@@ -380,24 +389,67 @@ public class Generation : MonoBehaviour
     #region Traversal
 
 
-    void FindFarthestRoom(RoomData roomData)
+    RoomData FindFarthestRoom(RoomData roomData)
     {
         List<(RoomData, int)> ToTraverse = new();
         List<(RoomData, int)> TraversedItems = new();
+        List<RoomData> TraversedRooms = new();
         ToTraverse.Add((roomData, 0));
+        int _debugFuthersDistance = 0;
 
+        int iterator = 0;
         while (ToTraverse.Count > 0)
         {
+            iterator++;
+            if (iterator > 10000)
+            {
+                throw new System.Exception("Loop exceted 9000 | LoopRooms");
+            }
+
+
             RoomData curRoom = ToTraverse[0].Item1;
+            int depth = ToTraverse[0].Item2;
             TraversedItems.Add((curRoom, ToTraverse[0].Item2));
+            TraversedRooms.Add(curRoom);
+
+            if (depth > _debugFuthersDistance)
+            {
+                _debugFuthersDistance = depth;
+            }
+
+            ToTraverse.RemoveAt(0);
+
+
+
             foreach (RoomAttachPoint point in curRoom.RoomAttachPoints)
             {
                 if (point.Connected != null)
                 {
-                    ToTraverse.Add((point.Connected, ToTraverse[0].Item2 + 1));
+                    if (TraversedRooms.Contains(point.Connected))
+                    {
+                        continue;
+                    }
+                    ToTraverse.Add((point.Connected, depth + 1));
+
                 }
             }
         }
+        RoomData furthestRoom = null;
+        int distance = 0;
+        foreach (var item in TraversedItems)
+        {
+            if (_debugTraversel)
+            {
+                item.Item1.GetComponent<SpriteRenderer>().color = new((float)item.Item2 / (float)_debugFuthersDistance, 0, 0);
+            }
+            if (item.Item2 > distance)
+            {
+                distance = item.Item2;
+                furthestRoom = item.Item1;
+            }
+        }
+
+        return furthestRoom;
     }
 
     #endregion
