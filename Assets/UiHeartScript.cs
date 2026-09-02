@@ -1,15 +1,19 @@
-using NUnit.Framework;
-using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.UI;
 using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
+using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UiHeartScript : MonoBehaviour
 {
     public List<SpriteRenderer> HeartStates = new List<SpriteRenderer>();
     public GameObject HpUp;
+
+    Animator Animor;
 
     Image image;
 
@@ -32,6 +36,8 @@ public class UiHeartScript : MonoBehaviour
     {
         image = GetComponent<Image>();
         HpUp.SetActive(false);
+        Animor = GetComponent<Animator>();
+        
     }
 
     //depricated
@@ -81,14 +87,17 @@ public class UiHeartScript : MonoBehaviour
 
 
 
-    private void UpdateSprite()
+    void UpdateSprite()
     {
-
+        Animor.SetInteger("HealthUiInt", curHealthLevel);
+        // Animor.Play(0);
     }
-    private void FixedUpdate()
+
+   /* private void FixedUpdate()
     {
 
         image.sprite = HeartStates[curHealthLevel].GetComponent<SpriteRenderer>().sprite;
 
     }
+    */
 }

@@ -21,8 +21,9 @@ public class DamageScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         collision.gameObject.SendMessage("Damage", damageLevel);
-            //GetComponent<HealthSCript>().Damage(damageLevel); 
-           // 
-       
+        Destroy(gameObject);
+        //GetComponent<HealthSCript>().Damage(damageLevel); 
+        // 
+
     }
 }

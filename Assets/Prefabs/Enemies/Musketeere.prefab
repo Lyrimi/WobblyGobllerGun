@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5260886553223308741}
   m_Layer: 2
   m_Name: Flintlock fella
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,8 +115,6 @@ MonoBehaviour:
   target: {fileID: 8868330131518498867}
   playerTrans: {fileID: 0}
   health: 100
-  debugnumba: 0.2
-  player: {fileID: 0}
 --- !u!114 &7348090630467885806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +301,7 @@ MonoBehaviour:
   burstRate: 0.05
   spreadAmount: 3
   spreadAngle: 80
+  shouldSpawn: 0
 --- !u!1 &4752735266897846392
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Bullet
   - Food
+<<<<<<< HEAD
+=======
+  - Enemy
+>>>>>>> 85712ffc28e31994465cca99433834c8372f5162
   layers:
   - Default
   - TransparentFX
