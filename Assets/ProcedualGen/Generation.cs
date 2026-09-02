@@ -6,6 +6,7 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 
 using static RoomTypes;
+using Direction = RoomTypes.Direction;
 public class Generation : MonoBehaviour
 {
     [SerializeField]
@@ -22,6 +23,8 @@ public class Generation : MonoBehaviour
 
     [SerializeField]
     private ContactFilter2D _filter;
+    [SerializeField]
+    private int _stepBackResetMargin = 10;
 
     public static System.Random GenRnd;
 
@@ -44,7 +47,7 @@ public class Generation : MonoBehaviour
     private int _stepBackAmount = 1;
     private int _curBuildStreak = 0;
 
-    private int _lastBuildStrak = 0;
+    private int _bestBuildStreak = 0;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -74,19 +77,14 @@ public class Generation : MonoBehaviour
     {
         if (_debugButton)
         {
-            _debugButton = _debugButton;
+            _debugButton = !_debugButton;
             Step();
         }
 
         if (_debugButton2)
         {
             _debugButton2 = false;
-            Cleanup();
-            RoomData StartRoom = FindFarthestRoom(_curRooms[0]);
-            RoomData EndRoom = FindFarthestRoom(StartRoom);
-
-            StartRoom.GetComponent<SpriteRenderer>().color = new(0, 1, 0);
-            EndRoom.GetComponent<SpriteRenderer>().color = new(0, 0, 1);
+            AttachRoomsConnections();
 
         }
     }
@@ -95,9 +93,9 @@ public class Generation : MonoBehaviour
     #region  Main Loop
     void Step()
     {
-        if (LoopRooms())
+        while (LoopRooms())
         {
-            return;
+
         }
         Cleanup();
         RoomData StartRoom = FindFarthestRoom(_curRooms[0]);
@@ -253,6 +251,110 @@ public class Generation : MonoBehaviour
 
 
     }
+
+    #endregion
+
+    #region Connection Generation
+
+
+    [Header("Extra Generation")]
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float _extraConectionChance;
+    [SerializeField]
+    private LayerMask _layerMask;
+    [SerializeField]
+    private float _maxRaycastLength;
+    void AttachRoomsConnections()
+    {
+
+        foreach (RoomData room in _curRooms)
+        {
+            if (room.CurAttachments < room.MaxAttachments)
+            {
+                foreach (var point in room.ValidRoomAttachPoints)
+                {
+                    if (room.CurAttachments >= room.MaxAttachments)
+                    {
+                        continue;
+                    }
+                    double rndNum = GenRnd.NextDouble();
+                    if (rndNum < _extraConectionChance)
+                    {
+                        CheckRoomExtraConnection(point);
+                    }
+                }
+            }
+        }
+    }
+
+    void CheckRoomExtraConnection(RoomAttachPoint point)
+    {
+        print("Check?");
+        Vector2 direction = new();
+        switch (point.Direction)
+        {
+            case Direction.North:
+                direction = new(0, 1);
+                break;
+            case Direction.East:
+                direction = new(1, 0);
+                break;
+            case Direction.South:
+                direction = new(0, -1);
+                break;
+            case Direction.West:
+                direction = new(-1, 0);
+                break;
+            default:
+                break;
+        }
+
+
+
+        RaycastHit2D[] hits = Physics2D.RaycastAll(point.transform.position, direction, _maxRaycastLength);
+
+        if (hits.Length <= 0)
+        {
+            return;
+        }
+        foreach (var hit in hits)
+        {
+            if (hit.collider.gameObject == point.Parrent.gameObject)
+            {
+                continue;
+            }
+            RoomData hitRoom = hit.collider.gameObject.GetComponent<RoomData>();
+
+            if (!hitRoom) { print("Hitsomthing else?"); return; }
+
+            if (hitRoom.CurAttachments == hitRoom.MaxAttachments)
+            {
+                print("HasMaxAttach");
+                return;
+            }
+
+            RoomAttachPoint hitPoint = null;
+
+            foreach (var rPoint in hitRoom.RoomAttachPoints)
+            {
+                if (Vector2.Distance(hit.point, rPoint.transform.position) < 0.1)
+                {
+                    hitPoint = rPoint;
+                }
+            }
+            if (hitPoint == null)
+            {
+                return;
+            }
+
+            Debug.DrawLine(point.transform.position, hitPoint.transform.position, Color.green, 10000);
+        }
+
+
+
+    }
+
 
     #endregion
 
@@ -432,7 +534,7 @@ public class Generation : MonoBehaviour
             iterator++;
             if (iterator > _maxIterations)
             {
-                throw new System.Exception("Loop exceted 9000 | LoopRooms");
+                throw new System.Exception("Loop exceted 9000 | FindFarthestRoom");
             }
 
 
@@ -515,19 +617,29 @@ public class Generation : MonoBehaviour
 
     void StepBack()
     {
-        //Recaculates how much to step back to increase build speed
-        if (_lastBuildStrak - 10 < _curBuildStreak && _curBuildStreak < _lastBuildStrak + 10)
+
+        //If build streak above the margin reset it
+        if (_curBuildStreak > _stepBackResetMargin)
+        {
+            _bestBuildStreak = 0;
+        }
+
+        if (_curBuildStreak < _bestBuildStreak)
         {
             _stepBackAmount++;
             print($"Addedd: {_stepBackAmount}");
         }
         else
         {
+            //Only assign if cur buildStreak is better than the last
+            _bestBuildStreak = _curBuildStreak;
             _stepBackAmount = 1;
             print($" Reset{_stepBackAmount}");
         }
 
-        _lastBuildStrak = _curBuildStreak;
+
+
+
         _curBuildStreak = 0;
 
         int count = _curRooms.Count;
