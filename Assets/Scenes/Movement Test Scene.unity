@@ -1000,6 +1000,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: corpse musket_0 healing item (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5144624339767743565, guid: 85b707f30835617429172bd6f071f734, type: 3}
+      propertyPath: m_Size.x
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144624339767743565, guid: 85b707f30835617429172bd6f071f734, type: 3}
+      propertyPath: m_Size.y
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144624339767743565, guid: 85b707f30835617429172bd6f071f734, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3402775279046221385, guid: b582d5682284c47478db8efd4005b006, type: 3}
+    - target: {fileID: 5144624339767743565, guid: 85b707f30835617429172bd6f071f734, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5970312643497742531, guid: 85b707f30835617429172bd6f071f734, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.8
@@ -1413,7 +1429,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!95 &2006723032
 Animator:
@@ -1629,6 +1645,14 @@ PrefabInstance:
     - target: {fileID: 3795765158495974262, guid: 85b707f30835617429172bd6f071f734, type: 3}
       propertyPath: m_Name
       value: corpse musket_0 healing item
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144624339767743565, guid: 85b707f30835617429172bd6f071f734, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3987346231100704574, guid: 98e24f1f0404f60499ced9f984dc64ff, type: 3}
+    - target: {fileID: 5144624339767743565, guid: 85b707f30835617429172bd6f071f734, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5970312643497742531, guid: 85b707f30835617429172bd6f071f734, type: 3}
       propertyPath: m_LocalPosition.x
