@@ -560,6 +560,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 462300375066585487, guid: 8d1770d4958ebbe468ead1fa1529219a, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1047871326375336140, guid: 8d1770d4958ebbe468ead1fa1529219a, type: 3}
       propertyPath: UiHeart
       value: 
@@ -856,6 +860,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3669898965970400373, guid: 8d1770d4958ebbe468ead1fa1529219a, type: 3}
   m_PrefabInstance: {fileID: 992570134}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1461410437 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1224357892859056383, guid: 8d1770d4958ebbe468ead1fa1529219a, type: 3}
+  m_PrefabInstance: {fileID: 992570134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1556591447
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,7 +897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: AstarPathfindingProject::AstarPath
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIey8Vxv9XwIAABwFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzk3HZgKE3lqHkB6SMKWdXHxZrDXWIEsefQRIhv/elWxjSicnS2/f7r79kD+YULbBwmmzNII/aY7s24iFM/syGoyPeICtVmvxjj3nVXBXBRJEzi9wQhOeBjera3RGFN/VVgZyQqBXotSmXvAtZto6S3AJ0iKZjHbBWxH0MWIH+tzMg8uRTuNZOL3TaZ6MTnQsUDk0A7Un9rSW5VUhoW6QB8kDeTzpw04iTVExHSP5GmyFllLYTgtzxybWmkFjPVVCBC6AaosCxnStUGwr113Ozi9ladF1ogwc74WhFrVR2Q/d9q0Gu2uVvYH0IU86nc1m43QapbWRn/4j3aTRXBpdP/bJ0yQkcpUodr/gWIB1F929hO8H9Wns0h7kDjYSXytUz3pptFecjM744Ootju+H67m+rMJiN+Ct1CvQN5/PKNRwii04ZFLUm9j+2xZYSx2bHjcADQ3oJwmO+2G7EIQGFX8s/obt5SJ1hgdhrCNTV6UK8jbam0Bli9izUI13mTYKzWWEBhVId1xRHHc9yCvb514PEN5Ml72z9U/hyiXCAz9JrkwrvT9Py1Z6/4S2evFOCnUZLFieqVOZVqpdNHtlDX5rb0ooLv22XvB/t4uVd2nJ5/NxOofp7bxAeol3mzIFnBYAk2SyYXH9hKJKQa5aqV2DaHBqWABFq9b/TEZLA03cem5gvxTvtbYDU6hSrwuDqF7aCGflaCgJvU++4IJatEbnhIojZx85k7rYIc/PgfJY6uLgDORDlJw14k27gOQsi3+PnAX4vM4rg28C9yF5H+zETn8BUEsDBBQAAAgIAAAIIezqFuCobQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSmoVhWoqlpZGhZaKZiWVyqq6lgUVSmmFiqllyYqKpgWmSUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAIIey8Vxv9XwIAABwFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAIIezqFuCobQAAAHgAAAAJACQAAAAAAAAAAAAAAKwCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAZAMAAAAA
+    dataString: UEsDBBQAAAgIAAAIIezGu0f6WQIAABgFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzk3HZkIaemsdQnpIwoR2cvFlsdZYgyx59BEgGf57V7KNXTo5Id57u3r7IX8woWyDhdNmaQR/1BzZ9wkLZ/ZlMpAPeICtVmvxjr3mVXBXBRFEzQs4oQlPQ5jVNTojih9qK4M4IdArUWpTL/gWM22dJbgEaZEoo12IVgR9TNiBfq7mIeRIp+m3cHqn0zyZnOhYoHJoBmkv7GWtyqtCQt0gD5YH8XTWp51FmaJiOkXyNXCFllLYzgtzxybWmkFjPVVCAi6AaosGpjGiQrGtXPg7Dn8uS4uus2XgeCcMNanNy37qtnM12F3r7Q2kDzfdXEdbbc7H/+irNNKl0fVDf22ahCtcJYrdCxwLsG7U2TF8NzhPY4f2IHewkfhaoXrSS6O94kQ640Ootzi9G/6eK8sqLHYD3lq9AH3z+XxCDadY/CGTot7E1l+3wFrq2PA4fTQ0nF9kOO6G7VIQGlz8sfgbtuMl6oh7YawjqqtSBXsb7U2QskXsWajGu0wbhWacoUEF0h1XlMddjvCC+zzqHsJ76W7vuP4ZXIREeNAnyQW10vvztGyl949oq2fvpFDjZIF5ok5lWql2xewFG+LW3pRQjOO2XvB/t4uVt2nJ5/NpOoeb63mB9ApvN2UKeFMAzJLZhsX1E4oqBblqrXYNosGpYQEUrVr/IZksDTRx37mB/VK819oOSqFKvS4MonpuM5ydo6FL6G3yBRfUojU6J1QcOfvImdTFDnl+TpTHUhcHZyAfsuSsEW/aBSRnWfxy5CzA53VeGXwTuA+X98lO7PQXUEsDBBQAAAgIAAAIIezqFuCobQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSmoVhWoqlpZGhZaKZiWVyqq6lgUVSmmFiqllyYqKpgWmSUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAIIezGu0f6WQIAABgFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAIIezqFuCobQAAAHgAAAAJACQAAAAAAAAAAAAAAKYCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAXgMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -990,7 +999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: AstarPathfindingProject::Pathfinding.ProceduralGridMover
   version: 1
   updateDistance: 5
-  target: {fileID: 0}
+  target: {fileID: 1461410437}
   graphIndex: 0
 --- !u!1 &1565171765
 GameObject:
@@ -12480,8 +12489,8 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806778746}
-  m_BodyType: 0
-  m_Simulated: 0
+  m_BodyType: 2
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1

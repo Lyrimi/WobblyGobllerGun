@@ -9,7 +9,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] EnemyType enemyType; //what kind of enemy is it, used to change AI depending on whatever
     [SerializeField] float speed; //movement speed, used only to change maxspeed
     [SerializeField] Transform target; //where does the fella walk to
-    [SerializeField] float health; //how much health, pretty obvious huh
     [SerializeField] int dropChance; //weapon part drop chance
     [SerializeField] List<GameObject> drops = new List<GameObject>();
 
@@ -83,23 +82,15 @@ public class EnemyAI : MonoBehaviour
     }
 
     //of you get hit take damage and ATOMIZE the bullet
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Die()
     {
-        if (collision.gameObject.layer == 7)
+        int rand = Random.Range(1, 100);
+        if (rand <= dropChance)
         {
-            health -= GunData.bulletData.Damage;
-            Destroy(collision.gameObject);
-            if (health<=0)
-            {
-                int rand = Random.Range(1, 100);
-                if (rand <= dropChance)
-                {
-                    int randchance = Random.Range(0, drops.Count);
-                    Instantiate(drops[randchance],transform);
-                }
-                GameObject.Find("winCon").GetComponent<AreAllEnemiesDead>().enemyKills++;
-                Destroy(this.gameObject);
-            }
+            int randchance = Random.Range(0, drops.Count);
+            Instantiate(drops[randchance], transform);
         }
+        GameObject.Find("winCon").GetComponent<AreAllEnemiesDead>().enemyKills++;
+        Destroy(this.gameObject);
     }
 }
