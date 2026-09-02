@@ -32,6 +32,14 @@ class BulletFlying : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.transform.CompareTag("Wall"))
+        {
+            Destroy(this);
+        }
+        if (collision.transform.CompareTag("Enemy"))
+        {
+
+        }
         //print($"Hit Something {collision.gameObject.name} | {Time.time}");
     }
 }
