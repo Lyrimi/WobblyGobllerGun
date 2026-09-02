@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using static RoomTypes;
 
@@ -5,6 +6,11 @@ public class RoomAttachPoint : MonoBehaviour
 {
     public RoomType[] ValidRoomTypes;
     public Direction Direction;
+
+    [NonSerialized]
+    public RoomData Parrent;
+    [NonSerialized]
+    public RoomData Connected;
 
     public int ConectingDir
     {

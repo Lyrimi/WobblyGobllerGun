@@ -7,20 +7,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7b966b6fbd10f84cac0755467ce66bd, type: 3}
   m_Name: GenData
   m_EditorClassIdentifier: Assembly-CSharp::GenData
   Objects:
-  - {fileID: 440427727275713935, guid: 36b464cefc0250346bda8e9106d680a9, type: 3}
-  - {fileID: 4478227719193542594, guid: 939be3970bd270345962a6b16ab9f152, type: 3}
-  - {fileID: 4101139148675180966, guid: c67ae18ddd35e9646bfeebddc2363562, type: 3}
-  - {fileID: 143442446481161431, guid: 8e49db6559de7f14ea9105548bbefd34, type: 3}
-  Quotas:
+  - Object: {fileID: 440427727275713935, guid: 36b464cefc0250346bda8e9106d680a9, type: 3}
+    Weight: 30
+  - Object: {fileID: 4478227719193542594, guid: 939be3970bd270345962a6b16ab9f152, type: 3}
+    Weight: 5
+  - Object: {fileID: 4101139148675180966, guid: c67ae18ddd35e9646bfeebddc2363562, type: 3}
+    Weight: 10
+  - Object: {fileID: 143442446481161431, guid: 8e49db6559de7f14ea9105548bbefd34, type: 3}
+    Weight: 10
+  _quotas:
   - Type: 0
-    Count: 3
+    Count: 10
   - Type: 1
-    Count: 4
+    Count: -1
   - Type: 2
-    Count: 1
+    Count: 3
+  CleanUpTypes: 01000000
