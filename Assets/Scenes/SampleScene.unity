@@ -177,16 +177,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4401031299271167295, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.35
+      value: 48.7
       objectReference: {fileID: 0}
     - target: {fileID: 4401031299271167295, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.3
+      value: 27.51
       objectReference: {fileID: 0}
     - target: {fileID: 4979496900696382757, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
       propertyPath: UiHeart
       value: 
-      objectReference: {fileID: 1284643306}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187970756694867045, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5677866199922939909, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
       propertyPath: UiHeart
       value: 
@@ -295,7 +299,7 @@ PrefabInstance:
     - target: {fileID: 7140148878371223814, guid: 058cc4a4bdf166943895987511a2e62f, type: 3}
       propertyPath: HpUp
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1560127509}
     - target: {fileID: 7140148878371223814, guid: 058cc4a4bdf166943895987511a2e62f, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -490,8 +494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ec0581f072c924d9ac9033e8ccd549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lerp
-  target: {fileID: 0}
-  strength: 5
+  target: {fileID: 2005199166}
+  strength: 214.59
   gotransform: 1
   gorotate: 0
 --- !u!1 &559081725 stripped
@@ -854,8 +858,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunEditorWithCam(USE THIS ONE)
       objectReference: {fileID: 0}
+    - target: {fileID: 3547577257561387374, guid: 88515946b99396346b872d85cedd87b9, type: 3}
+      propertyPath: HpUp
+      value: 
+      objectReference: {fileID: 1560127509}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 821228007191977397, guid: 88515946b99396346b872d85cedd87b9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3063620524638120385, guid: 88515946b99396346b872d85cedd87b9, type: 3}
@@ -1001,8 +1010,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: AstarPathfindingProject::Pathfinding.ProceduralGridMover
   version: 1
   updateDistance: 5
-  target: {fileID: 0}
+  target: {fileID: 2005199172}
   graphIndex: 0
+--- !u!1 &1560127509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6740922974688242724, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
+  m_PrefabInstance: {fileID: 9430467}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1565171765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreAllEnemiesDead
   enemyKills: 0
-  text: {fileID: 1594034355}
+  text: {fileID: 0}
 --- !u!4 &1581613032
 Transform:
   m_ObjectHideFlags: 0
@@ -11598,6 +11612,16 @@ Tilemap:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2656903953071785220, guid: 92129b6d0b72570469035f1a6ffe015e, type: 3}
   m_PrefabInstance: {fileID: 867099639}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2005199166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2229671379490198170, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
+  m_PrefabInstance: {fileID: 9430467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2005199172 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4401031299271167295, guid: 3d04f59dd1ad2d344bf892589abe503b, type: 3}
+  m_PrefabInstance: {fileID: 9430467}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2018917745
 GameObject:

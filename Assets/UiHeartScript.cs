@@ -89,7 +89,7 @@ public class UiHeartScript : MonoBehaviour
 
     void UpdateSprite()
     {
-        Animor.SetInteger("HealthUiInt", curHealthLevel);
+        Animor.SetInteger("HealthUiInt", _curHealthLevel);
         // Animor.Play(0);
     }
 
