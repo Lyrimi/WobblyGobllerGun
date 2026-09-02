@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: e5dda86ad48857c4cb2bc7de36ffa7aa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4584633990107543786
+    second: enemies legs btr_0
+  - first:
+      213: 5598326900896216240
+    second: enemies legs btr_1
+  - first:
+      213: -8545191581506842772
+    second: enemies legs btr_2
+  - first:
+      213: 7596079212195819853
+    second: enemies legs btr_3
+  - first:
+      213: -4245388676458047275
+    second: enemies legs btr_4
+  - first:
+      213: -7353694729604906526
+    second: enemies legs btr_5
+  - first:
+      213: -2738185821172326569
+    second: enemies legs btr_6
+  - first:
+      213: 8747791009402800380
+    second: enemies legs btr_7
+  - first:
+      213: 5646676614699992415
+    second: enemies legs btr_8
+  - first:
+      213: -5405375878972967298
+    second: enemies legs btr_9
+  - first:
+      213: -7291280864595057789
+    second: enemies legs btr_10
+  - first:
+      213: -4959455577689971913
+    second: enemies legs btr_11
+  - first:
+      213: 2697517694637183597
+    second: enemies legs btr_12
+  - first:
+      213: 8302701577429369399
+    second: enemies legs btr_13
+  - first:
+      213: 7134917027231174319
+    second: enemies legs btr_14
+  - first:
+      213: 5088503739122753646
+    second: enemies legs btr_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemies legs btr_0
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 89
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 617457a2dab1060c0800000000000000
+      internalID: -4584633990107543786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 79
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b4be68b7a041bd40800000000000000
+      internalID: 5598326900896216240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_2
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 89
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6f40aee781696980800000000000000
+      internalID: -8545191581506842772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_3
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 79
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4139a83cc1ba6960800000000000000
+      internalID: 7596079212195819853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_4
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 91
+        width: 21
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d89046ed795515c0800000000000000
+      internalID: -4245388676458047275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_5
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 63
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e1cc3fda9d62f990800000000000000
+      internalID: -7353694729604906526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_6
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 91
+        width: 21
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75f1300d082000ad0800000000000000
+      internalID: -2738185821172326569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_7
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 63
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf84fc44395666970800000000000000
+      internalID: 8747791009402800380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_8
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 73
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f55c2b4b6760d5e40800000000000000
+      internalID: 5646676614699992415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_9
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 79
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e76f958e64f3cf4b0800000000000000
+      internalID: -5405375878972967298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_10
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 73
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383653c3faa20da90800000000000000
+      internalID: -7291280864595057789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_11
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 79
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 733a57cad697c2bb0800000000000000
+      internalID: -4959455577689971913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_12
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 63
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d621e2c1d028f6520800000000000000
+      internalID: 2697517694637183597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_13
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 91
+        width: 21
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 732c0c6581f193370800000000000000
+      internalID: 8302701577429369399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_14
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 63
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fae000edb31540360800000000000000
+      internalID: 7134917027231174319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies legs btr_15
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 91
+        width: 21
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e60a8a0d03ffd9640800000000000000
+      internalID: 5088503739122753646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      enemies legs btr_0: -4584633990107543786
+      enemies legs btr_1: 5598326900896216240
+      enemies legs btr_10: -7291280864595057789
+      enemies legs btr_11: -4959455577689971913
+      enemies legs btr_12: 2697517694637183597
+      enemies legs btr_13: 8302701577429369399
+      enemies legs btr_14: 7134917027231174319
+      enemies legs btr_15: 5088503739122753646
+      enemies legs btr_2: -8545191581506842772
+      enemies legs btr_3: 7596079212195819853
+      enemies legs btr_4: -4245388676458047275
+      enemies legs btr_5: -7353694729604906526
+      enemies legs btr_6: -2738185821172326569
+      enemies legs btr_7: 8747791009402800380
+      enemies legs btr_8: 5646676614699992415
+      enemies legs btr_9: -5405375878972967298
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
