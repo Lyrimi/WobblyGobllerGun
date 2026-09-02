@@ -69,6 +69,7 @@ public class Generation : MonoBehaviour
 
         if (_debugButton2)
         {
+            _debugButton2 = false;
             Cleanup();
         }
     }
@@ -77,11 +78,12 @@ public class Generation : MonoBehaviour
     #region  Main Loop
     void Step()
     {
-        if (!LoopRooms())
+        while (LoopRooms())
         {
-            _debugButton = false;
 
         }
+        _debugButton = false;
+        Cleanup();
 
 
     }
@@ -151,13 +153,15 @@ public class Generation : MonoBehaviour
 
         iRoomObj.name += _roomsBuild;
 
+
+
         if (iRoomData.BoundingBox == null)
         {
             //print("Colider was null");
             iRoomData.BoundingBox = iRoomData.GetComponent<BoxCollider2D>();
         }
         //!Physics2D.IsTouching(iRoomData.BoundingBox, curRoom.BoundingBox)
-
+        Physics2D.SyncTransforms();
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(
             iRoomData.transform.position,
@@ -187,8 +191,12 @@ public class Generation : MonoBehaviour
         {
             _validRooms.Add(iRoomData);
             iRoomData.ValidRoomAttachPoints.Remove(otherPoint);
+            iRoomData.CurAttachments++;
+            iRoomData.ConnectedPoint = point;
 
             curRoom.CurAttachments++;
+            _curRooms.Add(iRoomData);
+            point.Connected = iRoomData;
         }
 
 
@@ -199,7 +207,7 @@ public class Generation : MonoBehaviour
             _totalQouta--;
         }
 
-        _curRooms.Add(iRoomData);
+
 
         curRoom.ValidRoomAttachPoints.Remove(point);
 
@@ -295,14 +303,14 @@ public class Generation : MonoBehaviour
         foreach (var room in validRoomPrefabs)
         {
             TotalWeight += room.Weight;
-            print($"{room.Object.name} | {Time.time}");
+            //print($"{room.Object.name} | {Time.time}");
         }
 
-        print($"total weight {TotalWeight} | {Time.time}");
+        //print($"total weight {TotalWeight} | {Time.time}");
 
         int rndWeight = GenRnd.Next(TotalWeight);
 
-        print($"rnd weight {rndWeight} | {Time.time}");
+        //print($"rnd weight {rndWeight} | {Time.time}");
 
         foreach (var room in validRoomPrefabs)
         {
@@ -372,9 +380,24 @@ public class Generation : MonoBehaviour
     #region Traversal
 
 
-    void Traversal()
+    void FindFarthestRoom(RoomData roomData)
     {
+        List<(RoomData, int)> ToTraverse = new();
+        List<(RoomData, int)> TraversedItems = new();
+        ToTraverse.Add((roomData, 0));
 
+        while (ToTraverse.Count > 0)
+        {
+            RoomData curRoom = ToTraverse[0].Item1;
+            TraversedItems.Add((curRoom, ToTraverse[0].Item2));
+            foreach (RoomAttachPoint point in curRoom.RoomAttachPoints)
+            {
+                if (point.Connected != null)
+                {
+                    ToTraverse.Add((point.Connected, ToTraverse[0].Item2 + 1));
+                }
+            }
+        }
     }
 
     #endregion
@@ -388,6 +411,8 @@ public class Generation : MonoBehaviour
         List<RoomData> ToDelete = new();
         foreach (RoomData room in _curRooms)
         {
+            //print(room.RoomType);
+
             if (_genData.CleanUpTypes.Contains(room.RoomType))
             {
                 if (room.CurAttachments != room.MaxAttachments)
@@ -399,6 +424,7 @@ public class Generation : MonoBehaviour
 
         foreach (RoomData room in ToDelete)
         {
+            room.ConnectedPoint.Connected = null;
             _curRooms.Remove(room);
             Destroy(room.gameObject);
         }

@@ -9,7 +9,6 @@ using static RoomTypes;
 public class RoomData : MonoBehaviour
 {
 
-
     public int MaxAttachments;
 
     public int CurAttachments = 0;
@@ -19,6 +18,8 @@ public class RoomData : MonoBehaviour
     public RoomAttachPoint[] RoomAttachPoints;
     public List<RoomAttachPoint> ValidRoomAttachPoints;
 
+    public RoomAttachPoint ConnectedPoint;
+
     [NonSerialized]
     public BoxCollider2D BoundingBox;
 
@@ -27,6 +28,10 @@ public class RoomData : MonoBehaviour
     {
         ValidRoomAttachPoints = RoomAttachPoints.ToList();
         BoundingBox = GetComponent<BoxCollider2D>();
+        foreach (var point in RoomAttachPoints)
+        {
+            point.Parrent = this;
+        }
     }
 
     public RoomAttachPoint GetRandomAttachPoint()

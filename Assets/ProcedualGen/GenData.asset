@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GenData
   Objects:
   - Object: {fileID: 440427727275713935, guid: 36b464cefc0250346bda8e9106d680a9, type: 3}
-    Weight: 30
+    Weight: 10
   - Object: {fileID: 4478227719193542594, guid: 939be3970bd270345962a6b16ab9f152, type: 3}
     Weight: 5
   - Object: {fileID: 4101139148675180966, guid: c67ae18ddd35e9646bfeebddc2363562, type: 3}
@@ -23,9 +23,9 @@ MonoBehaviour:
     Weight: 10
   _quotas:
   - Type: 0
-    Count: 10
+    Count: 100
   - Type: 1
     Count: -1
   - Type: 2
-    Count: 3
+    Count: 50
   CleanUpTypes: 01000000
