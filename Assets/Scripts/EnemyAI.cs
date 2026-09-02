@@ -1,18 +1,23 @@
 using UnityEngine;
 using Pathfinding;
+using System.Collections.Generic;
 
 public class EnemyAI : MonoBehaviour
 {
+    
     public enum EnemyType {musket, bomber, flintlock}; //what types of enemies are there, bomber unused
     [SerializeField] EnemyType enemyType; //what kind of enemy is it, used to change AI depending on whatever
     [SerializeField] float speed; //movement speed, used only to change maxspeed
     [SerializeField] Transform target; //where does the fella walk to
-    [SerializeField] Transform playerTrans; //wheres the player, used to find out where to put target and other things
     [SerializeField] float health; //how much health, pretty obvious huh
+    [SerializeField] int dropChance; //weapon part drop chance
+    [SerializeField] List<GameObject> drops = new List<GameObject>();
+
 
 
     private AIPath path; //im not really sure to be honest, think its just where my boy walks
     private bool outOfRange; //used to check if the enemy is out of the players range, and should stop AI-ing
+    Transform playerTrans; //wheres the player, used to find out where to put target and other things
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -86,6 +91,12 @@ public class EnemyAI : MonoBehaviour
             Destroy(collision.gameObject);
             if (health<=0)
             {
+                int rand = Random.Range(1, 100);
+                if (rand <= dropChance)
+                {
+                    int randchance = Random.Range(0, drops.Count);
+                    Instantiate(drops[randchance],transform);
+                }
                 GameObject.Find("winCon").GetComponent<AreAllEnemiesDead>().enemyKills++;
                 Destroy(this.gameObject);
             }

@@ -314,8 +314,12 @@ MonoBehaviour:
   enemyType: 2
   speed: 3
   target: {fileID: 5054399411002747993}
-  playerTrans: {fileID: 0}
   health: 100
+  dropChance: 50
+  drops:
+  - {fileID: 7046233751104952469, guid: b75e6ad6c759bae4785b896d62f9f4ea, type: 3}
+  - {fileID: 6773683489269896169, guid: b50a3c8c77210904a8c3f68f64a5e407, type: 3}
+  - {fileID: 2117254920725013776, guid: 6c102802d9337544e8c6e563dba7da05, type: 3}
 --- !u!114 &3607100694071306676
 MonoBehaviour:
   m_ObjectHideFlags: 0
