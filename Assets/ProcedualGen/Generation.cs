@@ -1,21 +1,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
+using static RoomTypes;
 public class Generation : MonoBehaviour
 {
     [SerializeField]
+
     GenData _genData;
-    [SerializeField]
     List<RoomData> _validRooms;
 
 
     [SerializeField]
     bool _debugButton;
 
+    [SerializeField]
+    bool _debugButton2;
+
+    [SerializeField]
+    ContactFilter2D _filter;
+
     public static System.Random GenRnd;
+
+    int _roomsBuild = 0;
+
+    private Dictionary<RoomType, int> _quotas;
+
+    [SerializeField]
+
+    private List<RoomData> _curRooms;
+
+    private int _totalQouta;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,6 +44,18 @@ public class Generation : MonoBehaviour
             GenRnd = new();
         }
 
+        _quotas = _genData.BuildDict();
+        foreach (var item in _quotas)
+        {
+            if (item.Value == -1)
+            {
+                continue;
+            }
+            _totalQouta += item.Value;
+        }
+
+        _validRooms = _curRooms.ToList();
+
     }
 
     // Update is called once per frame
@@ -33,7 +63,13 @@ public class Generation : MonoBehaviour
     {
         if (_debugButton)
         {
+            _debugButton = _debugButton;
             Step();
+        }
+
+        if (_debugButton2)
+        {
+            Cleanup();
         }
     }
 
@@ -41,11 +77,16 @@ public class Generation : MonoBehaviour
     #region  Main Loop
     void Step()
     {
-        LoopRooms();
+        if (!LoopRooms())
+        {
+            _debugButton = false;
+
+        }
+
 
     }
 
-    void LoopRooms()
+    bool LoopRooms()
     {
         GameObject roomObj = null;
 
@@ -56,6 +97,11 @@ public class Generation : MonoBehaviour
         while (true)
         {
             iterator++;
+
+            if (_totalQouta <= 0)
+            {
+                return false;
+            }
 
             if (iterator > 10000)
             {
@@ -81,13 +127,15 @@ public class Generation : MonoBehaviour
 
         }
 
-        AddRoom(curRoom, roomObj, point);
+        TryAddRoom(curRoom, roomObj, point);
+        return true;
     }
     #endregion
 
-    #region Generation
-    void AddRoom(RoomData curRoom, GameObject roomObj, RoomAttachPoint point)
+    #region Room Generation
+    void TryAddRoom(RoomData curRoom, GameObject roomObj, RoomAttachPoint point)
     {
+        _roomsBuild++;
         GameObject iRoomObj = Instantiate(roomObj);
 
         RoomData iRoomData = iRoomObj.GetComponent<RoomData>();
@@ -101,10 +149,63 @@ public class Generation : MonoBehaviour
 
         iRoomObj.transform.position = finalPos;
 
+        iRoomObj.name += _roomsBuild;
+
+        if (iRoomData.BoundingBox == null)
+        {
+            //print("Colider was null");
+            iRoomData.BoundingBox = iRoomData.GetComponent<BoxCollider2D>();
+        }
+        //!Physics2D.IsTouching(iRoomData.BoundingBox, curRoom.BoundingBox)
+
+
+        Collider2D[] hits = Physics2D.OverlapBoxAll(
+            iRoomData.transform.position,
+            iRoomData.BoundingBox.bounds.size,
+            0f
+        );
+        bool hasHitSomething = false;
+
+        foreach (var hit in hits)
+        {
+            //print(hit.name);
+            if (hit != curRoom.BoundingBox && hit != iRoomData.BoundingBox)
+            {
+                hasHitSomething = true;
+                break;
+            }
+        }
+
+        if (hasHitSomething)
+        {
+
+            //print($"Something Was Touching {point.transform.parent.name} | {point.transform.name}");
+            Destroy(iRoomObj);
+
+        }
+        else
+        {
+            _validRooms.Add(iRoomData);
+            iRoomData.ValidRoomAttachPoints.Remove(otherPoint);
+
+            curRoom.CurAttachments++;
+        }
+
+
+
+        if (!(_quotas[iRoomData.RoomType] == -1))
+        {
+            _quotas[iRoomData.RoomType]--;
+            _totalQouta--;
+        }
+
+        _curRooms.Add(iRoomData);
+
         curRoom.ValidRoomAttachPoints.Remove(point);
-        iRoomData.ValidRoomAttachPoints.Remove(otherPoint);
-        curRoom.CurAttachments++;
-        _validRooms.Add(iRoomData);
+
+
+
+
     }
 
     #endregion
@@ -131,12 +232,12 @@ public class Generation : MonoBehaviour
             //Guard Statements
             if (roomData.ValidRoomAttachPoints.Count <= 0)
             {
-                Debug.Log("Nothing Valid Found");
+                //Debug.Log("Nothing Valid Found");
                 return false;
             }
             if (roomData.CurAttachments >= roomData.MaxAttachments)
             {
-                Debug.Log("To many attachments :(");
+                //Debug.Log("To many attachments :(");
                 return false;
             }
 
@@ -165,18 +266,18 @@ public class Generation : MonoBehaviour
 
         obj = null;
         //This is so stupid and i hate lists
-        List<GameObject> validRoomPrefabs = _genData.Objects.ToList();
-        List<GameObject> RoomPrefabs = _genData.Objects.ToList();
+        List<WeightedObject> validRoomPrefabs = _genData.Objects.ToList();
+        List<WeightedObject> RoomPrefabs = _genData.Objects.ToList();
 
         // Loops over rooms and removes invalid rooms
         for (int i = 0; i < RoomPrefabs.Count; i++)
         {
-            var room = RoomPrefabs[i];
+            var room = RoomPrefabs[i].Object;
             RoomData roomData = room.GetComponent<RoomData>();
 
             if (!IsRoomValid(roomData, point))
             {
-                validRoomPrefabs.Remove(room);
+                validRoomPrefabs.Remove(RoomPrefabs[i]);
                 continue;
             }
 
@@ -188,8 +289,33 @@ public class Generation : MonoBehaviour
             return false;
         }
 
-        int index = GenRnd.Next(validRoomPrefabs.Count);
-        obj = validRoomPrefabs[index];
+
+
+        int TotalWeight = 0;
+        foreach (var room in validRoomPrefabs)
+        {
+            TotalWeight += room.Weight;
+            print($"{room.Object.name} | {Time.time}");
+        }
+
+        print($"total weight {TotalWeight} | {Time.time}");
+
+        int rndWeight = GenRnd.Next(TotalWeight);
+
+        print($"rnd weight {rndWeight} | {Time.time}");
+
+        foreach (var room in validRoomPrefabs)
+        {
+            rndWeight -= room.Weight;
+            if (rndWeight <= 0)
+            {
+                obj = room.Object;
+                break;
+            }
+        }
+
+        //int index = GenRnd.Next(weightedRoomPrefabs.Count);
+        //obj = weightedRoomPrefabs[index];
 
         return true;
     }
@@ -216,9 +342,23 @@ public class Generation : MonoBehaviour
             //print($"Room doesn't have point with valid direction | {roomData.gameObject.name}");
             return false;
         }
+
+
+        //Checks if there is still qouta left
+        if (_quotas[roomData.RoomType] == -1)
+        {
+            return true;
+        }
+        if (_quotas[roomData.RoomType] <= 0)
+        {
+            return false;
+        }
+
         return true;
-    }
+
     #endregion
+    }
+
 
     #region  Random
     RoomData PickRandomValidRoom()
@@ -229,5 +369,42 @@ public class Generation : MonoBehaviour
     }
     #endregion
 
+    #region Traversal
+
+
+    void Traversal()
+    {
+
+    }
+
+    #endregion
+
+    #region Cleanup
+
+
+
+    void Cleanup()
+    {
+        List<RoomData> ToDelete = new();
+        foreach (RoomData room in _curRooms)
+        {
+            if (_genData.CleanUpTypes.Contains(room.RoomType))
+            {
+                if (room.CurAttachments != room.MaxAttachments)
+                {
+                    ToDelete.Add(room);
+                }
+            }
+        }
+
+        foreach (RoomData room in ToDelete)
+        {
+            _curRooms.Remove(room);
+            Destroy(room.gameObject);
+        }
+    }
+
+    #endregion
 
 }
+
