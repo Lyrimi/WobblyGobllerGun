@@ -5,8 +5,10 @@ using UnityEngine;
 using Random = System.Random;
 using static RoomTypes;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class RoomData : MonoBehaviour
 {
+
 
     public int MaxAttachments;
 
@@ -17,10 +19,14 @@ public class RoomData : MonoBehaviour
     public RoomAttachPoint[] RoomAttachPoints;
     public List<RoomAttachPoint> ValidRoomAttachPoints;
 
+    [NonSerialized]
+    public BoxCollider2D BoundingBox;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Awake()
     {
         ValidRoomAttachPoints = RoomAttachPoints.ToList();
+        BoundingBox = GetComponent<BoxCollider2D>();
     }
 
     public RoomAttachPoint GetRandomAttachPoint()
