@@ -118,7 +118,7 @@ MonoBehaviour:
   - {fileID: 9019578356234079670}
   - {fileID: 8323803452117194992}
   ValidRoomAttachPoints: []
-  ConnectedPoint: {fileID: 0}
+  ConnectedPoints: []
 --- !u!61 &4794009825057724871
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

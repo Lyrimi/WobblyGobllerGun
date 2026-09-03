@@ -70,6 +70,7 @@ public class Generation : MonoBehaviour
 
         _validRooms = _curRooms.ToList();
 
+        Step();
     }
 
     // Update is called once per frame
@@ -84,7 +85,7 @@ public class Generation : MonoBehaviour
         if (_debugButton2)
         {
             _debugButton2 = false;
-            AttachRoomsConnections();
+
 
         }
     }
@@ -98,6 +99,7 @@ public class Generation : MonoBehaviour
 
         }
         Cleanup();
+        AttachRoomsConnections();
         RoomData StartRoom = FindFarthestRoom(_curRooms[0]);
         RoomData EndRoom = FindFarthestRoom(StartRoom);
 
@@ -168,7 +170,7 @@ public class Generation : MonoBehaviour
     #endregion
 
     #region Room Generation
-    void TryAddRoom(RoomData curRoom, GameObject roomObj, RoomAttachPoint point)
+    void TryAddRoom(RoomData curRoom, GameObject roomObj, RoomAttachPoint point, bool bypassCollsions = false, RoomAttachPoint oRoomPoint = null)
     {
         _roomsBuild++;
         GameObject iRoomObj = Instantiate(roomObj);
@@ -213,7 +215,7 @@ public class Generation : MonoBehaviour
             }
         }
 
-        if (hasHitSomething)
+        if (hasHitSomething && !bypassCollsions)
         {
 
             //print($"Something Was Touching {point.transform.parent.name} | {point.transform.name}");
@@ -225,12 +227,25 @@ public class Generation : MonoBehaviour
             _validRooms.Add(iRoomData);
             iRoomData.ValidRoomAttachPoints.Remove(otherPoint);
             iRoomData.CurAttachments++;
-            iRoomData.ConnectedPoint = point;
+            iRoomData.ConnectedPoints.Add(point);
             otherPoint.Connected = curRoom;
 
             curRoom.CurAttachments++;
             _curRooms.Add(iRoomData);
             point.Connected = iRoomData;
+
+            if (oRoomPoint != null)
+            {
+                RoomAttachPoint oRoomOtherPoint = iRoomData.PickRandomValidAttachPoint(oRoomPoint, iRoomData);
+                oRoomPoint.Connected = iRoomData;
+                oRoomPoint.Parrent.CurAttachments++;
+
+                iRoomData.ValidRoomAttachPoints.Remove(oRoomOtherPoint);
+                iRoomData.CurAttachments++;
+                iRoomData.ConnectedPoints.Add(oRoomPoint);
+                oRoomOtherPoint.Connected = oRoomPoint.Parrent;
+
+            }
         }
 
 
@@ -267,16 +282,22 @@ public class Generation : MonoBehaviour
     private float _maxRaycastLength;
     void AttachRoomsConnections()
     {
-
-        foreach (RoomData room in _curRooms)
+        List<RoomData> copyCurRoom = _curRooms.ToList();
+        foreach (RoomData room in copyCurRoom)
         {
             if (room.CurAttachments < room.MaxAttachments)
             {
-                foreach (var point in room.ValidRoomAttachPoints)
+                int count = room.ValidRoomAttachPoints.Count;
+                for (int i = 0; i < count; i++)
                 {
+                    if (i >= room.ValidRoomAttachPoints.Count)
+                    {
+                        break;
+                    }
+                    var point = room.ValidRoomAttachPoints[i];
                     if (room.CurAttachments >= room.MaxAttachments)
                     {
-                        continue;
+                        break;
                     }
                     double rndNum = GenRnd.NextDouble();
                     if (rndNum < _extraConectionChance)
@@ -291,26 +312,7 @@ public class Generation : MonoBehaviour
     void CheckRoomExtraConnection(RoomAttachPoint point)
     {
         print("Check?");
-        Vector2 direction = new();
-        switch (point.Direction)
-        {
-            case Direction.North:
-                direction = new(0, 1);
-                break;
-            case Direction.East:
-                direction = new(1, 0);
-                break;
-            case Direction.South:
-                direction = new(0, -1);
-                break;
-            case Direction.West:
-                direction = new(-1, 0);
-                break;
-            default:
-                break;
-        }
-
-
+        Vector2 direction = GetVectorDirection(point);
 
         RaycastHit2D[] hits = Physics2D.RaycastAll(point.transform.position, direction, _maxRaycastLength);
 
@@ -348,13 +350,55 @@ public class Generation : MonoBehaviour
                 return;
             }
 
-            Debug.DrawLine(point.transform.position, hitPoint.transform.position, Color.green, 10000);
+            //Debug.DrawLine(point.transform.position, hitPoint.transform.position, Color.green, 10000);
+
+            AttachRoom(point, hitPoint);
         }
 
 
 
     }
 
+    private static Vector2 GetVectorDirection(RoomAttachPoint point)
+    {
+        Vector2 direction = new();
+        switch (point.Direction)
+        {
+            case Direction.North:
+                direction = new(0, 1);
+                break;
+            case Direction.East:
+                direction = new(1, 0);
+                break;
+            case Direction.South:
+                direction = new(0, -1);
+                break;
+            case Direction.West:
+                direction = new(-1, 0);
+                break;
+            default:
+                break;
+        }
+
+        return direction;
+    }
+
+    void AttachRoom(RoomAttachPoint roomPoint, RoomAttachPoint otherPoint)
+    {
+        GameObject prefab;
+        TryFindRandomValidAttachRoom(out prefab, roomPoint);
+        GameObject clone = GameObject.Instantiate(prefab);
+        float distance = Vector2.Distance(roomPoint.transform.position, otherPoint.transform.position);
+
+        Vector2 dir = GetVectorDirection(roomPoint);
+        clone.transform.localScale = new(distance, 1);
+
+
+        TryAddRoom(roomPoint.Parrent, clone, roomPoint, true, otherPoint);
+
+        Destroy(clone);
+
+    }
 
     #endregion
 
@@ -607,9 +651,11 @@ public class Generation : MonoBehaviour
 
         foreach (RoomData room in ToDelete)
         {
-            room.ConnectedPoint.Parrent.CurAttachments--;
-            room.ConnectedPoint.Connected = null;
-
+            foreach (var point in room.ConnectedPoints)
+            {
+                point.Parrent.CurAttachments--;
+                point.Connected = null;
+            }
             _curRooms.Remove(room);
             Destroy(room.gameObject);
         }
@@ -657,10 +703,13 @@ public class Generation : MonoBehaviour
 
 
             _curRooms.RemoveAt(count - 1);
+            foreach (var point in removedRoom.ConnectedPoints)
+            {
+                point.Connected = null;
+                point.Parrent.CurAttachments--;
+                point.Parrent.ValidRoomAttachPoints.Remove(point);
+            }
 
-            removedRoom.ConnectedPoint.Connected = null;
-            removedRoom.ConnectedPoint.Parrent.CurAttachments--;
-            removedRoom.ConnectedPoint.Parrent.ValidRoomAttachPoints.Remove(removedRoom.ConnectedPoint);
             //Adds the qoutas for the removed objects
             if (!(_quotas[removedRoom.RoomType] == -1))
             {
@@ -680,8 +729,10 @@ public class Generation : MonoBehaviour
             Destroy(removedRoom);
         }
 
-        _validRooms.Add(lastRemovedRoom.ConnectedPoint.Parrent);
-
+        foreach (var point in lastRemovedRoom.ConnectedPoints)
+        {
+            _validRooms.Add(point.Parrent);
+        }
         count = _curRooms.Count;
         for (int i = 0; i < 4; i++)
         {

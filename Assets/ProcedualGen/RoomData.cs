@@ -18,7 +18,7 @@ public class RoomData : MonoBehaviour
     public RoomAttachPoint[] RoomAttachPoints;
     public List<RoomAttachPoint> ValidRoomAttachPoints;
 
-    public RoomAttachPoint ConnectedPoint;
+    public List<RoomAttachPoint> ConnectedPoints;
 
     [NonSerialized]
     public BoxCollider2D BoundingBox;
