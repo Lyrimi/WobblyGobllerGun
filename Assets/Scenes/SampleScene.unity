@@ -220,6 +220,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7140148878371223814, guid: 058cc4a4bdf166943895987511a2e62f, type: 3}
+      propertyPath: Animor
+      value: 
+      objectReference: {fileID: 1284643307}
+    - target: {fileID: 7140148878371223814, guid: 058cc4a4bdf166943895987511a2e62f, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -796,6 +800,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d850f1263c59424db92d1c5a7be1c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!95 &1284643307 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 338359353700791269, guid: 058cc4a4bdf166943895987511a2e62f, type: 3}
+  m_PrefabInstance: {fileID: 10745202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1363940570
 PrefabInstance:
   m_ObjectHideFlags: 0

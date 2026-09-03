@@ -12,7 +12,7 @@ public class UiHeartScript : MonoBehaviour
 {
     public List<SpriteRenderer> HeartStates = new List<SpriteRenderer>();
     public GameObject HpUp;
-
+    [SerializeField]
     Animator Animor;
 
     Image image;
@@ -32,32 +32,19 @@ public class UiHeartScript : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    void Start()
     {
         image = GetComponent<Image>();
         HpUp.SetActive(false);
-        Animor = GetComponent<Animator>();
-        
+        //Animor = GetComponent<Animator>();
+
     }
 
     //depricated
     public void Damage(int damagelevel)
     {
         throw new Exception("Depricade function use SetHealth");
-        Debug.Log("Healthing it");
 
-        if (curHealthLevel + damagelevel > HeartStates.Count - 1)
-        {
-            Debug.Log("Do notin");
-        }
-        else
-        {
-            curHealthLevel += damagelevel;
-        }
-        if (curHealthLevel >= HeartStates.Count - 1)
-        {
-            Debug.Log("Killyourself");
-        }
     }
 
     public void SetHealth(int Health)
@@ -71,33 +58,26 @@ public class UiHeartScript : MonoBehaviour
     public void Heal(int healing)
     {
         throw new Exception("Depricade function use SetHealth");
-        Debug.Log("heal");
-        if (curHealthLevel > 0)
-        {
-            if (curHealthLevel - healing < 0)
-            {
-                curHealthLevel = 0;
-            }
-            else
-            {
-                curHealthLevel -= healing;
-            }
-        }
+
     }
 
 
 
     void UpdateSprite()
     {
+        if (Animor == null)
+        {
+            Debug.LogWarning("No Animor Found");
+        }
         Animor.SetInteger("HealthUiInt", _curHealthLevel);
         // Animor.Play(0);
     }
 
-   /* private void FixedUpdate()
-    {
+    /* private void FixedUpdate()
+     {
 
-        image.sprite = HeartStates[curHealthLevel].GetComponent<SpriteRenderer>().sprite;
+         image.sprite = HeartStates[curHealthLevel].GetComponent<SpriteRenderer>().sprite;
 
-    }
-    */
+     }
+     */
 }
