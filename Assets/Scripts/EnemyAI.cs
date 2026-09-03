@@ -65,6 +65,7 @@ public class EnemyAI : MonoBehaviour
                         randomDir = Random.insideUnitCircle * 4;
 
                         RaycastHit2D hit = Physics2D.Raycast(this.transform.position, randomDir, 4);
+                        Debug.DrawRay(this.transform.position, randomDir, Color.red);
 
                         if (hit.collider == null)
                         {

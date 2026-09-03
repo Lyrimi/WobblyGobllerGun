@@ -315,7 +315,6 @@ MonoBehaviour:
   enemyType: 2
   speed: 3
   target: {fileID: 5054399411002747993}
-  health: 100
   dropChance: 50
   drops:
   - {fileID: 7046233751104952469, guid: b75e6ad6c759bae4785b896d62f9f4ea, type: 3}
@@ -335,7 +334,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthSCript
   health: 100
   MaxHealth: 100
-  IsPlayer: 0
   HealthUp: {fileID: 0}
   UiHeart: {fileID: 0}
   IFrames: 0
@@ -426,7 +424,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
