@@ -120,6 +120,7 @@ MonoBehaviour:
   - {fileID: 9188605277969041164, guid: e9572f103ef5f124a8aa26ca00dc2750, type: 3}
   - {fileID: 6281500051335936726, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}
   - {fileID: 8170110092460657159, guid: e997cae4fa98aa943bc1755414331ae2, type: 3}
+  - {fileID: 3795765158495974262, guid: 85b707f30835617429172bd6f071f734, type: 3}
 --- !u!114 &6029977470512478539
 MonoBehaviour:
   m_ObjectHideFlags: 0
