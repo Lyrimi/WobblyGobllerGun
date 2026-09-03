@@ -32,8 +32,12 @@ public class HealthSCript : MonoBehaviour
         {
             UiHeart.SetHealth(health);
         }
-        TempColor = HealthUp.GetComponent<SpriteRenderer>().color;
-        Debug.Log($"{HealthUp.GetComponent<SpriteRenderer>().color.a}");
+        if (HealthUp)
+        {
+            TempColor = HealthUp.GetComponent<SpriteRenderer>().color;
+            Debug.Log($"{HealthUp.GetComponent<SpriteRenderer>().color.a}");
+        }
+        
     }
 
     // Update is called once per frame
