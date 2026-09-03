@@ -2,10 +2,12 @@ using UnityEngine;
 using Pathfinding;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(HealthSCript))]
+
 public class EnemyAI : MonoBehaviour
 {
-    
-    public enum EnemyType {musket, bomber, flintlock}; //what types of enemies are there, bomber unused
+
+    public enum EnemyType { musket, bomber, flintlock }; //what types of enemies are there, bomber unused
     [SerializeField] EnemyType enemyType; //what kind of enemy is it, used to change AI depending on whatever
     [SerializeField] float speed; //movement speed, used only to change maxspeed
     [SerializeField] Transform target; //where does the fella walk to
@@ -24,6 +26,8 @@ public class EnemyAI : MonoBehaviour
     {
         path = GetComponent<AIPath>();
         playerTrans = GameObject.FindWithTag("Player").transform;
+        HealthSCript healthScript = GetComponent<HealthSCript>();
+        healthScript.OnDeath += Die;
     }
 
     // Update is called once per frame
@@ -37,7 +41,7 @@ public class EnemyAI : MonoBehaviour
                 path.maxSpeed = speed;
                 outOfRange = false;
             }
-        //then put back all the stuff when it works again^^^^
+            //then put back all the stuff when it works again^^^^
 
             //look at the player and walk to the target type shit
             path.destination = target.position;
@@ -48,7 +52,7 @@ public class EnemyAI : MonoBehaviour
                 case EnemyType.musket:    //Walk over to the player, stop when within range
                     target.position = playerTrans.position + (this.transform.position - playerTrans.position).normalized * 5;
                     break;
-                                          //----------------------------------------------
+                //----------------------------------------------
 
                 case EnemyType.flintlock: //walk around randomly,
                                           //shoot a ray to check if theres a wall where its walking to, try again if there is
@@ -65,19 +69,19 @@ public class EnemyAI : MonoBehaviour
                             target.position = transform.position + (Vector3)randomDir;
                         }
                     }                       //---------------------------------------------
-                    
+
 
                     break;
             }
         }
         //turn all the stuff off when out of range
-        else 
-        { 
-           path.maxSpeed = 0;
-           GetComponentInChildren<BulletSpawner>().shouldSpawn = false;
-           outOfRange = true;
+        else
+        {
+            path.maxSpeed = 0;
+            GetComponentInChildren<BulletSpawner>().shouldSpawn = false;
+            outOfRange = true;
         }
-        
+
 
     }
 
