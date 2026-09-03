@@ -19,7 +19,7 @@ public class AreAllEnemiesDead : MonoBehaviour
     {
 
         text.text = enemyKills + "/" + enemyAmount + " Enemies killed"; 
-        if (enemyKills == enemyAmount)
+        if (enemyKills >= enemyAmount)
         {
             Debug.Log("you win");
         }

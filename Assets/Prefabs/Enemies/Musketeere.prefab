@@ -120,7 +120,6 @@ MonoBehaviour:
   - {fileID: 9188605277969041164, guid: e9572f103ef5f124a8aa26ca00dc2750, type: 3}
   - {fileID: 6281500051335936726, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}
   - {fileID: 8170110092460657159, guid: e997cae4fa98aa943bc1755414331ae2, type: 3}
-  - {fileID: 4763087913639810945, guid: 26b403a9d7ba02d4ba7592e35f61d5a9, type: 3}
 --- !u!114 &6029977470512478539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthSCript
   health: 100
   MaxHealth: 100
-  IsPlayer: 0
   HealthUp: {fileID: 0}
   UiHeart: {fileID: 0}
   IFrames: 0
