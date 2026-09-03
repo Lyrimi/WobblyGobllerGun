@@ -645,6 +645,10 @@ PrefabInstance:
       propertyPath: gunEditor
       value: 
       objectReference: {fileID: 661081541}
+    - target: {fileID: 3237518105517364362, guid: 8d1770d4958ebbe468ead1fa1529219a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3669898965970400373, guid: 8d1770d4958ebbe468ead1fa1529219a, type: 3}
       propertyPath: m_Name
       value: Player

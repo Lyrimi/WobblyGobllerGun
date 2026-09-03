@@ -18,7 +18,7 @@ public class MenuButton : MonoBehaviour
     public void Onclick()
     {
         Debug.Log("Pressed");
-        SceneManager.LoadScene("Movement Test Scene");
+        SceneManager.LoadScene("SampleScene");
     }
 
 }

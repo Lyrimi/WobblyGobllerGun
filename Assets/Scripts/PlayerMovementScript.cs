@@ -25,6 +25,9 @@ public class PlayerMovementScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         animator = GetComponentInChildren<Animator>();
+
+        HealthSCript healthScript = GetComponent<HealthSCript>();
+        healthScript.OnDeath += Die;
     }
 
 
