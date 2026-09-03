@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2554024249077748749}
   - component: {fileID: 4022122746073682725}
   - component: {fileID: 4207658269612752418}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: WavBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
