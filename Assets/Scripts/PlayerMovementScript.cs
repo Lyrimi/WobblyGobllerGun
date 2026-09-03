@@ -16,7 +16,6 @@ public class PlayerMovementScript : MonoBehaviour
     Rigidbody2D rb;
     InputAction MousePosition;
 
-    public GameObject Health;
     UiHeartScript HeartScript;
 
     private void Start()
@@ -26,8 +25,6 @@ public class PlayerMovementScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         animator = GetComponentInChildren<Animator>();
-
-        HeartScript = Health.GetComponent<UiHeartScript>();
     }
 
 
@@ -36,7 +33,16 @@ public class PlayerMovementScript : MonoBehaviour
         Vector2 move = moveAction.ReadValue<Vector2>();
 
         rb.linearVelocity = move * speed;
-        StartCoroutine("CheckMoving");
+
+        //StartCoroutine("CheckMoving");
+        if (rb.linearVelocity != Vector2.zero)
+        {
+            animator.SetBool("Moving", true);
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
 
 
 
@@ -62,21 +68,16 @@ public class PlayerMovementScript : MonoBehaviour
 
     private IEnumerator CheckMoving()
     {
-        Debug.Log("IEnum");
-        Vector3 startPos = transform.position;
+        Vector2 startPos = transform.position;
         yield return new();
-        Vector3 finalPos = transform.position;
+        Vector2 finalPos = transform.position;
 
-        if (startPos.x != finalPos.x || startPos.y != finalPos.y
-            || startPos.z != finalPos.z)
+        if (startPos != finalPos)
         {
-
-            Debug.Log("true");
             animator.SetBool("Moving", true);
         }
         else
         {
-            Debug.Log("False");
             animator.SetBool("Moving", false);
         }
 
