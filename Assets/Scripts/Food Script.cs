@@ -19,8 +19,11 @@ public class FoodScript : MonoBehaviour
   
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.SendMessage("Healing",healAmount);
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.SendMessage("Healing", healAmount);
+            Destroy(gameObject);
+        }
     }
     /*
     if (other.gameObject.CompareTag("Bullet"))

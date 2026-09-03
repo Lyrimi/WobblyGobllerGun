@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.Rendering.Universal;
 
 class BulletFlying : MonoBehaviour
 {
@@ -44,6 +45,7 @@ class BulletFlying : MonoBehaviour
         }
         else
         {
+            Debug.Log(collision.gameObject.tag);
             HitWall();
         }
         //print($"Hit Something {collision.gameObject.name} | {Time.time}");
