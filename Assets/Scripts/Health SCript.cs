@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,8 +8,7 @@ public class HealthSCript : MonoBehaviour
     public int health;
     [SerializeField]
     int MaxHealth;
-    [SerializeField]
-    bool IsPlayer;
+
 
     public GameObject HealthUp;
 
@@ -20,6 +20,10 @@ public class HealthSCript : MonoBehaviour
     float IFrames;
 
     public float IFrameAmount;
+
+
+    //Other scripts can subscribe to this
+    public Action OnDeath;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,8 +62,8 @@ public class HealthSCript : MonoBehaviour
         TempColor.a = 1;
         HealthUp.SetActive(true);
 
-        
-        
+
+
 
     }
     public void FixedUpdate()
@@ -68,22 +72,22 @@ public class HealthSCript : MonoBehaviour
         {
             TempColor.a -= 0.01f;
             HealthUp.GetComponent<SpriteRenderer>().color = TempColor;
-            if (TempColor.a<0.02f)
+            if (TempColor.a < 0.02f)
             {
                 fade = false;
                 HealthUp.SetActive(false);
             }
         }
-        if (IFrames>0)
+        if (IFrames > 0)
         {
             IFrames--;
         }
-        
+
     }
 
     public void Damage(int damageAmount)
     {
-        if(IFrames > 0)
+        if (IFrames > 0)
         {
             return;
         }
@@ -97,8 +101,9 @@ public class HealthSCript : MonoBehaviour
         }
         if (health <= 0)
         {
-            gameObject.SendMessage("Die");
-            
+            //Invokes the on death event
+            OnDeath?.Invoke();
+
         }
 
         IFrames = IFrameAmount;
