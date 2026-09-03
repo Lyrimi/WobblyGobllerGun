@@ -4,7 +4,7 @@ using UnityEngine;
 public class DamageScript : MonoBehaviour
 {
 
-    
+
     public int damageLevel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,8 +20,13 @@ public class DamageScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.SendMessage("Damage", damageLevel);
+        HealthSCript healthObj = collision.gameObject.GetComponent<HealthSCript>();
+        if (healthObj)
+        {
+            healthObj.Damage(damageLevel);
+        }
         Destroy(gameObject);
+
         //GetComponent<HealthSCript>().Damage(damageLevel); 
         // 
 
