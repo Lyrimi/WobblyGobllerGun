@@ -68,7 +68,7 @@ public class Generation : MonoBehaviour
 
         _validRooms = _curRooms.ToList();
 
-        Step();
+        //Step();
     }
 
     // Update is called once per frame
@@ -94,15 +94,15 @@ public class Generation : MonoBehaviour
     {
         while (LoopRooms())
         {
-
+            
         }
         Cleanup();
         AttachRoomsConnections();
-        RoomData StartRoom = FindFarthestRoom(_curRooms[0]);
-        RoomData EndRoom = FindFarthestRoom(StartRoom);
+        //RoomData StartRoom = FindFarthestRoom(_curRooms[0]);
+        //RoomData EndRoom = FindFarthestRoom(StartRoom);
 
-        StartRoom.GetComponent<SpriteRenderer>().color = new(0, 1, 0);
-        EndRoom.GetComponent<SpriteRenderer>().color = new(0, 0, 1);
+        //StartRoom.GetComponent<SpriteRenderer>().color = new(0, 1, 0);
+        //EndRoom.GetComponent<SpriteRenderer>().color = new(0, 0, 1);
 
 
 
@@ -158,7 +158,7 @@ public class Generation : MonoBehaviour
 
 
         }
-
+        Debug.Log("Added");
         TryAddRoom(curRoom, roomObj, point);
         return true;
     }
@@ -205,6 +205,11 @@ public class Generation : MonoBehaviour
 
         foreach (var hit in hits)
         {
+            //If what we hit has no room data we skip it as it is not a room
+            if (hit.gameObject.GetComponent<RoomData>() == null)
+            {
+                continue;
+            }
             //print(hit.name);
             if (hit != curRoom.BoundingBox && hit != iRoomData.BoundingBox)
             {
@@ -312,7 +317,7 @@ public class Generation : MonoBehaviour
         print("Check?");
         Vector2 direction = GetVectorDirection(point);
 
-        RaycastHit2D[] hits = Physics2D.RaycastAll(point.transform.position, direction, _maxRaycastLength);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(point.transform.position, direction, _maxRaycastLength, _layerMask);
 
         if (hits.Length <= 0)
         {
@@ -345,12 +350,14 @@ public class Generation : MonoBehaviour
             }
             if (hitPoint == null)
             {
+                Debug.DrawLine(point.transform.position, hit.point, Color.red, 10000);
+                print($"No Attach Points In Range");
                 return;
             }
 
-            //Debug.DrawLine(point.transform.position, hitPoint.transform.position, Color.green, 10000);
+            Debug.DrawLine(point.transform.position, hitPoint.transform.position, Color.green, 10000);
 
-            AttachRoom(point, hitPoint);
+            //AttachRoom(point, hitPoint);
         }
 
 

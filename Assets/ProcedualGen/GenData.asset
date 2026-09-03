@@ -13,19 +13,15 @@ MonoBehaviour:
   m_Name: GenData
   m_EditorClassIdentifier: Assembly-CSharp::GenData
   Objects:
-  - Object: {fileID: 440427727275713935, guid: 36b464cefc0250346bda8e9106d680a9, type: 3}
+  - Object: {fileID: 1657763631993471762, guid: d984d8c3840ac354d8dbcb3ce23aa5db, type: 3}
     Weight: 10
-  - Object: {fileID: 4478227719193542594, guid: 939be3970bd270345962a6b16ab9f152, type: 3}
-    Weight: 5
-  - Object: {fileID: 4101139148675180966, guid: c67ae18ddd35e9646bfeebddc2363562, type: 3}
+  - Object: {fileID: 8972945753760233109, guid: e517042185132fb91a2e17af8b2b3113, type: 3}
     Weight: 10
-  - Object: {fileID: 143442446481161431, guid: 8e49db6559de7f14ea9105548bbefd34, type: 3}
+  - Object: {fileID: 8972945753760233109, guid: a7dce6043983a3045affee595343162a, type: 3}
     Weight: 10
   _quotas:
   - Type: 0
     Count: 50
   - Type: 1
     Count: -1
-  - Type: 2
-    Count: 5
   CleanUpTypes: 01000000
