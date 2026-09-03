@@ -1,6 +1,8 @@
 using UnityEngine;
 using Pathfinding;
 using System.Collections.Generic;
+using Unity.Mathematics;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(HealthSCript))]
 
@@ -92,7 +94,7 @@ public class EnemyAI : MonoBehaviour
         if (rand <= dropChance)
         {
             int randchance = Random.Range(0, drops.Count);
-            Instantiate(drops[randchance], transform);
+            Instantiate(drops[randchance], transform.position, quaternion.identity);
         }
         GameObject.Find("winCon").GetComponent<AreAllEnemiesDead>().enemyKills++;
         Destroy(this.gameObject);
