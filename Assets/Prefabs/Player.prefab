@@ -175,7 +175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementScript
   speed: 5
   rotationSpeed: 450
-  Health: {fileID: 0}
 --- !u!50 &4132243457169652461
 Rigidbody2D:
   serializedVersion: 5
@@ -237,7 +236,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 16777271
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -251,7 +250,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -271,7 +270,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthSCript
   health: 3
   MaxHealth: 3
-  IsPlayer: 0
   HealthUp: {fileID: 1314727232908013264}
   UiHeart: {fileID: 0}
   IFrames: 0
