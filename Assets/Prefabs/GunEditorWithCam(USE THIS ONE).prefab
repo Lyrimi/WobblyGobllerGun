@@ -339,6 +339,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HpUp: {fileID: 0}
+  Animor: {fileID: 0}
 --- !u!95 &7755769121558430439
 Animator:
   serializedVersion: 7
@@ -527,6 +528,7 @@ GameObject:
   - component: {fileID: 1380225826588758308}
   - component: {fileID: 5751953130589816308}
   - component: {fileID: 497863002007424907}
+  - component: {fileID: 7249692490022962470}
   m_Layer: 0
   m_Name: GunEditorWithCam(USE THIS ONE)
   m_TagString: MainCamera
@@ -677,6 +679,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7249692490022962470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3063620524638120385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56a86f0cf0a4f74db157a0af0d6bed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletInfoLoader
+  _bulletInfoInstance: {fileID: 11400000, guid: b2282f3c9f5cd844fbc064d710f03bd7, type: 2}
 --- !u!1 &3949576163893246898
 GameObject:
   m_ObjectHideFlags: 0

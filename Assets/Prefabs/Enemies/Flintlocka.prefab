@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 1938285534790777485}
   - component: {fileID: 2790628981946069468}
   - component: {fileID: 4314724307800576006}
+  - component: {fileID: 731977982019051842}
   - component: {fileID: 3607100694071306676}
   - component: {fileID: 8044703159932832116}
   - component: {fileID: 9150920658047479160}
@@ -320,6 +321,25 @@ MonoBehaviour:
   - {fileID: 7046233751104952469, guid: b75e6ad6c759bae4785b896d62f9f4ea, type: 3}
   - {fileID: 6773683489269896169, guid: b50a3c8c77210904a8c3f68f64a5e407, type: 3}
   - {fileID: 2117254920725013776, guid: 6c102802d9337544e8c6e563dba7da05, type: 3}
+--- !u!114 &731977982019051842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5911618161073559924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b50e489f94f946489201d8785124872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSCript
+  health: 100
+  MaxHealth: 100
+  IsPlayer: 0
+  HealthUp: {fileID: 0}
+  UiHeart: {fileID: 0}
+  IFrames: 0
+  IFrameAmount: 0
 --- !u!114 &3607100694071306676
 MonoBehaviour:
   m_ObjectHideFlags: 0

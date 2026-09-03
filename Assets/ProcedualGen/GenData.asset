@@ -23,9 +23,9 @@ MonoBehaviour:
     Weight: 10
   _quotas:
   - Type: 0
-    Count: 500
+    Count: 50
   - Type: 1
     Count: -1
   - Type: 2
-    Count: 100
+    Count: 5
   CleanUpTypes: 01000000

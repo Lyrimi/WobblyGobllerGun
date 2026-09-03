@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6414633925213957298}
   - component: {fileID: 7991728284030701545}
   - component: {fileID: 3800349008626048720}
+  - component: {fileID: 6029977470512478539}
   - component: {fileID: 7348090630467885806}
   - component: {fileID: 5072473402652824301}
   - component: {fileID: 7577299725109699412}
@@ -113,7 +114,6 @@ MonoBehaviour:
   enemyType: 0
   speed: 3
   target: {fileID: 8868330131518498867}
-  health: 100
   dropChance: 50
   drops:
   - {fileID: 106897387193740494, guid: 9c3a6bd535b92284087c128b7bd30072, type: 3}
@@ -121,6 +121,25 @@ MonoBehaviour:
   - {fileID: 6281500051335936726, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}
   - {fileID: 8170110092460657159, guid: e997cae4fa98aa943bc1755414331ae2, type: 3}
   - {fileID: 4763087913639810945, guid: 26b403a9d7ba02d4ba7592e35f61d5a9, type: 3}
+--- !u!114 &6029977470512478539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246506781331674810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b50e489f94f946489201d8785124872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSCript
+  health: 100
+  MaxHealth: 100
+  IsPlayer: 0
+  HealthUp: {fileID: 0}
+  UiHeart: {fileID: 0}
+  IFrames: 0
+  IFrameAmount: 0
 --- !u!114 &7348090630467885806
 MonoBehaviour:
   m_ObjectHideFlags: 0

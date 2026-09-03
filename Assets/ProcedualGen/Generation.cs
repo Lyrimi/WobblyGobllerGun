@@ -1,31 +1,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 using static RoomTypes;
+using Direction = RoomTypes.Direction;
 public class Generation : MonoBehaviour
 {
     [SerializeField]
 
-    GenData _genData;
-    List<RoomData> _validRooms;
+    private GenData _genData;
+    private List<RoomData> _validRooms;
 
 
     [SerializeField]
-    bool _debugButton;
+    private bool _debugButton;
 
     [SerializeField]
-    bool _debugButton2;
+    private bool _debugButton2;
 
     [SerializeField]
-    ContactFilter2D _filter;
+    private ContactFilter2D _filter;
+    [SerializeField]
+    private int _stepBackResetMargin = 10;
 
     public static System.Random GenRnd;
 
-    int _roomsBuild = 0;
+    private int _roomsBuild = 0;
 
     private Dictionary<RoomType, int> _quotas;
 
@@ -36,7 +37,15 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private bool _debugTraversel;
 
+    [SerializeField]
+    private int _maxIterations = 10000;
+
     private int _totalQouta;
+
+    private int _stepBackAmount = 1;
+    private int _curBuildStreak = 0;
+
+    private int _bestBuildStreak = 0;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -59,6 +68,7 @@ public class Generation : MonoBehaviour
 
         _validRooms = _curRooms.ToList();
 
+        Step();
     }
 
     // Update is called once per frame
@@ -74,6 +84,7 @@ public class Generation : MonoBehaviour
         {
             _debugButton2 = false;
 
+
         }
     }
 
@@ -86,6 +97,7 @@ public class Generation : MonoBehaviour
 
         }
         Cleanup();
+        AttachRoomsConnections();
         RoomData StartRoom = FindFarthestRoom(_curRooms[0]);
         RoomData EndRoom = FindFarthestRoom(StartRoom);
 
@@ -103,6 +115,7 @@ public class Generation : MonoBehaviour
         RoomAttachPoint point = null;
         RoomData curRoom = null;
         int iterator = 0;
+        int problemCount = 0;
 
         while (true)
         {
@@ -113,13 +126,22 @@ public class Generation : MonoBehaviour
                 return false;
             }
 
-            if (iterator > 10000)
+            if (iterator > _maxIterations)
             {
                 throw new System.Exception("Loop exceted 9000 | LoopRooms");
             }
             if (_validRooms.Count <= 0)
             {
-                throw new System.Exception("No valid rooms found while qouta has not been meet");
+                //
+                Debug.Log("Problems");
+                if (problemCount >= 100)
+                {
+
+                    throw new System.Exception("No valid rooms found while qouta has not been meet");
+                }
+                problemCount++;
+                StepBack();
+
             }
 
 
@@ -140,10 +162,13 @@ public class Generation : MonoBehaviour
         TryAddRoom(curRoom, roomObj, point);
         return true;
     }
+
+
+
     #endregion
 
     #region Room Generation
-    void TryAddRoom(RoomData curRoom, GameObject roomObj, RoomAttachPoint point)
+    void TryAddRoom(RoomData curRoom, GameObject roomObj, RoomAttachPoint point, bool bypassCollsions = false, RoomAttachPoint oRoomPoint = null)
     {
         _roomsBuild++;
         GameObject iRoomObj = Instantiate(roomObj);
@@ -188,7 +213,7 @@ public class Generation : MonoBehaviour
             }
         }
 
-        if (hasHitSomething)
+        if (hasHitSomething && !bypassCollsions)
         {
 
             //print($"Something Was Touching {point.transform.parent.name} | {point.transform.name}");
@@ -200,12 +225,25 @@ public class Generation : MonoBehaviour
             _validRooms.Add(iRoomData);
             iRoomData.ValidRoomAttachPoints.Remove(otherPoint);
             iRoomData.CurAttachments++;
-            iRoomData.ConnectedPoint = point;
+            iRoomData.ConnectedPoints.Add(point);
             otherPoint.Connected = curRoom;
 
             curRoom.CurAttachments++;
             _curRooms.Add(iRoomData);
             point.Connected = iRoomData;
+
+            if (oRoomPoint != null)
+            {
+                RoomAttachPoint oRoomOtherPoint = iRoomData.PickRandomValidAttachPoint(oRoomPoint, iRoomData);
+                oRoomPoint.Connected = iRoomData;
+                oRoomPoint.Parrent.CurAttachments++;
+
+                iRoomData.ValidRoomAttachPoints.Remove(oRoomOtherPoint);
+                iRoomData.CurAttachments++;
+                iRoomData.ConnectedPoints.Add(oRoomPoint);
+                oRoomOtherPoint.Connected = oRoomPoint.Parrent;
+
+            }
         }
 
 
@@ -220,8 +258,143 @@ public class Generation : MonoBehaviour
 
         curRoom.ValidRoomAttachPoints.Remove(point);
 
+        _curBuildStreak++;
 
 
+
+
+    }
+
+    #endregion
+
+    #region Connection Generation
+
+
+    [Header("Extra Generation")]
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float _extraConectionChance;
+    [SerializeField]
+    private LayerMask _layerMask;
+    [SerializeField]
+    private float _maxRaycastLength;
+    void AttachRoomsConnections()
+    {
+        List<RoomData> copyCurRoom = _curRooms.ToList();
+        foreach (RoomData room in copyCurRoom)
+        {
+            if (room.CurAttachments < room.MaxAttachments)
+            {
+                int count = room.ValidRoomAttachPoints.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    if (i >= room.ValidRoomAttachPoints.Count)
+                    {
+                        break;
+                    }
+                    var point = room.ValidRoomAttachPoints[i];
+                    if (room.CurAttachments >= room.MaxAttachments)
+                    {
+                        break;
+                    }
+                    double rndNum = GenRnd.NextDouble();
+                    if (rndNum < _extraConectionChance)
+                    {
+                        CheckRoomExtraConnection(point);
+                    }
+                }
+            }
+        }
+    }
+
+    void CheckRoomExtraConnection(RoomAttachPoint point)
+    {
+        print("Check?");
+        Vector2 direction = GetVectorDirection(point);
+
+        RaycastHit2D[] hits = Physics2D.RaycastAll(point.transform.position, direction, _maxRaycastLength);
+
+        if (hits.Length <= 0)
+        {
+            return;
+        }
+        foreach (var hit in hits)
+        {
+            if (hit.collider.gameObject == point.Parrent.gameObject)
+            {
+                continue;
+            }
+            RoomData hitRoom = hit.collider.gameObject.GetComponent<RoomData>();
+
+            if (!hitRoom) { print("Hitsomthing else?"); return; }
+
+            if (hitRoom.CurAttachments == hitRoom.MaxAttachments)
+            {
+                print("HasMaxAttach");
+                return;
+            }
+
+            RoomAttachPoint hitPoint = null;
+
+            foreach (var rPoint in hitRoom.RoomAttachPoints)
+            {
+                if (Vector2.Distance(hit.point, rPoint.transform.position) < 0.1)
+                {
+                    hitPoint = rPoint;
+                }
+            }
+            if (hitPoint == null)
+            {
+                return;
+            }
+
+            //Debug.DrawLine(point.transform.position, hitPoint.transform.position, Color.green, 10000);
+
+            AttachRoom(point, hitPoint);
+        }
+
+
+
+    }
+
+    private static Vector2 GetVectorDirection(RoomAttachPoint point)
+    {
+        Vector2 direction = new();
+        switch (point.Direction)
+        {
+            case Direction.North:
+                direction = new(0, 1);
+                break;
+            case Direction.East:
+                direction = new(1, 0);
+                break;
+            case Direction.South:
+                direction = new(0, -1);
+                break;
+            case Direction.West:
+                direction = new(-1, 0);
+                break;
+            default:
+                break;
+        }
+
+        return direction;
+    }
+
+    void AttachRoom(RoomAttachPoint roomPoint, RoomAttachPoint otherPoint)
+    {
+        GameObject prefab;
+        TryFindRandomValidAttachRoom(out prefab, roomPoint);
+        GameObject clone = GameObject.Instantiate(prefab);
+        float distance = Vector2.Distance(roomPoint.transform.position, otherPoint.transform.position);
+
+        Vector2 dir = GetVectorDirection(roomPoint);
+        clone.transform.localScale = new(distance, 1);
+
+
+        TryAddRoom(roomPoint.Parrent, clone, roomPoint, true, otherPoint);
+
+        Destroy(clone);
 
     }
 
@@ -242,7 +415,7 @@ public class Generation : MonoBehaviour
         {
             iterator++;
 
-            if (iterator > 10000)
+            if (iterator > _maxIterations)
             {
                 throw new System.Exception("Loop exceted 9000 | TryFindValidPrefabAndAttach");
             }
@@ -401,9 +574,9 @@ public class Generation : MonoBehaviour
         while (ToTraverse.Count > 0)
         {
             iterator++;
-            if (iterator > 10000)
+            if (iterator > _maxIterations)
             {
-                throw new System.Exception("Loop exceted 9000 | LoopRooms");
+                throw new System.Exception("Loop exceted 9000 | FindFarthestRoom");
             }
 
 
@@ -476,10 +649,106 @@ public class Generation : MonoBehaviour
 
         foreach (RoomData room in ToDelete)
         {
-            room.ConnectedPoint.Connected = null;
+            foreach (var point in room.ConnectedPoints)
+            {
+                point.Parrent.CurAttachments--;
+                point.Connected = null;
+            }
             _curRooms.Remove(room);
             Destroy(room.gameObject);
         }
+    }
+
+    void StepBack()
+    {
+
+        //If build streak above the margin reset it
+        if (_curBuildStreak > _stepBackResetMargin)
+        {
+            _bestBuildStreak = 0;
+        }
+
+        if (_curBuildStreak < _bestBuildStreak)
+        {
+            _stepBackAmount++;
+            print($"Addedd: {_stepBackAmount}");
+        }
+        else
+        {
+            //Only assign if cur buildStreak is better than the last
+            _bestBuildStreak = _curBuildStreak;
+            _stepBackAmount = 1;
+            print($" Reset{_stepBackAmount}");
+        }
+
+
+
+
+        _curBuildStreak = 0;
+
+        int count = _curRooms.Count;
+        RoomData lastRemovedRoom = null;
+        List<RoomData> roomsToRemove = new();
+        for (int i = 0; i < _stepBackAmount; i++)
+        {
+            count = _curRooms.Count;
+            RoomData removedRoom = _curRooms.Last();
+            if (removedRoom == _curRooms[0])
+            {
+                break;
+            }
+
+
+
+            _curRooms.RemoveAt(count - 1);
+            foreach (var point in removedRoom.ConnectedPoints)
+            {
+                point.Connected = null;
+                point.Parrent.CurAttachments--;
+                point.Parrent.ValidRoomAttachPoints.Remove(point);
+            }
+
+            //Adds the qoutas for the removed objects
+            if (!(_quotas[removedRoom.RoomType] == -1))
+            {
+                _totalQouta++;
+                _quotas[removedRoom.RoomType]++;
+            }
+
+            lastRemovedRoom = removedRoom;
+
+            roomsToRemove.Add(removedRoom);
+
+        }
+
+        foreach (var removedRoom in roomsToRemove)
+        {
+            Destroy(removedRoom.gameObject);
+            Destroy(removedRoom);
+        }
+
+        foreach (var point in lastRemovedRoom.ConnectedPoints)
+        {
+            _validRooms.Add(point.Parrent);
+        }
+        count = _curRooms.Count;
+        for (int i = 0; i < 4; i++)
+        {
+            if ((count - i) > -1)
+            {
+                RoomData room = _curRooms[count - i - 1];
+                if (_validRooms.Contains(room))
+                {
+                    _validRooms.Add(room);
+                }
+            }
+        }
+
+
+
+
+
+
     }
 
     #endregion
