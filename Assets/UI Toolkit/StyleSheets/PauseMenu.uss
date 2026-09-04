@@ -1,0 +1,42 @@
+:root {
+    align-items: flex-start;
+    align-content: flex-start;
+    align-self: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.MainButtons {
+    top: 107px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    bottom: 0;
+    left: auto;
+    right: auto;
+    width: 497px;
+    height: 141px;
+    align-items: auto;
+    align-self: center;
+    justify-content: flex-start;
+    align-content: center;
+    -unity-font-definition: url("project://database/Assets/Jersey10-Regular.ttf?fileID=12800000&guid=e549e26c3fe86d241868863bf34a0d87&type=3#Jersey10-Regular");
+    font-size: 92px;
+}
+
+.moved {
+    translate: -628px 0;
+}
+
+.Slider {
+    width: 81%;
+    opacity: 1;
+    background-color: rgb(207, 207, 207);
+    height: 8%;
+    font-size: 75px;
+    -unity-font-definition: url("project://database/Assets/Jersey10-Regular.ttf?fileID=12800000&guid=e549e26c3fe86d241868863bf34a0d87&type=3#Jersey10-Regular");
+    justify-content: flex-start;
+    align-self: center;
+    -unity-text-align: middle-left;
+    margin-top: 40px;
+    text-overflow: ellipsis;
+}

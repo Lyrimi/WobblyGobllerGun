@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/StyleSheets/PauseMenu.uss?fileID=7433441132597879392&amp;guid=16d83b29def1301ae8df3a5fe9648904&amp;type=3#PauseMenu"/>
+    <ui:VisualElement data-source="" name="MenuPanel" class="moved" style="flex-grow: 1; width: 25%; align-items: center; align-self: center; justify-content: space-between; margin-bottom: 0; margin-top: 0; transition-duration: 0.5s; height: 91%; position: absolute; flex-direction: column; left: 718px; bottom: 155px;">
+        <ui:Button text="Resume" name="Quit" class="MainButtons"/>
+        <ui:Button text="Settings" name="Settings" class="MainButtons"/>
+        <ui:Button text="Quit To Menu" name="ResumeGame" class="MainButtons"/>
+    </ui:VisualElement>
+    <ui:VisualElement data-source="" name="SettingsPanel" style="flex-grow: 1; width: 853px; align-items: center; align-self: center; justify-content: space-between; margin-bottom: 0; margin-top: 0; transition-duration: 0.5s; height: 1106px; position: absolute; flex-direction: column; left: 1021px; bottom: 34px;">
+        <ui:Slider label="Volume" value="0" high-value="100" inverted="false" direction="Horizontal" name="VolumeSlider" show-input-field="true" fill="false" page-size="0" focusable="true" class="Slider" style="overflow: visible; aspect-ratio: auto;"/>
+    </ui:VisualElement>
+</ui:UXML>
