@@ -173,7 +173,7 @@ public class GunEditor : MonoBehaviour
         {
             if (point.parrent == null)
             {
-                Debug.LogWarning($"Point: {point} missing parrent asigment ... skipping");
+                Debug.LogWarning($"Point: {point} missing parrent asigment ... skipping | More info, point parrent: {point.transform.parent.name} | point name: {point.name}");
                 continue;
             }
             if (point.transform.root != GunEditorParrent.root)
@@ -222,12 +222,11 @@ public class GunEditor : MonoBehaviour
 
     void CheckIfHovering()
     {
-
         Vector3 screenPos = Pointer.current.position.ReadValue();
         screenPos.z = -Camera.main.transform.position.z;
 
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-
+        Physics2D.SyncTransforms();
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
 
         Debug.DrawRay(worldPos, Vector2.zero, Color.blue);
@@ -270,7 +269,7 @@ public class GunEditor : MonoBehaviour
         curMat.SetInt("_Enabled", 1);
     }
 
-    void Start()
+    void Awake()
     {
         pointAction = InputSystem.actions.FindAction("Point");
         clickAction = InputSystem.actions.FindAction("Click");

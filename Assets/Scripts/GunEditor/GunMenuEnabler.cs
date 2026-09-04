@@ -39,6 +39,18 @@ public class GunMenuEnabler : MonoBehaviour
         StartCoroutine(EnableMenuAnim());
         isInEditMode = true;
         AddPartsToMenu();
+        Time.timeScale = 0;
+    }
+
+     void DisableMenu()
+    {
+        isInAnim = true;
+        RebuildGun();
+        DropEditorObjs();
+        CleanUpClonebObj();
+        StartCoroutine(DisableMenuAnim());
+        isInEditMode = false;
+        Time.timeScale = 1;
     }
 
     void AddPartsToMenu()
@@ -97,18 +109,7 @@ public class GunMenuEnabler : MonoBehaviour
         }
     }
 
-    void DisableMenu()
-    {
-        isInAnim = true;
-        RebuildGun();
-        DropEditorObjs();
-        CleanUpClonebObj();
-        StartCoroutine(DisableMenuAnim());
-        isInEditMode = false;
-
-
-
-    }
+   
 
     List<GameObject> DelLater = new();
 
@@ -190,10 +191,10 @@ public class GunMenuEnabler : MonoBehaviour
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         float animationLength = stateInfo.length;
 
-        yield return new WaitForSeconds(animationLength);
+        yield return new WaitForSecondsRealtime(animationLength);
         isInAnim = false;
 
-
+        
     }
 
     IEnumerator DisableMenuAnim()
@@ -204,7 +205,7 @@ public class GunMenuEnabler : MonoBehaviour
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         float animationLength = stateInfo.length;
 
-        yield return new WaitForSeconds(animationLength);
+        yield return new WaitForSecondsRealtime(animationLength);
         CleanUpRealObj();
         isInAnim = false;
 
@@ -220,16 +221,21 @@ public class GunMenuEnabler : MonoBehaviour
 
     void EditButtonPressed(InputAction.CallbackContext callbackContext)
     {
+        print("EditButtonPressed");
+        print(isInEditMode);
+        print(isInAnim);
         if (isInAnim)
         {
             return;
         }
         if (isInEditMode)
         {
+            print("Disable Ran");
             DisableMenu();
         }
         else
         {
+            print("Enable Ran");
             EnableMenu();
         }
     }
