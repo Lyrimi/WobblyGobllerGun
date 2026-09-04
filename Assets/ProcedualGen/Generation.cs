@@ -36,7 +36,7 @@ public class Generation : MonoBehaviour
     private int _roomsBuild = 0;
     private List<RoomData> _validRooms;
 
-
+    private List<GameObject> _tileMapObject = new();
 
     private Dictionary<RoomType, int> _quotas;
     private int _totalQouta;
@@ -259,6 +259,7 @@ public class Generation : MonoBehaviour
             GameObject dynCorObj = Instantiate(_dynamicRoomPrefab, transform.position, Quaternion.identity);
             DynamicCorridor dynamicCorridor = dynCorObj.GetComponent<DynamicCorridor>();
             dynamicCorridor.GenCorridor(point, corridorLength);
+            _tileMapObject.Add(dynCorObj);
 
         }
 
@@ -396,6 +397,8 @@ public class Generation : MonoBehaviour
         //i add one to this, why? I DON'T FUCKING KNOW
         int corridorLength = Mathf.RoundToInt((roomPoint.transform.position - otherPoint.transform.position).magnitude + 1);
         dynamicCorridor.GenCorridor(roomPoint, corridorLength);
+
+        _tileMapObject.Add(dynCorObj);
 
         roomPoint.Connected = otherPoint.Parrent;
         otherPoint.Connected = roomPoint.Parrent;
@@ -764,12 +767,17 @@ public class Generation : MonoBehaviour
                 }
             }
         }
+    }
+    #endregion 
 
+    #region Merge Tilemaps
 
-
-
-
-
+    void StartTileMaps()
+    {
+        foreach (var room in _curRooms)
+        {
+            _tileMapObject.Add(room.gameObject);
+        }
     }
 
     #endregion
