@@ -15,10 +15,6 @@ MonoBehaviour:
   Objects:
   - Object: {fileID: 1657763631993471762, guid: d984d8c3840ac354d8dbcb3ce23aa5db, type: 3}
     Weight: 10
-  - Object: {fileID: 8972945753760233109, guid: e517042185132fb91a2e17af8b2b3113, type: 3}
-    Weight: 10
-  - Object: {fileID: 8972945753760233109, guid: a7dce6043983a3045affee595343162a, type: 3}
-    Weight: 10
   _quotas:
   - Type: 0
     Count: 50

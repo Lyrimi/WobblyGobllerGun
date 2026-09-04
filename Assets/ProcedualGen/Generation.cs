@@ -7,44 +7,42 @@ using static RoomTypes;
 using Direction = RoomTypes.Direction;
 public class Generation : MonoBehaviour
 {
-    [SerializeField]
 
-    private GenData _genData;
-    private List<RoomData> _validRooms;
+    [SerializeField] private GenData _genData;
+
+    [SerializeField] private List<RoomData> _curRooms;
+
+    [SerializeField] private ContactFilter2D _filter;
+
+    [SerializeField] private int _stepBackResetMargin = 10;
+
+    [SerializeField] private int _maxIterations = 10000;
+
+    [SerializeField] private GameObject _dynamicRoomPrefab;
 
 
-    [SerializeField]
-    private bool _debugButton;
+    [Header("Debug Options")]
 
-    [SerializeField]
-    private bool _debugButton2;
+    [SerializeField] private bool _debugButton;
 
-    [SerializeField]
-    private ContactFilter2D _filter;
-    [SerializeField]
-    private int _stepBackResetMargin = 10;
+    [SerializeField] private bool _debugButton2;
+
+    [SerializeField] private bool _debugTraversel;
+    [SerializeField] private GameObject _heatMapObjPrefab;
+
 
     public static System.Random GenRnd;
 
     private int _roomsBuild = 0;
+    private List<RoomData> _validRooms;
+
+
 
     private Dictionary<RoomType, int> _quotas;
-
-    [SerializeField]
-
-    private List<RoomData> _curRooms;
-
-    [SerializeField]
-    private bool _debugTraversel;
-
-    [SerializeField]
-    private int _maxIterations = 10000;
-
     private int _totalQouta;
 
     private int _stepBackAmount = 1;
     private int _curBuildStreak = 0;
-
     private int _bestBuildStreak = 0;
 
 
@@ -94,16 +92,18 @@ public class Generation : MonoBehaviour
     {
         while (LoopRooms())
         {
-            
+
         }
         Cleanup();
         AttachRoomsConnections();
-        //RoomData StartRoom = FindFarthestRoom(_curRooms[0]);
-        //RoomData EndRoom = FindFarthestRoom(StartRoom);
+        RoomData startRoom = FindFarthestRoom(_curRooms[0]);
+        RoomData endRoom = FindFarthestRoom(startRoom);
 
-        //StartRoom.GetComponent<SpriteRenderer>().color = new(0, 1, 0);
-        //EndRoom.GetComponent<SpriteRenderer>().color = new(0, 0, 1);
-
+        if (_debugTraversel)
+        {
+            DebugHeatMap(startRoom.transform.position, new(0, 1, 0));
+            DebugHeatMap(endRoom.transform.position, new(0, 0, 1));
+        }
 
 
     }
@@ -170,23 +170,29 @@ public class Generation : MonoBehaviour
     #region Room Generation
     void TryAddRoom(RoomData curRoom, GameObject roomObj, RoomAttachPoint point, bool bypassCollsions = false, RoomAttachPoint oRoomPoint = null)
     {
+
         _roomsBuild++;
+
+        // Generates the corridor data
+        int corridorLength = GenRnd.Next((int)point.MinCorridorLength, (int)point.MaxCorridorLength);
+        Vector2 pointDirection = point.GetVectorDirection();
+
+        //minus one because pointDirection already has a 1
+        Vector2 buildOffset = pointDirection * (corridorLength - 1);
+
+
+        //Instansiates the other room object and sets the postion
         GameObject iRoomObj = Instantiate(roomObj);
-
         RoomData iRoomData = iRoomObj.GetComponent<RoomData>();
-
         RoomAttachPoint otherPoint = iRoomData.PickRandomValidAttachPoint(point, iRoomData);
 
         Vector3 ConnectedOfset = otherPoint.transform.position - iRoomObj.transform.position;
         Vector3 AttachPointPos = point.transform.position;
-
-        Vector3 finalPos = AttachPointPos - ConnectedOfset;
+        Vector3 finalPos = AttachPointPos - ConnectedOfset + (Vector3)buildOffset;
 
         iRoomObj.transform.position = finalPos;
 
         iRoomObj.name += _roomsBuild;
-
-
 
         if (iRoomData.BoundingBox == null)
         {
@@ -249,6 +255,11 @@ public class Generation : MonoBehaviour
                 oRoomOtherPoint.Connected = oRoomPoint.Parrent;
 
             }
+
+            GameObject dynCorObj = Instantiate(_dynamicRoomPrefab, transform.position, Quaternion.identity);
+            DynamicCorridor dynamicCorridor = dynCorObj.GetComponent<DynamicCorridor>();
+            dynamicCorridor.GenCorridor(point, corridorLength);
+
         }
 
 
@@ -264,10 +275,6 @@ public class Generation : MonoBehaviour
         curRoom.ValidRoomAttachPoints.Remove(point);
 
         _curBuildStreak++;
-
-
-
-
     }
 
     #endregion
@@ -314,94 +321,88 @@ public class Generation : MonoBehaviour
 
     void CheckRoomExtraConnection(RoomAttachPoint point)
     {
-        print("Check?");
-        Vector2 direction = GetVectorDirection(point);
+        Physics2D.SyncTransforms();
+        Vector2 direction = point.GetVectorDirection();
 
         RaycastHit2D[] hits = Physics2D.RaycastAll(point.transform.position, direction, _maxRaycastLength, _layerMask);
-
+        RoomAttachPoint hitPoint = null;
         if (hits.Length <= 0)
         {
             return;
         }
         foreach (var hit in hits)
         {
-            if (hit.collider.gameObject == point.Parrent.gameObject)
+            RoomData hitRoom = hit.collider.gameObject.GetComponentInParent<RoomData>();
+            if (hit.collider.gameObject.GetComponent<BoxCollider2D>() != null)
+            {
+                //If it hits a corridor skip
+                if (hit.collider.GetComponent<DynamicCorridor>() != null)
+                {
+                    return;
+                }
+                continue;
+            }
+
+            if (!hitRoom) { return; }
+
+            if (hitRoom == point.Parrent)
             {
                 continue;
             }
-            RoomData hitRoom = hit.collider.gameObject.GetComponent<RoomData>();
-
-            if (!hitRoom) { print("Hitsomthing else?"); return; }
-
             if (hitRoom.CurAttachments == hitRoom.MaxAttachments)
             {
-                print("HasMaxAttach");
                 return;
             }
 
-            RoomAttachPoint hitPoint = null;
+
 
             foreach (var rPoint in hitRoom.RoomAttachPoints)
             {
-                if (Vector2.Distance(hit.point, rPoint.transform.position) < 0.1)
+
+                if (Vector2.Distance(hit.point, rPoint.transform.position) <= 0.5)
                 {
+                    //Debug.DrawLine(point.transform.position, rPoint.transform.position, Color.yellow, 10000);
                     hitPoint = rPoint;
                 }
             }
+
             if (hitPoint == null)
             {
-                Debug.DrawLine(point.transform.position, hit.point, Color.red, 10000);
-                print($"No Attach Points In Range");
+                //Debug.DrawLine(point.transform.position, hit.point, Color.red, 10000);
+
                 return;
             }
+            //Debug.DrawLine(point.transform.position, hitPoint.transform.position, Color.green, 10000);
 
-            Debug.DrawLine(point.transform.position, hitPoint.transform.position, Color.green, 10000);
 
-            //AttachRoom(point, hitPoint);
+
+
+
+            AttachCorridor(point, hitPoint);
+            return;
         }
 
 
 
     }
 
-    private static Vector2 GetVectorDirection(RoomAttachPoint point)
+
+
+
+    void AttachCorridor(RoomAttachPoint roomPoint, RoomAttachPoint otherPoint)
     {
-        Vector2 direction = new();
-        switch (point.Direction)
-        {
-            case Direction.North:
-                direction = new(0, 1);
-                break;
-            case Direction.East:
-                direction = new(1, 0);
-                break;
-            case Direction.South:
-                direction = new(0, -1);
-                break;
-            case Direction.West:
-                direction = new(-1, 0);
-                break;
-            default:
-                break;
-        }
+        GameObject dynCorObj = Instantiate(_dynamicRoomPrefab, transform.position, Quaternion.identity);
+        DynamicCorridor dynamicCorridor = dynCorObj.GetComponent<DynamicCorridor>();
+        //i add one to this, why? I DON'T FUCKING KNOW
+        int corridorLength = Mathf.RoundToInt((roomPoint.transform.position - otherPoint.transform.position).magnitude + 1);
+        dynamicCorridor.GenCorridor(roomPoint, corridorLength);
 
-        return direction;
-    }
-
-    void AttachRoom(RoomAttachPoint roomPoint, RoomAttachPoint otherPoint)
-    {
-        GameObject prefab;
-        TryFindRandomValidAttachRoom(out prefab, roomPoint);
-        GameObject clone = GameObject.Instantiate(prefab);
-        float distance = Vector2.Distance(roomPoint.transform.position, otherPoint.transform.position);
-
-        Vector2 dir = GetVectorDirection(roomPoint);
-        clone.transform.localScale = new(distance, 1);
-
-
-        TryAddRoom(roomPoint.Parrent, clone, roomPoint, true, otherPoint);
-
-        Destroy(clone);
+        roomPoint.Connected = otherPoint.Parrent;
+        otherPoint.Connected = roomPoint.Parrent;
+        roomPoint.Parrent.ValidRoomAttachPoints.Remove(roomPoint);
+        otherPoint.Parrent.ValidRoomAttachPoints.Remove(otherPoint);
+        roomPoint.Parrent.CurAttachments++;
+        otherPoint.Parrent.CurAttachments++;
 
     }
 
@@ -587,7 +588,14 @@ public class Generation : MonoBehaviour
             }
 
 
+
+
             RoomData curRoom = ToTraverse[0].Item1;
+            if (TraversedRooms.Contains(curRoom))
+            {
+                ToTraverse.RemoveAt(0);
+                continue;
+            }
             int depth = ToTraverse[0].Item2;
             TraversedItems.Add((curRoom, ToTraverse[0].Item2));
             TraversedRooms.Add(curRoom);
@@ -620,7 +628,7 @@ public class Generation : MonoBehaviour
         {
             if (_debugTraversel)
             {
-                item.Item1.GetComponent<SpriteRenderer>().color = new((float)item.Item2 / (float)_debugFuthersDistance, 0, 0);
+                //DebugHeatMap(item.Item1.transform.position, new((float)item.Item2 / (float)_debugFuthersDistance, 0, 0));
             }
             if (item.Item2 > distance)
             {
@@ -630,6 +638,12 @@ public class Generation : MonoBehaviour
         }
 
         return furthestRoom;
+    }
+
+    void DebugHeatMap(Vector3 point, Color color)
+    {
+        GameObject iobj = Instantiate(_heatMapObjPrefab, point, Quaternion.identity);
+        iobj.GetComponent<SpriteRenderer>().color = color;
     }
 
     #endregion
