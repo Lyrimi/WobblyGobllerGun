@@ -861,6 +861,7 @@ MonoBehaviour:
   _debugButton: 0
   _debugButton2: 0
   _debugTraversel: 1
+  _heatMapObjPrefab: {fileID: 8978078181408486195, guid: a40dc0cc44c620545be07c0fb0115b54, type: 3}
   _extraConectionChance: 1
   _layerMask:
     serializedVersion: 2

@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 2152189332182713835}
   - component: {fileID: 462300375066585487}
   - component: {fileID: 1047871326375336140}
+  - component: {fileID: 29731370438004461}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -274,6 +275,19 @@ MonoBehaviour:
   UiHeart: {fileID: 0}
   IFrames: 0
   IFrameAmount: 30
+--- !u!114 &29731370438004461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3669898965970400373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c62d10aaf55c447961bb1a24fd1acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HurtFlash
+  _flashTime: 0.2
 --- !u!1 &4001976786815820800
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +347,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2b654ba7679cfe1419aba14bf73923e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

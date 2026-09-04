@@ -25,6 +25,8 @@ public class HealthSCript : MonoBehaviour
     //Other scripts can subscribe to this
     public Action OnDeath;
 
+    public Action OnHit;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,7 +39,7 @@ public class HealthSCript : MonoBehaviour
             TempColor = HealthUp.GetComponent<SpriteRenderer>().color;
             Debug.Log($"{HealthUp.GetComponent<SpriteRenderer>().color.a}");
         }
-        
+
     }
 
     // Update is called once per frame
@@ -98,6 +100,7 @@ public class HealthSCript : MonoBehaviour
         if (health > 0)
         {
             health -= damageAmount;
+            OnHit?.Invoke();
         }
         if (UiHeart)
         {

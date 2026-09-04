@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 8044703159932832116}
   - component: {fileID: 9150920658047479160}
   - component: {fileID: 2156119206759559646}
+  - component: {fileID: 664725951981216522}
   m_Layer: 2
   m_Name: Flintlock fella
   m_TagString: Enemy
@@ -267,7 +268,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2b654ba7679cfe1419aba14bf73923e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -293,7 +294,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -6532499102450662366, guid: f1e1470bf0c884640985707a26ca363d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 1
+  m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.0625, y: 1.53125}
   m_AdaptiveModeThreshold: 0.5
@@ -472,6 +473,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &664725951981216522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5911618161073559924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c62d10aaf55c447961bb1a24fd1acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HurtFlash
+  _flashTime: 0.2
 --- !u!1 &8286772691636480433
 GameObject:
   m_ObjectHideFlags: 0
