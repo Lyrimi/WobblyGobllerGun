@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -84,6 +85,8 @@ public class GunMenuEnabler : MonoBehaviour
             GameObject cloneObj = Instantiate(attachment.gameObject, attachment.transform.position, attachment.transform.rotation);
 
             ClonedObjs.Add(cloneObj);
+            Attachment attachobj = cloneObj.GetComponent<Attachment>();
+            Destroy(attachobj);
 
             attachment.transform.parent = gunEditor.transform;
             attachment.transform.localPosition = randomPoint;
@@ -122,6 +125,8 @@ public class GunMenuEnabler : MonoBehaviour
             }
 
             GameObject tempObj = Instantiate(obj, obj.transform.position, obj.transform.rotation, obj.transform.parent);
+            Attachment attachobj = tempObj.GetComponent<Attachment>();
+            Destroy(attachobj);
             DelLater.Add(tempObj);
             obj.transform.position = transform.position;
             obj.transform.parent = null;
