@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.Tilemaps;
 using static RoomTypes;
 using Direction = RoomTypes.Direction;
 public class Generation : MonoBehaviour
@@ -20,9 +21,13 @@ public class Generation : MonoBehaviour
 
     [SerializeField] private GameObject _dynamicRoomPrefab;
 
+    [SerializeField] private Tilemap _globalGroundTileMap;
+    [SerializeField] private Tilemap _globalWallTileMap;
+    [SerializeField] private Tilemap _globalDecoTileMap;
+
 
     [Header("Debug Options")]
-
+    [SerializeField] private Tilemap _debugGroundTileMap;
     [SerializeField] private bool _debugButton;
 
     [SerializeField] private bool _debugButton2;
@@ -81,6 +86,7 @@ public class Generation : MonoBehaviour
         if (_debugButton2)
         {
             _debugButton2 = false;
+            MergeTileMap(_debugGroundTileMap, _globalGroundTileMap);
 
 
         }
@@ -105,6 +111,9 @@ public class Generation : MonoBehaviour
             DebugHeatMap(endRoom.transform.position, new(0, 0, 1));
         }
 
+
+        StartTileMapMerge();
+        RemoveConnectionWalls();
 
     }
 
@@ -772,11 +781,108 @@ public class Generation : MonoBehaviour
 
     #region Merge Tilemaps
 
-    void StartTileMaps()
+    void StartTileMapMerge()
     {
         foreach (var room in _curRooms)
         {
             _tileMapObject.Add(room.gameObject);
+        }
+
+        foreach (var obj in _tileMapObject)
+        {
+            print("ran Check");
+            Tilemap[] tilemaps = obj.GetComponentsInChildren<Tilemap>();
+            Tilemap ground = null;
+            Tilemap wall = null;
+            Tilemap deco = null;
+
+            foreach (var tmap in tilemaps)
+            {
+                float zpos = tmap.transform.localPosition.z;
+
+                if (zpos == 0)
+                {
+                    ground = tmap;
+                    continue;
+                }
+                if (zpos == -1)
+                {
+                    deco = tmap;
+                    continue;
+                }
+                if (zpos == -2)
+                {
+                    wall = tmap;
+                    continue;
+                }
+            }
+            if (ground == null || deco == null  || wall == null  )
+            {
+                print("Failed to Find TileMaps");
+                continue;
+
+            }
+            MergeTileMaps(ground, wall, deco);
+        }
+    }
+
+    void MergeTileMaps(Tilemap ground, Tilemap wall, Tilemap deco)
+    {
+        MergeTileMap(ground, _globalGroundTileMap);
+        MergeTileMap(wall, _globalWallTileMap);
+        MergeTileMap(deco, _globalDecoTileMap);
+    }
+
+    void MergeTileMap(Tilemap localTMap, Tilemap globalTMap)
+    {
+        BoundsInt area = localTMap.cellBounds;
+
+
+        TileBase[] tiles = localTMap.GetTilesBlock(area);
+
+        Vector3Int newAreaPos = globalTMap.WorldToCell(localTMap.CellToWorld(area.position));
+
+        area.position = newAreaPos;
+
+        MergeTileBlock(area, tiles, globalTMap);
+        Destroy(localTMap.gameObject);
+        print("Merged TileMap");
+    }
+
+    void MergeTileBlock(BoundsInt area, TileBase[] tiles, Tilemap tilemap)
+    {
+        TileBase[] curTiles = tilemap.GetTilesBlock(area);
+
+        if (tiles.Length != curTiles.Length)
+        {
+            throw new System.Exception("Array Lengths do not match");
+        }
+
+        for (int i = 0; i < curTiles.Length; i++)
+        {
+            //Checks if there is already is a tile in the current spot, if yes skip that tile
+            if (curTiles[i] != null)
+            {
+                tiles[i] = curTiles[i];
+            }
+        }
+
+        tilemap.SetTilesBlock(area, tiles);
+
+    }
+    
+    void RemoveConnectionWalls()
+    {
+        foreach (var room in _curRooms)
+        {
+            foreach (var attachPoint in room.RoomAttachPoints)
+            {
+                if (attachPoint.Connected != null)
+                {
+                    Vector3Int pos = _globalWallTileMap.WorldToCell(attachPoint.transform.position);
+                    _globalWallTileMap.SetTile(pos, null);
+                }
+            }
         }
     }
 

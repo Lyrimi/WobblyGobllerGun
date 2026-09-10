@@ -41,8 +41,7 @@ public class PauseMenuButtonEvents : MonoBehaviour
         StartCoroutine(StartMenuAnim());
     }
 
-    IEnumerator StartMenuAnim()
-    {
+    IEnumerator StartMenuAnim() {
         float curTime = 0;
 
         if (_depthOfField == null)
@@ -85,7 +84,8 @@ public class PauseMenuButtonEvents : MonoBehaviour
     }
     public void ExitSettingsButtonPresed()
     {
-        _mainMenuObj.SetActive(true);
+        _mainMenuObj.SetActive(true); 
+        
         _settingMenuObj.SetActive(false);
     }
 }
