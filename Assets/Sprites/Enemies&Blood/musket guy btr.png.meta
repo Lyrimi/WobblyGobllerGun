@@ -116,12 +116,12 @@ TextureImporter:
       name: musket guy btr_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 8
+        x: 37
+        y: 3
         width: 62
         height: 118
       alignment: 9
-      pivot: {x: 0.59102803, y: 0.13397154}
+      pivot: {x: 0.50201845, y: 0.23017956}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
