@@ -35,6 +35,7 @@ public class GunMenuEnabler : MonoBehaviour
 
     void EnableMenu()
     {
+        gunEditor.RecalcData();
         isInAnim = true;
         StartCoroutine(EnableMenuAnim());
         isInEditMode = true;
@@ -42,9 +43,10 @@ public class GunMenuEnabler : MonoBehaviour
         Time.timeScale = 0;
     }
 
-     void DisableMenu()
+    void DisableMenu()
     {
         isInAnim = true;
+        gunEditor.RecalcData();
         RebuildGun();
         DropEditorObjs();
         CleanUpClonebObj();
@@ -109,7 +111,7 @@ public class GunMenuEnabler : MonoBehaviour
         }
     }
 
-   
+
 
     List<GameObject> DelLater = new();
 
@@ -194,7 +196,7 @@ public class GunMenuEnabler : MonoBehaviour
         yield return new WaitForSecondsRealtime(animationLength);
         isInAnim = false;
 
-        
+
     }
 
     IEnumerator DisableMenuAnim()
@@ -217,6 +219,7 @@ public class GunMenuEnabler : MonoBehaviour
         EdtiorModeAction = InputSystem.actions.FindAction("EditMode");
         EdtiorModeAction.performed += EditButtonPressed;
         GEditorObj = gunEditor.gameObject;
+        RebuildGun();
     }
 
     void EditButtonPressed(InputAction.CallbackContext callbackContext)

@@ -276,10 +276,8 @@ public class GunEditor : MonoBehaviour
         clickAction.performed += CheckIfClicked;
     }
 
-    void RecalcData()
+    public void RecalcData()
     {
-
-        Attachment mainAttachment = MainAttachmentParrent.Children[0];
 
         GunData.bulletData = new();
         GunData.FireRate = 0;
@@ -291,6 +289,11 @@ public class GunEditor : MonoBehaviour
         GunData.bulletData.Spreed = 0;
         GunData.bulletData.Projectiles = 0;
 
+        if (MainAttachmentParrent.Children.Length <= 0)
+        {
+            return;
+        }
+        Attachment mainAttachment = MainAttachmentParrent.Children[0];
         if (mainAttachment == null)
         {
             return;
