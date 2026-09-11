@@ -116,12 +116,12 @@ TextureImporter:
       name: flintlock guy btr_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 20
-        width: 68
-        height: 98
+        x: 28
+        y: 11
+        width: 73
+        height: 107
       alignment: 9
-      pivot: {x: 0.46305466, y: 0.11534518}
+      pivot: {x: 0.5233419, y: 0.31646028}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
