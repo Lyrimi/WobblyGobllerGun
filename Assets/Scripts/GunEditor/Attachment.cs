@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static AttachmentTypes;
+using static GunEnums;
 
 public class Attachment : MonoBehaviour
 {

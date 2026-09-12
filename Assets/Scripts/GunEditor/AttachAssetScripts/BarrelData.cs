@@ -1,5 +1,5 @@
 using UnityEngine;
-using static AttachmentTypes;
+using static GunEnums;
 [CreateAssetMenu(fileName = "NewBarrel", menuName = "AttachmentData/Barrel")]
 public class BarrelAttachment : AttachmentData
 {

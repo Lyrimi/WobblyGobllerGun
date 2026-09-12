@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
-using static AttachmentTypes;
+using static GunEnums;
 [CreateAssetMenu(fileName = "NewTrigger", menuName = "AttachmentData/Trigger")]
 public class TriggerAttachment : AttachmentData
 {
@@ -13,6 +13,7 @@ public class TriggerAttachment : AttachmentData
 
     public override void ApplyValues()
     {
+        base.ApplyValues();
         GunData.bulletData.Damage = BaseDmg;
         GunData.bulletData.Spreed = BaseSpreed;
         GunData.FireRate = FireRate;

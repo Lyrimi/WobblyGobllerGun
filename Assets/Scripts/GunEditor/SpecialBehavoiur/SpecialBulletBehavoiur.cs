@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class SpecialBulletBehavoiur : MonoBehaviour
+public abstract class SpecialBulletBehavoiur : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    virtual public void OnFire(){}
+    virtual public void OnUpdate(){}
+    virtual public void OnHit(Collision2D collision){}
+    virtual public void OnDestory(){}
+       
 }

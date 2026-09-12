@@ -1,4 +1,4 @@
-public static class AttachmentTypes
+public static class GunEnums
 {
     public enum AttachmentType
     {
@@ -6,5 +6,16 @@ public static class AttachmentTypes
         Stock,
         Muzzel,
         Trigger,
+    }
+
+    public enum BulletBehavoiur
+    {
+        SplitBullet
+    }
+
+
+    public enum GunBehavoiur
+    {
+
     }
 };

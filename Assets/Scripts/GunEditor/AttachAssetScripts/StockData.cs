@@ -1,5 +1,5 @@
 using UnityEngine;
-using static AttachmentTypes;
+using static GunEnums;
 
 
 
@@ -12,6 +12,7 @@ public class StockAttachment : AttachmentData
 
     public override void ApplyValues()
     {
+        base.ApplyValues();
         GunData.bulletData.Spreed = GunData.bulletData.Spreed * SpreedMult;
         GunData.TurnSpeedMult += TurnSpeedMult;
     }
