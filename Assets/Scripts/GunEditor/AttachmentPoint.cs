@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-using static AttachmentTypes;
+using static GunEnums;
 public class AttachmentPoint : MonoBehaviour
 {
     public AttachmentType ValidAttachment;

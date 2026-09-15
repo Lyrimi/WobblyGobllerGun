@@ -1,11 +1,19 @@
 using UnityEngine;
-using static AttachmentTypes;
+using static GunEnums;
 
 
 public abstract class AttachmentData : ScriptableObject
 {
     public abstract AttachmentType AttachmentType { get; }
-    public abstract void ApplyValues();
+    public virtual void ApplyValues()
+    {
+        foreach (var bulletBehavoiur in BulletBehavoiurs)
+        {
+            GunData.bulletData.bulletBehavoiurs.Add(bulletBehavoiur);
+        }   
+    }
+
+    public BulletBehavoiur[] BulletBehavoiurs;
 }
 
 

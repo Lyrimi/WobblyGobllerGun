@@ -1,13 +1,20 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.Rendering.Universal;
 
-class BulletFlying : MonoBehaviour
+public class BulletFlying : MonoBehaviour
 {
     BulletData _bulletData;
     Rigidbody2D _rb;
 
     float _aliveTime = 0;
+
+    public Action onFire;
+    public Action onUpdate;
+    public Action<Collision2D> onHit;
+    public Action onDestroy;
+
     void Start()
     {
 
@@ -18,10 +25,12 @@ class BulletFlying : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _bulletData = GunData.bulletData;
         _rb.linearVelocity = transform.up * _bulletData.Speed;
+        onFire?.Invoke();
     }
 
     void FixedUpdate()
     {
+        onUpdate?.Invoke();
         if (_aliveTime > _bulletData.LifeTime)
         {
             Destroy(gameObject);
@@ -33,7 +42,7 @@ class BulletFlying : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-
+        onHit?.Invoke(collision);
         if (collision.transform.CompareTag("Enemy"))
         {
             HealthSCript healthobj = collision.gameObject.GetComponent<HealthSCript>();
@@ -63,5 +72,10 @@ class BulletFlying : MonoBehaviour
         health.Damage((int)_bulletData.Damage);
         Destroy(gameObject);
         Destroy(this);
+    }
+
+    void OnDestroy()
+    {
+        onDestroy?.Invoke();
     }
 }
