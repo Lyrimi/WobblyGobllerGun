@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c3ef4b72f7795da4ab2183f885f30f25
+guid: ef28a84dcac82854c938ddef85029816
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8637973559291407770
-    second: puppy_0
+      213: -5316948574504600029
+    second: puppy 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -74,7 +74,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: puppy_0
+      name: puppy 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2509
-        height: 1860
+        width: 1860
+        height: 2509
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a9de7ccaf2f30e770800000000000000
-      internalID: 8637973559291407770
+      spriteID: 32e32af11776636b0800000000000000
+      internalID: -5316948574504600029
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      puppy_0: 8637973559291407770
+      puppy 1_0: -5316948574504600029
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
