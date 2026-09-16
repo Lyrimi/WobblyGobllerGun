@@ -43,7 +43,7 @@ public class AudioMonolith : MonoBehaviour
         //Debug.Log($"{AudioData.name}");
         //Debug.Log($"{sources.Count}");
         
-        AudioSources.(new AudioSource());
+        AudioSources.Add(new AudioSource());
         AudioSources[AudioIndex].Play();
         
         if (AudioIndex !> sources.Count &&  sources.Count !< 0)
