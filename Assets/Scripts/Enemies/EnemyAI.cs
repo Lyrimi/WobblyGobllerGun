@@ -80,20 +80,22 @@ public class EnemyAI : MonoBehaviour
 
                 case EnemyType.puppy:
 
-                    if (Vector2.Distance(transform.position, target.transform.position) < 2)
+                    if (Vector2.Distance(this.transform.position, target.transform.position) < 2)
                     {
-                        transform.up = playerTrans.position - transform.position;
+                        transform.up = playerTrans.position - this.transform.position;
                         LayerMask mask = LayerMask.GetMask("Walls");
-                        RaycastHit2D hit = Physics2D.Raycast(transform.position, playerTrans.position - transform.position, 10, mask);
-                        Debug.DrawRay(transform.position, playerTrans.position - transform.position, Color.red);
+                        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, playerTrans.position - this.transform.position, 10, mask);
+                        Debug.DrawRay(this.transform.position, playerTrans.position - this.transform.position, Color.red);
 
                         if (hit.collider == null)
                         {
-                            target.position = transform.up * 10;
+                            target.position = (playerTrans.position - this.transform.position).normalized * 10;
+                            Debug.Log("didnt hit sum");
                         }
                         else
                         {
                             target.position = hit.point;
+                            Debug.Log("did hit nun");
                         }
                             
                     }
