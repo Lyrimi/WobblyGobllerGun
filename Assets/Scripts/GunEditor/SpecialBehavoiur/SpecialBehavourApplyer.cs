@@ -32,7 +32,7 @@ public static class SpecialBehavourApplyer
             bullet.onUpdate += result.OnUpdate;
             bullet.onDestroy += result.OnDestory;
 
-            
+
         }
     }
 }

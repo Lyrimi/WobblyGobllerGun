@@ -9,7 +9,7 @@ using Direction = RoomTypes.Direction;
 public class Generation : MonoBehaviour
 {
 
-    [SerializeField] private GenData _genData;
+    [SerializeField] public GenData GenData;
 
     [SerializeField] private List<RoomData> _curRooms;
 
@@ -21,9 +21,9 @@ public class Generation : MonoBehaviour
 
     [SerializeField] private GameObject _dynamicRoomPrefab;
 
-    [SerializeField] private Tilemap _globalGroundTileMap;
-    [SerializeField] private Tilemap _globalWallTileMap;
-    [SerializeField] private Tilemap _globalDecoTileMap;
+    [SerializeField] public Tilemap GlobalGroundTileMap;
+    [SerializeField] public Tilemap GlobalWallTileMap;
+    [SerializeField] public Tilemap GlobalDecoTileMap;
 
 
     [Header("Debug Options")]
@@ -59,7 +59,7 @@ public class Generation : MonoBehaviour
             GenRnd = new();
         }
 
-        _quotas = _genData.BuildDict();
+        _quotas = GenData.BuildDict();
         foreach (var item in _quotas)
         {
             if (item.Value == -1)
@@ -86,7 +86,7 @@ public class Generation : MonoBehaviour
         if (_debugButton2)
         {
             _debugButton2 = false;
-            MergeTileMap(_debugGroundTileMap, _globalGroundTileMap);
+            MergeTileMap(_debugGroundTileMap, GlobalGroundTileMap);
 
 
         }
@@ -102,8 +102,8 @@ public class Generation : MonoBehaviour
         }
         Cleanup();
         AttachRoomsConnections();
-        RoomData startRoom = FindFarthestRoom(_curRooms[0]);
-        RoomData endRoom = FindFarthestRoom(startRoom);
+        RoomData startRoom = FindFarthestRoomAndAttach(_curRooms[0], GenData.StartRoom);
+        RoomData endRoom = FindFarthestRoomAndAttach(startRoom, GenData.EndRoom);
 
         if (_debugTraversel)
         {
@@ -421,9 +421,13 @@ public class Generation : MonoBehaviour
     #endregion
 
     #region Validation
-    bool TryFindValidPrefabAndAttach(RoomData roomData, out GameObject roomObj, out RoomAttachPoint curPoint)
+    bool TryFindValidPrefabAndAttach(RoomData roomData, out GameObject roomObj, out RoomAttachPoint curPoint, bool ignoreMaxAttach = false, GameObject roomObjOveride = null)
     {
         roomObj = null;
+        if (roomObjOveride != null)
+        {
+            roomObj = roomObjOveride;
+        }
         curPoint = null;
         /* 
         Loops over every attach point and checks if it has any valid prefabs, if not it is removed from the pool
@@ -447,14 +451,25 @@ public class Generation : MonoBehaviour
             }
             if (roomData.CurAttachments >= roomData.MaxAttachments)
             {
+                if (!ignoreMaxAttach)
+                {
+                    return false;
+                }
                 //Debug.Log("To many attachments :(");
-                return false;
             }
 
 
             curPoint = roomData.GetRandomAttachPoint();
 
-            if (TryFindRandomValidAttachRoom(out roomObj, curPoint))
+            if (roomObjOveride != null)
+            {
+                if (!IsRoomValid(roomData, curPoint, true, true))
+                {
+                    return false;
+                }
+                break;
+            }
+            else if (TryFindRandomValidAttachRoom(out roomObj, curPoint))
             {
                 break;
             }
@@ -476,8 +491,8 @@ public class Generation : MonoBehaviour
 
         obj = null;
         //This is so stupid and i hate lists
-        List<WeightedObject> validRoomPrefabs = _genData.Objects.ToList();
-        List<WeightedObject> RoomPrefabs = _genData.Objects.ToList();
+        List<WeightedObject> validRoomPrefabs = GenData.Objects.ToList();
+        List<WeightedObject> RoomPrefabs = GenData.Objects.ToList();
 
         // Loops over rooms and removes invalid rooms
         for (int i = 0; i < RoomPrefabs.Count; i++)
@@ -530,9 +545,9 @@ public class Generation : MonoBehaviour
         return true;
     }
 
-    bool IsRoomValid(RoomData roomData, RoomAttachPoint point)
+    bool IsRoomValid(RoomData roomData, RoomAttachPoint point, bool overideRoomType = false, bool ignoreQouta = false)
     {
-        if (!point.ValidRoomTypes.Contains(roomData.RoomType))
+        if (!point.ValidRoomTypes.Contains(roomData.RoomType) && !overideRoomType)
         {
             //print($"Room doesn't have corect data type | {roomData.gameObject.name}");
             return false;
@@ -553,6 +568,10 @@ public class Generation : MonoBehaviour
             return false;
         }
 
+        if (ignoreQouta)
+        {
+            return true;
+        }
 
         //Checks if there is still qouta left
         if (_quotas[roomData.RoomType] == -1)
@@ -582,7 +601,7 @@ public class Generation : MonoBehaviour
     #region Traversal
 
 
-    RoomData FindFarthestRoom(RoomData roomData)
+    RoomData FindFarthestRoomAndAttach(RoomData roomData, GameObject spawnPrefab = null)
     {
         List<(RoomData, int)> ToTraverse = new();
         List<(RoomData, int)> TraversedItems = new();
@@ -635,6 +654,40 @@ public class Generation : MonoBehaviour
             }
         }
         RoomData furthestRoom = null;
+        RoomAttachPoint opoint = null;
+        if (spawnPrefab != null)
+        {
+            for (int i = 0; i < TraversedItems.Count; i++)
+            {
+                furthestRoom = GetFurthestFromList(TraversedItems, furthestRoom);
+
+                bool returnvalue = TryFindValidPrefabAndAttach(furthestRoom, out GameObject obj, out opoint, true, spawnPrefab);
+                if (returnvalue)
+                {
+                    break;
+                }
+                if (i == TraversedItems.Count - 1)
+                {
+                    return null;
+                }
+            }
+
+            TryAddRoom(furthestRoom, spawnPrefab, opoint);
+
+
+        }
+        else
+        {
+            furthestRoom = GetFurthestFromList(TraversedItems, furthestRoom);
+        }
+
+
+
+        return furthestRoom;
+    }
+
+    private RoomData GetFurthestFromList(List<(RoomData, int)> TraversedItems, RoomData furthestRoom)
+    {
         int distance = 0;
         foreach (var item in TraversedItems)
         {
@@ -671,7 +724,7 @@ public class Generation : MonoBehaviour
         {
             //print(room.RoomType);
 
-            if (_genData.CleanUpTypes.Contains(room.RoomType))
+            if (GenData.CleanUpTypes.Contains(room.RoomType))
             {
                 if (room.CurAttachments != room.MaxAttachments)
                 {
@@ -816,7 +869,7 @@ public class Generation : MonoBehaviour
                     continue;
                 }
             }
-            if (ground == null || deco == null  || wall == null  )
+            if (ground == null || deco == null || wall == null)
             {
                 print("Failed to Find TileMaps");
                 continue;
@@ -828,9 +881,9 @@ public class Generation : MonoBehaviour
 
     void MergeTileMaps(Tilemap ground, Tilemap wall, Tilemap deco)
     {
-        MergeTileMap(ground, _globalGroundTileMap);
-        MergeTileMap(wall, _globalWallTileMap);
-        MergeTileMap(deco, _globalDecoTileMap);
+        MergeTileMap(ground, GlobalGroundTileMap);
+        MergeTileMap(wall, GlobalWallTileMap);
+        MergeTileMap(deco, GlobalDecoTileMap);
     }
 
     void MergeTileMap(Tilemap localTMap, Tilemap globalTMap)
@@ -870,7 +923,7 @@ public class Generation : MonoBehaviour
         tilemap.SetTilesBlock(area, tiles);
 
     }
-    
+
     void RemoveConnectionWalls()
     {
         foreach (var room in _curRooms)
@@ -879,14 +932,22 @@ public class Generation : MonoBehaviour
             {
                 if (attachPoint.Connected != null)
                 {
-                    Vector3Int pos = _globalWallTileMap.WorldToCell(attachPoint.transform.position);
-                    _globalWallTileMap.SetTile(pos, null);
+                    Vector3Int pos = GlobalWallTileMap.WorldToCell(attachPoint.transform.position);
+                    GlobalWallTileMap.SetTile(pos, null);
                 }
             }
         }
     }
 
     #endregion
+
+    void FinalGeneration()
+    {
+        foreach (var room in _curRooms)
+        {
+            room.Generation = this;
+        }
+    }
 
 }
 

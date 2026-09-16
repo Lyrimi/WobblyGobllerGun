@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baede168a1f0ed54aa665c6d28e24639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CordiorGenTest
-  _groundTile: {fileID: 11400000, guid: 783489e43f565444b909db5eb12f4ea1, type: 2}
+  _groundTile: {fileID: 11400000, guid: ceefef2c2c77e0f48a142126845ea581, type: 2}
   _wallTile: {fileID: 11400000, guid: c8b9e72b70d91ff4fb14312bac8441d3, type: 2}
   _groundTilemap: {fileID: 3286883503450984728}
   _wallTilemap: {fileID: 4760600085469890089}

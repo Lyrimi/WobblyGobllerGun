@@ -24,6 +24,8 @@ public class GunMenuEnabler : MonoBehaviour
     Vector2 InnerSize;
     [SerializeField]
     Vector2 OuterSize;
+    [SerializeField]
+    Camera MainCam;
 
     GameObject GEditorObj;
     InputAction EdtiorModeAction;
@@ -184,9 +186,11 @@ public class GunMenuEnabler : MonoBehaviour
 
 
 
-
     IEnumerator EnableMenuAnim()
     {
+
+
+
         anim.SetTrigger("Enter");
         yield return null;
 
