@@ -15,9 +15,13 @@ MonoBehaviour:
   Objects:
   - Object: {fileID: 1657763631993471762, guid: d984d8c3840ac354d8dbcb3ce23aa5db, type: 3}
     Weight: 10
+  - Object: {fileID: 9185208585755526532, guid: efd1d31831d563849a4f5448c03e0875, type: 3}
+    Weight: 10
   _quotas:
   - Type: 0
     Count: 50
   - Type: 1
     Count: -1
   CleanUpTypes: 01000000
+  StartRoom: {fileID: 1657763631993471762, guid: fc052ae994e313546b8e970338d93225, type: 3}
+  EndRoom: {fileID: 1657763631993471762, guid: 58877f4a7d48eea4a9c5c1cd7e856df2, type: 3}

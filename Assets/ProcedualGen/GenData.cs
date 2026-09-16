@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using static RoomTypes;
 
 [CreateAssetMenu(fileName = "GenData", menuName = "Generation/GenData")]
@@ -12,6 +13,13 @@ public class GenData : ScriptableObject
     private Qouta[] _quotas;
 
     public RoomType[] CleanUpTypes;
+
+    public GameObject StartRoom;
+    public GameObject EndRoom;
+
+    public TileBase WallTile;
+
+    public EnemyData[] EnemyList;
 
     void Awake()
     {
@@ -50,4 +58,11 @@ public class WeightedObject
 {
     public GameObject Object;
     public int Weight = 1;
+}
+
+public class EnemyData
+{
+    public GameObject Prefab;
+    public int Cost;
+    public float Weight;
 }

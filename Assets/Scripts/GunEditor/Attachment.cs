@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using static GunEnums;
 
 public class Attachment : MonoBehaviour
@@ -14,6 +13,8 @@ public class Attachment : MonoBehaviour
 
 
     public Transform ConnectingPoint;
+
+    [SerializeField] private bool _debugButton;
 
     [Header("DO NOT TOUCH")]
     public Attachment[] Children;
@@ -106,9 +107,24 @@ public class Attachment : MonoBehaviour
         }
     }
 
+    public void TestChildDataType()
+    {
+        SpecialBulletBehavoiur specialBulletBehavoiur;
+        specialBulletBehavoiur = GetComponent<SpecialBulletBehavoiur>();
+
+        print($"{specialBulletBehavoiur}");
+        Type polyType = specialBulletBehavoiur.GetType();
+
+        print($"{polyType.Name}");
+    }
+
     // Update is called once per frame
     void Update()
     {
-
+        if (_debugButton)
+        {
+            _debugButton = false;
+            TestChildDataType();
+        }
     }
 }

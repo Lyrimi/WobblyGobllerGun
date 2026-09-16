@@ -20,8 +20,13 @@ public class RoomData : MonoBehaviour
 
     public List<RoomAttachPoint> ConnectedPoints;
 
+    public List<GameObject> EnemySpawnPoints;
+
     [NonSerialized]
     public BoxCollider2D BoundingBox;
+
+    [NonSerialized]
+    public Generation Generation;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Awake()
