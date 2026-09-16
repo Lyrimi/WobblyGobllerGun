@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class EnemyAI : MonoBehaviour
 {
 
-    public enum EnemyType { musket, bomber, flintlock }; //what types of enemies are there, bomber unused
+    public enum EnemyType { musket, bomber, flintlock, puppy}; //what types of enemies are there, bomber unused
     [SerializeField] EnemyType enemyType; //what kind of enemy is it, used to change AI depending on whatever
     [SerializeField] float speed; //movement speed, used only to change maxspeed
     [SerializeField] Transform target; //where does the fella walk to
@@ -47,7 +47,10 @@ public class EnemyAI : MonoBehaviour
 
             //look at the player and walk to the target type shit
             path.destination = target.position;
-            transform.up = playerTrans.position - this.transform.position;
+            if (enemyType != EnemyType.puppy)
+            {
+                transform.up = playerTrans.position - this.transform.position;
+            }
 
             switch (enemyType)
             {
@@ -71,10 +74,34 @@ public class EnemyAI : MonoBehaviour
                         {
                             target.position = transform.position + (Vector3)randomDir;
                         }
-                    }                       //---------------------------------------------
-
-
+                    }                       
                     break;
+                //---------------------------------------------
+
+                case EnemyType.puppy:
+
+                    if (Vector2.Distance(this.transform.position, target.transform.position) < 2)
+                    {
+                        transform.up = playerTrans.position - this.transform.position;
+                        LayerMask mask = LayerMask.GetMask("Walls");
+                        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, playerTrans.position - this.transform.position, 10, mask);
+                        Debug.DrawRay(this.transform.position, playerTrans.position - this.transform.position, Color.red);
+
+                        if (hit.collider == null)
+                        {
+                            target.position = (playerTrans.position - this.transform.position).normalized * 10;
+                            Debug.Log("didnt hit sum");
+                        }
+                        else
+                        {
+                            target.position = hit.point;
+                            Debug.Log("did hit nun");
+                        }
+                            
+                    }
+
+                        break;
+                //---------------------------------------------
             }
         }
         //turn all the stuff off when out of range
