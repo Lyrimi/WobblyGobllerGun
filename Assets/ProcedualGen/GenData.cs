@@ -21,6 +21,9 @@ public class GenData : ScriptableObject
 
     public EnemyData[] EnemyList;
 
+    public float DifScalingMultiplyer;
+    public int StartingCredits;
+
     void Awake()
     {
 
@@ -59,7 +62,7 @@ public class WeightedObject
     public GameObject Object;
     public int Weight = 1;
 }
-
+[Serializable]
 public class EnemyData
 {
     public GameObject Prefab;

@@ -25,3 +25,13 @@ MonoBehaviour:
   CleanUpTypes: 01000000
   StartRoom: {fileID: 1657763631993471762, guid: fc052ae994e313546b8e970338d93225, type: 3}
   EndRoom: {fileID: 1657763631993471762, guid: 58877f4a7d48eea4a9c5c1cd7e856df2, type: 3}
+  WallTile: {fileID: 11400000, guid: c8b9e72b70d91ff4fb14312bac8441d3, type: 2}
+  EnemyList:
+  - Prefab: {fileID: 4222573743764496116, guid: 92129b6d0b72570469035f1a6ffe015e, type: 3}
+    Cost: 10
+    Weight: 1
+  - Prefab: {fileID: 4752735266897846392, guid: 8922339d1c9bb6f43af0c4b91ae75120, type: 3}
+    Cost: 1
+    Weight: 1
+  DifScalingMultiplyer: 1.5
+  StartingCredits: 3

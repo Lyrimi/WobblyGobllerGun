@@ -5142,6 +5142,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee28e6477fe857f4196aaba8dcca18cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  SpawnCredits: 0
+  _debugButton: 0
+  _genOveride: {fileID: 0}
+  _maxIterations: 1000
 --- !u!1001 &1188302289710941714
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class EnemyAI : MonoBehaviour
 {
 
-    public enum EnemyType { musket, bomber, flintlock, puppy}; //what types of enemies are there, bomber unused
+    public enum EnemyType { musket, bomber, flintlock, puppy }; //what types of enemies are there, bomber unused
     [SerializeField] EnemyType enemyType; //what kind of enemy is it, used to change AI depending on whatever
     [SerializeField] float speed; //movement speed, used only to change maxspeed
     [SerializeField] Transform target; //where does the fella walk to
@@ -35,6 +35,10 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   //Is the player out of range, if they are, stop doing ANYTHING
+        if (playerTrans == null)
+        {
+            return;
+        }
         if (Vector3.Distance(transform.position, playerTrans.position) < 10)
         {
             if (outOfRange == true)
@@ -74,7 +78,7 @@ public class EnemyAI : MonoBehaviour
                         {
                             target.position = transform.position + (Vector3)randomDir;
                         }
-                    }                       
+                    }
                     break;
                 //---------------------------------------------
 
@@ -97,11 +101,11 @@ public class EnemyAI : MonoBehaviour
                             target.position = hit.point;
                             Debug.Log("did hit nun");
                         }
-                            
+
                     }
 
-                        break;
-                //---------------------------------------------
+                    break;
+                    //---------------------------------------------
             }
         }
         //turn all the stuff off when out of range
@@ -124,7 +128,7 @@ public class EnemyAI : MonoBehaviour
             int randchance = Random.Range(0, drops.Count);
             Instantiate(drops[randchance], transform.position, quaternion.identity);
         }
-        GameObject.Find("winCon").GetComponent<AreAllEnemiesDead>().enemyKills++;
+        //GameObject.Find("winCon").GetComponent<AreAllEnemiesDead>().enemyKills++;
         Destroy(this.gameObject);
     }
 }

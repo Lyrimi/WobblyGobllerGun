@@ -2,46 +2,60 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 using Random = System.Random;
 
+[RequireComponent(typeof(RoomData))]
 public class RoomDirector : MonoBehaviour
 {
-    RoomData _roomData;
-    TileBase _wallTiles;
-    Tilemap _wallTilemap;
+    private RoomData _roomData;
+    private TileBase _wallTiles;
+    private Tilemap _wallTilemap;
 
-    GameObject[] _spawnPoints;
+    private GameObject[] _spawnPoints;
 
 
 
-    int _spawnCredits = 0;
+    [SerializeField] public int SpawnCredits = 0;
 
-    List<GameObject> _enemiesToSpawn;
+    private List<GameObject> _enemiesToSpawn;
 
-    Random _rnd;
+    private Random _rnd;
 
-    List<EnemyData> _enemyList;
+    private List<EnemyData> _enemyList;
+
+    [Header("Debug")]
+
+    [SerializeField] private bool _debugButton;
+    [SerializeField] private Generation _genOveride;
+    [SerializeField] private int _maxIterations = 10000;
+
+
 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        _rnd = Generation.GenRnd;
         _roomData = GetComponent<RoomData>();
-        _spawnPoints = _roomData.EnemySpawnPoints.ToArray();
-        _wallTiles = _roomData.Generation.GenData.WallTile;
-        _wallTilemap = _roomData.Generation.GlobalWallTileMap;
+        if (_genOveride != null)
+        {
+            _roomData.Generation = _genOveride;
+        }
 
-        _enemyList = _roomData.Generation.GenData.EnemyList.ToList();
+        _spawnPoints = _roomData.EnemySpawnPoints.ToArray();
+
+
     }
 
     public void Init()
     {
+        _rnd = Generation.GenRnd;
+        _wallTiles = _roomData.Generation.GenData.WallTile;
+        _wallTilemap = _roomData.Generation.GlobalWallTileMap;
         InitEnemies();
     }
 
@@ -49,7 +63,12 @@ public class RoomDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (_debugButton)
+        {
+            _debugButton = false;
+            Init();
+            StartCoroutine(EnemyLoop());
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -62,7 +81,7 @@ public class RoomDirector : MonoBehaviour
 
     void StartRoom()
     {
-        CloseRoom();
+
     }
 
 
@@ -70,30 +89,43 @@ public class RoomDirector : MonoBehaviour
 
     void InitEnemies()
     {
-        while (_enemyList.Count > 0 && _spawnCredits > 0)
+        _enemyList = _roomData.Generation.GenData.EnemyList.ToList();
+        _enemiesToSpawn = new();
+
+        int iterator = 0;
+        while (_enemyList.Count > 0 && SpawnCredits > 0)
         {
+            iterator++;
+            if (iterator > _maxIterations)
+            {
+                throw new System.Exception("Loop exceted 9000 | Init");
+            }
             EnemyData data = GetWeightedRandomEnemy();
-            if (data.Cost > _spawnCredits)
+            if (data.Cost > SpawnCredits)
             {
                 _enemyList.Remove(data);
             }
             else
             {
                 _enemiesToSpawn.Add(data.Prefab);
-                _spawnCredits -= data.Cost;
+                SpawnCredits -= data.Cost;
             }
         }
     }
 
     private int _enemiesAlive = 0;
-    IEnumerable EnemyLoop()
+    IEnumerator EnemyLoop()
     {
-        while (_enemiesToSpawn.Count > 0)
+        CloseRoom();
+        while (_enemiesToSpawn.Count > 0 || _enemiesAlive > 0)
         {
-            if (_enemiesAlive > 0) { continue; }
+
+            if (_enemiesAlive > 0) { yield return null; continue; }
             SpawnEnemies();
             yield return null;
         }
+
+        OpenRoom();
 
     }
 
@@ -107,9 +139,14 @@ public class RoomDirector : MonoBehaviour
         _enemiesAlive = 0;
         List<GameObject> validSpawnPoints = _spawnPoints.ToList();
         int listLength = _enemiesToSpawn.Count;
-
+        int iterator = 0;
         for (int i = 0; i < listLength; i++)
         {
+            iterator++;
+            if (iterator > _maxIterations)
+            {
+                throw new System.Exception("Loop exceted 9000 | SEnemies");
+            }
             GameObject enemyPrefab = _enemiesToSpawn[0];
             _enemiesToSpawn.RemoveAt(0);
             GameObject obj = GetRandomValidSpawnPoint(validSpawnPoints);
@@ -118,8 +155,8 @@ public class RoomDirector : MonoBehaviour
             GameObject newEnemy = Instantiate(enemyPrefab, obj.transform.position, transform.rotation);
             //We subscribe to the death event in the enemy, so we can track when it dies65
             newEnemy.GetComponentInChildren<HealthSCript>().OnDeath += OnEnemieDeath;
-
             _enemiesAlive++;
+
             if (validSpawnPoints.Count <= 0)
             {
                 return;

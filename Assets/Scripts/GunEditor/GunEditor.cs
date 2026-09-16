@@ -1,4 +1,5 @@
 using System;
+using Pathfinding.Util;
 using Unity.Loading;
 using UnityEditor;
 using UnityEngine;
@@ -22,6 +23,8 @@ public class GunEditor : MonoBehaviour
     Attachment MainAttachmentParrent;
 
     AttachmentPoint[] attachmentPoints;
+
+    LineRenderer lrend;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
@@ -71,6 +74,7 @@ public class GunEditor : MonoBehaviour
 
     void Drop()
     {
+        lrend.enabled = false;
         StopHighlight();
         if (curSnap != null)
         {
@@ -95,6 +99,14 @@ public class GunEditor : MonoBehaviour
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         worldPos.z = curObj.transform.parent.position.z;
         curObj.transform.position = worldPos;
+        lrend.enabled = false;
+        if (curAttach.attachmentData.AttachmentType == GunEnums.AttachmentType.Trigger && MainAttachmentParrent.attachmentPoints[0].IsAvailable())
+        {
+            lrend.enabled = true;
+            lrend.SetPosition(0, curAttach.gameObject.transform.position);
+            lrend.SetPosition(1, MainAttachmentParrent.gameObject.transform.position);
+        }
+
 
 
         if (curAttach.ConnectingPoint == null)
@@ -274,6 +286,7 @@ public class GunEditor : MonoBehaviour
         pointAction = InputSystem.actions.FindAction("Point");
         clickAction = InputSystem.actions.FindAction("Click");
         clickAction.performed += CheckIfClicked;
+        lrend = MainAttachmentParrent.GetComponent<LineRenderer>();
     }
 
     public void RecalcData()

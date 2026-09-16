@@ -6,6 +6,7 @@ using Random = System.Random;
 using static RoomTypes;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(RoomDirector))]
 public class RoomData : MonoBehaviour
 {
 
@@ -28,11 +29,15 @@ public class RoomData : MonoBehaviour
     [NonSerialized]
     public Generation Generation;
 
+    [NonSerialized]
+    public RoomDirector RoomDirector;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Awake()
     {
         ValidRoomAttachPoints = RoomAttachPoints.ToList();
         BoundingBox = GetComponent<BoxCollider2D>();
+        RoomDirector = GetComponent<RoomDirector>();
         foreach (var point in RoomAttachPoints)
         {
             point.Parrent = this;

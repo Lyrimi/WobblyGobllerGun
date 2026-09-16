@@ -50,14 +50,14 @@ public class Generation : MonoBehaviour
     private int _curBuildStreak = 0;
     private int _bestBuildStreak = 0;
 
+    private Dictionary<RoomData, int> _traversalData = new();
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        if (GenRnd == null)
-        {
-            GenRnd = new();
-        }
+        GenRnd = new();
+
 
         _quotas = GenData.BuildDict();
         foreach (var item in _quotas)
@@ -80,7 +80,7 @@ public class Generation : MonoBehaviour
         if (_debugButton)
         {
             _debugButton = !_debugButton;
-            Step();
+            GenerateMap();
         }
 
         if (_debugButton2)
@@ -94,7 +94,7 @@ public class Generation : MonoBehaviour
 
 
     #region  Main Loop
-    void Step()
+    void GenerateMap()
     {
         while (LoopRooms())
         {
@@ -102,8 +102,14 @@ public class Generation : MonoBehaviour
         }
         Cleanup();
         AttachRoomsConnections();
+        List<(RoomData, int)> traversalData;
         RoomData startRoom = FindFarthestRoomAndAttach(_curRooms[0], GenData.StartRoom);
-        RoomData endRoom = FindFarthestRoomAndAttach(startRoom, GenData.EndRoom);
+        RoomData endRoom = FindFarthestRoomAndAttach(startRoom, out traversalData, GenData.EndRoom);
+
+        foreach (var item in traversalData)
+        {
+            _traversalData.Add(item.Item1, item.Item2);
+        }
 
         if (_debugTraversel)
         {
@@ -114,6 +120,8 @@ public class Generation : MonoBehaviour
 
         StartTileMapMerge();
         RemoveConnectionWalls();
+
+        RoomDirectorInit();
 
     }
 
@@ -600,9 +608,13 @@ public class Generation : MonoBehaviour
 
     #region Traversal
 
-
     RoomData FindFarthestRoomAndAttach(RoomData roomData, GameObject spawnPrefab = null)
     {
+        return FindFarthestRoomAndAttach(roomData, out _, spawnPrefab);
+    }
+    RoomData FindFarthestRoomAndAttach(RoomData roomData, out List<(RoomData, int)> traversalData, GameObject spawnPrefab = null)
+    {
+        traversalData = null;
         List<(RoomData, int)> ToTraverse = new();
         List<(RoomData, int)> TraversedItems = new();
         List<RoomData> TraversedRooms = new();
@@ -682,7 +694,7 @@ public class Generation : MonoBehaviour
         }
 
 
-
+        traversalData = TraversedItems;
         return furthestRoom;
     }
 
@@ -812,7 +824,6 @@ public class Generation : MonoBehaviour
             Destroy(removedRoom.gameObject);
             Destroy(removedRoom);
         }
-
         foreach (var point in lastRemovedRoom.ConnectedPoints)
         {
             _validRooms.Add(point.Parrent);
@@ -941,12 +952,20 @@ public class Generation : MonoBehaviour
 
     #endregion
 
-    void FinalGeneration()
+    void RoomDirectorInit()
     {
-        foreach (var room in _curRooms)
+        foreach (RoomData room in _curRooms)
         {
             room.Generation = this;
+            if (_traversalData.ContainsKey(room))
+            {
+                int distanceFS = _traversalData[room];
+                room.RoomDirector.SpawnCredits = (int)(GenData.StartingCredits + distanceFS * GenData.DifScalingMultiplyer);
+            }
+
+
         }
+
     }
 
 }
