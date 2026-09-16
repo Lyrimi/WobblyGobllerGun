@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class AudioMonolith : MonoBehaviour
 {
     
-    public AudioSource AudioData;
+    AudioSource AudioData;
 
     [SerializeField]
     int volume;
@@ -14,12 +14,12 @@ public class AudioMonolith : MonoBehaviour
     public static AudioMonolith instance;
 
     public List<AudioClip> sources = new List<AudioClip>();
-
+    public List<AudioSource> AudioSources = new List<AudioSource>();
     void Awake()
     {
             instance = this;
             //print(this.gameObject.name);
-        AudioData = GetComponent<AudioSource>();
+        //AudioData = GetComponent<AudioSource>();
         //Debug.Log($"{AudioData.name}");
 
     }
@@ -42,8 +42,10 @@ public class AudioMonolith : MonoBehaviour
         //Debug.Log($"{AudioIndex}");
         //Debug.Log($"{AudioData.name}");
         //Debug.Log($"{sources.Count}");
-        AudioData.clip = sources[AudioIndex];
-        AudioData.Play();
+        
+        AudioSources.(new AudioSource());
+        AudioSources[AudioIndex].Play();
+        
         if (AudioIndex !> sources.Count &&  sources.Count !< 0)
         {
 

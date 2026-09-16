@@ -6,9 +6,9 @@ public class SoundCaller : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        AudioMonolith.instance.PlaySound(5);
-        AudioMonolith.instance.PlaySound(3);
-        AudioMonolith.instance.PlaySound(1);
+        AudioMonolith.instance.PlaySound(11);
+        AudioMonolith.instance.PlaySound(10);
+        AudioMonolith.instance.PlaySound(9);
         AudioMonolith.instance.PlaySound(8);
     }
 
