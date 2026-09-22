@@ -16,6 +16,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] int dropChance; //weapon part drop chance
     [SerializeField] List<GameObject> drops = new List<GameObject>();
 
+    [SerializeField] LayerMask mask;
+
+
 
 
     private AIPath path; //im not really sure to be honest, think its just where my boy walks
@@ -87,19 +90,17 @@ public class EnemyAI : MonoBehaviour
                     if (Vector2.Distance(this.transform.position, target.transform.position) < 2)
                     {
                         transform.up = playerTrans.position - this.transform.position;
-                        LayerMask mask = LayerMask.GetMask("Walls");
                         RaycastHit2D hit = Physics2D.Raycast(this.transform.position, playerTrans.position - this.transform.position, 10, mask);
-                        Debug.DrawRay(this.transform.position, playerTrans.position - this.transform.position, Color.red);
+                        Debug.DrawRay(this.transform.position, playerTrans.position - this.transform.position, Color.red, 100);
 
-                        if (hit.collider == null)
+                        if (hit == false)
                         {
-                            target.position = (playerTrans.position - this.transform.position).normalized * 10;
-                            Debug.Log("didnt hit sum");
+                                target.position = (playerTrans.position - transform.position) + (playerTrans.position - transform.position).normalized * 10 + transform.position;
                         }
                         else
                         {
                             target.position = hit.point;
-                            Debug.Log("did hit nun");
+                            Debug.Log("did hit sun");
                         }
 
                     }

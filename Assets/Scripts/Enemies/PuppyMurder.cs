@@ -20,7 +20,7 @@ public class PuppyMurder : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         onHit?.Invoke(collision);
-        if (collision.transform.CompareTag("Enemy"))
+        if (collision.transform.CompareTag("Player"))
         {
             HealthSCript healthobj = collision.gameObject.GetComponent<HealthSCript>();
             if (!healthobj)
@@ -29,13 +29,11 @@ public class PuppyMurder : MonoBehaviour
             }
             Hit(healthobj);
         }
-        //print($"Hit Something {collision.gameObject.name} | {Time.time}");
     }
 
     void Hit(HealthSCript health)
     {
-
-        health.Damage((int)_bulletData.Damage);
+        health.Damage(1);
     }
 
 }
