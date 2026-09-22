@@ -303,7 +303,7 @@ PrefabInstance:
     - target: {fileID: 2865334613646908422, guid: efd1d31831d563849a4f5448c03e0875, type: 3}
       propertyPath: _genOveride
       value: 
-      objectReference: {fileID: 2057957219}
+      objectReference: {fileID: 0}
     - target: {fileID: 2865334613646908422, guid: efd1d31831d563849a4f5448c03e0875, type: 3}
       propertyPath: SpawnCredits
       value: 100
@@ -3625,7 +3625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &709614009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4250,7 +4250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1629616130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4907,7 +4907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1962460859
 SpriteRenderer:
   serializedVersion: 2
