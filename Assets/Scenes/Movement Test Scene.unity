@@ -1076,7 +1076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18d5d6699c67f44fba260bae2644bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioMonolith
-  volume: 1
+  volume: 100
   sources:
   - {fileID: 8300000, guid: b6e60b7ec22f5074082181eae561dc96, type: 3}
   - {fileID: 8300000, guid: dae5bee9851aa804d94b86cfca681370, type: 3}
