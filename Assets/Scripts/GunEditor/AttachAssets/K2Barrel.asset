@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d2efe85400dac4fb0eb52b95848dc8, type: 3}
   m_Name: K2Barrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
+  BulletBehavoiurs: 
+  StatDisplays:
+  - TextColor: {r: 0, g: 1, b: 0, a: 1}
+    Text: '- 40% Spreed'
+  - TextColor: {r: 1, g: 1, b: 0, a: 1}
+    Text: + 9 Speed
   DamageMult: 1
   SpreedMult: 0.4
   LifeTime: 2

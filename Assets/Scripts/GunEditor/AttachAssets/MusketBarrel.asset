@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d2efe85400dac4fb0eb52b95848dc8, type: 3}
   m_Name: MusketBarrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
+  BulletBehavoiurs: 
+  StatDisplays:
+  - TextColor: {r: 0.18039216, g: 1, b: 0, a: 1}
+    Text: + 500% Damage
+  - TextColor: {r: 1, g: 0, b: 0, a: 1}
+    Text: + 200% Spread
+  - TextColor: {r: 1, g: 1, b: 0, a: 1}
+    Text: + 25 Speed
   DamageMult: 5
   SpreedMult: 2
   LifeTime: 3

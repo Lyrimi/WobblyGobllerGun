@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using static GunEnums;
 
@@ -10,13 +11,19 @@ public abstract class AttachmentData : ScriptableObject
         foreach (var bulletBehavoiur in BulletBehavoiurs)
         {
             GunData.bulletData.bulletBehavoiurs.Add(bulletBehavoiur);
-        }   
+        }
     }
 
     public BulletBehavoiur[] BulletBehavoiurs;
+    public StatDisplay[] StatDisplays;
 }
 
-
+[Serializable]
+public class StatDisplay
+{
+    public Color TextColor;
+    public string Text;
+}
 
 
 

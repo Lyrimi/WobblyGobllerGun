@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9607a3d54f499c4c80b4fc6897f446b, type: 3}
   m_Name: K2Stock
   m_EditorClassIdentifier: Assembly-CSharp::StockAttachment
+  BulletBehavoiurs: 
+  StatDisplays:
+  - TextColor: {r: 0, g: 1, b: 0, a: 1}
+    Text: -30% Spread
   SpreedMult: 0.75
   TurnSpeedMult: 0.9
