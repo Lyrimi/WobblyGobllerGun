@@ -51,8 +51,8 @@ MonoBehaviour:
   firingRate: 0
   burstAmount: 0
   burstRate: 0
-  spreadAmount: 0
-  spreadAngle: 0
+  spreadAmount: 1
+  spreadAngle: 360
   shouldSpawn: 0
 --- !u!1 &2371145684995962855
 GameObject:
@@ -78,7 +78,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2371145684995962855}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -24.93, y: 53.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -118,7 +118,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8685500329361705748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6115852855201286164
+--- !u!1 &5213850678550719043
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,47 +126,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 904000447903975776}
-  - component: {fileID: 871327335824060006}
-  - component: {fileID: 4577772078254820010}
-  - component: {fileID: 5417651147149707358}
-  - component: {fileID: 3298634861347701797}
-  - component: {fileID: 4841114685226873451}
-  - component: {fileID: 4384981903533164253}
-  - component: {fileID: 4128095511197716758}
-  - component: {fileID: 526804397297340756}
-  - component: {fileID: 1278251858218036170}
+  - component: {fileID: 437715922864485614}
+  - component: {fileID: 2025418607094262095}
+  - component: {fileID: 7781888245595140724}
   m_Layer: 2
-  m_Name: Flintlock fella
-  m_TagString: Enemy
+  m_Name: dawg
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &904000447903975776
+--- !u!4 &437715922864485614
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6115852855201286164}
+  m_GameObject: {fileID: 5213850678550719043}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9999998, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3284144918703346148}
-  m_Father: {fileID: 8685500329361705748}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &871327335824060006
+  m_Children: []
+  m_Father: {fileID: 904000447903975776}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!212 &2025418607094262095
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6115852855201286164}
+  m_GameObject: {fileID: 5213850678550719043}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -185,7 +177,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2b654ba7679cfe1419aba14bf73923e3, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -208,16 +200,79 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5316948574504600029, guid: ef28a84dcac82854c938ddef85029816, type: 3}
+  m_Sprite: {fileID: 4054561741107206746, guid: bd7129beaee12304096aba0ca493899d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.0625, y: 1.53125}
+  m_Size: {x: 0.53125, y: 1.34375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &7781888245595140724
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5213850678550719043}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6557750351713914b95000147db5c3bb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6115852855201286164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 904000447903975776}
+  - component: {fileID: 4577772078254820010}
+  - component: {fileID: 5417651147149707358}
+  - component: {fileID: 3298634861347701797}
+  - component: {fileID: 4841114685226873451}
+  - component: {fileID: 4384981903533164253}
+  - component: {fileID: 4128095511197716758}
+  - component: {fileID: 1278251858218036170}
+  - component: {fileID: 8701825558598237577}
+  m_Layer: 2
+  m_Name: Flintlock fella
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &904000447903975776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115852855201286164}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999976, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3284144918703346148}
+  - {fileID: 437715922864485614}
+  m_Father: {fileID: 8685500329361705748}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4577772078254820010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +294,9 @@ MonoBehaviour:
   - {fileID: 6773683489269896169, guid: b50a3c8c77210904a8c3f68f64a5e407, type: 3}
   - {fileID: 2117254920725013776, guid: 6c102802d9337544e8c6e563dba7da05, type: 3}
   - {fileID: 3795765158495974262, guid: 85b707f30835617429172bd6f071f734, type: 3}
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &5417651147149707358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,8 +425,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtFlash
   _flashTime: 0.2
---- !u!70 &526804397297340756
-CapsuleCollider2D:
+--- !u!114 &1278251858218036170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115852855201286164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937b6bcfd1df2a94e9c52522ae2c0d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuppyMurder
+--- !u!58 &8701825558598237577
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -401,18 +471,5 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0000019073486, y: 0.0000019073486}
-  m_Size: {x: 1.2252965, y: 1.6531008}
-  m_Direction: 0
---- !u!114 &1278251858218036170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6115852855201286164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937b6bcfd1df2a94e9c52522ae2c0d70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PuppyMurder
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
