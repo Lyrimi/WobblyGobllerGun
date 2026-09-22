@@ -91,6 +91,11 @@ public class RoomDirector : MonoBehaviour
     {
         _enemyList = _roomData.Generation.GenData.EnemyList.ToList();
         _enemiesToSpawn = new();
+        if (_roomData.Generation.GenData.EnemyList.Length <= 0)
+        {
+            return;
+        }
+
 
         int iterator = 0;
         while (_enemyList.Count > 0 && SpawnCredits > 0)

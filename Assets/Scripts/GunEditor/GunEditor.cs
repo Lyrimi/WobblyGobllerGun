@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Pathfinding.Util;
 using Unity.Loading;
 using UnityEditor;
@@ -25,6 +26,8 @@ public class GunEditor : MonoBehaviour
     AttachmentPoint[] attachmentPoints;
 
     LineRenderer lrend;
+
+    [SerializeField] StatTextManager _statTextManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
@@ -69,6 +72,10 @@ public class GunEditor : MonoBehaviour
         }
         curObj = attachment.gameObject;
         curAttach = attachment;
+        if (attachment.attachmentData.StatDisplays.Length > 0)
+        {
+            _statTextManager.SetText(attachment.attachmentData.StatDisplays);
+        }
         StartHighlight();
     }
 
@@ -82,6 +89,7 @@ public class GunEditor : MonoBehaviour
         }
         curObj = null;
         curAttach = null;
+        _statTextManager.ClearText();
     }
 
     void SnapAttach()
@@ -287,6 +295,7 @@ public class GunEditor : MonoBehaviour
         clickAction = InputSystem.actions.FindAction("Click");
         clickAction.performed += CheckIfClicked;
         lrend = MainAttachmentParrent.GetComponent<LineRenderer>();
+        //_statTextManager = GetComponentInChildren<StatTextManager>();
     }
 
     public void RecalcData()
