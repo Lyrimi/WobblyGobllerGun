@@ -72,10 +72,6 @@ public class GunEditor : MonoBehaviour
         }
         curObj = attachment.gameObject;
         curAttach = attachment;
-        if (attachment.attachmentData.StatDisplays.Length > 0)
-        {
-            _statTextManager.SetText(attachment.attachmentData.StatDisplays);
-        }
         StartHighlight();
     }
 
@@ -261,11 +257,17 @@ public class GunEditor : MonoBehaviour
                 if (curMat != null)
                 {
                     curMat.SetInt("_Enabled", 0);
+                    _statTextManager.ClearText();
                 }
                 return;
             }
 
             HoverHighLight(attachment.gameObject);
+
+            if (attachment.attachmentData.StatDisplays.Length > 0)
+            {
+                _statTextManager.SetText(attachment.attachmentData.StatDisplays);
+            }
 
         }
         else
@@ -273,6 +275,7 @@ public class GunEditor : MonoBehaviour
             if (curMat != null)
             {
                 curMat.SetInt("_Enabled", 0);
+                _statTextManager.ClearText();
             }
         }
     }

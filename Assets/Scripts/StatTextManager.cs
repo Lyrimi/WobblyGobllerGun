@@ -18,6 +18,8 @@ public class StatTextManager : MonoBehaviour
     bool _debugButton;
 
     float _sPannelHeight;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -57,17 +59,19 @@ public class StatTextManager : MonoBehaviour
             text.text = stat.Text;
             text.color = stat.TextColor;
         }
-
+        hasReset = false;
 
     }
-
+    bool hasReset = false;
     public void ClearText()
     {
         _statsPanel.gameObject.SetActive(false);
+        Debug.Log(_statsPanel.gameObject.name);
     }
 
     void ResetText()
     {
+        hasReset = true;
         _statsPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _sPannelHeight);
         foreach (var item in _copyTexts)
         {

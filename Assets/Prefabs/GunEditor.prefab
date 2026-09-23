@@ -141,6 +141,7 @@ MonoBehaviour:
   - {fileID: 8030142505897494708}
   MoveAble: 0
   ConnectingPoint: {fileID: 0}
+  _debugButton: 0
   Children: []
   Parrent: {fileID: 0}
 --- !u!1 &5741322197868878396
@@ -194,6 +195,7 @@ MonoBehaviour:
   GunEditorParrent: {fileID: 5294068036946941575}
   MaxSnapingDistance: 0.5
   MainAttachmentParrent: {fileID: 7919371174606069956}
+  _statTextManager: {fileID: 0}
 --- !u!1001 &3787500625817973204
 PrefabInstance:
   m_ObjectHideFlags: 0

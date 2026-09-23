@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90397fb34782cee438c8642d53ce5d60, type: 3}
   m_Name: MusketTrigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
+  BulletBehavoiurs: 
+  StatDisplays:
+  - TextColor: {r: 0, g: 1, b: 0, a: 1}
+    Text: + 9 Damage
+  - TextColor: {r: 1, g: 0, b: 0, a: 1}
+    Text: + 60 RPM
+  - TextColor: {r: 1, g: 1, b: 0, a: 1}
+    Text: "+ 15\xB0 Spread"
   BaseDmg: 9
   FireRate: 1
   BaseSpreed: 15
