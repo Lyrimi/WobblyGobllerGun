@@ -7,6 +7,8 @@ public static class RoomTypes
         Base,
         Coridor,
         Circle,
+        Treasure,
+        BigRoom,
 
     };
 

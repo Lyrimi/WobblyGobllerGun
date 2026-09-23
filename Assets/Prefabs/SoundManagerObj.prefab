@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9200067965907585784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5237745583330856067}
+  - component: {fileID: 6943744673509190788}
+  m_Layer: 0
+  m_Name: SoundManagerObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5237745583330856067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9200067965907585784}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.72525, y: 0.82409, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6943744673509190788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9200067965907585784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18d5d6699c67f44fba260bae2644bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioMonolith
+  volume: 100
+  sources:
+  - {fileID: 8300000, guid: 25a9468c1b362d7479caec302fd48dd2, type: 3}
+  - {fileID: 8300000, guid: 17e5250e37468a642881a823d2fb2be2, type: 3}
+  - {fileID: 8300000, guid: a67279a0fde370b4e867fba18730ea08, type: 3}
+  - {fileID: 8300000, guid: 3eca4c4b5f0ce3f498a8e814c844cfb2, type: 3}
+  - {fileID: 8300000, guid: a4b3a0f5e3ee32c44975cdc2f455aa5d, type: 3}
+  - {fileID: 8300000, guid: 237b2bb6d20aa834d95e5e5a1d258d7e, type: 3}
+  - {fileID: 8300000, guid: d175fc891b7df58449c2a372380bcf85, type: 3}
+  - {fileID: 8300000, guid: c4ac023d145bc1a4bb11b84460028aae, type: 3}
+  - {fileID: 8300000, guid: fbd63e069ec03a044a17cf8f672fdfb0, type: 3}
+  - {fileID: 8300000, guid: 2b5a4844713d92343b8cad2376dc6bc2, type: 3}
+  - {fileID: 8300000, guid: 957c34352d4cc2b4b82137f4b1c3848b, type: 3}
+  - {fileID: 8300000, guid: 317aa185612563441824186c6abfd411, type: 3}
+  - {fileID: 8300000, guid: a541f622531f6df4ca7ff081acdea7f5, type: 3}
+  - {fileID: 8300000, guid: 863540e8a6bc6854a8571e3edf346f39, type: 3}
+  - {fileID: 8300000, guid: 3c1ed8b1d6a1b8444b0d5f6fe921b313, type: 3}
+  - {fileID: 8300000, guid: c5a97261fdcfebb498584b8752e2c9b5, type: 3}
+  - {fileID: 8300000, guid: 8ef52172f105f5442a76727720ae4018, type: 3}
+  - {fileID: 8300000, guid: 7a4c12834a69b4242831e71c1546458b, type: 3}
+  - {fileID: 8300000, guid: 689406ac92ba5984fb3a3782307d503d, type: 3}
+  - {fileID: 8300000, guid: 4e7cf74eb9a34a8499efde3d8b8b6a9d, type: 3}
+  AudioSources: []
