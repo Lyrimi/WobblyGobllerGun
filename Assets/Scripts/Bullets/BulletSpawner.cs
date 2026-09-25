@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
-    enum SpawnerType { Straight, Wave }
+    enum SpawnerType { Default, Wave }
 
     [Header("Bullet Attributes")]
     public GameObject bullet; //which bullet PREFAB are we using
@@ -18,6 +20,7 @@ public class BulletSpawner : MonoBehaviour
     [SerializeField] float burstRate; //how long before each shot in the burst
     [SerializeField] int spreadAmount; //how many bullets is shot per shot
     [SerializeField] float spreadAngle; //0 is default and shoots straight forwards, anything above is for multiple shots at once and spreads out
+    [SerializeField] float accuracy; //0 is perfectly accurate, above is how many degrees of inaccuracy it has
 
     private GameObject spawnedBullet;
     private float firerateTimer;
@@ -55,7 +58,8 @@ public class BulletSpawner : MonoBehaviour
         {
             for (int j = 0; j < spreadAmount; j++)
             {
-                spawnedBullet = Instantiate(bullet, transform.position, this.transform.rotation);
+                float accuracyRandom = UnityEngine.Random.Range((-accuracy / 2), (accuracy / 2));
+                spawnedBullet = Instantiate(bullet, transform.position, transform.rotation * Quaternion.Euler(0, 0, accuracyRandom));
                 if (spreadAmount > 1)
                 {
                     if (spawnerType == SpawnerType.Wave)

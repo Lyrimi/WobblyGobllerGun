@@ -13,6 +13,7 @@ public class PlayerMovementScript : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     InputAction moveAction;
+    InputAction Dash;
     Rigidbody2D rb;
     InputAction MousePosition;
 
@@ -21,19 +22,20 @@ public class PlayerMovementScript : MonoBehaviour
     private void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
-
+        Dash = InputSystem.actions.FindAction("Sprint");
         rb = GetComponent<Rigidbody2D>();
 
         animator = GetComponentInChildren<Animator>();
 
         HealthSCript healthScript = GetComponent<HealthSCript>();
         healthScript.OnDeath += Die;
+        Dash.performed += Sprint;
     }
 
 
     void Move()
     {
-        Vector2 move = moveAction.ReadValue<Vector2>();
+       Vector2 move = moveAction.ReadValue<Vector2>();
 
         rb.linearVelocity = move * speed;
 
@@ -68,7 +70,14 @@ public class PlayerMovementScript : MonoBehaviour
         rb.linearVelocity = corectedDirVel;
         */
     }
-
+    void Sprint(InputAction.CallbackContext context)
+    {
+        Debug.Log("Dash");
+        
+        Vector2 dash = Dash.ReadValue<Vector2>();
+        rb.linearVelocity = dash * 10;
+       
+    }
     private IEnumerator CheckMoving()
     {
         Vector2 startPos = transform.position;
@@ -99,7 +108,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         Move();
         Rotate();
-
+      
 
 
 
