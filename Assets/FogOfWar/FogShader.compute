@@ -9,9 +9,31 @@ RWStructuredBuffer<int> FogData;
 uint Width;
 uint Height;
 
+uint CHUNKSIZE;
+uint Cw;
+uint Ch;
 int GetFogdata(uint2 pos)
 {
-    return FogData[pos.y * Width + pos.x];
+    // caculates the offset cords for the chunk
+    int2 cCord = pos.xy / CHUNKSIZE;
+    int chunkOff = (cCord.y * Cw + cCord.x) * CHUNKSIZE * CHUNKSIZE;
+
+    int2 pixCord = pos.xy - cCord * CHUNKSIZE;
+    int pixOff = (pixCord.x * CHUNKSIZE + pixCord.y);
+    if (cCord.y >= Ch)
+    {
+        return cCord.y;
+    }
+    if (cCord.x >= Cw)
+    {
+        return 2;
+    }
+    if (chunkOff + pixOff >= Width * Height)
+    {
+        return 10;
+    }
+
+    return FogData[chunkOff + pixOff];
 }
 
 [numthreads(8, 8, 1)] void CSMain(uint3 id : SV_DispatchThreadID)
@@ -24,5 +46,32 @@ int GetFogdata(uint2 pos)
 
     int fogPix = GetFogdata(id.xy);
 
-    Result[id.xy] = float4(fogPix, fogPix, fogPix, 1.0);
+    if (fogPix == 10)
+    {
+        Result[id.xy] = float4(0, 1, 1, 1.0);
+        return;
+    }
+    if (fogPix > 1)
+    {
+        Result[id.xy] = float4(fogPix / 10, 1, 0, 1.0);
+        return;
+    }
+
+    Result[id.xy] = float4(0, 0, 0, 1.0 - fogPix);
+
+    // if (fogPix == 0)
+    //{
+    //    int2 cCord = id.xy / CHUNKSIZE;
+    //    Result[id.xy] = float4(cCord.x / ((float)Cw - 1), cCord.y / ((float)Ch - 1), 0, 1.0);
+    //}
+}
+
+void test()
+{
+    // uint chunkX = id.x / 16;
+    // uint chunkY = id.y / 16;
+
+    // float r = (float)chunkX / (float)(Cw - 1);
+    // float g = (float)chunkY / (float)(Ch - 1);
+    // Result[id.xy] = float4(chunkX / (float)2, 0, 0, 1);
 }

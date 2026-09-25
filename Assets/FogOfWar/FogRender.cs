@@ -7,6 +7,7 @@ using Unity.Android.Gradle.Manifest;
 using System.Linq;
 using System;
 using System.Drawing;
+using UnityEditor.U2D.Aseprite;
 
 public class FogRender : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class FogRender : MonoBehaviour
     [SerializeField] private Camera _mainCam;
     [SerializeField] private ComputeShader _fogShader;
     [SerializeField] private RawImage displayImage;
+    [SerializeField] private GameObject _rendCanvas;
     private int _shaderKernel;
     private Transform _camTransform;
     private FogManager _fogManager;
@@ -67,8 +69,8 @@ public class FogRender : MonoBehaviour
     void SyncFogTexture()
     {
         //Updates the current fog data in view
-
-        int[][,] chunks = _fogManager.GetFogEntries(FindActiveChunks());
+        Vector2Int[] activeChunks = FindActiveChunks();
+        int[][,] chunks = _fogManager.GetFogEntries(activeChunks);
 
         _curFogData = MergeData(chunks);
 
@@ -77,10 +79,17 @@ public class FogRender : MonoBehaviour
         //Sets and runs the shader
         _fogShader.SetInt("Width", _textWidth);
         _fogShader.SetInt("Height", _textHeight);
+        _fogShader.SetInt("CHUNKSIZE", CHUNK_SIZE);
+        _fogShader.SetInt("Cw", CHUNKVIEW_WIDTH);
+        _fogShader.SetInt("Ch", CHUNKVIEW_HEIGHT);
+
+
         _fogShader.SetTexture(_shaderKernel, "Result", _fogRendTex);
         _fogShader.SetBuffer(_shaderKernel, "FogData", _fogDataBuffer);
 
         _fogShader.Dispatch(_shaderKernel, Mathf.CeilToInt(_textWidth / 8), Mathf.CeilToInt(_textHeight / 8), 1);
+
+        MoveCanvas(activeChunks[0]);
     }
 
     int[] MergeData(int[][,] data)
@@ -103,7 +112,7 @@ public class FogRender : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         foreach (Vector2Int cCord in FindActiveChunks())
         {
@@ -114,8 +123,33 @@ public class FogRender : MonoBehaviour
 
             _fogManager.DebugDisplayChunk(cCord, new(0, 1f, 0), 0.1f);
 
+            for (int x = -1; x < 2; x++)
+            {
+                for (int y = -1; y < 2; y++)
+                {
+                    Vector2 dis = new Vector2(x, y) + new Vector2(0.5f, 0.5f);
+                    _fogManager.SetPixelData(_camTransform.position + (Vector3)dis, 1);
+                }
+            }
+
             SyncFogTexture();
         }
+    }
+
+
+
+    void MoveCanvas(Vector2Int cChunk)
+    {
+
+        float tx = (CHUNKVIEW_WIDTH * CHUNK_SIZE) / 2;
+        float ty = (CHUNKVIEW_HEIGHT - 2 * CHUNK_SIZE) / 2;
+        Vector2 lCenter = new(tx, -ty);
+
+        Vector2 chunkGpos = cChunk * CHUNK_SIZE;
+
+        Vector2 globalPos = chunkGpos + lCenter;
+
+        _rendCanvas.transform.position = globalPos;
     }
 
     Vector2Int[] FindActiveChunks()

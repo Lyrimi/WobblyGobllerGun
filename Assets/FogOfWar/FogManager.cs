@@ -57,8 +57,8 @@ public class FogManager : MonoBehaviour
 
     public static Vector2Int GlobalToChunk(Vector2 GlobalPos)
     {
-        int cx = Mathf.RoundToInt(GlobalPos.x / CHUNK_SIZE);
-        int cy = Mathf.RoundToInt(GlobalPos.y / CHUNK_SIZE);
+        int cx = Mathf.FloorToInt(GlobalPos.x / CHUNK_SIZE);
+        int cy = Mathf.FloorToInt(GlobalPos.y / CHUNK_SIZE);
 
         return new(cx, cy);
     }
@@ -81,29 +81,31 @@ public class FogManager : MonoBehaviour
 
     public void SetPixelData(Vector2 pos, int data)
     {
+
         Vector2Int chunkCord = GlobalToChunk(pos);
         Vector2 lcPos = pos - chunkCord * CHUNK_SIZE;
-        print(lcPos);
-        int cx = math.abs(Mathf.RoundToInt(lcPos.x));
-        int cy = math.abs(Mathf.RoundToInt(lcPos.y));
-        print($"{cx} | {cy}");
+        int cx = math.abs(Mathf.FloorToInt(lcPos.x));
+        int cy = math.abs(Mathf.FloorToInt(lcPos.y));
         if (!FogData.ContainsKey(chunkCord))
         {
             CreateFogEntry(chunkCord);
         }
+
+        if (_debugDisplayOnWrite && !(FogData[chunkCord][cx, cy] == data))
+        {
+            Vector2 gpos = chunkCord * CHUNK_SIZE + new Vector2(cx, cy) + new Vector2(0.5f, 0.5f);
+            DrawDebugSquare(gpos, 1f, Color.violet, 1000);
+        }
         FogData[chunkCord][cx, cy] = data;
 
-        if (_debugDisplayOnWrite)
-        {
-            DrawDebugSquare(pos, 1f, Color.violet, 1000);
-        }
+
 
 
     }
 
     public void DebugDisplayChunk(Vector2Int cCord, Color color, float duration)
     {
-        Vector2 globalPos = cCord * CHUNK_SIZE;
+        Vector2 globalPos = cCord * CHUNK_SIZE + new Vector2(CHUNK_SIZE / 2, CHUNK_SIZE / 2);
         DrawDebugSquare(globalPos, CHUNK_SIZE, color, duration);
     }
 

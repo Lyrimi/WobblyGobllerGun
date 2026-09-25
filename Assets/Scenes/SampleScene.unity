@@ -1633,7 +1633,7 @@ MonoBehaviour:
   _debugDisplayChunks: 0
   _pixCord: {x: 10, y: 30}
   _debugWritePixData: 0
-  _debugDisplayOnWrite: 1
+  _debugDisplayOnWrite: 0
 --- !u!4 &1255865195
 Transform:
   m_ObjectHideFlags: 0
@@ -1664,6 +1664,7 @@ MonoBehaviour:
   _mainCam: {fileID: 1101111090}
   _fogShader: {fileID: 7200000, guid: 194e12eac9cf08d4a89032d41da90502, type: 3}
   displayImage: {fileID: 889486427}
+  _rendCanvas: {fileID: 1756843275}
 --- !u!1001 &1273005656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9060,7 +9061,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 65535
@@ -9070,7 +9071,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 65535
@@ -11313,10 +11314,10 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: ceefef2c2c77e0f48a142126845ea581, type: 2}
   m_TileSpriteArray:
+  - m_RefCount: 2
+    m_Data: {fileID: 1240690698, guid: 17018e12d1621434891d7c392714a779, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 2
-    m_Data: {fileID: 1357966158, guid: 3c881af17c5493c4da399a6b55d91d35, type: 3}
   - m_RefCount: 300
     m_Data: {fileID: -8535020941157612170, guid: 783e5df31dbdb124d81f8df16c2f3190, type: 3}
   - m_RefCount: 180
