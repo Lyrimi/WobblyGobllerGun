@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
-    enum SpawnerType { Straight, Wave }
+    enum SpawnerType { Default, Wave }
 
     [Header("Bullet Attributes")]
     public GameObject bullet; //which bullet PREFAB are we using

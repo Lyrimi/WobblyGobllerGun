@@ -79,7 +79,7 @@ MonoBehaviour:
   bulletLife: 5
   speed: 2
   spawnerType: 0
-  firingRate: 3
+  firingRate: 2
   burstAmount: 1
   burstRate: 0
   spreadAmount: 1
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf93db6319a825e4e8472c37bd559c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  enemyType: 0
+  enemyType: 1
   speed: 0
   target: {fileID: 7431029743408596817}
   dropChance: 50

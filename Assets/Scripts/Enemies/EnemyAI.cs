@@ -106,7 +106,13 @@ public class EnemyAI : MonoBehaviour
                     }
 
                     break;
-                    //---------------------------------------------
+                //---------------------------------------------
+
+                case EnemyType.bomber:
+
+
+
+                    break;
             }
         }
         //turn all the stuff off when out of range

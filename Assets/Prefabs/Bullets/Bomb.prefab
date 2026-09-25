@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2385789134469674928}
   - component: {fileID: -5946650073463377436}
   - component: {fileID: 2674376325866674731}
+  - component: {fileID: 7293218484058676405}
   m_Layer: 3
   m_Name: Bomb
   m_TagString: Bullet
@@ -106,9 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7fdc6b17967d84996299e02f9c82b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  bulletType: 0
-  speed: 3
-  lifetime: 1
+  bulletType: 2
+  speed: 0
+  lifetime: 3
   waveSpeed: 0
   bonusHeight: 0
 --- !u!58 &-5946650073463377436
@@ -160,3 +161,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageScript
   damageLevel: 1
+--- !u!50 &7293218484058676405
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011622799611913427}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0.8
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
