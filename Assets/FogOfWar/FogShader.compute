@@ -12,8 +12,12 @@ uint Height;
 uint CHUNKSIZE;
 uint Cw;
 uint Ch;
-int GetFogdata(uint2 pos)
+float GetFogdata(uint2 pos)
 {
+    if (pos.x >= Width || pos.y >= Height)
+    {
+        return 0;
+    }
     // caculates the offset cords for the chunk
     int2 cCord = pos.xy / CHUNKSIZE;
     int chunkOff = (cCord.y * Cw + cCord.x) * CHUNKSIZE * CHUNKSIZE;
@@ -44,7 +48,24 @@ int GetFogdata(uint2 pos)
         return;
     }
 
-    int fogPix = GetFogdata(id.xy);
+    float fogPix = GetFogdata(id.xy);
+
+    float total = 0;
+
+    float sq2 = 1.41421356;
+    // Adjencent
+    total += GetFogdata(id.xy + uint2(1, 0));
+    total += GetFogdata(id.xy + uint2(0, 1));
+    total += GetFogdata(id.xy + uint2(-1, 0));
+    total += GetFogdata(id.xy + uint2(0, -1));
+
+    // Cornors weighted?
+    total += GetFogdata(id.xy + uint2(1, 1)) * sq2;
+    total += GetFogdata(id.xy + uint2(1, -1)) * sq2;
+    total += GetFogdata(id.xy + uint2(-1, 1)) * sq2;
+    total += GetFogdata(id.xy + uint2(-1, -1)) * sq2;
+
+    float average = (total / ((float)4 + sq2 * 4));
 
     if (fogPix == 10)
     {
@@ -57,7 +78,7 @@ int GetFogdata(uint2 pos)
         return;
     }
 
-    Result[id.xy] = float4(0, 0, 0, 1.0 - fogPix);
+    Result[id.xy] = float4(0, 0, 0, 1.0 - fogPix - average);
 
     // if (fogPix == 0)
     //{

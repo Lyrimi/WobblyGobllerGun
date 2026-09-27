@@ -36,7 +36,9 @@ public class Generation : MonoBehaviour
     [SerializeField] private GameObject _heatMapObjPrefab;
 
 
+
     public static System.Random GenRnd;
+    public static Generation Instance;
 
     private int _roomsBuild = 0;
     private List<RoomData> _validRooms;
@@ -70,6 +72,8 @@ public class Generation : MonoBehaviour
         }
 
         _validRooms = _curRooms.ToList();
+
+        Instance = this;
 
         //Step();
     }
@@ -218,12 +222,15 @@ public class Generation : MonoBehaviour
         }
         //!Physics2D.IsTouching(iRoomData.BoundingBox, curRoom.BoundingBox)
         Physics2D.SyncTransforms();
+        List<Collider2D> hits = new();
 
-        Collider2D[] hits = Physics2D.OverlapBoxAll(
-            iRoomData.transform.position,
-            iRoomData.BoundingBox.bounds.size,
-            0f
-        );
+        // I sure hope this works
+        iRoomData.BoundingBox.Overlap(hits);
+        // hits = Physics2D.OverlapBoxAll(
+        //     iRoomData.transform.position + (Vector3)iRoomData.BoundingBox.offset,
+        //     iRoomData.BoundingBox.bounds.size,
+        //     0f
+        // );
         bool hasHitSomething = false;
 
         foreach (var hit in hits)

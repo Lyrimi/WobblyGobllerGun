@@ -1,6 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+[RequireComponent(typeof(BoxCollider2D))]
 
 public class DynamicCorridor : MonoBehaviour
 {
@@ -14,16 +17,23 @@ public class DynamicCorridor : MonoBehaviour
 
     [Header("Debug")]
 
+    [SerializeField] private Vector2 _debugAttachPointCords;
+
 
     [SerializeField] private int _length;
 
     [SerializeField] private RoomAttachPoint _roomAttachPoint;
 
     [SerializeField] private bool _debugButton;
+    [SerializeField] private bool _debugButton2;
+    [SerializeField] private Tilemap wallOveride;
+    private BoxCollider2D _boundingBox;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        _boundingBox = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -33,6 +43,11 @@ public class DynamicCorridor : MonoBehaviour
         {
             _debugButton = false;
             GenCorridor(_roomAttachPoint, _length);
+        }
+        if (_debugButton2)
+        {
+            _debugButton2 = false;
+            StartCoroutine(RevealTiles(_debugAttachPointCords));
         }
     }
 
@@ -102,5 +117,70 @@ public class DynamicCorridor : MonoBehaviour
     {
         //This is so easy because the origin point of the corridor is the attach point :)
         transform.position = point.transform.position;
+    }
+
+    void RevealTile(Vector2 pos)
+    {
+        //Ofset because i DON'T FUCKING KNOW WHY IT HATES ME
+        FogManager.instance.SetPixelData(pos + new Vector2(0.5f, 0.5f), 1);
+    }
+
+    [SerializeField] private float _stepTime = 0.1f;
+    IEnumerator RevealTiles(Vector2 startPos)
+    {
+        Tilemap walls = Generation.Instance.GlobalWallTileMap;
+        if (wallOveride != null)
+        {
+            walls = wallOveride;
+        }
+        Dictionary<Vector2, int> traversedItems = new();
+        List<Vector2> toTraverse = new()
+        {
+            startPos
+        };
+        List<Vector2> toTraveseNext = new();
+
+
+        void TryExpand(Vector2 pos, Vector2 ofset)
+        {
+            Vector2 nCord = pos + ofset;
+
+            //these checks are going to fucking kill me
+            if (traversedItems.ContainsKey(nCord))
+            {
+                return;
+            }
+            if (!_boundingBox.OverlapPoint(nCord))
+            {
+                return;
+            }
+
+            Vector3Int twPos = walls.WorldToCell(nCord);
+            if (walls.GetTile(twPos) != null)
+            {
+                return;
+            }
+
+            traversedItems.Add(nCord, 1);
+            toTraveseNext.Add(nCord);
+            RevealTile(nCord);
+        }
+
+        while (toTraverse.Count > 0)
+        {
+            foreach (Vector2 pos in toTraverse)
+            {
+                TryExpand(pos, new(0, 1));
+                TryExpand(pos, new(0, -1));
+                TryExpand(pos, new(1, 0));
+                TryExpand(pos, new(-1, 0));
+            }
+            toTraverse = toTraveseNext;
+            toTraveseNext = new();
+
+            yield return new WaitForSeconds(_stepTime);
+        }
+
+
     }
 }
