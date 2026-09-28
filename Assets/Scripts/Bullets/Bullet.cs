@@ -10,7 +10,6 @@ public class Bullet : MonoBehaviour
     public float speed;
     public float lifetime;
 
-    private Vector2 spawnPoint;
     private float timer;
 
     Rigidbody2D rb;
@@ -26,12 +25,14 @@ public class Bullet : MonoBehaviour
     [Header("Wave bullet")]
     [SerializeField] float waveSpeed = 1f; // Higher make the wave faster
     [SerializeField] float bonusHeight = 1f; // Set higher if you want more wave intensity
+
+    [Header("Bomb")]
+    [SerializeField] GameObject explosionInstantiate;
     #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spawnPoint = transform.position;
         rb = GetComponent<Rigidbody2D>();
 
         switch (bulletType)
@@ -77,7 +78,7 @@ public class Bullet : MonoBehaviour
         {
             if (bulletType == BulletType.bomb)
             {
-                Debug.Log("bombsplosion!!");
+                Instantiate(explosionInstantiate);
             }
             Destroy(this.gameObject);
         }
@@ -85,29 +86,13 @@ public class Bullet : MonoBehaviour
             timer += Time.deltaTime;
 
         switch (bulletType)
-        {/*
-            case BulletType.straight:
-                rb.linearVelocity = Movement(timer);
-                break;
-            */
+        {
             case BulletType.wave:
                 cycle += Time.deltaTime * waveSpeed;
                 transform.position = basePosition + (transform.right * bonusHeight) * Mathf.Sin(cycle);
                 basePosition += (target - startPosition).normalized * Time.deltaTime * speed;
                 break;
-
-            case BulletType.bomb:
-
-
-                break;
         }
 
-    }
-
-    private Vector2 Movement(float timer)
-    {
-        float x = timer * speed * rb.linearVelocityX;
-        float y = timer * speed * rb.linearVelocityY;
-        return new Vector2(x + spawnPoint.x, y + spawnPoint.y);
     }
 }
