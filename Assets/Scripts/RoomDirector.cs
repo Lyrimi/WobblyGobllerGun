@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 using Random = System.Random;
+using static RoomTypes;
+using Unity.Mathematics;
 
 [RequireComponent(typeof(RoomData))]
 public class RoomDirector : MonoBehaviour
@@ -22,10 +24,13 @@ public class RoomDirector : MonoBehaviour
     [SerializeField] public int SpawnCredits = 0;
 
     private List<GameObject> _enemiesToSpawn;
+    private List<GameObject> _lootToSpawn;
 
     private Random _rnd;
 
     private List<EnemyData> _enemyList;
+    private List<TresureData> _tresureList;
+
 
     [Header("Debug")]
 
@@ -51,12 +56,22 @@ public class RoomDirector : MonoBehaviour
 
     }
 
-    public void Init()
+    public void Init(RoomData data)
     {
         _rnd = Generation.GenRnd;
-        _wallTiles = _roomData.Generation.GenData.WallTile;
-        _wallTilemap = _roomData.Generation.GlobalWallTileMap;
-        InitEnemies();
+        _wallTiles = Generation.Instance.GenData.WallTile;
+        _wallTilemap = Generation.Instance.GlobalWallTileMap;
+        _roomData = data;
+
+        if (_roomData.RoomType != RoomType.Treasure)
+        {
+            InitEnemies();
+        }
+        else
+        {
+            InitLoot();
+        }
+
     }
 
 
@@ -66,26 +81,48 @@ public class RoomDirector : MonoBehaviour
         if (_debugButton)
         {
             _debugButton = false;
-            Init();
-            StartCoroutine(EnemyLoop());
+            Init(_roomData);
+            StartRoom(transform.position);
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        print("Entered");
         if (collision.CompareTag("Player"))
         {
-            StartRoom();
+            StartRoom(collision.transform.position);
         }
     }
 
-    void StartRoom()
+    void StartRoom(Vector2 postion)
     {
+        print(postion);
+        Vector2 pos = _wallTilemap.CellToWorld(_wallTilemap.WorldToCell(postion));
+        StartCoroutine(_roomData.RevealTiles(pos));
+
+        if (_roomData.RoomType != RoomType.Treasure)
+        {
+            StartCoroutine(EnemyLoop());
+
+        }
+        else
+        {
+            SpawnLoot();
+        }
 
     }
 
 
     #region EnemyMangaer
+
+    void InitLoot()
+    {
+        foreach (GameObject item in _spawnPoints)
+        {
+            _lootToSpawn.Add(GetWeightedRandomTresure().prefab);
+        }
+    }
 
     void InitEnemies()
     {
@@ -132,6 +169,18 @@ public class RoomDirector : MonoBehaviour
 
         OpenRoom();
 
+        RoomEnd();
+
+    }
+
+    void SpawnLoot()
+    {
+        for (int i = 0; i < _lootToSpawn.Count; i++)
+        {
+            Transform spawnPos = _spawnPoints[i].transform;
+            Instantiate(_lootToSpawn[i], spawnPos.position, spawnPos.rotation);
+        }
+        RoomEnd();
     }
 
     void OnEnemieDeath()
@@ -183,6 +232,15 @@ public class RoomDirector : MonoBehaviour
         SetRoomDoors(null);
     }
 
+    void RoomEnd()
+    {
+        foreach (var item in _roomData.AttachedCorridors)
+        {
+            //This is shit, TOO BAD
+            StartCoroutine(item.Item2.RevealTiles(item.Item1.transform.position));
+        }
+    }
+
     void SetRoomDoors(TileBase tile)
     {
         foreach (var attachPoint in _roomData.RoomAttachPoints)
@@ -219,6 +277,32 @@ public class RoomDirector : MonoBehaviour
             if (rndWeight <= 0)
             {
                 return enemyData;
+            }
+        }
+        return null;
+    }
+
+    TresureData GetWeightedRandomTresure()
+    {
+        float TotalWeight = 0;
+        foreach (var tresureData in _tresureList)
+        {
+            TotalWeight += tresureData.Weight;
+            //print($"{room.Object.name} | {Time.time}");
+        }
+
+        //print($"total weight {TotalWeight} | {Time.time}");
+
+        float rndWeight = (float)_rnd.NextDouble() * TotalWeight;
+
+        //print($"rnd weight {rndWeight} | {Time.time}");
+
+        foreach (var tresureData in _tresureList)
+        {
+            rndWeight -= tresureData.Weight;
+            if (rndWeight <= 0)
+            {
+                return tresureData;
             }
         }
         return null;

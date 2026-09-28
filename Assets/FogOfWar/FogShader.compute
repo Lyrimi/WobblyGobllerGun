@@ -51,7 +51,6 @@ float GetFogdata(uint2 pos)
     float fogPix = GetFogdata(id.xy);
 
     float total = 0;
-
     float sq2 = 1.41421356;
     // Adjencent
     total += GetFogdata(id.xy + uint2(1, 0));

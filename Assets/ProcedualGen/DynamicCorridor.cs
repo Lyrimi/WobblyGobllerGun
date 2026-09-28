@@ -122,13 +122,14 @@ public class DynamicCorridor : MonoBehaviour
     void RevealTile(Vector2 pos)
     {
         //Ofset because i DON'T FUCKING KNOW WHY IT HATES ME
-        FogManager.instance.SetPixelData(pos + new Vector2(0.5f, 0.5f), 1);
+        FogManager.instance.SetPixelData(pos + new Vector2(0, 0.5f), 1);
     }
 
     [SerializeField] private float _stepTime = 0.1f;
-    IEnumerator RevealTiles(Vector2 startPos)
+    public IEnumerator RevealTiles(Vector2 startPos)
     {
         Tilemap walls = Generation.Instance.GlobalWallTileMap;
+        Tilemap ground = Generation.Instance.GlobalGroundTileMap;
         if (wallOveride != null)
         {
             walls = wallOveride;
@@ -157,6 +158,11 @@ public class DynamicCorridor : MonoBehaviour
 
             Vector3Int twPos = walls.WorldToCell(nCord);
             if (walls.GetTile(twPos) != null)
+            {
+                return;
+            }
+
+            if (ground.GetTile(twPos) == null)
             {
                 return;
             }

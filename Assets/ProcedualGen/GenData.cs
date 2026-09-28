@@ -2,27 +2,28 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using static RoomTypes;
 
 [CreateAssetMenu(fileName = "GenData", menuName = "Generation/GenData")]
 public class GenData : ScriptableObject
 {
-    public WeightedObject[] Objects;
-    [SerializeField]
-    private Qouta[] _quotas;
+    [SerializeField] public WeightedObject[] Objects;
 
-    public RoomType[] CleanUpTypes;
+    [SerializeField] private Qouta[] _quotas;
 
-    public GameObject StartRoom;
-    public GameObject EndRoom;
+    [SerializeField] public RoomType[] CleanUpTypes;
 
-    public TileBase WallTile;
+    [SerializeField] public GameObject StartRoom;
+    [SerializeField] public GameObject EndRoom;
 
-    public EnemyData[] EnemyList;
+    [SerializeField] public TileBase WallTile;
 
-    public float DifScalingMultiplyer;
-    public int StartingCredits;
+    [SerializeField] public EnemyData[] EnemyList;
+
+    [SerializeField] public float DifScalingMultiplyer;
+    [SerializeField] public int StartingCredits;
 
     void Awake()
     {
@@ -67,5 +68,11 @@ public class EnemyData
 {
     public GameObject Prefab;
     public int Cost;
+    public float Weight;
+}
+
+public class TresureData
+{
+    public GameObject prefab;
     public float Weight;
 }

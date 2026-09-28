@@ -5,6 +5,10 @@ using UnityEngine;
 using Random = System.Random;
 using static RoomTypes;
 
+using System.Collections;
+using Unity.Mathematics;
+using UnityEngine.Tilemaps;
+
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(RoomDirector))]
 public class RoomData : MonoBehaviour
@@ -22,6 +26,8 @@ public class RoomData : MonoBehaviour
     public List<RoomAttachPoint> ConnectedPoints;
 
     public List<GameObject> EnemySpawnPoints;
+    [NonSerialized]
+    public List<(RoomAttachPoint, DynamicCorridor)> AttachedCorridors = new();
 
     [NonSerialized]
     public BoxCollider2D BoundingBox;
@@ -35,6 +41,7 @@ public class RoomData : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Awake()
     {
+        print(RoomAttachPoints.Length + $" list | {gameObject.name}");
         ValidRoomAttachPoints = RoomAttachPoints.ToList();
         BoundingBox = GetComponent<BoxCollider2D>();
         RoomDirector = GetComponent<RoomDirector>();
@@ -70,7 +77,72 @@ public class RoomData : MonoBehaviour
 
         int index = rnd.Next(curValidPoints.Count);
         return curValidPoints[index];
+    }
 
+
+
+    void RevealTile(Vector2 pos)
+    {
+        //Ofset because i DON'T FUCKING KNOW WHY IT HATES ME
+        FogManager.instance.SetPixelData(pos + new Vector2(0.5f, 1f), 1);
+    }
+
+    [SerializeField] private float _stepTime = 0.1f;
+    public IEnumerator RevealTiles(Vector2 startPos)
+    {
+        Tilemap walls = Generation.Instance.GlobalWallTileMap;
+        Tilemap ground = Generation.Instance.GlobalGroundTileMap;
+        Dictionary<Vector2, int> traversedItems = new();
+        List<Vector2> toTraverse = new()
+        {
+            startPos
+        };
+        List<Vector2> toTraveseNext = new();
+
+
+        void TryExpand(Vector2 pos, Vector2 ofset)
+        {
+            Vector2 nCord = pos + ofset;
+
+            //these checks are going to fucking kill me
+            if (traversedItems.ContainsKey(nCord))
+            {
+                return;
+            }
+            if (!BoundingBox.OverlapPoint(nCord))
+            {
+                return;
+            }
+
+            Vector3Int twPos = walls.WorldToCell(nCord);
+            if (walls.GetTile(twPos) != null)
+            {
+                return;
+            }
+            if (ground.GetTile(twPos) == null)
+            {
+                return;
+            }
+
+            traversedItems.Add(nCord, 1);
+            toTraveseNext.Add(nCord);
+            RevealTile(nCord);
+        }
+
+        while (toTraverse.Count > 0)
+        {
+            foreach (Vector2 pos in toTraverse)
+            {
+                TryExpand(pos, new(0, 1));
+                TryExpand(pos, new(0, -1));
+                TryExpand(pos, new(1, 0));
+                TryExpand(pos, new(-1, 0));
+            }
+            toTraverse = toTraveseNext;
+            toTraveseNext = new();
+
+            yield return new WaitForSeconds(_stepTime);
+        }
 
 
     }
