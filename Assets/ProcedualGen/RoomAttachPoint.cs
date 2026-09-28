@@ -17,7 +17,6 @@ public class RoomAttachPoint : MonoBehaviour
     public RoomData Parrent;
     [NonSerialized]
     public RoomData Connected;
-    [NonSerialized]
     public List<string> BlackListedRooms = new();
 
     public int ConectingDir
@@ -30,6 +29,7 @@ public class RoomAttachPoint : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        BlackListedRooms = new();
         _baseValidRoomTypes = ValidRoomTypes.ToList();
     }
 

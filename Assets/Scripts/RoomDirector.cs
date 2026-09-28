@@ -101,6 +101,11 @@ public class RoomDirector : MonoBehaviour
         Vector2 pos = _wallTilemap.CellToWorld(_wallTilemap.WorldToCell(postion));
         StartCoroutine(_roomData.RevealTiles(pos));
 
+        if (SpawnCredits <= 0)
+        {
+            return;
+        }
+
         if (_roomData.RoomType != RoomType.Treasure)
         {
             StartCoroutine(EnemyLoop());

@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
   MaxAttachments: 4
   CurAttachments: 0
-  Identifyer: HGK
+  Identifyer: sdfpokspogrej9
   RoomType: 1
   RoomAttachPoints:
   - {fileID: 326029809946410588}

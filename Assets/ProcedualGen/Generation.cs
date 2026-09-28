@@ -85,7 +85,6 @@ public class Generation : MonoBehaviour
     {
         if (_debugButton)
         {
-            _debugButton = _debugButton;
             GenerateMap();
         }
 
@@ -104,6 +103,7 @@ public class Generation : MonoBehaviour
     {
         while (LoopRooms())
         {
+
             return;
         }
         _debugButton = false;
@@ -165,6 +165,7 @@ public class Generation : MonoBehaviour
                 }
                 problemCount++;
                 StepBack();
+                return true;
 
             }
 
@@ -261,7 +262,7 @@ public class Generation : MonoBehaviour
             point.ValidRoomTypes.Remove(iRoomData.RoomType);
             if (point.ValidRoomTypes.Count <= 0)
             {
-                curRoom.ValidRoomAttachPoints.Remove(point);
+                point.BlackListedRooms.Add(iRoomData.Identifyer);
             }
             Destroy(iRoomObj);
             return false;
@@ -719,9 +720,10 @@ public class Generation : MonoBehaviour
             for (int i = 0; i < count; i++)
             {
                 furthestRoom = GetFurthestFromList(TraversedItems, out objData);
-                if (furthestRoom == null)
+                if (furthestRoom == null || TraversedItems.Count <= 0)
                 {
-                    throw new Exception("WHAT THE FUCKKKK | furthest room was null");
+                    Debug.LogError("Failed to find a valid room");
+                    return null;
                 }
                 bool returnvalue = TryFindValidPrefabAndAttach(furthestRoom, out GameObject obj, out opoint, true, spawnPrefab);
                 if (returnvalue)
@@ -757,11 +759,6 @@ public class Generation : MonoBehaviour
         int count = TraversedItems.Count;
         outdata = (null, 0);
 
-        if (TraversedItems.Count <= 0)
-        {
-            throw new Exception("For some reason TraversedItems were 0");
-        }
-
         foreach (var item in TraversedItems)
         {
             if (_debugTraversel)
@@ -770,6 +767,11 @@ public class Generation : MonoBehaviour
             }
             if (item.Item2 > distance)
             {
+                if (item.Item1 == null)
+                {
+                    Debug.LogWarning("Item was null?");
+                    continue;
+                }
                 distance = item.Item2;
                 furthestRoom = item.Item1;
                 objData = item;
@@ -785,6 +787,7 @@ public class Generation : MonoBehaviour
         //     continue;
         // }
         outdata = objData;
+
         return furthestRoom;
     }
 
@@ -870,41 +873,39 @@ public class Generation : MonoBehaviour
         int count = _curRooms.Count;
         RoomData lastRemovedRoom = null;
         List<RoomData> roomsToRemove = new();
-        for (int i = 0; i < _stepBackAmount; i++)
+
+        count = _curRooms.Count;
+        RoomData removedRoom = _curRooms.Last();
+        // if (removedRoom == _curRooms[0])
+        // {
+        //     break;
+        // }
+
+
+
+        _curRooms.RemoveAt(count - 1);
+        foreach (var point in removedRoom.ConnectedPoints)
         {
-            count = _curRooms.Count;
-            RoomData removedRoom = _curRooms.Last();
-            if (removedRoom == _curRooms[0])
-            {
-                break;
-            }
-
-
-
-            _curRooms.RemoveAt(count - 1);
-            foreach (var point in removedRoom.ConnectedPoints)
-            {
-                point.Connected = null;
-                point.Parrent.CurAttachments--;
-                point.Parrent.ValidRoomAttachPoints.Remove(point);
-            }
-
-            //Adds the qoutas for the removed objects
-            if (!(_quotas[removedRoom.RoomType] == -1))
-            {
-                _totalQouta++;
-                _quotas[removedRoom.RoomType]++;
-            }
-
-            lastRemovedRoom = removedRoom;
-
-            roomsToRemove.Add(removedRoom);
-
+            point.Connected = null;
+            point.Parrent.CurAttachments--;
+            point.BlackListedRooms.Add(removedRoom.Identifyer);
+            _validRooms.Add(point.Parrent);
+            point.Parrent.ValidRoomAttachPoints.Add(point);
         }
 
-        foreach (var removedRoom in roomsToRemove)
+        //Adds the qoutas for the removed objects
+        if (!(_quotas[removedRoom.RoomType] == -1))
         {
-            foreach (var item in removedRoom.AttachedCorridors)
+            _totalQouta++;
+            _quotas[removedRoom.RoomType]++;
+        }
+
+        roomsToRemove.Add(removedRoom);
+
+
+        foreach (var rRoom in roomsToRemove)
+        {
+            foreach (var item in rRoom.AttachedCorridors)
             {
                 if (item.Item2 != null)
                 {
@@ -912,17 +913,8 @@ public class Generation : MonoBehaviour
                     Destroy(item.Item2.gameObject);
                 }
             }
-            Destroy(removedRoom.gameObject);
-            Destroy(removedRoom);
-        }
-        if (lastRemovedRoom != null)
-        {
-            foreach (var point in lastRemovedRoom.ConnectedPoints)
-            {
-                _validRooms.Add(point.Parrent);
-                point.Parrent.ValidRoomAttachPoints.Add(point);
-                point.BlackListedRooms.Add(lastRemovedRoom.Identifyer);
-            }
+            Destroy(rRoom.gameObject);
+            Destroy(rRoom);
         }
 
         count = _curRooms.Count;

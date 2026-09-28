@@ -5065,9 +5065,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f394e007227d01241a80858f311905ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
-  MaxAttachments: 2
+  MaxAttachments: 3
   CurAttachments: 0
-  Identifyer: HD
+  Identifyer: eh0ehpok
   RoomType: 0
   RoomAttachPoints:
   - {fileID: 2301511332426232218}

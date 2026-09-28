@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GenData
   Objects:
   - Object: {fileID: 9185208585755526532, guid: efd1d31831d563849a4f5448c03e0875, type: 3}
-    Weight: 10
+    Weight: 5
   - Object: {fileID: 399047337811911866, guid: 5b3bec274c0a8b6469a0d69ea15cf09b, type: 3}
-    Weight: 10
+    Weight: 3
   - Object: {fileID: 9054336519699523036, guid: b2ecddb2a087a9346bb12f1cfbf0ff03, type: 3}
     Weight: 10
   - Object: {fileID: 7229716739640338321, guid: 6a8ffa4d4d2933e4eb6e7a54c6fd164e, type: 3}
@@ -29,7 +29,7 @@ MonoBehaviour:
   - Type: 2
     Count: 4
   CleanUpTypes: 
-  StartRoom: {fileID: 1657763631993471762, guid: fc052ae994e313546b8e970338d93225, type: 3}
+  StartRoom: {fileID: 7802808040852877096, guid: 6552510960573d5469b4af889cb29cf5, type: 3}
   EndRoom: {fileID: 1657763631993471762, guid: 58877f4a7d48eea4a9c5c1cd7e856df2, type: 3}
   WallTile: {fileID: 11400000, guid: c8b9e72b70d91ff4fb14312bac8441d3, type: 2}
   EnemyList:
