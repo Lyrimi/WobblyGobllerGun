@@ -10,6 +10,13 @@ public class PlayerMovementScript : MonoBehaviour
 {
     Animator animator;
 
+    HealthSCript PlayerHealth;
+
+    [SerializeField]
+    private float _flashTime;
+
+    HurtFlash DashFlash;
+
     public float speed;
     public float rotationSpeed;
     InputAction moveAction;
@@ -21,10 +28,18 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField]
     bool dashing;
     [SerializeField]
+    bool canDash;
+    [SerializeField]
     float dashTime;
+    [SerializeField]
+    float dashCooldown;
+
+    Color gameobjectColor;
 
     private void Start()
     {
+        PlayerHealth = GetComponent<HealthSCript>();
+        DashFlash = GetComponent<HurtFlash>();
         moveAction = InputSystem.actions.FindAction("Move");
         Dash = InputSystem.actions.FindAction("Sprint");
         rb = GetComponent<Rigidbody2D>();
@@ -81,19 +96,25 @@ public class PlayerMovementScript : MonoBehaviour
     void Sprint(InputAction.CallbackContext context)
     {
         Debug.Log("Dash");
-        dashing = true;
-
-
-        Vector2 DashEnd = transform.position;
-
-        StartCoroutine(Wait(dashTime));
-        if(dashing)
+        if (canDash)
         {
+            dashing = true;
+        }
+        else return;
+
+
+
+
+        StartCoroutine(Wait(dashTime,dashCooldown));
+        if(dashing && canDash&& rb.linearVelocity != Vector2.zero)
+        {
+            DashFlash.StartCoroutine(DashFlash.Flash());
             
-           
+
+            PlayerHealth.IFrames = 10;
             
-                rb.linearVelocity *= 5;
-            
+            rb.linearVelocity *= 5;
+            canDash = false;
             
             
                 
@@ -110,12 +131,12 @@ public class PlayerMovementScript : MonoBehaviour
        
     }
 
-    private IEnumerator Wait(float waitTime)
+    private IEnumerator Wait(float waitTime, float dashdelay)
     {
         yield return new WaitForSeconds(waitTime);
         dashing = false;
-        
-
+        yield return new WaitForSeconds(dashdelay);
+        canDash = true;
     }
 
 
