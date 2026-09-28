@@ -22,7 +22,7 @@ public class HurtFlash : MonoBehaviour
         StartCoroutine(Flash());
     }
 
-    IEnumerator Flash()
+    public IEnumerator Flash()
     {
         float curFlash = _flashTime;
 
