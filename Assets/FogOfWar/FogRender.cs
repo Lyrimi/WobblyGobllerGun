@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static FogManager;
 using Unity.Collections.LowLevel.Unsafe;
-using Unity.Android.Gradle.Manifest;
+//using Unity.Android.Gradle.Manifest;
 using System.Linq;
 using System;
 using System.Drawing;

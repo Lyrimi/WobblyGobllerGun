@@ -111,7 +111,6 @@ public class EnemyAI : MonoBehaviour
                 case EnemyType.bomber:
 
 
-
                     break;
             }
         }
