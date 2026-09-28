@@ -14,7 +14,7 @@ public class Explosion : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer < 0.24 || timer > 1.32)
+        if (timer < 0.24f || timer > 1.32f)
         {
             GetComponent<Collider2D>().enabled = false;
         }
@@ -23,7 +23,7 @@ public class Explosion : MonoBehaviour
             GetComponent<Collider2D>().enabled = true;
         }
 
-        if (timer >= 1.33 )
+        if (timer >= 1.33f)
         {
             Destroy(gameObject);
         }
