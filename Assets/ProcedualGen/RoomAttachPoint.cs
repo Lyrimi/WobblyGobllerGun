@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using static RoomTypes;
 
 public class RoomAttachPoint : MonoBehaviour
 {
-    public RoomType[] ValidRoomTypes;
+    public List<RoomType> ValidRoomTypes;
     public Direction Direction;
 
     public uint MinCorridorLength;

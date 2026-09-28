@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 using static RoomTypes;
 using Direction = RoomTypes.Direction;
@@ -83,7 +85,7 @@ public class Generation : MonoBehaviour
     {
         if (_debugButton)
         {
-            _debugButton = !_debugButton;
+            _debugButton = _debugButton;
             GenerateMap();
         }
 
@@ -102,8 +104,9 @@ public class Generation : MonoBehaviour
     {
         while (LoopRooms())
         {
-
+            return;
         }
+        _debugButton = false;
         Cleanup();
         AttachRoomsConnections();
         List<(RoomData, int)> traversalData;
@@ -170,8 +173,10 @@ public class Generation : MonoBehaviour
 
 
 
+
             if (!TryFindValidPrefabAndAttach(curRoom, out roomObj, out point))
             {
+                //print("room was invalid");
                 _validRooms.Remove(curRoom);
                 continue;
             }
@@ -179,7 +184,6 @@ public class Generation : MonoBehaviour
 
 
         }
-        Debug.Log("Added");
         TryAddRoom(curRoom, roomObj, point);
         return true;
     }
@@ -189,7 +193,7 @@ public class Generation : MonoBehaviour
     #endregion
 
     #region Room Generation
-    void TryAddRoom(RoomData curRoom, GameObject roomObj, RoomAttachPoint point, bool bypassCollsions = false, RoomAttachPoint oRoomPoint = null)
+    bool TryAddRoom(RoomData curRoom, GameObject roomObj, RoomAttachPoint point, bool bypassCollsions = false, RoomAttachPoint oRoomPoint = null)
     {
 
         _roomsBuild++;
@@ -222,15 +226,16 @@ public class Generation : MonoBehaviour
         }
         //!Physics2D.IsTouching(iRoomData.BoundingBox, curRoom.BoundingBox)
         Physics2D.SyncTransforms();
-        List<Collider2D> hits = new();
-
+        //List<Collider2D> hits = new();
+        Collider2D[] hits;
         // I sure hope this works
-        iRoomData.BoundingBox.Overlap(hits);
-        // hits = Physics2D.OverlapBoxAll(
-        //     iRoomData.transform.position + (Vector3)iRoomData.BoundingBox.offset,
-        //     iRoomData.BoundingBox.bounds.size,
-        //     0f
-        // );
+        //iRoomData.BoundingBox.Overlap(hits);
+
+        hits = Physics2D.OverlapBoxAll(
+            iRoomData.transform.position + (Vector3)iRoomData.BoundingBox.offset,
+            iRoomData.BoundingBox.bounds.size,
+            0f
+        );
         bool hasHitSomething = false;
 
         foreach (var hit in hits)
@@ -240,9 +245,10 @@ public class Generation : MonoBehaviour
             {
                 continue;
             }
-            //print(hit.name);
-            if (hit != curRoom.BoundingBox && hit != iRoomData.BoundingBox)
+            print(hit.name);
+            if (hit.gameObject != curRoom.gameObject && hit.gameObject != iRoomData.gameObject)
             {
+                print($"This thing has hit something i don't know what but it has {hit.gameObject.name} | {curRoom.gameObject.name} | {iRoomData.gameObject.name}");
                 hasHitSomething = true;
                 break;
             }
@@ -252,11 +258,17 @@ public class Generation : MonoBehaviour
         {
 
             //print($"Something Was Touching {point.transform.parent.name} | {point.transform.name}");
+            point.ValidRoomTypes.Remove(iRoomData.RoomType);
+            if (point.ValidRoomTypes.Count <= 0)
+            {
+                curRoom.ValidRoomAttachPoints.Remove(point);
+            }
             Destroy(iRoomObj);
-
+            return false;
         }
         else
         {
+
             _validRooms.Add(iRoomData);
             iRoomData.ValidRoomAttachPoints.Remove(otherPoint);
             iRoomData.CurAttachments++;
@@ -285,21 +297,20 @@ public class Generation : MonoBehaviour
             dynamicCorridor.GenCorridor(point, corridorLength);
             _tileMapObject.Add(dynCorObj);
 
+            curRoom.AttachedCorridors.Add((point, dynamicCorridor));
+            iRoomData.AttachedCorridors.Add((otherPoint, dynamicCorridor));
+
+            curRoom.ValidRoomAttachPoints.Remove(point);
+
+            if (!(_quotas[iRoomData.RoomType] == -1))
+            {
+                _quotas[iRoomData.RoomType]--;
+                _totalQouta--;
+            }
+            _curBuildStreak++;
+
         }
-
-
-
-        if (!(_quotas[iRoomData.RoomType] == -1))
-        {
-            _quotas[iRoomData.RoomType]--;
-            _totalQouta--;
-        }
-
-
-
-        curRoom.ValidRoomAttachPoints.Remove(point);
-
-        _curBuildStreak++;
+        return true;
     }
 
     #endregion
@@ -431,6 +442,9 @@ public class Generation : MonoBehaviour
         roomPoint.Parrent.CurAttachments++;
         otherPoint.Parrent.CurAttachments++;
 
+        roomPoint.Parrent.AttachedCorridors.Add((roomPoint, dynamicCorridor));
+        otherPoint.Parrent.AttachedCorridors.Add((otherPoint, dynamicCorridor));
+
     }
 
     #endregion
@@ -450,6 +464,8 @@ public class Generation : MonoBehaviour
         at which point it returns
         */
         int iterator = 0;
+
+
         while (true)
         {
             iterator++;
@@ -466,11 +482,12 @@ public class Generation : MonoBehaviour
             }
             if (roomData.CurAttachments >= roomData.MaxAttachments)
             {
+                //Debug.Log("To many attachments :(");
                 if (!ignoreMaxAttach)
                 {
                     return false;
                 }
-                //Debug.Log("To many attachments :(");
+
             }
 
 
@@ -564,7 +581,7 @@ public class Generation : MonoBehaviour
     {
         if (!point.ValidRoomTypes.Contains(roomData.RoomType) && !overideRoomType)
         {
-            //print($"Room doesn't have corect data type | {roomData.gameObject.name}");
+            print($"Room doesn't have corect data type | {roomData.gameObject.name}");
             return false;
         }
 
@@ -579,13 +596,18 @@ public class Generation : MonoBehaviour
         }
         if (!hasValidAttachPoint)
         {
-            //print($"Room doesn't have point with valid direction | {roomData.gameObject.name}");
+            print($"Room doesn't have point with valid direction | {roomData.gameObject.name}");
             return false;
         }
 
         if (ignoreQouta)
         {
             return true;
+        }
+
+        if (!_quotas.ContainsKey(roomData.RoomType))
+        {
+            return false;
         }
 
         //Checks if there is still qouta left
@@ -609,7 +631,6 @@ public class Generation : MonoBehaviour
     {
         int index = GenRnd.Next(_validRooms.Count);
         return _validRooms[index];
-
     }
     #endregion
 
@@ -676,28 +697,45 @@ public class Generation : MonoBehaviour
         RoomAttachPoint opoint = null;
         if (spawnPrefab != null)
         {
-            for (int i = 0; i < TraversedItems.Count; i++)
-            {
-                furthestRoom = GetFurthestFromList(TraversedItems, furthestRoom);
+            int count = TraversedItems.Count;
 
-                bool returnvalue = TryFindValidPrefabAndAttach(furthestRoom, out GameObject obj, out opoint, true, spawnPrefab);
-                if (returnvalue)
+            (RoomData, int) objData = (null, 0);
+
+            for (int x = 0; x < count; x++)
+            {
+
+                for (int i = 0; i < TraversedItems.Count; i++)
+                {
+                    furthestRoom = GetFurthestFromList(TraversedItems, out objData);
+                    bool returnvalue = TryFindValidPrefabAndAttach(furthestRoom, out GameObject obj, out opoint, true, spawnPrefab);
+                    if (returnvalue)
+                    {
+                        break;
+                    }
+                    if (i == TraversedItems.Count - 1)
+                    {
+                        return null;
+                    }
+
+
+
+                }
+
+                if (TryAddRoom(furthestRoom, spawnPrefab, opoint))
                 {
                     break;
                 }
-                if (i == TraversedItems.Count - 1)
+                TraversedItems.Remove(objData);
+                if (x == count - 1)
                 {
-                    return null;
+                    throw new Exception("Something smth error message i don't care any more i just want to go home");
                 }
             }
-
-            TryAddRoom(furthestRoom, spawnPrefab, opoint);
-
 
         }
         else
         {
-            furthestRoom = GetFurthestFromList(TraversedItems, furthestRoom);
+            furthestRoom = GetFurthestFromList(TraversedItems, out _);
         }
 
 
@@ -705,23 +743,41 @@ public class Generation : MonoBehaviour
         return furthestRoom;
     }
 
-    private RoomData GetFurthestFromList(List<(RoomData, int)> TraversedItems, RoomData furthestRoom)
+    private RoomData GetFurthestFromList(List<(RoomData, int)> TraversedItems, out (RoomData, int) outdata)
     {
         int distance = 0;
-        foreach (var item in TraversedItems)
+        RoomData furthestRoom = null;
+        (RoomData, int) objData = (null, 0);
+        int count = TraversedItems.Count;
+        outdata = (null, 0);
+        for (int i = 0; i < count; i++)
         {
-            if (_debugTraversel)
+            foreach (var item in TraversedItems)
             {
-                //DebugHeatMap(item.Item1.transform.position, new((float)item.Item2 / (float)_debugFuthersDistance, 0, 0));
+                if (_debugTraversel)
+                {
+                    //DebugHeatMap(item.Item1.transform.position, new((float)item.Item2 / (float)_debugFuthersDistance, 0, 0));
+                }
+                if (item.Item2 > distance)
+                {
+                    distance = item.Item2;
+                    furthestRoom = item.Item1;
+                    objData = item;
+                }
             }
-            if (item.Item2 > distance)
-            {
-                distance = item.Item2;
-                furthestRoom = item.Item1;
-            }
-        }
 
-        return furthestRoom;
+            if (furthestRoom.RoomType == RoomType.Treasure)
+            {
+                print($"furthestRoomtype:  {furthestRoom.RoomType}");
+                distance = 0;
+                furthestRoom = null;
+                TraversedItems.Remove(objData);
+                continue;
+            }
+            outdata = objData;
+            return furthestRoom;
+        }
+        throw new Exception("Loop went to far | GetFurthestFromList");
     }
 
     void DebugHeatMap(Vector3 point, Color color)
@@ -776,14 +832,14 @@ public class Generation : MonoBehaviour
         if (_curBuildStreak < _bestBuildStreak)
         {
             _stepBackAmount++;
-            print($"Addedd: {_stepBackAmount}");
+
         }
         else
         {
             //Only assign if cur buildStreak is better than the last
             _bestBuildStreak = _curBuildStreak;
             _stepBackAmount = 1;
-            print($" Reset{_stepBackAmount}");
+
         }
 
 
@@ -828,25 +884,40 @@ public class Generation : MonoBehaviour
 
         foreach (var removedRoom in roomsToRemove)
         {
+            foreach (var item in removedRoom.AttachedCorridors)
+            {
+                if (item.Item2 != null)
+                {
+                    Destroy(item.Item2.gameObject);
+                }
+            }
             Destroy(removedRoom.gameObject);
             Destroy(removedRoom);
         }
-        foreach (var point in lastRemovedRoom.ConnectedPoints)
+        if (lastRemovedRoom != null)
         {
-            _validRooms.Add(point.Parrent);
-        }
-        count = _curRooms.Count;
-        for (int i = 0; i < 4; i++)
-        {
-            if ((count - i) > -1)
+            foreach (var point in lastRemovedRoom.ConnectedPoints)
             {
-                RoomData room = _curRooms[count - i - 1];
-                if (_validRooms.Contains(room))
-                {
-                    _validRooms.Add(room);
-                }
+                _validRooms.Add(point.Parrent);
+                point.Parrent.ValidRoomAttachPoints.Add(point);
+                point.ValidRoomTypes.Remove(lastRemovedRoom.RoomType);
             }
         }
+
+        count = _curRooms.Count;
+
+
+        // for (int i = 0; i < 4; i++)      
+        // {
+        //     if ((count - i) > -1)
+        //     {
+        //         RoomData room = _curRooms[count - i - 1];
+        //         if (_validRooms.Contains(room))
+        //         {
+        //             _validRooms.Add(room);
+        //         }
+        //     }
+        // }
     }
     #endregion 
 
@@ -861,7 +932,7 @@ public class Generation : MonoBehaviour
 
         foreach (var obj in _tileMapObject)
         {
-            print("ran Check");
+
             Tilemap[] tilemaps = obj.GetComponentsInChildren<Tilemap>();
             Tilemap ground = null;
             Tilemap wall = null;
@@ -889,7 +960,7 @@ public class Generation : MonoBehaviour
             }
             if (ground == null || deco == null || wall == null)
             {
-                print("Failed to Find TileMaps");
+
                 continue;
 
             }
@@ -917,7 +988,6 @@ public class Generation : MonoBehaviour
 
         MergeTileBlock(area, tiles, globalTMap);
         Destroy(localTMap.gameObject);
-        print("Merged TileMap");
     }
 
     void MergeTileBlock(BoundsInt area, TileBase[] tiles, Tilemap tilemap)
@@ -968,6 +1038,7 @@ public class Generation : MonoBehaviour
             {
                 int distanceFS = _traversalData[room];
                 room.RoomDirector.SpawnCredits = (int)(GenData.StartingCredits + distanceFS * GenData.DifScalingMultiplyer);
+                room.RoomDirector.Init(room);
             }
 
 
