@@ -42,11 +42,12 @@ public class EnemyAI : MonoBehaviour
         {
             return;
         }
-        if (Vector3.Distance(transform.position, playerTrans.position) < 10)
+        if (GetComponent<SpriteRenderer>().isVisible == true)   
         {
             if (outOfRange == true)
             {
                 GetComponentInChildren<BulletSpawner>().shouldSpawn = true;
+                GetComponentInChildren<HealthSCript>().enabled = true;
                 path.maxSpeed = speed;
                 outOfRange = false;
             }
@@ -117,9 +118,11 @@ public class EnemyAI : MonoBehaviour
         //turn all the stuff off when out of range
         else
         {
-            path.maxSpeed = 0;
-            GetComponentInChildren<BulletSpawner>().shouldSpawn = false;
             outOfRange = true;
+            GetComponentInChildren<BulletSpawner>().shouldSpawn = false;
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            path.maxSpeed = 0;
+            GetComponentInChildren<HealthSCript>().enabled = false;
         }
 
 
