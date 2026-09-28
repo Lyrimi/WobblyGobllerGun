@@ -18,6 +18,10 @@ public class PlayerMovementScript : MonoBehaviour
     InputAction MousePosition;
 
     UiHeartScript HeartScript;
+    [SerializeField]
+    bool dashing;
+    [SerializeField]
+    float dashTime;
 
     private void Start()
     {
@@ -30,11 +34,15 @@ public class PlayerMovementScript : MonoBehaviour
         HealthSCript healthScript = GetComponent<HealthSCript>();
         healthScript.OnDeath += Die;
         Dash.performed += Sprint;
+        
+        dashing = false;
+        
     }
 
 
     void Move()
     {
+       
        Vector2 move = moveAction.ReadValue<Vector2>();
 
         rb.linearVelocity = move * speed;
@@ -48,7 +56,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             animator.SetBool("Moving", false);
         }
-
+        
 
 
         /*
@@ -73,11 +81,44 @@ public class PlayerMovementScript : MonoBehaviour
     void Sprint(InputAction.CallbackContext context)
     {
         Debug.Log("Dash");
+        dashing = true;
+
+
+        Vector2 DashEnd = transform.position;
+
+        StartCoroutine(Wait(dashTime));
+        if(dashing)
+        {
+            
+           
+            
+                rb.linearVelocity *= 5;
+            
+            
+            
+                
+            
+        }
         
-        Vector2 dash = Dash.ReadValue<Vector2>();
-        rb.linearVelocity = dash * 10;
+
+       
+
+
+
+            
+        
        
     }
+
+    private IEnumerator Wait(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        dashing = false;
+        
+
+    }
+
+
     private IEnumerator CheckMoving()
     {
         Vector2 startPos = transform.position;
@@ -106,8 +147,12 @@ public class PlayerMovementScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Move();
-        Rotate();
+        if (!dashing)
+        {
+            Move();
+            Rotate();
+        }
+       
       
 
 
