@@ -78,7 +78,8 @@ public class Bullet : MonoBehaviour
         {
             if (bulletType == BulletType.bomb)
             {
-                Instantiate(explosionInstantiate);
+                Debug.Log("ploob");
+                Instantiate(explosionInstantiate, gameObject.transform);
             }
             Destroy(this.gameObject);
         }
