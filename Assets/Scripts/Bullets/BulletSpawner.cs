@@ -23,30 +23,24 @@ public class BulletSpawner : MonoBehaviour
     [SerializeField] float accuracy; //0 is perfectly accurate, above is how many degrees of inaccuracy it has
 
     private GameObject spawnedBullet;
-    private float firerateTimer;
+    private float firerateTimer = 0;
     private float burstrateTimer;
     private float degreeBetween;
-    public bool shouldSpawn;
     // Update is called once per frame
     void Update()
     {
-        if (shouldSpawn == true)
-        {
+
             //Shoots if the timer is exceeded
             firerateTimer += Time.deltaTime;
             if (firerateTimer >= firingRate)
             {
                 StartCoroutine(Fire());
-                Debug.Log("update works");
                 firerateTimer = 0;
             }
-            //
-        }
     }
 
     private IEnumerator Fire()
     {
-        Debug.Log("Fire works");
         //this part checks if the angle bullets are gonna overlap because of the angles, and reduces the angle if thats the case
         if (spreadAngle > (360 - 360 / spreadAmount))
         {
