@@ -24,11 +24,11 @@ MonoBehaviour:
   _quotas:
   - Type: 0
     Count: 10
-  - Type: 4
-    Count: 3
   - Type: 3
+    Count: 3
+  - Type: 2
     Count: 4
-  CleanUpTypes: 01000000
+  CleanUpTypes: 
   StartRoom: {fileID: 1657763631993471762, guid: fc052ae994e313546b8e970338d93225, type: 3}
   EndRoom: {fileID: 1657763631993471762, guid: 58877f4a7d48eea4a9c5c1cd7e856df2, type: 3}
   WallTile: {fileID: 11400000, guid: c8b9e72b70d91ff4fb14312bac8441d3, type: 2}

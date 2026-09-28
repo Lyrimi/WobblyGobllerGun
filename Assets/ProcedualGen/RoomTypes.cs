@@ -5,8 +5,7 @@ public static class RoomTypes
     public enum RoomType
     {
         Base,
-        Coridor,
-        Circle,
+        FinalRoom,
         Treasure,
         BigRoom,
 

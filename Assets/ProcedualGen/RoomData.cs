@@ -18,6 +18,8 @@ public class RoomData : MonoBehaviour
 
     public int CurAttachments = 0;
 
+    public string Identifyer;
+
     public RoomType RoomType;
 
     public RoomAttachPoint[] RoomAttachPoints;

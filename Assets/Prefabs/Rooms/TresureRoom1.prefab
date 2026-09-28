@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[1]'
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[2]'
@@ -3095,7 +3095,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530940023596591626, guid: efd1d31831d563849a4f5448c03e0875, type: 3}
       propertyPath: RoomType
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6530940023596591626, guid: efd1d31831d563849a4f5448c03e0875, type: 3}
+      propertyPath: Identifyer
+      value: AGPL
       objectReference: {fileID: 0}
     - target: {fileID: 6530940023596591626, guid: efd1d31831d563849a4f5448c03e0875, type: 3}
       propertyPath: CurAttachments
@@ -7254,7 +7258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[1]'
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[2]'
@@ -7355,7 +7359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[1]'
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[2]'
@@ -7452,7 +7456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[1]'
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[2]'

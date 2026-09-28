@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static RoomTypes;
 
 public class RoomAttachPoint : MonoBehaviour
 {
     public List<RoomType> ValidRoomTypes;
+    private List<RoomType> _baseValidRoomTypes;
     public Direction Direction;
 
     public uint MinCorridorLength;
@@ -15,6 +17,8 @@ public class RoomAttachPoint : MonoBehaviour
     public RoomData Parrent;
     [NonSerialized]
     public RoomData Connected;
+    [NonSerialized]
+    public List<string> BlackListedRooms = new();
 
     public int ConectingDir
     {
@@ -24,9 +28,14 @@ public class RoomAttachPoint : MonoBehaviour
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        _baseValidRoomTypes = ValidRoomTypes.ToList();
+    }
 
+    public void ResetValidRoomTypes()
+    {
+        ValidRoomTypes = _baseValidRoomTypes.ToList();
     }
 
     // Update is called once per frame

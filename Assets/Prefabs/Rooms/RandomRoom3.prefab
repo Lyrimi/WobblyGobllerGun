@@ -5067,6 +5067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
   MaxAttachments: 2
   CurAttachments: 0
+  Identifyer: HD
   RoomType: 0
   RoomAttachPoints:
   - {fileID: 2301511332426232218}
@@ -5184,7 +5185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: ValidRoomTypes.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[0]'
@@ -5192,11 +5193,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[1]'
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[2]'
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
+      propertyPath: 'ValidRoomTypes.Array.data[3]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
+      propertyPath: 'ValidRoomTypes.Array.data[4]'
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6545326410418273458, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5289,7 +5298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: ValidRoomTypes.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[0]'
@@ -5297,11 +5306,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[1]'
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[2]'
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
+      propertyPath: 'ValidRoomTypes.Array.data[3]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
+      propertyPath: 'ValidRoomTypes.Array.data[4]'
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6545326410418273458, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5394,7 +5411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: ValidRoomTypes.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[0]'
@@ -5402,11 +5419,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[1]'
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[2]'
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
+      propertyPath: 'ValidRoomTypes.Array.data[3]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
+      propertyPath: 'ValidRoomTypes.Array.data[4]'
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6545326410418273458, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5499,7 +5524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: ValidRoomTypes.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[0]'
@@ -5507,11 +5532,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[1]'
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: 'ValidRoomTypes.Array.data[2]'
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
+      propertyPath: 'ValidRoomTypes.Array.data[3]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835508428592008248, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
+      propertyPath: 'ValidRoomTypes.Array.data[4]'
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6545326410418273458, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: m_LocalPosition.x

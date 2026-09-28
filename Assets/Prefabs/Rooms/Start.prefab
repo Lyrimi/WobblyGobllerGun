@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1007907937036311699}
   - component: {fileID: 4926562908625500887}
   - component: {fileID: 5932406983771342328}
+  - component: {fileID: 4651555437800340865}
   m_Layer: 7
   m_Name: Start
   m_TagString: Untagged
@@ -110,7 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
   MaxAttachments: 4
   CurAttachments: 0
-  RoomType: 0
+  Identifyer: HGK
+  RoomType: 1
   RoomAttachPoints:
   - {fileID: 326029809946410588}
   - {fileID: 6998574527090660689}
@@ -120,6 +122,24 @@ MonoBehaviour:
   - {fileID: 868114163356970940}
   ValidRoomAttachPoints: []
   ConnectedPoints: []
+  EnemySpawnPoints: []
+  _stepTime: 0.1
+--- !u!114 &4651555437800340865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657763631993471762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee28e6477fe857f4196aaba8dcca18cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomDirector
+  SpawnCredits: 0
+  _debugButton: 0
+  _genOveride: {fileID: 0}
+  _maxIterations: 10000
 --- !u!1 &2421060427311646308
 GameObject:
   m_ObjectHideFlags: 0
