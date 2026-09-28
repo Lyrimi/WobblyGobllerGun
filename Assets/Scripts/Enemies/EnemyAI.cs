@@ -46,6 +46,7 @@ public class EnemyAI : MonoBehaviour
         {
             if (outOfRange == true)
             {
+                GetComponentInChildren<BulletSpawner>().shouldSpawn = true;
                 GetComponentInChildren<HealthSCript>().enabled = true;
                 path.maxSpeed = speed;
                 outOfRange = false;
@@ -118,6 +119,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             outOfRange = true;
+            GetComponentInChildren<BulletSpawner>().shouldSpawn = false;
             gameObject.GetComponent<Collider2D>().enabled = false;
             path.maxSpeed = 0;
             GetComponentInChildren<HealthSCript>().enabled = false;

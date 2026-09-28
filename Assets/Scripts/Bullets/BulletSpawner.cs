@@ -37,7 +37,6 @@ public class BulletSpawner : MonoBehaviour
             if (firerateTimer >= firingRate)
             {
                 StartCoroutine(Fire());
-                Debug.Log("update works");
                 firerateTimer = 0;
             }
             //
@@ -46,7 +45,6 @@ public class BulletSpawner : MonoBehaviour
 
     private IEnumerator Fire()
     {
-        Debug.Log("Fire works");
         //this part checks if the angle bullets are gonna overlap because of the angles, and reduces the angle if thats the case
         if (spreadAngle > (360 - 360 / spreadAmount))
         {

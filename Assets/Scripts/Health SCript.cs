@@ -16,8 +16,8 @@ public class HealthSCript : MonoBehaviour
 
     Color TempColor;
     bool fade;
-    [SerializeField]
-    float IFrames;
+    
+    public float IFrames;
 
     public float IFrameAmount;
 
