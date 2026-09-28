@@ -10,6 +10,13 @@ public class PlayerMovementScript : MonoBehaviour
 {
     Animator animator;
 
+    HealthSCript PlayerHealth;
+
+    [SerializeField]
+    private float _flashTime;
+
+    HurtFlash DashFlash;
+
     public float speed;
     public float rotationSpeed;
     InputAction moveAction;
@@ -18,9 +25,21 @@ public class PlayerMovementScript : MonoBehaviour
     InputAction MousePosition;
 
     UiHeartScript HeartScript;
+    [SerializeField]
+    bool dashing;
+    [SerializeField]
+    bool canDash;
+    [SerializeField]
+    float dashTime;
+    [SerializeField]
+    float dashCooldown;
+
+    Color gameobjectColor;
 
     private void Start()
     {
+        PlayerHealth = GetComponent<HealthSCript>();
+        DashFlash = GetComponent<HurtFlash>();
         moveAction = InputSystem.actions.FindAction("Move");
         Dash = InputSystem.actions.FindAction("Sprint");
         rb = GetComponent<Rigidbody2D>();
@@ -30,11 +49,15 @@ public class PlayerMovementScript : MonoBehaviour
         HealthSCript healthScript = GetComponent<HealthSCript>();
         healthScript.OnDeath += Die;
         Dash.performed += Sprint;
+        
+        dashing = false;
+        
     }
 
 
     void Move()
     {
+       
        Vector2 move = moveAction.ReadValue<Vector2>();
 
         rb.linearVelocity = move * speed;
@@ -48,7 +71,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             animator.SetBool("Moving", false);
         }
-
+        
 
 
         /*
@@ -73,11 +96,50 @@ public class PlayerMovementScript : MonoBehaviour
     void Sprint(InputAction.CallbackContext context)
     {
         Debug.Log("Dash");
+        if (canDash)
+        {
+            dashing = true;
+        }
+        else return;
+
+
+
+
+        StartCoroutine(Wait(dashTime,dashCooldown));
+        if(dashing && canDash&& rb.linearVelocity != Vector2.zero)
+        {
+            DashFlash.StartCoroutine(DashFlash.Flash());
+            
+
+            PlayerHealth.IFrames = 10;
+            
+            rb.linearVelocity *= 5;
+            canDash = false;
+            
+            
+                
+            
+        }
         
-        Vector2 dash = Dash.ReadValue<Vector2>();
-        rb.linearVelocity = dash * 10;
+
+       
+
+
+
+            
+        
        
     }
+
+    private IEnumerator Wait(float waitTime, float dashdelay)
+    {
+        yield return new WaitForSeconds(waitTime);
+        dashing = false;
+        yield return new WaitForSeconds(dashdelay);
+        canDash = true;
+    }
+
+
     private IEnumerator CheckMoving()
     {
         Vector2 startPos = transform.position;
@@ -106,8 +168,12 @@ public class PlayerMovementScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Move();
-        Rotate();
+        if (!dashing)
+        {
+            Move();
+            Rotate();
+        }
+       
       
 
 

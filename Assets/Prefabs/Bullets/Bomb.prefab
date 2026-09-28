@@ -112,6 +112,7 @@ MonoBehaviour:
   lifetime: 3
   waveSpeed: 0
   bonusHeight: 0
+  explosionInstantiate: {fileID: 6482252708711840294, guid: cf33279a878ff884b951b85b04a9a349, type: 3}
 --- !u!58 &-5946650073463377436
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -128,7 +129,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -183,7 +184,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

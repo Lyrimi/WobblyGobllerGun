@@ -335,9 +335,10 @@ MonoBehaviour:
   spawnerType: 0
   firingRate: 0.7
   burstAmount: 2
-  burstRate: 0.05
+  burstRate: 0.1
   spreadAmount: 3
   spreadAngle: 80
+  accuracy: 0
   shouldSpawn: 0
 --- !u!1 &4752735266897846392
 GameObject:

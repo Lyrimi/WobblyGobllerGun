@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -9,7 +10,6 @@ public class Bullet : MonoBehaviour
     public float speed;
     public float lifetime;
 
-    private Vector2 spawnPoint;
     private float timer;
 
     Rigidbody2D rb;
@@ -25,39 +25,50 @@ public class Bullet : MonoBehaviour
     [Header("Wave bullet")]
     [SerializeField] float waveSpeed = 1f; // Higher make the wave faster
     [SerializeField] float bonusHeight = 1f; // Set higher if you want more wave intensity
+
+    [Header("Bomb")]
+    [SerializeField] GameObject explosionInstantiate;
     #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spawnPoint = transform.position;
+        rb = GetComponent<Rigidbody2D>();
 
-        if (bulletType == BulletType.wave)
+        switch (bulletType)
         {
-            startPosition = transform.position;
-            target = transform.position + transform.up;
-            transform.up = target - transform.position;
-            basePosition = transform.position;
+            case BulletType.straight:
+
+                rb.linearVelocity = transform.right * speed;
+
+                break;
+
+            case BulletType.wave:
+
+                startPosition = transform.position;
+                target = transform.position + transform.up;
+                transform.up = target - transform.position;
+                basePosition = transform.position;
+
+                break;
+
+            case BulletType.bomb:
+
+                player = GameObject.FindWithTag("Player").transform;
+
+                float desiredFinalMagnitude = 1;
+                Vector3 destination = new Vector3(player.position.x, player.position.y, 0);
+                float distance = Vector3.Distance(destination, transform.position);
+                float requiredSpeed = distance / desiredFinalMagnitude;
+
+                float rand = Random.Range(0.8f, 1f);
+                rb.linearDamping = rand;
+
+                rb.linearVelocity = transform.right * requiredSpeed;
+
+                break;
         }
 
-        if (bulletType == BulletType.bomb)
-        {
-            rb = GetComponent<Rigidbody2D>();
-
-            player = GameObject.FindWithTag("Player").transform;
-
-            float desiredFinalMagnitude = 1;
-            Vector3 destination = new Vector3(player.position.x, player.position.y, 0);
-            float distance = Vector3.Distance(destination, transform.position);
-            float requiredSpeed = distance / desiredFinalMagnitude;
-
-            float rand = Random.Range(0.8f, 1f);
-            rb.linearDamping = rand;
-
-            
-
-            rb.linearVelocity = transform.right * requiredSpeed;
-        }
     }
 
     // Update is called once per frame
@@ -67,7 +78,7 @@ public class Bullet : MonoBehaviour
         {
             if (bulletType == BulletType.bomb)
             {
-                Debug.Log("bombsplosion!!");
+                Instantiate(explosionInstantiate);
             }
             Destroy(this.gameObject);
         }
@@ -76,28 +87,12 @@ public class Bullet : MonoBehaviour
 
         switch (bulletType)
         {
-            case BulletType.straight:
-                transform.position = Movement(timer);
-                break;
-
             case BulletType.wave:
                 cycle += Time.deltaTime * waveSpeed;
                 transform.position = basePosition + (transform.right * bonusHeight) * Mathf.Sin(cycle);
                 basePosition += (target - startPosition).normalized * Time.deltaTime * speed;
                 break;
-
-            case BulletType.bomb:
-
-
-                break;
         }
 
-    }
-
-    private Vector2 Movement(float timer)
-    {
-        float x = timer * speed * transform.right.x;
-        float y = timer * speed * transform.right.y;
-        return new Vector2(x + spawnPoint.x, y + spawnPoint.y);
     }
 }
