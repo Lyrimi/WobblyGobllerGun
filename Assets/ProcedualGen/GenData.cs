@@ -21,6 +21,7 @@ public class GenData : ScriptableObject
     [SerializeField] public TileBase WallTile;
 
     [SerializeField] public EnemyData[] EnemyList;
+    [SerializeField] public TresureData[] TresureList;
 
     [SerializeField] public float DifScalingMultiplyer;
     [SerializeField] public int StartingCredits;
@@ -70,7 +71,7 @@ public class EnemyData
     public int Cost;
     public float Weight;
 }
-
+[Serializable]
 public class TresureData
 {
     public GameObject prefab;
