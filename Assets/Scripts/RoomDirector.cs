@@ -24,7 +24,7 @@ public class RoomDirector : MonoBehaviour
     [SerializeField] public int SpawnCredits = 0;
 
     private List<GameObject> _enemiesToSpawn;
-    private List<GameObject> _lootToSpawn;
+    private List<GameObject> _lootToSpawn = new();
 
     private Random _rnd;
 
@@ -45,6 +45,13 @@ public class RoomDirector : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+
+
+    }
+
+    public void Init(RoomData data)
+    {
         _roomData = GetComponent<RoomData>();
         if (_genOveride != null)
         {
@@ -52,12 +59,11 @@ public class RoomDirector : MonoBehaviour
         }
 
         _spawnPoints = _roomData.EnemySpawnPoints.ToArray();
+        if (_spawnPoints == null)
+        {
+            throw new Exception($"Obj is missing spawnpoint at start {gameObject.name}");
+        }
 
-
-    }
-
-    public void Init(RoomData data)
-    {
         _rnd = Generation.GenRnd;
         _wallTiles = Generation.Instance.GenData.WallTile;
         _wallTilemap = Generation.Instance.GlobalWallTileMap;
@@ -101,20 +107,24 @@ public class RoomDirector : MonoBehaviour
         Vector2 pos = _wallTilemap.CellToWorld(_wallTilemap.WorldToCell(postion));
         StartCoroutine(_roomData.RevealTiles(pos));
 
-        if (SpawnCredits <= 0)
+        if (_enemiesToSpawn.Count <= 0)
         {
+            RoomEnd();
             return;
         }
 
-        if (_roomData.RoomType != RoomType.Treasure)
-        {
-            StartCoroutine(EnemyLoop());
-
-        }
-        else
+        if (_roomData.RoomType == RoomType.Treasure)
         {
             SpawnLoot();
+            return;
         }
+        if (_roomData.RoomType == RoomType.FinalRoom)
+        {
+            RoomEnd();
+            return;
+        }
+        StartCoroutine(EnemyLoop());
+
 
     }
 
@@ -123,6 +133,11 @@ public class RoomDirector : MonoBehaviour
 
     void InitLoot()
     {
+        _tresureList = Generation.Instance.GenData.TresureList.ToList();
+        if (_spawnPoints == null)
+        {
+            throw new Exception($"Object missing spawnpoint {gameObject.name} | {_roomData.EnemySpawnPoints.Count}");
+        }
         foreach (GameObject item in _spawnPoints)
         {
             _lootToSpawn.Add(GetWeightedRandomTresure().prefab);

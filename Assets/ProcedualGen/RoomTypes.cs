@@ -8,7 +8,8 @@ public static class RoomTypes
         FinalRoom,
         Treasure,
         BigRoom,
-
+        FancyRoom,
+        Unused,
     };
 
     public enum Direction : int

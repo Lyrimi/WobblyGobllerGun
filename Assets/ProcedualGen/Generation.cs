@@ -26,6 +26,7 @@ public class Generation : MonoBehaviour
     [SerializeField] public Tilemap GlobalGroundTileMap;
     [SerializeField] public Tilemap GlobalWallTileMap;
     [SerializeField] public Tilemap GlobalDecoTileMap;
+    [SerializeField] private GameObject PlayerObj;
 
 
     [Header("Debug Options")]
@@ -39,6 +40,7 @@ public class Generation : MonoBehaviour
 
 
 
+
     public static System.Random GenRnd;
     public static Generation Instance;
 
@@ -48,6 +50,7 @@ public class Generation : MonoBehaviour
     private List<GameObject> _tileMapObject = new();
 
     private Dictionary<RoomType, int> _quotas;
+    private GameStarter _gameStarter;
     private int _totalQouta;
 
     private int _stepBackAmount = 1;
@@ -91,7 +94,7 @@ public class Generation : MonoBehaviour
         if (_debugButton2)
         {
             _debugButton2 = false;
-            MergeTileMap(_debugGroundTileMap, GlobalGroundTileMap);
+            StartTileMapMerge();
 
 
         }
@@ -104,13 +107,15 @@ public class Generation : MonoBehaviour
         while (LoopRooms())
         {
 
-            return;
+
         }
         _debugButton = false;
         Cleanup();
         AttachRoomsConnections();
         List<(RoomData, int)> traversalData;
+        ReValidateAll();
         RoomData startRoom = FindFarthestRoomAndAttach(_curRooms[0], GenData.StartRoom);
+        ReValidateAll();
         RoomData endRoom = FindFarthestRoomAndAttach(startRoom, out traversalData, GenData.EndRoom);
 
         foreach (var item in traversalData)
@@ -129,6 +134,16 @@ public class Generation : MonoBehaviour
         RemoveConnectionWalls();
 
         RoomDirectorInit();
+
+        _gameStarter = _curRooms[^2].GetComponent<GameStarter>();
+        if (_gameStarter == null)
+        {
+            //print(startRoom.gameObject.name);
+            //print("????");
+            return;
+        }
+        _gameStarter.PlayerObj = PlayerObj;
+        _gameStarter.StartGame();
 
     }
 
@@ -157,7 +172,7 @@ public class Generation : MonoBehaviour
             if (_validRooms.Count <= 0)
             {
                 //
-                Debug.Log("Problems");
+                //Debug.Log($"Problems | {_validRooms.Count}");
                 if (problemCount >= 100)
                 {
 
@@ -165,6 +180,7 @@ public class Generation : MonoBehaviour
                 }
                 problemCount++;
                 StepBack();
+
                 return true;
 
             }
@@ -246,10 +262,10 @@ public class Generation : MonoBehaviour
             {
                 continue;
             }
-            print(hit.name);
+            //print(hit.name);
             if (hit.gameObject != curRoom.gameObject && hit.gameObject != iRoomData.gameObject)
             {
-                print($"This thing has hit something i don't know what but it has {hit.gameObject.name} | {curRoom.gameObject.name} | {iRoomData.gameObject.name}");
+                //print($"This thing has hit something i don't know what but it has {hit.gameObject.name} | {curRoom.gameObject.name} | {iRoomData.gameObject.name}");
                 hasHitSomething = true;
                 break;
             }
@@ -262,7 +278,8 @@ public class Generation : MonoBehaviour
             point.ValidRoomTypes.Remove(iRoomData.RoomType);
             if (point.ValidRoomTypes.Count <= 0)
             {
-                point.BlackListedRooms.Add(iRoomData.Identifyer);
+                curRoom.ValidRoomAttachPoints.Remove(point);
+                //point.BlackListedRooms.Add(iRoomData.Identifyer);
             }
             Destroy(iRoomObj);
             return false;
@@ -587,7 +604,7 @@ public class Generation : MonoBehaviour
     {
         if (!point.ValidRoomTypes.Contains(roomData.RoomType) && !overideRoomType)
         {
-            print($"Room doesn't have corect data type | {roomData.gameObject.name}");
+            //print($"Room doesn't have corect data type | {roomData.gameObject.name}");
             return false;
         }
         if (point.BlackListedRooms.Contains(roomData.Identifyer))
@@ -606,7 +623,7 @@ public class Generation : MonoBehaviour
         }
         if (!hasValidAttachPoint)
         {
-            print($"Room doesn't have point with valid direction | {roomData.gameObject.name}");
+            //print($"Room doesn't have point with valid direction | {roomData.gameObject.name}");
             return false;
         }
 
@@ -710,6 +727,9 @@ public class Generation : MonoBehaviour
         }
         RoomData furthestRoom = null;
         RoomAttachPoint opoint = null;
+
+        //We copy the list before we abosulute ruin the list
+        traversalData = TraversedItems.ToList();
         if (spawnPrefab != null)
         {
             int count = TraversedItems.Count;
@@ -747,7 +767,7 @@ public class Generation : MonoBehaviour
         }
 
 
-        traversalData = TraversedItems;
+
         return furthestRoom;
     }
 
@@ -889,8 +909,8 @@ public class Generation : MonoBehaviour
             point.Connected = null;
             point.Parrent.CurAttachments--;
             point.BlackListedRooms.Add(removedRoom.Identifyer);
-            _validRooms.Add(point.Parrent);
-            point.Parrent.ValidRoomAttachPoints.Add(point);
+            //_validRooms.Add(point.Parrent);
+            //point.Parrent.ValidRoomAttachPoints.Add(point);
         }
 
         //Adds the qoutas for the removed objects
@@ -919,6 +939,8 @@ public class Generation : MonoBehaviour
 
         count = _curRooms.Count;
 
+        ReValidateAll();
+
 
         // for (int i = 0; i < 4; i++)      
         // {
@@ -931,6 +953,28 @@ public class Generation : MonoBehaviour
         //         }
         //     }
         // }
+    }
+
+
+    void ReValidateAll()
+    {
+        foreach (RoomData room in _curRooms)
+        {
+            if (room.CurAttachments >= room.MaxAttachments)
+            {
+                continue;
+            }
+            _validRooms.Add(room);
+            room.ValidRoomAttachPoints = new();
+            foreach (RoomAttachPoint point in room.RoomAttachPoints)
+            {
+                if (point.Connected == null)
+                {
+                    room.ValidRoomAttachPoints.Add(point);
+                }
+            }
+
+        }
     }
     #endregion 
 
@@ -1051,7 +1095,13 @@ public class Generation : MonoBehaviour
             {
                 int distanceFS = _traversalData[room];
                 room.RoomDirector.SpawnCredits = (int)(GenData.StartingCredits + distanceFS * GenData.DifScalingMultiplyer);
+                print($"Obj Does have data {room.RoomDirector.SpawnCredits}");
                 room.RoomDirector.Init(room);
+
+            }
+            else
+            {
+                print("Obj Doesn't have traversal data");
             }
 
 

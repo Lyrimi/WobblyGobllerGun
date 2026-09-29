@@ -192,9 +192,13 @@ MonoBehaviour:
   _wallTile: {fileID: 11400000, guid: c8b9e72b70d91ff4fb14312bac8441d3, type: 2}
   _groundTilemap: {fileID: 3286883503450984728}
   _wallTilemap: {fileID: 4760600085469890089}
+  _debugAttachPointCords: {x: 0, y: 0}
   _length: 5
   _roomAttachPoint: {fileID: 0}
   _debugButton: 0
+  _debugButton2: 0
+  wallOveride: {fileID: 0}
+  _stepTime: 0.1
 --- !u!61 &5242258969977077581
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -211,7 +215,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

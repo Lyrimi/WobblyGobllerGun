@@ -5023,7 +5023,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -5068,7 +5068,7 @@ MonoBehaviour:
   MaxAttachments: 3
   CurAttachments: 0
   Identifyer: eh0ehpok
-  RoomType: 0
+  RoomType: 4
   RoomAttachPoints:
   - {fileID: 2301511332426232218}
   - {fileID: 6038531880349501093}
@@ -5100,7 +5100,7 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

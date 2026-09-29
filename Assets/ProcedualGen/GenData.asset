@@ -23,11 +23,13 @@ MonoBehaviour:
     Weight: 10
   _quotas:
   - Type: 0
-    Count: 10
+    Count: 7
   - Type: 3
     Count: 3
   - Type: 2
     Count: 4
+  - Type: 4
+    Count: 3
   CleanUpTypes: 
   StartRoom: {fileID: 7802808040852877096, guid: 6552510960573d5469b4af889cb29cf5, type: 3}
   EndRoom: {fileID: 1657763631993471762, guid: 58877f4a7d48eea4a9c5c1cd7e856df2, type: 3}
@@ -38,6 +40,15 @@ MonoBehaviour:
     Weight: 1
   - Prefab: {fileID: 4752735266897846392, guid: 8922339d1c9bb6f43af0c4b91ae75120, type: 3}
     Cost: 1
+    Weight: 1
+  TresureList:
+  - prefab: {fileID: 6281500051335936726, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}
+    Weight: 1
+  - prefab: {fileID: 7046233751104952469, guid: b75e6ad6c759bae4785b896d62f9f4ea, type: 3}
+    Weight: 1
+  - prefab: {fileID: 2117254920725013776, guid: 6c102802d9337544e8c6e563dba7da05, type: 3}
+    Weight: 1
+  - prefab: {fileID: 106897387193740494, guid: 9c3a6bd535b92284087c128b7bd30072, type: 3}
     Weight: 1
   DifScalingMultiplyer: 1.5
   StartingCredits: 3
