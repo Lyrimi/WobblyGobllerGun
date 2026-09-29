@@ -14,7 +14,7 @@ public class FogManager : MonoBehaviour
     [SerializeField] bool _debugDisplayChunks;
     [SerializeField] Vector2Int _pixCord;
     [SerializeField] bool _debugWritePixData;
-    [SerializeField] bool _debugDisplayOnWrite;
+    [SerializeField] public bool DebugDisplayOnWrite;
 
     void Awake()
     {
@@ -30,7 +30,7 @@ public class FogManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        FogData = new();
     }
 
     // Update is called once per frame
@@ -73,7 +73,7 @@ public class FogManager : MonoBehaviour
         //Creates new chunk data with everything set to zero
         int[,] newChunkData = new int[CHUNK_SIZE, CHUNK_SIZE];
         FogData.Add(cCord, newChunkData);
-        if (_debugDisplayOnWrite)
+        if (DebugDisplayOnWrite)
         {
             DebugDisplayChunk(cCord, new(1f, 0, 0), 1000);
         }
@@ -91,7 +91,7 @@ public class FogManager : MonoBehaviour
             CreateFogEntry(chunkCord);
         }
 
-        if (_debugDisplayOnWrite && !(FogData[chunkCord][cx, cy] == data))
+        if (DebugDisplayOnWrite && !(FogData[chunkCord][cx, cy] == data))
         {
             Vector2 gpos = chunkCord * CHUNK_SIZE + new Vector2(cx, cy) + new Vector2(0.5f, 0.5f);
             DrawDebugSquare(gpos, 1f, Color.violet, 1000);
@@ -125,7 +125,7 @@ public class FogManager : MonoBehaviour
         return rData;
     }
 
-    static void DrawDebugSquare(Vector3 center, float size, Color color, float duration = 0f)
+    public static void DrawDebugSquare(Vector3 center, float size, Color color, float duration = 0f)
     {
         float half = size / 2.0f;
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static FogManager;
 [RequireComponent(typeof(BoxCollider2D))]
 
 public class DynamicCorridor : MonoBehaviour
@@ -128,8 +129,12 @@ public class DynamicCorridor : MonoBehaviour
     [SerializeField] private float _stepTime = 0.1f;
     public IEnumerator RevealTiles(Vector2 startPos)
     {
+
         Tilemap walls = Generation.Instance.GlobalWallTileMap;
         Tilemap ground = Generation.Instance.GlobalGroundTileMap;
+
+        startPos = walls.GetCellCenterWorld(walls.WorldToCell(startPos));
+
         if (wallOveride != null)
         {
             walls = wallOveride;
@@ -153,17 +158,21 @@ public class DynamicCorridor : MonoBehaviour
             }
             if (!_boundingBox.OverlapPoint(nCord))
             {
+                if (FogManager.instance.DebugDisplayOnWrite)
+                {
+                    DrawDebugSquare(pos, 0.5f, Color.darkGreen, 10000);
+                }
                 return;
             }
+
 
             Vector3Int twPos = walls.WorldToCell(nCord);
-            if (walls.GetTile(twPos) != null)
-            {
-                return;
-            }
-
             if (ground.GetTile(twPos) == null)
             {
+                if (FogManager.instance.DebugDisplayOnWrite)
+                {
+                    DrawDebugSquare(pos, 0.5f, Color.red, 10000);
+                }
                 return;
             }
 
@@ -176,6 +185,15 @@ public class DynamicCorridor : MonoBehaviour
         {
             foreach (Vector2 pos in toTraverse)
             {
+                Vector3Int twPos = walls.WorldToCell(pos);
+                if (walls.GetTile(twPos) != null)
+                {
+                    if (FogManager.instance.DebugDisplayOnWrite)
+                    {
+                        DrawDebugSquare(pos, 0.5f, Color.pink, 10000);
+                    }
+                    continue;
+                }
                 TryExpand(pos, new(0, 1));
                 TryExpand(pos, new(0, -1));
                 TryExpand(pos, new(1, 0));

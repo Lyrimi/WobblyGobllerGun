@@ -30,6 +30,7 @@ public class RoomDirector : MonoBehaviour
 
     private List<EnemyData> _enemyList;
     private List<TresureData> _tresureList;
+    private bool hasRoomBeenEntered = false;
 
 
     [Header("Debug")]
@@ -94,28 +95,54 @@ public class RoomDirector : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Entered");
+
         if (collision.CompareTag("Player"))
         {
+            print("Entered");
             StartRoom(collision.transform.position);
         }
     }
 
     void StartRoom(Vector2 postion)
     {
-        print(postion);
-        Vector2 pos = _wallTilemap.CellToWorld(_wallTilemap.WorldToCell(postion));
-        StartCoroutine(_roomData.RevealTiles(pos));
+        if (hasRoomBeenEntered)
+        {
+            return;
+        }
+        hasRoomBeenEntered = true;
+        Vector2 pos = _wallTilemap.GetCellCenterWorld(_wallTilemap.WorldToCell(postion));
+        StartCoroutine(_roomData.RevealTiles(pos, AfterReveal));
 
         if (_enemiesToSpawn.Count <= 0)
         {
-            RoomEnd();
             return;
         }
 
         if (_roomData.RoomType == RoomType.Treasure)
         {
+            return;
+        }
+        if (_roomData.RoomType == RoomType.FinalRoom)
+        {
+            return;
+        }
+        CloseRoom();
+    }
+
+    void AfterReveal()
+    {
+        print("RevelEnded Spawning");
+        print($"Roomtype: {_roomData.RoomType}");
+
+        if (_roomData.RoomType == RoomType.Treasure)
+        {
             SpawnLoot();
+            RoomEnd();
+            return;
+        }
+        if (_enemiesToSpawn.Count <= 0)
+        {
+            RoomEnd();
             return;
         }
         if (_roomData.RoomType == RoomType.FinalRoom)
@@ -124,8 +151,6 @@ public class RoomDirector : MonoBehaviour
             return;
         }
         StartCoroutine(EnemyLoop());
-
-
     }
 
 
@@ -178,7 +203,7 @@ public class RoomDirector : MonoBehaviour
     private int _enemiesAlive = 0;
     IEnumerator EnemyLoop()
     {
-        CloseRoom();
+
         while (_enemiesToSpawn.Count > 0 || _enemiesAlive > 0)
         {
 
@@ -195,10 +220,14 @@ public class RoomDirector : MonoBehaviour
 
     void SpawnLoot()
     {
+        print("TRIED TO SPAWN   ");
         for (int i = 0; i < _lootToSpawn.Count; i++)
         {
+            print("SPAWNED LOOT");
             Transform spawnPos = _spawnPoints[i].transform;
-            Instantiate(_lootToSpawn[i], spawnPos.position, spawnPos.rotation);
+            Vector3 stPos = spawnPos.position;
+            stPos.z = 0;
+            Instantiate(_lootToSpawn[i], stPos, spawnPos.rotation);
         }
         RoomEnd();
     }
@@ -254,6 +283,7 @@ public class RoomDirector : MonoBehaviour
 
     void RoomEnd()
     {
+        print("RoomEnded");
         foreach (var item in _roomData.AttachedCorridors)
         {
             if (item.Item2 == null)

@@ -14,9 +14,11 @@ public class HealthSCript : MonoBehaviour
 
     public UiHeartScript UiHeart;
 
+    private bool isDead = false;
+
     Color TempColor;
     bool fade;
-    
+
     public float IFrames;
 
     public float IFrameAmount;
@@ -91,6 +93,7 @@ public class HealthSCript : MonoBehaviour
 
     }
 
+
     public void Damage(int damageAmount)
     {
         if (IFrames > 0)
@@ -108,6 +111,11 @@ public class HealthSCript : MonoBehaviour
         }
         if (health <= 0)
         {
+            if (isDead)
+            {
+                return;
+            }
+            isDead = true;
             //Invokes the on death event
             OnDeath?.Invoke();
 

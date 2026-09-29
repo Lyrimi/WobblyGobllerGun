@@ -5,6 +5,7 @@ using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using static RoomTypes;
 using Direction = RoomTypes.Direction;
@@ -34,6 +35,7 @@ public class Generation : MonoBehaviour
     [SerializeField] private bool _debugButton;
 
     [SerializeField] private bool _debugButton2;
+    [SerializeField] private bool _debugResetButton;
 
     [SerializeField] private bool _debugTraversel;
     [SerializeField] private GameObject _heatMapObjPrefab;
@@ -83,6 +85,11 @@ public class Generation : MonoBehaviour
         //Step();
     }
 
+    void Start()
+    {
+        GenerateMap();
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -95,10 +102,15 @@ public class Generation : MonoBehaviour
         {
             _debugButton2 = false;
             StartTileMapMerge();
-
-
+        }
+        if (_debugResetButton)
+        {
+            _debugResetButton = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+
+
 
 
     #region  Main Loop
@@ -894,7 +906,7 @@ public class Generation : MonoBehaviour
         _curBuildStreak = 0;
 
         int count = _curRooms.Count;
-        RoomData lastRemovedRoom = null;
+        //RoomData lastRemovedRoom = null;
         List<RoomData> roomsToRemove = new();
 
         count = _curRooms.Count;
@@ -1098,13 +1110,13 @@ public class Generation : MonoBehaviour
             {
                 int distanceFS = _traversalData[room];
                 room.RoomDirector.SpawnCredits = (int)(GenData.StartingCredits + distanceFS * GenData.DifScalingMultiplyer);
-                print($"Obj Does have data {room.RoomDirector.SpawnCredits}");
+                //print($"Obj Does have data {room.RoomDirector.SpawnCredits}");
                 room.RoomDirector.Init(room);
 
             }
             else
             {
-                print("Obj Doesn't have traversal data");
+                //print("Obj Doesn't have traversal data");
             }
 
 

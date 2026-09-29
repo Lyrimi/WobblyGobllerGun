@@ -8,6 +8,7 @@ using static RoomTypes;
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine.Tilemaps;
+using static FogManager;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(RoomDirector))]
@@ -86,11 +87,11 @@ public class RoomData : MonoBehaviour
     void RevealTile(Vector2 pos)
     {
         //Ofset because i DON'T FUCKING KNOW WHY IT HATES ME
-        FogManager.instance.SetPixelData(pos + new Vector2(0.5f, 1f), 1);
+        FogManager.instance.SetPixelData(pos + new Vector2(-0.5f, 0.5f), 1);
     }
 
     [SerializeField] private float _stepTime = 0.1f;
-    public IEnumerator RevealTiles(Vector2 startPos)
+    public IEnumerator RevealTiles(Vector2 startPos, Action callBackFinish = null)
     {
         Tilemap walls = Generation.Instance.GlobalWallTileMap;
         Tilemap ground = Generation.Instance.GlobalGroundTileMap;
@@ -109,20 +110,27 @@ public class RoomData : MonoBehaviour
             //these checks are going to fucking kill me
             if (traversedItems.ContainsKey(nCord))
             {
+
                 return;
             }
             if (!BoundingBox.OverlapPoint(nCord))
             {
+                if (FogManager.instance.DebugDisplayOnWrite)
+                {
+                    DrawDebugSquare(pos, 0.5f, Color.darkGreen, 10000);
+                }
+
                 return;
             }
 
             Vector3Int twPos = walls.WorldToCell(nCord);
-            if (walls.GetTile(twPos) != null)
-            {
-                return;
-            }
+
             if (ground.GetTile(twPos) == null)
             {
+                if (FogManager.instance.DebugDisplayOnWrite)
+                {
+                    DrawDebugSquare(pos, 0.5f, Color.red, 10000);
+                }
                 return;
             }
 
@@ -135,6 +143,15 @@ public class RoomData : MonoBehaviour
         {
             foreach (Vector2 pos in toTraverse)
             {
+                Vector3Int twPos = walls.WorldToCell(pos);
+                if (walls.GetTile(twPos) != null)
+                {
+                    if (FogManager.instance.DebugDisplayOnWrite)
+                    {
+                        DrawDebugSquare(pos, 0.5f, Color.pink, 10000);
+                    }
+                    continue;
+                }
                 TryExpand(pos, new(0, 1));
                 TryExpand(pos, new(0, -1));
                 TryExpand(pos, new(1, 0));
@@ -146,6 +163,8 @@ public class RoomData : MonoBehaviour
             yield return new WaitForSeconds(_stepTime);
         }
 
-
+        callBackFinish();
     }
+
+
 }
