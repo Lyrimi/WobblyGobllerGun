@@ -79,12 +79,12 @@ MonoBehaviour:
   bulletLife: 5
   speed: 2
   spawnerType: 0
-  firingRate: 2
+  firingRate: 1.2
   burstAmount: 1
   burstRate: 0
   spreadAmount: 1
   spreadAngle: 0
-  accuracy: 40
+  accuracy: 25
   shouldSpawn: 0
 --- !u!1 &2137844217841569211
 GameObject:

@@ -27,6 +27,7 @@ public class BulletSpawner : MonoBehaviour
     private float burstrateTimer;
     private float degreeBetween;
     public bool shouldSpawn;
+    public bool finishedAttacking;
     // Update is called once per frame
     void Update()
     {
@@ -76,6 +77,8 @@ public class BulletSpawner : MonoBehaviour
             }
             yield return new WaitForSeconds(burstRate);
         }
+        Debug.Log("attack finished");
+        finishedAttacking = true;
         //
     }
 }
