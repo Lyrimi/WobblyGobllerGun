@@ -23,7 +23,7 @@ public class RoomDirector : MonoBehaviour
 
     [SerializeField] public int SpawnCredits = 0;
 
-    private List<GameObject> _enemiesToSpawn;
+    private List<GameObject> _enemiesToSpawn = new();
     private List<GameObject> _lootToSpawn = new();
 
     private Random _rnd;
@@ -257,6 +257,10 @@ public class RoomDirector : MonoBehaviour
         foreach (var item in _roomData.AttachedCorridors)
         {
             if (item.Item2 == null)
+            {
+                continue;
+            }
+            if (item.Item1 == null)
             {
                 continue;
             }

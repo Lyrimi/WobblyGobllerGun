@@ -3,6 +3,7 @@ using Pathfinding;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 [RequireComponent(typeof(HealthSCript))]
 
@@ -33,6 +34,9 @@ public class EnemyAI : MonoBehaviour
         playerTrans = GameObject.FindWithTag("Player").transform;
         HealthSCript healthScript = GetComponent<HealthSCript>();
         healthScript.OnDeath += Die;
+        Vector3 nPos = transform.position;
+        nPos.z = playerTrans.position.z;
+        transform.position = nPos;
     }
 
     // Update is called once per frame
@@ -43,7 +47,7 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        if (GetComponent<SpriteRenderer>().isVisible == true)   
+        if (GetComponent<SpriteRenderer>().isVisible == true)
         {
             if (outOfRange == true)
             {
@@ -97,7 +101,7 @@ public class EnemyAI : MonoBehaviour
 
                         if (hit == false)
                         {
-                                target.position = (playerTrans.position - transform.position) + (playerTrans.position - transform.position).normalized * 10 + transform.position;
+                            target.position = (playerTrans.position - transform.position) + (playerTrans.position - transform.position).normalized * 10 + transform.position;
                         }
                         else
                         {

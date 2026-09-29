@@ -253,7 +253,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246506781331674810}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -285,6 +285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtFlash
   _flashTime: 0.2
+  refreshGlow: 0
+  refreshGlowIntensity: 0
 --- !u!1 &3909010645705020264
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +342,7 @@ MonoBehaviour:
   spreadAngle: 80
   accuracy: 0
   shouldSpawn: 0
+  finishedAttacking: 0
 --- !u!1 &4752735266897846392
 GameObject:
   m_ObjectHideFlags: 0

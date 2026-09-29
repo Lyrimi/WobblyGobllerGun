@@ -4369,7 +4369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: AstarPathfindingProject::AstarPath
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIezC1LkuXQIAABsFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzg1jM5CE3lqHkB5ImNBOLr4IaY01yJJHHwGS4b93JdvYpZMT4r23u29XK38SoWwNzGmzNIKvNAfyfUTCmXwb9eQTHOlOq434gE7zJrgrg4hGzSt1QiOehjCrK3BGsB9qJ4M4QdArUWhTLfgOMm2dRbig0gJSRrsQrRD6HJEj/tzMQ8gJT5O7cPrA0zwZnfHIQDkwvbQTdrJG5RWTtKqBB8u9eDJr1endeBaFCttpNck40kxLKWxrh7hTHdvNaG09NoMCLii2Fz1MxiGiBLErXfg7DH8pCguudWbo6UEYnFOTl/zUzfAqaveNvXcqfah0O42+mpyr/+ibNNKF0dVTVzZNQglXCrZ/pSdGrRsMdwg/9M7TOKQDlXu6lfBWgnrWS6O94kg640OotzB56P9eOstKYPseb6xegb7++opCD+fY/DGTotrG2U8bYCN1HHhcADB4O7/QcFwP26ZANLj4Y+E33Q33qCUehbEOqbZLFexttTdBShZxZqEb7zJtFJhhhhoUle60xjzu+gqvuK+jHml4Mm31lutewlVIhHt9klxRa3243JYt9WEFtnzxTgo1TBaYZ5xUppVqVsxesSFu401B2TBu5wX/d7tIcZ8WfD6fpHN6O50zwId4vy1SCreM0lky25K4fkJhp1SuG6vtgPDiVL8AClet+5aMlobWcd+5oYel+Ki07ZVCFXrDDIB6aTJcnIPBIvg4+YILHNEGnBMqXjn5zInUbA88vyTKY6uLozM077PkpBbv2gUkJ1n8eOQkwJd1Xht4F3AIxbtkZ3L+C1BLAwQUAAAICAAACCHs6hbgqG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UpqFYVqKpaWRoWWimYllcqqupYFFUpphYqpZcmKiqYFpklIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAACCHswtS5Ll0CAAAbBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAACCHs6hbgqG0AAAB4AAAACQAkAAAAAAAAAAAAAACqAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGIDAAAAAA==
+    dataString: UEsDBBQAAAgIAAAIIexWWP4YXgIAABwFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzg1jM5CE3lqHkB5ImNBOLr4IaY01yJJHHwGS4b93JdvYpZMT4r23u29XK38SoWwNzGmzNIKvNAfyfUTCmXwb9eQTHOlOq434gE7zJrgrg4hGzSt1QiOehjCrK3BGsB9qJ4M4QdArUWhTLfgOMm2dRbig0gJSRrsQrRD6HJEj/tzMQ8gJT5O7cPrA0zwZnfHIQDkwvbQTdrJG5RWTtKqBB8u9eDYd383agFmjVNhPK0rGk0AyLaWwrR/iTnXsN6O19dgNCrig2F80MRmHiBLErnTh7zD8pSgsuNaaoacHYXBQTV7yUzfTq6jdN/7eqfSh0u00+mpyrv6jb9JIF0ZXT13ZNAklXCnY/pWeGLVuMN0h/NA7T+OUDlTu6VbCWwnqWS+N9ooj6YwPod7C5KH/e+ksK4Hte7yxegX6+us7Cj2cY/PHTIpqG2c/bYCN1HHgcQPA4O38QsNxP2ybAtHg4o+F33Q3XKSWeBTGOqTaLlWwt9XeBClZxJmFbrzLtFFghhlqUFS60xrzuOsrvOK+jnqk4c201VuuewpXIRHu9UlyRa314XJbttSHFdjyxTsp1DBZYJ5xUplWqlkxe8WGuI03BWXDuJ0X/N/tIsV9WvD5fJLO6e10zgBf4v22SCncMkpnyWxL4voJhZ1SuW6stgPCi1P9Aihcte5jMloaWsd954YeluKj0rZXClXoDTMA6qXJcHEOBovg4+QLLnBEG3BOqHjl5DMnUrM98PySKI+tLo7O0LzPkpNavGsXkJxk8euRkwBf1nlt4F3AIRTvkp3J+S9QSwMEFAAACAgAAAgh7OoW4KhtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKahWFaiqWlkaFlopmJZXKqrqWBRVKaYWKqWXJioqmBaZJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAgh7FZY/hheAgAAHAUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAgh7OoW4KhtAAAAeAAAAAkAJAAAAAAAAAAAAAAAqwIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABjAwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -5378,7 +5378,7 @@ GameObject:
   - component: {fileID: 1898989008}
   - component: {fileID: 1898989007}
   - component: {fileID: 1898989006}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5466,15 +5466,135 @@ Tilemap:
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
+  m_TileAssetArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileMatrixArray:
+  - m_RefCount: 0
+    m_Data:
+      e00: 4.075754e-29
+      e01: 0
+      e02: -9.393109e-35
+      e03: 2.1734212e-19
+      e10: 4.5914e-41
+      e11: 0
+      e12: 2.93e-43
+      e13: 6.99e-43
+      e20: 1.3178176e-28
+      e21: 0
+      e22: 7.07465e-40
+      e23: -1.8245172e-18
+      e30: 4.5914e-41
+      e31: 0
+      e32: 7.03e-43
+      e33: 6.99e-43
+  - m_RefCount: 0
+    m_Data:
+      e00: 4.075754e-29
+      e01: 0
+      e02: -9.393109e-35
+      e03: 2.1740912e-19
+      e10: 4.5914e-41
+      e11: 0
+      e12: 2.93e-43
+      e13: 6.99e-43
+      e20: 1.3178176e-28
+      e21: 0
+      e22: 7.07465e-40
+      e23: -1.3379655e-18
+      e30: 4.5914e-41
+      e31: 0
+      e32: 7.03e-43
+      e33: 6.99e-43
+  - m_RefCount: 0
+    m_Data:
+      e00: 4.075754e-29
+      e01: 0
+      e02: -9.393109e-35
+      e03: 2.173446e-19
+      e10: 4.5914e-41
+      e11: 0
+      e12: 2.93e-43
+      e13: 6.99e-43
+      e20: 1.3178176e-28
+      e21: 0
+      e22: 7.07465e-40
+      e23: -1.3379555e-18
+      e30: 4.5914e-41
+      e31: 0
+      e32: 7.03e-43
+      e33: 6.99e-43
+  - m_RefCount: 0
+    m_Data:
+      e00: 4.075754e-29
+      e01: 0
+      e02: -9.393109e-35
+      e03: 2.1732227e-19
+      e10: 4.5914e-41
+      e11: 0
+      e12: 2.93e-43
+      e13: 6.99e-43
+      e20: 1.3178176e-28
+      e21: 0
+      e22: 7.07465e-40
+      e23: -1.3377868e-18
+      e30: 4.5914e-41
+      e31: 0
+      e32: 7.03e-43
+      e33: 6.99e-43
+  - m_RefCount: 0
+    m_Data:
+      e00: 4.075754e-29
+      e01: 0
+      e02: -9.393109e-35
+      e03: 2.1733964e-19
+      e10: 4.5914e-41
+      e11: 0
+      e12: 2.93e-43
+      e13: 6.99e-43
+      e20: 1.3178176e-28
+      e21: 0
+      e22: 7.07465e-40
+      e23: -2.8109003e-18
+      e30: 4.5914e-41
+      e31: 0
+      e32: 7.03e-43
+      e33: 6.99e-43
+  - m_RefCount: 0
+    m_Data:
+      e00: 4.075754e-29
+      e01: 0
+      e02: -9.393109e-35
+      e03: 2.172503e-19
+      e10: 4.5914e-41
+      e11: 0
+      e12: 2.93e-43
+      e13: 6.99e-43
+      e20: 1.3178176e-28
+      e21: 0
+      e22: 7.07465e-40
+      e23: -1.4832085e-18
+      e30: 4.5914e-41
+      e31: 0
+      e32: 7.03e-43
+      e33: 6.99e-43
+  m_TileColorArray:
+  - m_RefCount: 0
+    m_Data: {r: 7.2058e-41, g: 7.2058e-41, b: 7.2058e-41, a: 7.2058e-41}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
+  m_Origin: {x: -3, y: -15, z: 0}
+  m_Size: {x: 27, y: 16, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
