@@ -31,16 +31,15 @@ public class BulletSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shouldSpawn == true)
+
+        firerateTimer += Time.deltaTime;
+        if (firerateTimer >= firingRate)
         {
-            //Shoots if the timer is exceeded
-            firerateTimer += Time.deltaTime;
-            if (firerateTimer >= firingRate)
+            if (shouldSpawn == true)
             {
                 StartCoroutine(Fire());
-                firerateTimer = 0;
             }
-            //
+            firerateTimer = 0;
         }
     }
 

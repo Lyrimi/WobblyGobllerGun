@@ -79,13 +79,14 @@ MonoBehaviour:
   bulletLife: 5
   speed: 2
   spawnerType: 0
-  firingRate: 1.2
+  firingRate: 1.4
   burstAmount: 1
   burstRate: 0
   spreadAmount: 1
   spreadAngle: 0
   accuracy: 25
   shouldSpawn: 0
+  finishedAttacking: 0
 --- !u!1 &2137844217841569211
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6782034522958587605}
   m_Layer: 0
-  m_Name: Cannon (WIP)
+  m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,6 +137,7 @@ GameObject:
   - component: {fileID: 4944573974534136389}
   - component: {fileID: 6606200149788596114}
   - component: {fileID: 5393525789509327285}
+  - component: {fileID: 2224042266580339992}
   m_Layer: 2
   m_Name: Flintlock fella
   m_TagString: Enemy
@@ -208,7 +210,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3653478091996445649, guid: 0a4f0ccbf4eb1634d983127fada70db6, type: 3}
+  m_Sprite: {fileID: 5906595936629460730, guid: 37be25c2dd46b844d98971902053a4ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -402,3 +404,25 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!95 &2224042266580339992
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2426508158495228640}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9e15055bc5d8bb4ea418b347392676a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
