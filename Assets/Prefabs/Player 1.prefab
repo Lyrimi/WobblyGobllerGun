@@ -160,13 +160,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d5d32d68036c341b0ff9c8e0a710b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementScript
-  PlayerHealth: {fileID: 0}
+  _flashTime: 0
   speed: 5
   rotationSpeed: 450
   dashing: 0
-  canDash: 0
-  dashTime: 0
-  dashCooldown: 0
+  canDash: 1
+  dashTime: 0.1
+  dashCooldown: 2
 --- !u!50 &7157955884146963624
 Rigidbody2D:
   serializedVersion: 5
@@ -280,6 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtFlash
   _flashTime: 0.2
+  refreshGlow: 0.3
+  refreshGlowIntensity: 1.6
 --- !u!61 &5956812508397366686
 BoxCollider2D:
   m_ObjectHideFlags: 0
