@@ -123,14 +123,14 @@ public class FogRender : MonoBehaviour
 
             _fogManager.DebugDisplayChunk(cCord, new(0, 1f, 0), 0.1f);
 
-            for (int x = -1; x < 2; x++)
-            {
-                for (int y = -1; y < 2; y++)
-                {
-                    Vector2 dis = new Vector2(x, y) + new Vector2(0.5f, 0.5f);
-                    _fogManager.SetPixelData(_camTransform.position + (Vector3)dis, 1);
-                }
-            }
+            //for (int x = -1; x < 2; x++)
+            //{
+            //    for (int y = -1; y < 2; y++)
+            //    {
+            //        Vector2 dis = new Vector2(x, y) + new Vector2(0.5f, 0.5f);
+            //        _fogManager.SetPixelData(_camTransform.position + (Vector3)dis, 1);
+            //    }
+            //}
 
             SyncFogTexture();
         }

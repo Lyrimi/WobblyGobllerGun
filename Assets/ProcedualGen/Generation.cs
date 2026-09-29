@@ -142,6 +142,9 @@ public class Generation : MonoBehaviour
             //print("????");
             return;
         }
+
+        Physics2D.SyncTransforms();
+
         _gameStarter.PlayerObj = PlayerObj;
         _gameStarter.StartGame();
 

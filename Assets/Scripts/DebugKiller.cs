@@ -12,7 +12,15 @@ public class DebugKiller : MonoBehaviour
     void KillSomething()
     {
         HealthSCript[] objs = FindObjectsByType<HealthSCript>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-        objs[0].Damage(100000000);
+        foreach (var item in objs)
+        {
+            if (item.CompareTag("Player"))
+            {
+                continue;
+            }
+            item.Damage(100000000);
+            break;
+        }
     }
 
     // Update is called once per frame
