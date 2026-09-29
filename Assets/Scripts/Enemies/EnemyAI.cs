@@ -67,54 +67,74 @@ public class EnemyAI : MonoBehaviour
 
             switch (enemyType)
             {
-                case EnemyType.musket:    //Walk over to the player, stop when within range
-                    target.position = playerTrans.position + (this.transform.position - playerTrans.position).normalized * 5;
-                    break;
+                case EnemyType.musket:
+                    //I gave it a scope to avoid local variable conflicts
+                    {
+                        //Walk over to the player, stop when within range
+
+
+                        //If theres is a wall between the player and the this, it walks directly to the player
+                        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, (playerTrans.position - transform.position).normalized, (transform.position - target.position).magnitude, mask);
+                        Debug.DrawLine(this.transform.position, transform.position + (playerTrans.position - transform.position), Color.red);
+                        if (hit.collider != null)
+                        {
+                            target.position = playerTrans.position;
+                        }
+                        else
+                        {
+                            target.position = playerTrans.position + (this.transform.position - playerTrans.position).normalized * 5;
+                        }
+                        break;
+                    }
                 //----------------------------------------------
 
                 case EnemyType.flintlock: //walk around randomly,
                                           //shoot a ray to check if theres a wall where its walking to, try again if there is
-
-                    if (Vector2.Distance(this.transform.position, target.transform.position) < 0.3)
                     {
-                        Vector2 randomDir;
-                        randomDir = Random.insideUnitCircle * 4;
-
-                        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, randomDir, 4);
-                        Debug.DrawRay(this.transform.position, randomDir, Color.red);
-
-                        if (hit.collider == null)
+                        if (Vector2.Distance(this.transform.position, target.transform.position) < 0.3)
                         {
-                            target.position = transform.position + (Vector3)randomDir;
+                            Vector2 randomDir;
+                            randomDir = Random.insideUnitCircle * 4;
+
+                            RaycastHit2D hit = Physics2D.Raycast(this.transform.position, randomDir, 4, mask);
+                            Debug.DrawRay(this.transform.position, randomDir, Color.red);
+
+                            if (hit.collider == null)
+                            {
+                                target.position = transform.position + (Vector3)randomDir;
+                            }
                         }
+                        break;
                     }
-                    break;
                 //---------------------------------------------
 
                 case EnemyType.puppy:
-
-                    if (Vector2.Distance(this.transform.position, target.transform.position) < 2)
                     {
-                        transform.up = playerTrans.position - this.transform.position;
-                        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, playerTrans.position - this.transform.position, 10, mask);
-                        Debug.DrawRay(this.transform.position, playerTrans.position - this.transform.position, Color.red, 100);
-
-                        if (hit == false)
+                        if (Vector2.Distance(this.transform.position, target.transform.position) < 2)
                         {
-                            target.position = (playerTrans.position - transform.position) + (playerTrans.position - transform.position).normalized * 10 + transform.position;
-                        }
-                        else
-                        {
-                            target.position = hit.point;
+                            transform.up = playerTrans.position - this.transform.position;
+                            RaycastHit2D hit = Physics2D.Raycast(this.transform.position, playerTrans.position - this.transform.position, 10, mask);
+                            Debug.DrawRay(this.transform.position, playerTrans.position - this.transform.position, Color.red, 100);
+
+                            if (hit == false)
+                            {
+                                target.position = (playerTrans.position - transform.position) + (playerTrans.position - transform.position).normalized * 10 + transform.position;
+                            }
+                            else
+                            {
+                                target.position = hit.point;
+                            }
+
                         }
 
+                        break;
                     }
-
-                    break;
                 //---------------------------------------------
 
                 case EnemyType.bomber:
+                    {
 
+                    }
 
                     break;
             }
