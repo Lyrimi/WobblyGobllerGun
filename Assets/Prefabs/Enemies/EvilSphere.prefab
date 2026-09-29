@@ -79,7 +79,7 @@ MonoBehaviour:
   bulletLife: 2
   speed: 0
   spawnerType: 0
-  firingRate: 0.8
+  firingRate: 1
   burstAmount: 2
   burstRate: 0.4
   spreadAmount: 8
@@ -135,7 +135,7 @@ MonoBehaviour:
   bulletLife: 8
   speed: 9
   spawnerType: 0
-  firingRate: 0.2
+  firingRate: 1
   burstAmount: 5
   burstRate: 0.1
   spreadAmount: 6
@@ -169,7 +169,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 48.437824, y: 26.395498, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6751351349298918230}
@@ -224,7 +224,7 @@ MonoBehaviour:
   bulletLife: 3
   speed: 8
   spawnerType: 1
-  firingRate: 0.2
+  firingRate: 1
   burstAmount: 9
   burstRate: 0.1
   spreadAmount: 17
@@ -241,14 +241,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6924126040900659941}
+  - component: {fileID: 9147339008763120866}
   - component: {fileID: 8082621761065730947}
   - component: {fileID: 1805461749008672099}
   - component: {fileID: 7223494237656656810}
   - component: {fileID: 2535828120595707781}
   - component: {fileID: 2243765308809857692}
   - component: {fileID: 2738067100141628192}
-  - component: {fileID: 8195702956011181683}
-  - component: {fileID: 6360766610267675992}
+  - component: {fileID: 1710984714135334551}
+  - component: {fileID: 4011050334644880972}
   m_Layer: 2
   m_Name: Sphere
   m_TagString: Enemy
@@ -274,6 +275,28 @@ Transform:
   - {fileID: 100345786592110282}
   m_Father: {fileID: 5011610709006379602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9147339008763120866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7331256613837599812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181e701352af82f4caf0a238fed49a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EvilSphere
+  speed: 9
+  target: {fileID: 6751351349298918230}
+  attacks:
+  - {fileID: 4503825417906653313}
+  - {fileID: 0}
+  - {fileID: 0}
+  attackCooldown: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &8082621761065730947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,9 +400,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 2
-  endReachedDistance: 0.5
+  slowdownDistance: 0
+  pickNextWaypointDist: 1.5
+  endReachedDistance: 0.1
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -447,7 +470,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!33 &8195702956011181683
+--- !u!33 &1710984714135334551
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -455,7 +478,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7331256613837599812}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6360766610267675992
+--- !u!23 &4011050334644880972
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

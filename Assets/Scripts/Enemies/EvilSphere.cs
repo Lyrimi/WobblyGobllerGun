@@ -77,13 +77,15 @@ public class EvilSphere : MonoBehaviour
             
              transform.up = playerTrans.position - this.transform.position;
 
+            Debug.Log(Vector2.Distance(this.transform.position, target.transform.position));
+
             if (Vector2.Distance(this.transform.position, target.transform.position) < 0.3)
             {
                 Debug.Log("moving!!");
                 Vector2 randomDir;
-                randomDir = Random.insideUnitCircle * 4;
+                randomDir = Random.insideUnitCircle * 10;
 
-                RaycastHit2D hit = Physics2D.Raycast(this.transform.position, randomDir, 4);
+                RaycastHit2D hit = Physics2D.Raycast(this.transform.position, randomDir, 10);
                 Debug.DrawRay(this.transform.position, randomDir, Color.red);
 
                 if (hit.collider == null)
@@ -91,6 +93,8 @@ public class EvilSphere : MonoBehaviour
                     target.position = transform.position + (Vector3)randomDir;
                 }
             }
+
+            path.destination = target.position;
         }
         //turn all the stuff off when out of range
         if (!GetComponent<MeshRenderer>().isVisible)
