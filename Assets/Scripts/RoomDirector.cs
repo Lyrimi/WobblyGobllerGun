@@ -256,6 +256,10 @@ public class RoomDirector : MonoBehaviour
     {
         foreach (var item in _roomData.AttachedCorridors)
         {
+            if (item.Item2 == null)
+            {
+                continue;
+            }
             //This is shit, TOO BAD
             StartCoroutine(item.Item2.RevealTiles(item.Item1.transform.position));
         }
