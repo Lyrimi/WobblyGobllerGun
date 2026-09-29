@@ -1287,6 +1287,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1654565358684782559, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
+      propertyPath: refreshGlow
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654565358684782559, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
+      propertyPath: refreshGlowIntensity
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 2517771838660386975, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
       propertyPath: canDash
       value: 1

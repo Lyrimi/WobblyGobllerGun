@@ -1,6 +1,7 @@
 using System.Collections;
 using Pathfinding;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -31,8 +32,8 @@ public class PlayerMovementScript : MonoBehaviour
     bool canDash;
     [SerializeField]
     float dashTime;
-    [SerializeField]
-    float dashCooldown;
+    
+    public float dashCooldown;
 
     Color gameobjectColor;
 
@@ -115,20 +116,20 @@ public class PlayerMovementScript : MonoBehaviour
             
             rb.linearVelocity *= 5;
             canDash = false;
-            
-            
-                
-            
+
+            DashFlash.StartCoroutine(DashFlash.ReverseFlash());
+
+
         }
-        
-
        
 
 
 
-            
-        
-       
+
+
+
+
+
     }
 
     private IEnumerator Wait(float waitTime, float dashdelay)
@@ -137,6 +138,8 @@ public class PlayerMovementScript : MonoBehaviour
         dashing = false;
         yield return new WaitForSeconds(dashdelay);
         canDash = true;
+        
+        
     }
 
 
