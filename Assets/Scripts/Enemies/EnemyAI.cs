@@ -45,10 +45,8 @@ public class EnemyAI : MonoBehaviour
 
         if (GetComponent<SpriteRenderer>().isVisible == true)   
         {
-            Debug.Log("poob");
             if (outOfRange == true)
             {
-                Debug.Log("not out of range");
                 GetComponentInChildren<BulletSpawner>().shouldSpawn = true;
                 GetComponent<HealthSCript>().enabled = true;
                 path.maxSpeed = speed;
@@ -104,7 +102,6 @@ public class EnemyAI : MonoBehaviour
                         else
                         {
                             target.position = hit.point;
-                            Debug.Log("did hit sun");
                         }
 
                     }
@@ -121,7 +118,6 @@ public class EnemyAI : MonoBehaviour
         //turn all the stuff off when out of range
         if (!GetComponent<SpriteRenderer>().isVisible)
         {
-            Debug.Log("out of range");
             GetComponentInChildren<BulletSpawner>().shouldSpawn = false;
             path.maxSpeed = 0;
             GetComponent<HealthSCript>().enabled = false;

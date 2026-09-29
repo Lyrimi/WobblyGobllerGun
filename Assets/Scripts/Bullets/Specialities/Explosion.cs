@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    float timer = 0;
+    float blowTimer = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,10 +12,11 @@ public class Explosion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        blowTimer += Time.deltaTime;
 
-        if (timer < 0.24f || timer > 1.32f)
+        if (blowTimer < 0.24f || blowTimer > 1f)
         {
+
             GetComponent<Collider2D>().enabled = false;
         }
         else
@@ -23,7 +24,7 @@ public class Explosion : MonoBehaviour
             GetComponent<Collider2D>().enabled = true;
         }
 
-        if (timer >= 1.33f)
+        if (blowTimer >= 1.33f)
         {
             Destroy(gameObject);
         }

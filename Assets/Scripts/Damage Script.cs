@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DamageScript : MonoBehaviour
 {
-
+    [SerializeField] bool dontDestroyOnHit;
 
     public int damageLevel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,10 +25,9 @@ public class DamageScript : MonoBehaviour
         {
             healthObj.Damage(damageLevel);
         }
-        Destroy(gameObject);
-
-        //GetComponent<HealthSCript>().Damage(damageLevel); 
-        // 
-
+        if (!dontDestroyOnHit)
+        {
+            Destroy(gameObject);
+        }
     }
 }
