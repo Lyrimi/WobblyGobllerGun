@@ -51,4 +51,4 @@ MonoBehaviour:
   - prefab: {fileID: 106897387193740494, guid: 9c3a6bd535b92284087c128b7bd30072, type: 3}
     Weight: 0.2
   DifScalingMultiplyer: 1.5
-  StartingCredits: 3
+  StartingCredits: 401

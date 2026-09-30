@@ -323,7 +323,7 @@ MonoBehaviour:
   - {fileID: 3795765158495974262, guid: 3856bcdc391870640a926a0ff80e295b, type: 3}
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!114 &731977982019051842
 MonoBehaviour:
   m_ObjectHideFlags: 0
