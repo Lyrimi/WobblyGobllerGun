@@ -40,6 +40,7 @@ public class BulletSpawner : MonoBehaviour
     }
     void Update()
     {
+        //animator.SetBool("shootingAnim", false);
         firerateTimer += Time.deltaTime;
         if (firerateTimer >= currentFiringRate)
         {
@@ -65,6 +66,7 @@ public class BulletSpawner : MonoBehaviour
 
         int randchance = UnityEngine.Random.Range(0, shootSounds.Count);
         StartCoroutine(AudioMonolith.instance.PlaySound(shootSounds[randchance]));
+        
 
         for (int i = 0; i < burstAmount; i++)
         {

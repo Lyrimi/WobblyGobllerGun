@@ -444,7 +444,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4862945310743846989, guid: 29f5e266131c3ee4692a26d95a9e810c, type: 3}
       propertyPath: m_Name
-      value: TopDownAlienBarrel
+      value: TopDownShotGunBarrel
       objectReference: {fileID: 0}
     - target: {fileID: 5933007656847559401, guid: 29f5e266131c3ee4692a26d95a9e810c, type: 3}
       propertyPath: m_LocalPosition.x
