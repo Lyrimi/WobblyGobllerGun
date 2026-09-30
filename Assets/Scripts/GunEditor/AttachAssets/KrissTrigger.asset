@@ -13,8 +13,15 @@ MonoBehaviour:
   m_Name: KrissTrigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
   BulletBehavoiurs: 
-  StatDisplays: []
-  BaseDmg: 0
-  FireRate: 0
-  BaseSpreed: 0
-  Projectiles: 0
+  StatDisplays:
+  - TextColor: {r: 1, g: 0.75416994, b: 0, a: 1}
+    Text: + 6 Base Damage
+  - TextColor: {r: 1, g: 0.75416994, b: 0, a: 1}
+    Text: + 1200 RPM
+  - TextColor: {r: 1, g: 0.75416994, b: 0, a: 1}
+    Text: "+ 3\xB0 Spread"
+  TurnSpeedMult: 1
+  BaseDmg: 6
+  FireRate: 20
+  BaseSpreed: 3
+  Projectiles: 1

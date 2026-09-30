@@ -60,7 +60,7 @@ public class BulletData
 
             BulletFlying bullet = obj.GetComponent<BulletFlying>();
 
-            SpecialBehavourApplyer.ApplyBulletBehavours(obj, this,bullet);
+            SpecialBehavourApplyer.ApplyBulletBehavours(obj, this, bullet);
 
             bullet.Fire();
         }
@@ -70,9 +70,9 @@ public class BulletData
 
 public static class GunData
 {
-    
+
     public static float FireRate;
-    public static float TurnSpeedMult;
+    public static float TurnSpeedMult = 1;
     public static GameObject TopDownGunPrefab;
     public static GameObject TopDownGunObj;
 

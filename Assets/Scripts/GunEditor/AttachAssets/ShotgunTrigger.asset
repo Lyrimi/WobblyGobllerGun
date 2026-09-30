@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: ShotgunTrigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
   BulletBehavoiurs: 
-  StatDisplays: []
-  BaseDmg: 0
-  FireRate: 0
-  BaseSpreed: 0
-  Projectiles: 0
+  StatDisplays:
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 7 Base Damage
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 8 Projeciles
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 90 RPM
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: "+ 45\xB0 Spread"
+  TurnSpeedMult: 1
+  BaseDmg: 7
+  FireRate: 1.5
+  BaseSpreed: 45
+  Projectiles: 9

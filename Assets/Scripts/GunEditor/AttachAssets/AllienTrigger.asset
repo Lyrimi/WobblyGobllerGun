@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: AllienTrigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
   BulletBehavoiurs: 
-  StatDisplays: []
-  BaseDmg: 0
-  FireRate: 0
-  BaseSpreed: 0
-  Projectiles: 0
+  StatDisplays:
+  - TextColor: {r: 0.16470589, g: 0, b: 1, a: 1}
+    Text: + INF BASE DAMAGE
+  - TextColor: {r: 0.16470589, g: 0, b: 1, a: 1}
+    Text: + INF FIRERATE
+  TurnSpeedMult: 1
+  BaseDmg: 10000
+  FireRate: 30
+  BaseSpreed: 25
+  Projectiles: 3

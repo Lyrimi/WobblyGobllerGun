@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: ShotgunStock
   m_EditorClassIdentifier: Assembly-CSharp::StockAttachment
   BulletBehavoiurs: 
-  StatDisplays: []
-  SpreedMult: 0
-  TurnSpeedMult: 0
+  StatDisplays:
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: '- 10% Spread'
+  TurnSpeedMult: 1
+  SpreedMult: 0.9

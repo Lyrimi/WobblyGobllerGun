@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: Mg42Trigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
   BulletBehavoiurs: 
-  StatDisplays: []
-  BaseDmg: 0
-  FireRate: 0
-  BaseSpreed: 0
-  Projectiles: 0
+  StatDisplays:
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 360 RPM
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: '- 60% Turn Speed'
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 8 Base Damage
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 15 Base Spread
+  TurnSpeedMult: 0.4
+  BaseDmg: 8
+  FireRate: 6
+  BaseSpreed: 15
+  Projectiles: 1

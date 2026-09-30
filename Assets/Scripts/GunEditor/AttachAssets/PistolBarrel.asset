@@ -12,8 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d2efe85400dac4fb0eb52b95848dc8, type: 3}
   m_Name: PistolBarrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
-  DamageMult: 1
-  SpreedMult: 1
+  BulletBehavoiurs: 
+  StatDisplays:
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 50% Turn Speed
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: '- 10% Damage'
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: -20% Spread
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 7 Speed
+  TurnSpeedMult: 1.5
+  DamageMult: 0.9
+  SpreedMult: 0.8
   LifeTime: 2
   Speed: 7
   TopDownBarrelPrefab: {fileID: 4862945310743846989, guid: af725b62cc8a6214b86ff39991899029, type: 3}

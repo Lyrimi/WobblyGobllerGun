@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Mg42Stock
   m_EditorClassIdentifier: Assembly-CSharp::StockAttachment
   BulletBehavoiurs: 
-  StatDisplays: []
-  SpreedMult: 0
-  TurnSpeedMult: 0
+  StatDisplays:
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: '- 20% Turn Speed'
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: '- 35% Spread'
+  TurnSpeedMult: 0.8
+  SpreedMult: 0.65

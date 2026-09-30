@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: ShotgunBarrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
   BulletBehavoiurs: 
-  StatDisplays: []
-  DamageMult: 0
-  SpreedMult: 0
-  LifeTime: 0
-  Speed: 0
-  TopDownBarrelPrefab: {fileID: 0}
+  StatDisplays:
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 32 Speed
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 30% Spreed
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 20% Damage
+  TurnSpeedMult: 1
+  DamageMult: 1.2
+  SpreedMult: 1.3
+  LifeTime: 3
+  Speed: 32
+  TopDownBarrelPrefab: {fileID: 3347418294956233630, guid: c0d8e65f773cb5441bae5444b58269d2, type: 3}

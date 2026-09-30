@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(GunMenuEnabler))]
 public class PlayerMovementScript : MonoBehaviour
 {
     Animator animator;
@@ -21,6 +22,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     public float speed;
     public float rotationSpeed;
+    private float startRotationSpeed;
     InputAction moveAction;
     InputAction Dash;
     Rigidbody2D rb;
@@ -42,6 +44,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     BoxCollider2D boxCollider;
 
+    private GunMenuEnabler gunMenuEnabler;
+
     private void Start()
     {
         PlayerHealth = GetComponent<HealthSCript>();
@@ -52,6 +56,7 @@ public class PlayerMovementScript : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         ParticleManager = GetComponent<ParticleManager>();
         animator = GetComponentInChildren<Animator>();
+        gunMenuEnabler = GetComponent<GunMenuEnabler>();
 
         HealthSCript healthScript = GetComponent<HealthSCript>();
         healthScript.OnDeath += Die;
@@ -60,9 +65,24 @@ public class PlayerMovementScript : MonoBehaviour
         dashing = false;
 
         startmask = boxCollider.excludeLayers;
+        startRotationSpeed = rotationSpeed;
+
+        gunMenuEnabler.OnGunRebuild += RecalcData;
 
     }
 
+    void RecalcData(bool passed)
+    {
+        if (passed)
+        {
+            rotationSpeed = startRotationSpeed * GunData.TurnSpeedMult;
+        }
+        else
+        {
+            rotationSpeed = startRotationSpeed;
+        }
+
+    }
 
     void Move()
     {
@@ -123,27 +143,18 @@ public class PlayerMovementScript : MonoBehaviour
             PlayerHealth.IFrames = 10;
 
             rb.linearVelocity *= 5;
-            
+
             canDash = false;
 
             DashFlash.StartCoroutine(DashFlash.ReverseFlash());
             //ParticleManager.StartCoroutine(ParticleManager.PlayParticles(dashCooldown, 1));
 
         }
-
-
-
-
-
-
-
-
-
     }
 
     private IEnumerator Wait(float waitTime, float dashdelay)
     {
-        
+
         yield return new WaitForSeconds(waitTime);
         dashing = false;
         boxCollider.excludeLayers = startmask;

@@ -306,7 +306,7 @@ public class GunEditor : MonoBehaviour
 
         GunData.bulletData = new();
         GunData.FireRate = 0;
-        GunData.TurnSpeedMult = 0;
+        GunData.TurnSpeedMult = 1;
         GunData.TopDownGunPrefab = null;
         GunData.TopDownGunObj = null;
         GunData.bulletData.Damage = 0;

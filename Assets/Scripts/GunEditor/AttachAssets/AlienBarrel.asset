@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: AlienBarrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
   BulletBehavoiurs: 
-  StatDisplays: []
-  DamageMult: 0
-  SpreedMult: 0
-  LifeTime: 0
-  Speed: 0
-  TopDownBarrelPrefab: {fileID: 0}
+  StatDisplays:
+  - TextColor: {r: 0.16469002, g: 0, b: 1, a: 1}
+    Text: + INF DAMAGE
+  TurnSpeedMult: 1
+  DamageMult: 213521
+  SpreedMult: 1
+  LifeTime: 9
+  Speed: 25
+  TopDownBarrelPrefab: {fileID: 2503693636237892447, guid: ea4af5e6a97614c4bb4f53eebb598615, type: 3}

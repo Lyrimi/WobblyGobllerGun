@@ -13,9 +13,18 @@ MonoBehaviour:
   m_Name: Mg42Barrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
   BulletBehavoiurs: 
-  StatDisplays: []
-  DamageMult: 0
-  SpreedMult: 0
-  LifeTime: 0
-  Speed: 0
-  TopDownBarrelPrefab: {fileID: 0}
+  StatDisplays:
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 50% Damage
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: '- 30% Turn Speed'
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: '- 40% Spread'
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 11 Speed
+  TurnSpeedMult: 0.7
+  DamageMult: 1.5
+  SpreedMult: 0.6
+  LifeTime: 6
+  Speed: 11
+  TopDownBarrelPrefab: {fileID: 8347764330256245127, guid: dda932607ff2e7c448e4bcbffa1ee169, type: 3}
