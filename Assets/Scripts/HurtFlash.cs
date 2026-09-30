@@ -13,6 +13,7 @@ public class HurtFlash : MonoBehaviour
     float refreshGlow;
     [SerializeField]
     float refreshGlowIntensity;
+    ParticleManager _particles;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +21,7 @@ public class HurtFlash : MonoBehaviour
         _healthSCript.OnHit += StartFlash;
         _material = GetComponentInChildren<SpriteRenderer>().material;
         _movementScript = GetComponent<PlayerMovementScript>();
+        _particles = GetComponentInChildren<ParticleManager>(); 
     }
 
 
@@ -46,7 +48,7 @@ public class HurtFlash : MonoBehaviour
 
         yield return new WaitForSeconds(_movementScript.dashCooldown);
         _material.SetColor("_FlashColor", Color.yellowNice);
-        
+        _particles.StartCoroutine(_particles.PlayParticles(0, 1));
         Debug.Log("ReverseFlashing");
         float curFlash = 0;
         

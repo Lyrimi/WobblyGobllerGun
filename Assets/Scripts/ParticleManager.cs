@@ -43,9 +43,7 @@ public class ParticleManager : MonoBehaviour
             {
                 p.transform.rotation = new Quaternion(gameObject.transform.rotation.x, 90, 0, 0);
             }
-            var main = p.main;
-
-            main.startSpeed = _startSpeed;
+           
         }
         
 
