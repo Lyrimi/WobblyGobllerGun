@@ -24,7 +24,7 @@ public class Explosion : MonoBehaviour
             GetComponent<Collider2D>().enabled = true;
         }
 
-        if (blowTimer >= 1.33f)
+        if (blowTimer >= 1.32f)
         {
             Destroy(gameObject);
         }
