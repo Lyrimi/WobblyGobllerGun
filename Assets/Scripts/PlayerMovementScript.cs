@@ -1,7 +1,6 @@
 using System.Collections;
 using Pathfinding;
 using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -12,6 +11,8 @@ public class PlayerMovementScript : MonoBehaviour
     Animator animator;
 
     HealthSCript PlayerHealth;
+
+    ParticleManager ParticleManager;
 
     [SerializeField]
     private float _flashTime;
@@ -122,6 +123,7 @@ public class PlayerMovementScript : MonoBehaviour
             PlayerHealth.IFrames = 10;
 
             rb.linearVelocity *= 5;
+            ParticleManager.StartCoroutine(ParticleManager.PlayParticles(dashTime, 0));
             canDash = false;
 
             DashFlash.StartCoroutine(DashFlash.ReverseFlash());

@@ -23,7 +23,6 @@ public class EnemyAI : MonoBehaviour
 
 
     private AIPath path; //im not really sure to be honest, think its just where my boy walks
-    private bool outOfRange; //used to check if the enemy is out of the players range, and should stop AI-ing
     Transform playerTrans; //wheres the player, used to find out where to put target and other things
 
 
@@ -47,18 +46,6 @@ public class EnemyAI : MonoBehaviour
         {
             return;
         }
-/*
-        if (GetComponent<SpriteRenderer>().isVisible == true)
-        {
-            if (outOfRange == true)
-            {
-                GetComponentInChildren<BulletSpawner>().shouldSpawn = true;
-                GetComponent<HealthSCript>().enabled = true;
-                path.maxSpeed = speed;
-                outOfRange = false;
-            }
-*/
-            //then put back all the stuff when it works again^^^^
 
             //look at the player and walk to the target type shit
             path.destination = target.position;
@@ -140,21 +127,6 @@ public class EnemyAI : MonoBehaviour
 
                     break;
             }
-        //}
-    
-        //turn all the stuff off when out of range
-        /*
-        if (!GetComponent<SpriteRenderer>().isVisible)
-        {
-            GetComponentInChildren<BulletSpawner>().shouldSpawn = false;
-            path.maxSpeed = 0;
-            GetComponent<HealthSCript>().enabled = false;
-            outOfRange = true;
-   
-        }*/
-    
-
-
     }
 
     //of you get hit take damage and ATOMIZE the bullet

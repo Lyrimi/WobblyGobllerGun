@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -44,8 +45,8 @@ public class HurtFlash : MonoBehaviour
     {
 
         yield return new WaitForSeconds(_movementScript.dashCooldown);
-        _material.SetColor("_FlashColor", Color.red);
-
+        _material.SetColor("_FlashColor", Color.yellowNice);
+        
         Debug.Log("ReverseFlashing");
         float curFlash = 0;
         

@@ -38,8 +38,9 @@ public class FoodScript : MonoBehaviour
             if (spawnBlood)
             {
                 int randchance = Random.Range(0, bloodyMesses.Count);
-                Instantiate(bloodyMesses[randchance], new Vector3(transform.position.x,transform.position.y,transform.position.z-1), Quaternion.identity);
+                Instantiate(bloodyMesses[randchance], new Vector3(transform.position.x,transform.position.y,transform.position.z+1), Quaternion.identity);
             }
+            StartCoroutine(AudioMonolith.instance.PlaySound(10));
             Destroy(gameObject);
         }
     }
