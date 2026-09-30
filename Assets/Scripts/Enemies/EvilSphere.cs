@@ -48,7 +48,6 @@ public class EvilSphere : MonoBehaviour
         {
             rand = Random.Range(0, attacks.Count);
             attacks[rand].GetComponent<BulletSpawner>().enabled = true;
-            attacks[rand].GetComponent<BulletSpawner>().shouldSpawn = true;
             attacking = true;
         }
 
@@ -57,7 +56,7 @@ public class EvilSphere : MonoBehaviour
             if (attacks[rand].GetComponent<BulletSpawner>().finishedAttacking)
             {
                 attacks[rand].GetComponent<BulletSpawner>().finishedAttacking = false;
-                attacks[rand].GetComponent<BulletSpawner>().shouldSpawn = false;
+                attacks[rand].GetComponent<BulletSpawner>().enabled = false;
                 attacking = false;
                 attackTimer = 0;
             }

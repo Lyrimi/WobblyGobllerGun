@@ -203,8 +203,8 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.6
-  pickNextWaypointDist: 2
-  endReachedDistance: 0.5
+  pickNextWaypointDist: 0.25
+  endReachedDistance: 0.1
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -335,12 +335,14 @@ MonoBehaviour:
   bulletLife: 2
   speed: 5
   spawnerType: 0
-  firingRate: 0.7
+  firingRate: 1.6
+  firingRateVariation: 0.2
   burstAmount: 2
   burstRate: 0.1
   spreadAmount: 3
   spreadAngle: 80
   accuracy: 0
+  shootSounds: 15000000
   shouldSpawn: 0
   finishedAttacking: 0
 --- !u!1 &4752735266897846392

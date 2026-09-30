@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,24 +17,31 @@ public class BulletSpawner : MonoBehaviour
     [Header("Spawner Attributes")]
     [SerializeField] private SpawnerType spawnerType; //which bullet are we using from the list of bullets
     [SerializeField] private float firingRate; //how often is a burst fired
+    [SerializeField] private float firingRateVariation; //how much plus/minus percent the firing variation has
     [SerializeField] int burstAmount; //how many are fired in a row
     [SerializeField] float burstRate; //how long before each shot in the burst
     [SerializeField] int spreadAmount; //how many bullets is shot per shot
     [SerializeField] float spreadAngle; //0 is default and shoots straight forwards, anything above is for multiple shots at once and spreads out
     [SerializeField] float accuracy; //0 is perfectly accurate, above is how many degrees of inaccuracy it has
 
+    [SerializeField] new List<int> shootSounds = new List<int>();
+
     private GameObject spawnedBullet;
     private float firerateTimer;
     private float burstrateTimer;
     private float degreeBetween;
-    public bool shouldSpawn;
     public bool finishedAttacking;
+    private float currentFiringRate;
     // Update is called once per frame
+
+    private void Start()
+    {
+        currentFiringRate = UnityEngine.Random.Range(firingRate - firingRateVariation, firingRate + firingRateVariation);
+    }
     void Update()
     {
-
         firerateTimer += Time.deltaTime;
-        if (firerateTimer >= firingRate)
+        if (firerateTimer >= currentFiringRate)
         {
             //if (shouldSpawn == true)
             //{
@@ -54,6 +62,10 @@ public class BulletSpawner : MonoBehaviour
         //
 
         //This part does some straight bullshit
+
+        int randchance = UnityEngine.Random.Range(0, shootSounds.Count);
+        StartCoroutine(AudioMonolith.instance.PlaySound(shootSounds[randchance]));
+
         for (int i = 0; i < burstAmount; i++)
         {
             for (int j = 0; j < spreadAmount; j++)
@@ -77,6 +89,7 @@ public class BulletSpawner : MonoBehaviour
             yield return new WaitForSeconds(burstRate);
         }
         Debug.Log("attack finished");
+        currentFiringRate = UnityEngine.Random.Range(firingRate - firingRateVariation, firingRate + firingRateVariation);
         finishedAttacking = true;
         //
     }

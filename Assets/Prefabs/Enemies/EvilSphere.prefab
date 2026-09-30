@@ -31,6 +31,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5011610709006379602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &842970331475938590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2449471341506594649}
+  - component: {fileID: 1371250567550988195}
+  m_Layer: 2
+  m_Name: Ambience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2449471341506594649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842970331475938590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.028, y: -0.006, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6924126040900659941}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1371250567550988195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842970331475938590}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dce630e65ecc3c24da9f31dfc0db6918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletSpawner
+  bullet: {fileID: 4975834475561290771, guid: 1f92a5d6efddb414483cbfa3cd995008, type: 3}
+  bulletLife: 0
+  speed: 0
+  spawnerType: 0
+  firingRate: 10
+  burstAmount: 0
+  burstRate: 0
+  spreadAmount: 0
+  spreadAngle: 0
+  accuracy: 0
+  shootSounds: 190000001a000000
+  shouldSpawn: 1
+  finishedAttacking: 0
 --- !u!1 &1649002028620884986
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,6 +142,7 @@ MonoBehaviour:
   spreadAmount: 8
   spreadAngle: 360
   accuracy: 10
+  shootSounds: 160000001700000018000000
   shouldSpawn: 0
   finishedAttacking: 0
 --- !u!1 &2158376698058439223
@@ -141,6 +199,7 @@ MonoBehaviour:
   spreadAmount: 6
   spreadAngle: 80
   accuracy: 0
+  shootSounds: 160000001700000018000000
   shouldSpawn: 0
   finishedAttacking: 0
 --- !u!1 &4063607899461972207
@@ -230,6 +289,7 @@ MonoBehaviour:
   spreadAmount: 17
   spreadAngle: 360
   accuracy: 0
+  shootSounds: 160000001700000018000000
   shouldSpawn: 0
   finishedAttacking: 0
 --- !u!1 &7331256613837599812
@@ -273,6 +333,7 @@ Transform:
   - {fileID: 3426362825680683575}
   - {fileID: 4771176169882721073}
   - {fileID: 100345786592110282}
+  - {fileID: 2449471341506594649}
   m_Father: {fileID: 5011610709006379602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9147339008763120866
@@ -291,8 +352,8 @@ MonoBehaviour:
   target: {fileID: 6751351349298918230}
   attacks:
   - {fileID: 4503825417906653313}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1649002028620884986}
+  - {fileID: 2158376698058439223}
   attackCooldown: 1
   mask:
     serializedVersion: 2

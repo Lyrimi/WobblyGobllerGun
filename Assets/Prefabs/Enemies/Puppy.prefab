@@ -1,61 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2092963484916457207
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3284144918703346148}
-  - component: {fileID: 460809973190045351}
-  m_Layer: 2
-  m_Name: spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3284144918703346148
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092963484916457207}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.70710677}
-  m_LocalPosition: {x: 28.880323, y: -52.92238, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 904000447903975776}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &460809973190045351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092963484916457207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce630e65ecc3c24da9f31dfc0db6918, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BulletSpawner
-  bullet: {fileID: 1011622799611913427, guid: e8dcf44cfc069c94f8eb4c3f3aec0636, type: 3}
-  bulletLife: 0
-  speed: 0
-  spawnerType: 0
-  firingRate: 0
-  burstAmount: 0
-  burstRate: 0
-  spreadAmount: 1
-  spreadAngle: 360
-  accuracy: 0
-  shouldSpawn: 0
-  finishedAttacking: 0
 --- !u!1 &2371145684995962855
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +216,6 @@ Transform:
   m_LocalScale: {x: 0.99999976, y: 0.99999994, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3284144918703346148}
   - {fileID: 437715922864485614}
   m_Father: {fileID: 8685500329361705748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
