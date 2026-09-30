@@ -6,13 +6,14 @@ using UnityEngine;
 public class HurtFlash : MonoBehaviour
 { //_FlashAmount
     [SerializeField] private float _flashTime;
-    public Material _material;
+    private Material _material;
     private HealthSCript _healthSCript;
     private PlayerMovementScript _movementScript;
     [SerializeField]
     float refreshGlow;
     [SerializeField]
     float refreshGlowIntensity;
+    ParticleManager _particles;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +21,7 @@ public class HurtFlash : MonoBehaviour
         _healthSCript.OnHit += StartFlash;
         _material = GetComponentInChildren<SpriteRenderer>().material;
         _movementScript = GetComponent<PlayerMovementScript>();
+        _particles = GetComponentInChildren<ParticleManager>(); 
     }
 
 
@@ -46,19 +48,19 @@ public class HurtFlash : MonoBehaviour
 
         yield return new WaitForSeconds(_movementScript.dashCooldown);
         _material.SetColor("_FlashColor", Color.yellowNice);
-
+        _particles.StartCoroutine(_particles.PlayParticles(0, 1));
         Debug.Log("ReverseFlashing");
         float curFlash = 0;
-
+        
         while (curFlash < refreshGlow)
         {
-
-            _material.SetFloat("_FlashAmount", curFlash + _flashTime * refreshGlowIntensity);
-
+           
+            _material.SetFloat("_FlashAmount", curFlash + _flashTime*refreshGlowIntensity);
+            
             curFlash += Time.deltaTime;
-
+           
             yield return new Color();
-
+           
         }
         _material.SetColor("_FlashColor", Color.white);
         _material.SetFloat("_FlashAmount", 0);
