@@ -9,6 +9,7 @@ using System.Collections;
 using Unity.Mathematics;
 using UnityEngine.Tilemaps;
 using static FogManager;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(RoomDirector))]
@@ -96,7 +97,8 @@ public class RoomData : MonoBehaviour
         FogManager.instance.SetPixelData(pos + new Vector2(-0.5f, 0.5f), 1);
     }
 
-    [SerializeField] private float _stepTime = 0.1f;
+    [SerializeField] private float _stepTime = 0.05f;
+    [SerializeField] private float _stepTimeProcent = 0.01f;
     public IEnumerator RevealTiles(Vector2 startPos, Action callBackFinish = null)
     {
         Tilemap walls = Generation.Instance.GlobalWallTileMap;
@@ -167,6 +169,8 @@ public class RoomData : MonoBehaviour
             toTraveseNext = new();
 
             yield return new WaitForSeconds(_stepTime);
+            _stepTimeProcent *= 1.2f;
+            _stepTime -= _stepTime * _stepTimeProcent;
         }
 
         callBackFinish();

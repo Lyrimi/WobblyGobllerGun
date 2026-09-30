@@ -201,6 +201,7 @@ MonoBehaviour:
   spreadAmount: 3
   spreadAngle: 360
   accuracy: 0
+  shootSounds: 15000000
   shouldSpawn: 0
   finishedAttacking: 0
 --- !u!1 &5911618161073559924
@@ -220,6 +221,7 @@ GameObject:
   - component: {fileID: 9150920658047479160}
   - component: {fileID: 2156119206759559646}
   - component: {fileID: 664725951981216522}
+  - component: {fileID: 1691791345216748971}
   m_Layer: 2
   m_Name: Flintlock fella
   m_TagString: Enemy
@@ -490,6 +492,21 @@ MonoBehaviour:
   _flashTime: 0.2
   refreshGlow: 0
   refreshGlowIntensity: 0
+--- !u!114 &1691791345216748971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5911618161073559924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dddffbf0c0d73241a9342425ee3f119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemieEnabler
+  _hitFlash: {fileID: 2100000, guid: 2b654ba7679cfe1419aba14bf73923e3, type: 2}
+  _disolve: {fileID: -876546973899608171, guid: c7fd3f9fa3ad01f45905a0b3c45b27bc, type: 3}
+  _spawnTime: 1.2
 --- !u!1 &8286772691636480433
 GameObject:
   m_ObjectHideFlags: 0
