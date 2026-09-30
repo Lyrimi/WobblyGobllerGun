@@ -77,4 +77,5 @@ public static class GunData
     public static GameObject TopDownGunObj;
 
     public static BulletData bulletData = new();
+    public static List<GunBehavoiur> GunBehavoiurs = new();
 }

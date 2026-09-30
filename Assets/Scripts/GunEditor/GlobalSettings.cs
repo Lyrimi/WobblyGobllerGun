@@ -6,16 +6,18 @@ public static class GunEnums
         Stock,
         Muzzel,
         Trigger,
+        SpecialAttachment,
     }
 
     public enum BulletBehavoiur
     {
-        SplitBullet
+        SplitBullet,
+        LaserFollow
     }
 
 
     public enum GunBehavoiur
     {
-
+        LaserTracking
     }
 };

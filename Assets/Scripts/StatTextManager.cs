@@ -14,16 +14,24 @@ public class StatTextManager : MonoBehaviour
 
     [SerializeField]
     StatDisplay[] TempstatDisplays;
+
+    Camera mainCam;
     [SerializeField]
     bool _debugButton;
 
     float _sPannelHeight;
+
+    RectTransform canvasRect;
+
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _sPannelHeight = _statsPanel.rect.height;
+        canvasRect = GetComponent<RectTransform>();
+        mainCam = GetComponentInParent<Camera>();
     }
 
     // Update is called once per frame
@@ -36,6 +44,14 @@ public class StatTextManager : MonoBehaviour
         }
     }
 
+    public void SetPostion(Vector2 pos)
+    {
+        Vector2 ScreenPos = mainCam.WorldToScreenPoint(pos);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, ScreenPos, mainCam, out Vector2 truePos);
+        truePos.y -= 250;
+        _statsPanel.anchoredPosition = truePos;
+    }
+
     public void SetText(StatDisplay[] statDisplays)
     {
         _statsPanel.gameObject.SetActive(true);
@@ -45,10 +61,10 @@ public class StatTextManager : MonoBehaviour
 
             GameObject obj = Instantiate(_mainText, _mainText.transform.parent);
             RectTransform rTransform = obj.GetComponent<RectTransform>();
-            rTransform.anchoredPosition = new(rTransform.anchoredPosition.x, rTransform.anchoredPosition.y - rTransform.rect.height * (i + 1));
+            rTransform.anchoredPosition = new(rTransform.anchoredPosition.x, rTransform.anchoredPosition.y - 20 * (i + 1));
             _textElements.Add(obj.GetComponent<TMP_Text>());
             _copyTexts.Add(obj);
-            _statsPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _statsPanel.rect.height + rTransform.rect.height);
+            _statsPanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _statsPanel.rect.height + 20);
         }
 
         for (int i = 0; i < statDisplays.Length; i++)
@@ -66,7 +82,6 @@ public class StatTextManager : MonoBehaviour
     public void ClearText()
     {
         _statsPanel.gameObject.SetActive(false);
-        Debug.Log(_statsPanel.gameObject.name);
     }
 
     void ResetText()

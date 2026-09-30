@@ -1,16 +1,9 @@
 using UnityEngine;
 
-public class SpecialGunBeheavoiur : MonoBehaviour
+public abstract class SpecialGunBeheavoiur : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    virtual public void OnStart() { }
+    virtual public void OnUpdate() { }
+    virtual public void OnDestory() { }
 }

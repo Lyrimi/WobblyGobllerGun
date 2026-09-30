@@ -14,10 +14,15 @@ public abstract class AttachmentData : ScriptableObject
         {
             GunData.bulletData.bulletBehavoiurs.Add(bulletBehavoiur);
         }
+        foreach (var gunBehavoiur in GunBehavoiurs)
+        {
+            GunData.GunBehavoiurs.Add(gunBehavoiur);
+        }
         GunData.TurnSpeedMult *= TurnSpeedMult;
     }
 
     public BulletBehavoiur[] BulletBehavoiurs;
+    public GunBehavoiur[] GunBehavoiurs;
     public StatDisplay[] StatDisplays;
 
     public float TurnSpeedMult = 1;

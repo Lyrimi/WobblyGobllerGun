@@ -278,6 +278,7 @@ public class GunMenuEnabler : MonoBehaviour
         GunObj = newObj;
         GunData.TopDownGunObj = newObj;
         OnGunRebuild?.Invoke(true);
+        SpecialBehavourApplyer.ApplyGunBehavoiurs(newObj.GetComponent<TopDownGunData>());
     }
 
     // Update is called once per frame
