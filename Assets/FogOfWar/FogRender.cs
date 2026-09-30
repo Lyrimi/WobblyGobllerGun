@@ -7,7 +7,7 @@ using Unity.Collections.LowLevel.Unsafe;
 using System.Linq;
 using System;
 using System.Drawing;
-using UnityEditor.U2D.Aseprite;
+//using UnityEditor.U2D.Aseprite;
 
 public class FogRender : MonoBehaviour
 {

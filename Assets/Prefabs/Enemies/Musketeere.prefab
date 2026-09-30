@@ -341,6 +341,7 @@ MonoBehaviour:
   spreadAmount: 3
   spreadAngle: 80
   accuracy: 0
+  shootSounds: 15000000
   shouldSpawn: 0
   finishedAttacking: 0
 --- !u!1 &4752735266897846392
