@@ -143,7 +143,7 @@ public class SpritePixelSpawnerWindow : EditorWindow
     private void SpawnPrefab(Vector3 position)
     {
         GameObject spawnedObject =
-            (GameObject)PrefabUtility.InstantiatePrefab(prefabToSpawn);
+            (GameObject)PrefabUtility.InstantiatePrefab(prefabToSpawn, Selection.activeGameObject.transform);
 
         Undo.RegisterCreatedObjectUndo(
             spawnedObject,

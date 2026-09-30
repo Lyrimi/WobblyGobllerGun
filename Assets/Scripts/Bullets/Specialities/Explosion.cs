@@ -14,7 +14,7 @@ public class Explosion : MonoBehaviour
     {
         blowTimer += Time.deltaTime;
 
-        if (blowTimer < 0.24f || blowTimer > 1f)
+        if (blowTimer > 1f)
         {
 
             GetComponent<Collider2D>().enabled = false;

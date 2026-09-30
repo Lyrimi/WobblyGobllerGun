@@ -210,12 +210,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5906595936629460730, guid: 37be25c2dd46b844d98971902053a4ed, type: 3}
+  m_Sprite: {fileID: 5906595936629460730, guid: f39d603f60478e84ca7f93364f94ea2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.94140625, y: 1.6640625}
+  m_Size: {x: 1.34375, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -368,6 +368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtFlash
   _flashTime: 0.2
+  refreshGlow: 0
+  refreshGlowIntensity: 0
 --- !u!58 &5393525789509327285
 CircleCollider2D:
   m_ObjectHideFlags: 0

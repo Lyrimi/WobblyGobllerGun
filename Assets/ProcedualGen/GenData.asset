@@ -36,10 +36,10 @@ MonoBehaviour:
   WallTile: {fileID: 11400000, guid: c8b9e72b70d91ff4fb14312bac8441d3, type: 2}
   EnemyList:
   - Prefab: {fileID: 4222573743764496116, guid: 92129b6d0b72570469035f1a6ffe015e, type: 3}
-    Cost: 10
+    Cost: 4
     Weight: 1
   - Prefab: {fileID: 4752735266897846392, guid: 8922339d1c9bb6f43af0c4b91ae75120, type: 3}
-    Cost: 1
+    Cost: 2
     Weight: 1
   TresureList:
   - prefab: {fileID: 6281500051335936726, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}
@@ -50,5 +50,5 @@ MonoBehaviour:
     Weight: 0.3
   - prefab: {fileID: 106897387193740494, guid: 9c3a6bd535b92284087c128b7bd30072, type: 3}
     Weight: 0.2
-  DifScalingMultiplyer: 1.5
+  DifScalingMultiplyer: 0.5
   StartingCredits: 3

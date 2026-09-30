@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodScript : MonoBehaviour
@@ -5,6 +7,11 @@ public class FoodScript : MonoBehaviour
 
     
     public int healAmount;
+    [SerializeField] bool spawnCorpse;
+    [SerializeField] bool spawnBlood;
+
+    [SerializeField] GameObject corpse;
+    [SerializeField] new List<GameObject> bloodyMesses = new List<GameObject>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +29,18 @@ public class FoodScript : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.SendMessage("Healing", healAmount);
+
+            if (spawnCorpse)
+            {
+                Instantiate(corpse, transform.position, Quaternion.identity);
+            }
+
+            if (spawnBlood)
+            {
+                int randchance = Random.Range(0, bloodyMesses.Count);
+                Instantiate(bloodyMesses[randchance], new Vector3(transform.position.x,transform.position.y,transform.position.z+1), Quaternion.identity);
+            }
+            StartCoroutine(AudioMonolith.instance.PlaySound(10));
             Destroy(gameObject);
         }
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7389431553551592962}
   - component: {fileID: 8763836246203643594}
   m_Layer: 0
-  m_Name: corpse musket_0 healing item 1
+  m_Name: corpse dog
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -8092970106430365776, guid: 3ee93e98317dff44a88039556c13497c, type: 3}
+  m_Sprite: {fileID: 3134759554816343240, guid: f0a1837f8fddbe14e8cae8803f3f965f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,13 +131,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2, y: 0.94}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1.02, y: 1.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.02, y: 1.24}
+  m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
 --- !u!114 &8763836246203643594
 MonoBehaviour:
@@ -152,3 +152,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoodScript
   healAmount: 1
+  spawnCorpse: 0
+  spawnBlood: 1
+  corpse: {fileID: 0}
+  bloodyMesses:
+  - {fileID: 4231283232627600298, guid: dbd9a643e1035ad45a5d8887e3193ffe, type: 3}
+  - {fileID: 1334433809036674847, guid: 9e09ae35284a1224da4224c009e0f0b9, type: 3}
+  - {fileID: 5144082290567071481, guid: 321e779330f34a54d8af62fff5daec86, type: 3}
+  - {fileID: 6985689595734886240, guid: 5370cb7868b53e5429095cc4556360fa, type: 3}
+  - {fileID: 4130931762423631203, guid: 9a69c6ed14963bd4882f9682556b6443, type: 3}
+  - {fileID: 4296974552552094433, guid: 4f9f50867dc644b4ab7f33f06006c556, type: 3}

@@ -5086,6 +5086,8 @@ MonoBehaviour:
   - {fileID: 192876995235315209}
   - {fileID: 4609325695975896749}
   - {fileID: 1742609067263243649}
+  MaxEnemySpawnPrWave: 5
+  MinDistanceToSpawn: 2
   _stepTime: 0.1
 --- !u!60 &2877841788008409843
 PolygonCollider2D:
@@ -5217,7 +5219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6545326410418273458, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6545326410418273458, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5330,7 +5332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6545326410418273458, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6545326410418273458, guid: baa08ddbdeafdc1f1b9cfd05b3d6708c, type: 3}
       propertyPath: m_LocalRotation.w

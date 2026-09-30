@@ -35,10 +35,10 @@ public class BulletSpawner : MonoBehaviour
         firerateTimer += Time.deltaTime;
         if (firerateTimer >= firingRate)
         {
-            if (shouldSpawn == true)
-            {
+            //if (shouldSpawn == true)
+            //{
                 StartCoroutine(Fire());
-            }
+            //}
             firerateTimer = 0;
         }
     }
