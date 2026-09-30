@@ -6,7 +6,7 @@ using UnityEngine;
 public class HurtFlash : MonoBehaviour
 { //_FlashAmount
     [SerializeField] private float _flashTime;
-    private Material _material;
+    public Material _material;
     private HealthSCript _healthSCript;
     private PlayerMovementScript _movementScript;
     [SerializeField]
@@ -46,19 +46,19 @@ public class HurtFlash : MonoBehaviour
 
         yield return new WaitForSeconds(_movementScript.dashCooldown);
         _material.SetColor("_FlashColor", Color.yellowNice);
-        
+
         Debug.Log("ReverseFlashing");
         float curFlash = 0;
-        
+
         while (curFlash < refreshGlow)
         {
-           
-            _material.SetFloat("_FlashAmount", curFlash + _flashTime*refreshGlowIntensity);
-            
+
+            _material.SetFloat("_FlashAmount", curFlash + _flashTime * refreshGlowIntensity);
+
             curFlash += Time.deltaTime;
-           
+
             yield return new Color();
-           
+
         }
         _material.SetColor("_FlashColor", Color.white);
         _material.SetFloat("_FlashAmount", 0);

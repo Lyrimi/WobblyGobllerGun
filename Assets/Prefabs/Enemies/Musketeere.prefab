@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7577299725109699412}
   - component: {fileID: 5260886553223308741}
   - component: {fileID: 2424097052675770796}
+  - component: {fileID: 7667543608686018895}
   m_Layer: 2
   m_Name: Flintlock fella
   m_TagString: Enemy
@@ -287,6 +288,21 @@ MonoBehaviour:
   _flashTime: 0.2
   refreshGlow: 0
   refreshGlowIntensity: 0
+--- !u!114 &7667543608686018895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246506781331674810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dddffbf0c0d73241a9342425ee3f119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _hitFlash: {fileID: 2100000, guid: 2b654ba7679cfe1419aba14bf73923e3, type: 2}
+  _disolve: {fileID: -876546973899608171, guid: c7fd3f9fa3ad01f45905a0b3c45b27bc, type: 3}
+  _spawnTime: 1.2
 --- !u!1 &3909010645705020264
 GameObject:
   m_ObjectHideFlags: 0

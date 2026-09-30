@@ -18,7 +18,7 @@ public class ParticleManager : MonoBehaviour
     [SerializeField]
     float _startSpeed;
 
-    public int ParticleSystemIndex;
+   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,13 +37,13 @@ public class ParticleManager : MonoBehaviour
         {
             if (particlesPositionFromObject)
             {
-                ParticleSystem[ParticleSystemIndex].transform.position = gameObject.transform.localPosition;
+                p.transform.position = gameObject.transform.localPosition;
             }
             if (particlesRotationFromObject)
             {
-                ParticleSystem[ParticleSystemIndex].transform.rotation = new Quaternion(gameObject.transform.rotation.x, 90, 0, 0);
+                p.transform.rotation = new Quaternion(gameObject.transform.rotation.x, 90, 0, 0);
             }
-            var main = ParticleSystem[ParticleSystemIndex].main;
+            var main = p.main;
 
             main.startSpeed = _startSpeed;
         }
@@ -54,9 +54,11 @@ public class ParticleManager : MonoBehaviour
     }
     public IEnumerator PlayParticles(float waitTime,int Index)
     {
+        Debug.Log("PlayedPArticles");
         ParticleSystem[Index].Play();
         yield return new WaitForSeconds(waitTime);
         ParticleSystem[Index].Stop();
+        yield return null;
 
     }
    

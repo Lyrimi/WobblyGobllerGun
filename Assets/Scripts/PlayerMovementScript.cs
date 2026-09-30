@@ -50,7 +50,7 @@ public class PlayerMovementScript : MonoBehaviour
         Dash = InputSystem.actions.FindAction("Sprint");
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-
+        ParticleManager = GetComponent<ParticleManager>();
         animator = GetComponentInChildren<Animator>();
 
         HealthSCript healthScript = GetComponent<HealthSCript>();
@@ -118,16 +118,16 @@ public class PlayerMovementScript : MonoBehaviour
         if (dashing && canDash && rb.linearVelocity != Vector2.zero)
         {
             DashFlash.StartCoroutine(DashFlash.Flash());
-
+            ParticleManager.StartCoroutine(ParticleManager.PlayParticles(dashTime, 0));
 
             PlayerHealth.IFrames = 10;
 
             rb.linearVelocity *= 5;
-            ParticleManager.StartCoroutine(ParticleManager.PlayParticles(dashTime, 0));
+            
             canDash = false;
 
             DashFlash.StartCoroutine(DashFlash.ReverseFlash());
-
+            //ParticleManager.StartCoroutine(ParticleManager.PlayParticles(dashCooldown, 1));
 
         }
 
@@ -143,6 +143,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private IEnumerator Wait(float waitTime, float dashdelay)
     {
+        
         yield return new WaitForSeconds(waitTime);
         dashing = false;
         boxCollider.excludeLayers = startmask;

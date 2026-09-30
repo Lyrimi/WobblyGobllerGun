@@ -39,7 +39,7 @@ public class HealthSCript : MonoBehaviour
         if (HealthUp)
         {
             TempColor = HealthUp.GetComponent<SpriteRenderer>().color;
-            Debug.Log($"{HealthUp.GetComponent<SpriteRenderer>().color.a}");
+            HealthUp.SetActive(false);
         }
 
     }
