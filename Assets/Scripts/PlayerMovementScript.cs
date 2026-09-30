@@ -1,7 +1,6 @@
 using System.Collections;
 using Pathfinding;
 using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
