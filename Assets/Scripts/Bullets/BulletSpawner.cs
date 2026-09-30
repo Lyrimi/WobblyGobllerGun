@@ -17,6 +17,7 @@ public class BulletSpawner : MonoBehaviour
     [Header("Spawner Attributes")]
     [SerializeField] private SpawnerType spawnerType; //which bullet are we using from the list of bullets
     [SerializeField] private float firingRate; //how often is a burst fired
+    [SerializeField] private float firingRateVariation; //how much plus/minus percent the firing variation has
     [SerializeField] int burstAmount; //how many are fired in a row
     [SerializeField] float burstRate; //how long before each shot in the burst
     [SerializeField] int spreadAmount; //how many bullets is shot per shot
@@ -29,14 +30,18 @@ public class BulletSpawner : MonoBehaviour
     private float firerateTimer;
     private float burstrateTimer;
     private float degreeBetween;
-    public bool shouldSpawn;
     public bool finishedAttacking;
+    private float currentFiringRate;
     // Update is called once per frame
+
+    private void Start()
+    {
+        currentFiringRate = UnityEngine.Random.Range(firingRate - firingRateVariation, firingRate + firingRateVariation);
+    }
     void Update()
     {
-
         firerateTimer += Time.deltaTime;
-        if (firerateTimer >= firingRate)
+        if (firerateTimer >= currentFiringRate)
         {
             //if (shouldSpawn == true)
             //{
@@ -84,6 +89,7 @@ public class BulletSpawner : MonoBehaviour
             yield return new WaitForSeconds(burstRate);
         }
         Debug.Log("attack finished");
+        currentFiringRate = UnityEngine.Random.Range(firingRate - firingRateVariation, firingRate + firingRateVariation);
         finishedAttacking = true;
         //
     }
