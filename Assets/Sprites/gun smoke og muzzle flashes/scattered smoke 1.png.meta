@@ -109,64 +109,20 @@ TextureImporter:
       name: scattered smoke 1_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 2
-        width: 23
-        height: 25
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 41d65aa46b3db3720800000000000000
-      internalID: 2827085970994982164
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scattered smoke 1_1
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 24
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8fd9bd6e2dfc0aba0800000000000000
-      internalID: -6079630992226935304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scattered smoke 1_2
-      rect:
-        serializedVersion: 2
-        x: 10
-        y: 1
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 75338e0fac7b344d0800000000000000
-      internalID: -3151473231976189097
+      spriteID: e5ed6c42365bdfb4db053bfa8bc95b94
+      internalID: -875610348
       vertices: []
       indices: 
       edges: []
@@ -175,7 +131,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c6e0a27ef0200dc4dbcb0d25c1a86968
     internalID: 0
     vertices: []
     indices: 
@@ -183,11 +139,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      scattered smoke 1_0: 2827085970994982164
-      scattered smoke 1_1: -6079630992226935304
-      scattered smoke 1_2: -3151473231976189097
+      scattered smoke 1_0: -875610348
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
