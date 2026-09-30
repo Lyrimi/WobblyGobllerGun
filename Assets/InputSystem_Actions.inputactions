@@ -98,21 +98,21 @@
                 },
                 {
                     "name": "KonamiCodeA",
-                    "type": "PassThrough",
-                    "id": "ce392047-4478-4657-8dbd-1bfd9621da12",
-                    "expectedControlType": "Integer",
+                    "type": "Value",
+                    "id": "22f80d57-64b8-416c-b456-d8af0e695eeb",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "KonamiCodeB",
-                    "type": "PassThrough",
-                    "id": "a30ed969-b843-4308-a107-a80e6574ba22",
-                    "expectedControlType": "Integer",
+                    "type": "Value",
+                    "id": "9936fc86-3c76-43c8-81ed-51b1b7abf7a4",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -524,8 +524,19 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "a5eda559-8926-4978-aae0-4839ab1ab96e",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KonamiCodeA",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "WASD",
-                    "id": "421b473b-8bba-4ca1-8a15-b5d46d22cb44",
+                    "id": "872343cd-5ffe-4edc-af1a-4a0793a18062",
                     "path": "Dpad",
                     "interactions": "",
                     "processors": "",
@@ -536,7 +547,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "65be474f-c4df-406b-9958-7c1b93d98adc",
+                    "id": "31cab326-84d9-4835-b49a-f6cc7422ef90",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
@@ -547,7 +558,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "6d2424e9-ae8f-4ea3-ad77-e577d7b3c914",
+                    "id": "4236ad6c-5c3e-488b-ac01-2437d36d1b96",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
@@ -558,7 +569,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "084f2c3f-82e7-497e-b2cb-7f4d863de6fc",
+                    "id": "97700c78-4ff0-4ece-9c8e-2789fa637349",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -569,7 +580,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "33ca359d-02fd-422c-b370-882e03df80f2",
+                    "id": "1bac7b6f-d8ed-42fe-b65d-7b98e606af0d",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
@@ -579,8 +590,19 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "",
+                    "id": "f2f26ed6-8419-490f-945e-a7af918d63b5",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KonamiCodeB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "ABEnter",
-                    "id": "e36583a5-383c-4fb8-b8dc-ddf9282c6a17",
+                    "id": "2df1c30e-6277-439c-b560-1f2f0db19538",
                     "path": "Dpad",
                     "interactions": "",
                     "processors": "",
@@ -591,7 +613,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "8346cb18-5078-4a72-af5c-704c5d4043f7",
+                    "id": "77328ce9-0a40-44ac-a96f-889fd6b8dec0",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -602,7 +624,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "10ebac23-2a8c-4dbf-ac29-186ba457f757",
+                    "id": "a4429aca-04cf-42f6-b984-ef1d38c5ef35",
                     "path": "<Keyboard>/b",
                     "interactions": "",
                     "processors": "",
@@ -613,7 +635,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "52b6acb0-7783-4c0d-8c70-465133e69e24",
+                    "id": "2482b5be-0af4-4122-b1ee-a0108988983b",
                     "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",

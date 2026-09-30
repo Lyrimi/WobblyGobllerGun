@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 6448221285351528995}
   - component: {fileID: 1654565358684782559}
   - component: {fileID: 5956812508397366686}
+  - component: {fileID: 5566695825864923498}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -283,6 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtFlash
   _flashTime: 0.2
+  _material: {fileID: 0}
   refreshGlow: 0.3
   refreshGlowIntensity: 1.6
 --- !u!61 &5956812508397366686
@@ -331,6 +333,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.7, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &5566695825864923498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808795421509843465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae1c7c5fcb7ea74e86523705d97f030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  ObjectsToSpawn:
+  - {fileID: 7643321882257581974, guid: d7aaba73936c96f4980151e6206113e9, type: 3}
+  - {fileID: 7750772028740225311, guid: e8a1181d40046fe47812b59d0dde42b5, type: 3}
 --- !u!1 &6044635807270403545
 GameObject:
   m_ObjectHideFlags: 0

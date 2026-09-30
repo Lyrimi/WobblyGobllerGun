@@ -5,7 +5,7 @@ public class CheatCheat : MonoBehaviour
 {
     int curIndex;
 
-    GameObject[] ObjectsToSpawn;
+    [SerializeField] GameObject[] ObjectsToSpawn;
 
     bool isPart2;
 
@@ -24,11 +24,13 @@ public class CheatCheat : MonoBehaviour
         Vector2.up,
         Vector2.left,
     };
-    InputAction KonamiA = InputSystem.actions.FindAction("KonamiCodeA");
-    InputAction KonamiB = InputSystem.actions.FindAction("KonamiCodeB");
+    InputAction KonamiA;
+    InputAction KonamiB;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        KonamiA = InputSystem.actions.FindAction("KonamiCodeA");
+        KonamiB = InputSystem.actions.FindAction("KonamiCodeB");
         KonamiA.performed += partA;
         KonamiB.performed += partB;
     }
