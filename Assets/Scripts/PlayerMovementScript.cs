@@ -13,6 +13,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     HealthSCript PlayerHealth;
 
+    ParticleManager ParticleManager;
+
     [SerializeField]
     private float _flashTime;
 
@@ -115,6 +117,7 @@ public class PlayerMovementScript : MonoBehaviour
             PlayerHealth.IFrames = 10;
             
             rb.linearVelocity *= 5;
+            ParticleManager.StartCoroutine(ParticleManager.PlayParticles(dashTime, 0));
             canDash = false;
 
             DashFlash.StartCoroutine(DashFlash.ReverseFlash());
