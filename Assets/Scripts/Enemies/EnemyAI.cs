@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour
         {
             return;
         }
-
+/*
         if (GetComponent<SpriteRenderer>().isVisible == true)
         {
             if (outOfRange == true)
@@ -56,6 +56,7 @@ public class EnemyAI : MonoBehaviour
                 path.maxSpeed = speed;
                 outOfRange = false;
             }
+*/
             //then put back all the stuff when it works again^^^^
 
             //look at the player and walk to the target type shit
@@ -138,15 +139,19 @@ public class EnemyAI : MonoBehaviour
 
                     break;
             }
-        }
+        //}
+    
         //turn all the stuff off when out of range
+        /*
         if (!GetComponent<SpriteRenderer>().isVisible)
         {
             GetComponentInChildren<BulletSpawner>().shouldSpawn = false;
             path.maxSpeed = 0;
             GetComponent<HealthSCript>().enabled = false;
             outOfRange = true;
-        }
+   
+        }*/
+    
 
 
     }
