@@ -291,12 +291,9 @@ MonoBehaviour:
   enemyType: 3
   speed: 8
   target: {fileID: 8004269213401787053}
-  dropChance: 50
+  dropChance: 20
   drops:
-  - {fileID: 7046233751104952469, guid: b75e6ad6c759bae4785b896d62f9f4ea, type: 3}
-  - {fileID: 6773683489269896169, guid: b50a3c8c77210904a8c3f68f64a5e407, type: 3}
-  - {fileID: 2117254920725013776, guid: 6c102802d9337544e8c6e563dba7da05, type: 3}
-  - {fileID: 3795765158495974262, guid: 85b707f30835617429172bd6f071f734, type: 3}
+  - {fileID: 3795765158495974262, guid: 295ce1d9c0a308a469daf24f3b905509, type: 3}
   mask:
     serializedVersion: 2
     m_Bits: 64
@@ -402,7 +399,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -414,7 +411,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4128095511197716758
 MonoBehaviour:
   m_ObjectHideFlags: 0

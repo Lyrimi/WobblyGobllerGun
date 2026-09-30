@@ -37,6 +37,7 @@ public class EnemyAI : MonoBehaviour
         Vector3 nPos = transform.position;
         nPos.z = playerTrans.position.z;
         transform.position = nPos;
+        path.maxSpeed = speed;
     }
 
     // Update is called once per frame

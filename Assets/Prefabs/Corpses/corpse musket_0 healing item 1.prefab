@@ -131,7 +131,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2, y: 0.94}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1.02, y: 1.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -152,3 +152,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoodScript
   healAmount: 1
+  spawnCorpse: 1
+  spawnBlood: 1
+  corpse: {fileID: 4311081846438177586, guid: d4b7e3e3f15c89e4e8f28a0175778e50, type: 3}
+  bloodyMesses:
+  - {fileID: 4231283232627600298, guid: dbd9a643e1035ad45a5d8887e3193ffe, type: 3}
+  - {fileID: 1334433809036674847, guid: 9e09ae35284a1224da4224c009e0f0b9, type: 3}
+  - {fileID: 5144082290567071481, guid: 321e779330f34a54d8af62fff5daec86, type: 3}
+  - {fileID: 6985689595734886240, guid: 5370cb7868b53e5429095cc4556360fa, type: 3}
+  - {fileID: 4130931762423631203, guid: 9a69c6ed14963bd4882f9682556b6443, type: 3}
+  - {fileID: 4296974552552094433, guid: 4f9f50867dc644b4ab7f33f06006c556, type: 3}

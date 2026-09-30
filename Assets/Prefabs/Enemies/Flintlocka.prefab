@@ -318,7 +318,7 @@ MonoBehaviour:
   enemyType: 2
   speed: 3
   target: {fileID: 5054399411002747993}
-  dropChance: 15
+  dropChance: 20
   drops:
   - {fileID: 3795765158495974262, guid: 3856bcdc391870640a926a0ff80e295b, type: 3}
   mask:
@@ -407,7 +407,7 @@ MonoBehaviour:
   rotationSpeed: 360
   slowdownDistance: 0.6
   pickNextWaypointDist: 2
-  endReachedDistance: 0.5
+  endReachedDistance: 0.2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -462,7 +462,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
