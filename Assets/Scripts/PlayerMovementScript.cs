@@ -24,6 +24,8 @@ public class PlayerMovementScript : MonoBehaviour
     InputAction Dash;
     Rigidbody2D rb;
     InputAction MousePosition;
+    [SerializeField] LayerMask mask;
+    LayerMask startmask;
 
     UiHeartScript HeartScript;
     [SerializeField]
@@ -55,6 +57,8 @@ public class PlayerMovementScript : MonoBehaviour
         Dash.performed += Sprint;
 
         dashing = false;
+
+        startmask = boxCollider.excludeLayers;
 
     }
 
@@ -106,7 +110,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
         else return;
 
-        boxCollider.enabled = false;
+        boxCollider.excludeLayers = mask;
 
 
         StartCoroutine(Wait(dashTime, dashCooldown));
@@ -139,7 +143,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         dashing = false;
-        boxCollider.enabled = true;
+        boxCollider.excludeLayers = startmask;
         yield return new WaitForSeconds(dashdelay);
         canDash = true;
 

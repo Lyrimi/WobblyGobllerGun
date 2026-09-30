@@ -283,6 +283,7 @@ public class GunMenuEnabler : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        print("Entered Something");
         Attachment attachment = collision.GetComponent<Attachment>();
         if (attachment == null || isInEditMode)
         {
