@@ -19,6 +19,8 @@ public class RoomDirector : MonoBehaviour
 
     private GameObject[] _spawnPoints;
 
+    private GameObject _player;
+
 
 
     [SerializeField] public int SpawnCredits = 0;
@@ -46,9 +48,7 @@ public class RoomDirector : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-
-
+        _player = FindFirstObjectByType<PlayerMovementScript>(FindObjectsInactive.Include).gameObject;
     }
 
     public void Init(RoomData data)
@@ -242,13 +242,25 @@ public class RoomDirector : MonoBehaviour
         _enemiesAlive = 0;
         List<GameObject> validSpawnPoints = _spawnPoints.ToList();
         int listLength = _enemiesToSpawn.Count;
-        int iterator = 0;
+        List<GameObject> removedPoints = new();
+        foreach (var item in validSpawnPoints)
+        {
+            float distance = (item.transform.position - _player.transform.position).magnitude;
+            if (distance < _roomData.MinDistanceToSpawn)
+            {
+                removedPoints.Add(item);
+            }
+        }
+        foreach (var item in removedPoints)
+        {
+            validSpawnPoints.Remove(item);
+        }
+
         for (int i = 0; i < listLength; i++)
         {
-            iterator++;
-            if (iterator > _maxIterations)
+            if (i >= _roomData.MaxEnemySpawnPrWave)
             {
-                throw new System.Exception("Loop exceted 9000 | SEnemies");
+                return;
             }
             GameObject enemyPrefab = _enemiesToSpawn[0];
             _enemiesToSpawn.RemoveAt(0);

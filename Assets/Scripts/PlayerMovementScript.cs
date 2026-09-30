@@ -32,10 +32,12 @@ public class PlayerMovementScript : MonoBehaviour
     bool canDash;
     [SerializeField]
     float dashTime;
-    
+
     public float dashCooldown;
 
     Color gameobjectColor;
+
+    BoxCollider2D boxCollider;
 
     private void Start()
     {
@@ -44,22 +46,23 @@ public class PlayerMovementScript : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         Dash = InputSystem.actions.FindAction("Sprint");
         rb = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
 
         animator = GetComponentInChildren<Animator>();
 
         HealthSCript healthScript = GetComponent<HealthSCript>();
         healthScript.OnDeath += Die;
         Dash.performed += Sprint;
-        
+
         dashing = false;
-        
+
     }
 
 
     void Move()
     {
-       
-       Vector2 move = moveAction.ReadValue<Vector2>();
+
+        Vector2 move = moveAction.ReadValue<Vector2>();
 
         rb.linearVelocity = move * speed;
 
@@ -72,7 +75,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             animator.SetBool("Moving", false);
         }
-        
+
 
 
         /*
@@ -103,17 +106,17 @@ public class PlayerMovementScript : MonoBehaviour
         }
         else return;
 
+        boxCollider.enabled = false;
 
 
-
-        StartCoroutine(Wait(dashTime,dashCooldown));
-        if(dashing && canDash&& rb.linearVelocity != Vector2.zero)
+        StartCoroutine(Wait(dashTime, dashCooldown));
+        if (dashing && canDash && rb.linearVelocity != Vector2.zero)
         {
             DashFlash.StartCoroutine(DashFlash.Flash());
-            
+
 
             PlayerHealth.IFrames = 10;
-            
+
             rb.linearVelocity *= 5;
             canDash = false;
 
@@ -121,7 +124,7 @@ public class PlayerMovementScript : MonoBehaviour
 
 
         }
-       
+
 
 
 
@@ -136,10 +139,12 @@ public class PlayerMovementScript : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         dashing = false;
+        boxCollider.enabled = true;
         yield return new WaitForSeconds(dashdelay);
         canDash = true;
-        
-        
+
+
+
     }
 
 
@@ -176,8 +181,8 @@ public class PlayerMovementScript : MonoBehaviour
             Move();
             Rotate();
         }
-       
-      
+
+
 
 
 

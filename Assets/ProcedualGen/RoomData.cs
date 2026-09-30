@@ -28,7 +28,13 @@ public class RoomData : MonoBehaviour
 
     public List<RoomAttachPoint> ConnectedPoints;
 
+    [Header("Spawning")]
     public List<GameObject> EnemySpawnPoints;
+    public int MaxEnemySpawnPrWave;
+
+    public float MinDistanceToSpawn;
+
+
     [NonSerialized]
     public List<(RoomAttachPoint, DynamicCorridor)> AttachedCorridors = new();
 
