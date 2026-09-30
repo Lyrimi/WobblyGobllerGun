@@ -335,7 +335,8 @@ MonoBehaviour:
   bulletLife: 2
   speed: 5
   spawnerType: 0
-  firingRate: 0.7
+  firingRate: 1.6
+  firingRateVariation: 0.2
   burstAmount: 2
   burstRate: 0.1
   spreadAmount: 3

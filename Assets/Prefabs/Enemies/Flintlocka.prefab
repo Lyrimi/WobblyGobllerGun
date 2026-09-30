@@ -196,12 +196,13 @@ MonoBehaviour:
   speed: 3
   spawnerType: 1
   firingRate: 2
+  firingRateVariation: 0.2
   burstAmount: 3
   burstRate: 0.1
   spreadAmount: 3
   spreadAngle: 360
   accuracy: 0
-  shouldSpawn: 0
+  shootSounds: 
   finishedAttacking: 0
 --- !u!1 &5911618161073559924
 GameObject:
