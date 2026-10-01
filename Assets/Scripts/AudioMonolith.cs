@@ -57,8 +57,6 @@ public class AudioMonolith : MonoBehaviour
         int i = AudioSources.Count - 1;
         //Debug.Log($"i: {i}");
 
-        int i = AudioSources.Count - 1;
-
         curAudio = gameObject.AddComponent<AudioSource>();
 
         curAudio.PlayOneShot(sources[AudioIndex], GlobalVolume * localVolume);
@@ -94,5 +92,4 @@ public class AudioMonolith : MonoBehaviour
 
 
 }
-    
-}
+
