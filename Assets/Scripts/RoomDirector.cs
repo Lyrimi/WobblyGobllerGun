@@ -9,6 +9,7 @@ using UnityEngine.Tilemaps;
 using Random = System.Random;
 using static RoomTypes;
 using Unity.Mathematics;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(RoomData))]
 public class RoomDirector : MonoBehaviour
@@ -43,6 +44,9 @@ public class RoomDirector : MonoBehaviour
     [SerializeField] private Generation _genOveride;
     [SerializeField] private int _maxIterations = 10000;
 
+    [SerializeField] private bool _isEndRoom;
+    [SerializeField] private GameObject[] _evilAssGlows;
+
 
 
 
@@ -50,10 +54,69 @@ public class RoomDirector : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _roomData = GetComponent<RoomData>();
+
+
+
+        if (_roomData._isEvilAssRoom)
+        {
+            float corLength = 5;
+
+            foreach (var item in _roomData.ConnectedPoints)
+            {
+                if (item.Connected == null)
+                {
+                    continue;
+                }
+                foreach (var attachitem in _roomData.AttachedCorridors)
+                {
+                    if (attachitem.Item1 == item)
+                    {
+                        corLength = attachitem.Item1.MaxCorridorLength;
+                    }
+                }
+            }
+
+            float x = corLength / 10;
+            foreach (var item in _evilAssGlows)
+            {
+                Vector3 scale = item.transform.localScale;
+                scale.x = x;
+                item.transform.localScale = scale;
+            }
+            Debug.LogWarning("Tried");
+            if (_roomData.RoomAttachPoints.Length <= 0)
+            {
+                Debug.LogWarning("List is 0");
+            }
+            print("Evil");
+            for (int i = 0; i < _roomData.RoomAttachPoints.Length; i++)
+            {
+                if (_roomData.RoomAttachPoints[i].Connected == null)
+                {
+                    Destroy(_evilAssGlows[i].gameObject);
+                    print("Tried to Destroy" + _evilAssGlows[i].name);
+                }
+            }
+        }
+        else
+        {
+            if (_roomData.RoomType == RoomType.FinalRoom)
+            {
+                Debug.LogWarning("Tried but failed");
+            }
+        }
+
+
         _player = FindFirstObjectByType<PlayerMovementScript>(FindObjectsInactive.Include).gameObject;
+        if (_isEndRoom)
+        {
+            _roomData = GetComponent<RoomData>();
+            Init();
+        }
     }
 
-    public void Init(RoomData data)
+    public void Init()
     {
         _roomData = GetComponent<RoomData>();
         if (_genOveride != null)
@@ -70,8 +133,7 @@ public class RoomDirector : MonoBehaviour
         _rnd = Generation.GenRnd;
         _wallTiles = Generation.Instance.GenData.WallTile;
         _wallTilemap = Generation.Instance.GlobalWallTileMap;
-        _roomData = data;
-
+        //_roomData = data;
         if (_roomData.RoomType != RoomType.Treasure)
         {
             InitEnemies();
@@ -80,6 +142,9 @@ public class RoomDirector : MonoBehaviour
         {
             InitLoot();
         }
+
+
+
 
     }
 
@@ -90,7 +155,7 @@ public class RoomDirector : MonoBehaviour
         if (_debugButton)
         {
             _debugButton = false;
-            Init(_roomData);
+            Init();
             StartRoom(transform.position);
         }
     }
@@ -115,6 +180,10 @@ public class RoomDirector : MonoBehaviour
         Vector2 pos = _wallTilemap.GetCellCenterWorld(_wallTilemap.WorldToCell(postion));
         StartCoroutine(_roomData.RevealTiles(pos, AfterReveal));
 
+        if (_roomData._isEvilAssRoom)
+        {
+            return;
+        }
         if (_enemiesToSpawn.Count <= 0)
         {
             return;
@@ -136,6 +205,11 @@ public class RoomDirector : MonoBehaviour
         print("RevelEnded Spawning");
         print($"Roomtype: {_roomData.RoomType}");
 
+        if (_isEndRoom)
+        {
+            StartBossFight();
+        }
+
         if (_roomData.RoomType == RoomType.Treasure)
         {
             SpawnLoot();
@@ -153,6 +227,11 @@ public class RoomDirector : MonoBehaviour
             return;
         }
         StartCoroutine(EnemyLoop());
+    }
+
+    void StartBossFight()
+    {
+
     }
 
 
@@ -325,7 +404,11 @@ public class RoomDirector : MonoBehaviour
                 continue;
             }
             //This is shit, TOO BAD
-            StartCoroutine(item.Item2.RevealTiles(item.Item1.transform.position));
+            if (!_roomData._isEvilAssRoom)
+            {
+                StartCoroutine(item.Item2.RevealTiles(item.Item1.transform.position, _roomData));
+            }
+
         }
     }
 

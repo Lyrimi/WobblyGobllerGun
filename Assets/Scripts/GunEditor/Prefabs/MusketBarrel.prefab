@@ -323,6 +323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AttachmentPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 6629065352283830624, guid: 491179850cb3277428357c1283ae6a31, type: 3}
+      propertyPath: ValidAttachment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7958193848467462388, guid: 491179850cb3277428357c1283ae6a31, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.046875

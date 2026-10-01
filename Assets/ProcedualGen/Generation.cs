@@ -28,6 +28,7 @@ public class Generation : MonoBehaviour
     [SerializeField] public Tilemap GlobalWallTileMap;
     [SerializeField] public Tilemap GlobalDecoTileMap;
     [SerializeField] private GameObject PlayerObj;
+    [SerializeField] public Transform TeleportObj;
 
 
     [Header("Debug Options")]
@@ -1111,7 +1112,7 @@ public class Generation : MonoBehaviour
                 int distanceFS = _traversalData[room];
                 room.RoomDirector.SpawnCredits = (int)(GenData.StartingCredits + distanceFS * GenData.DifScalingMultiplyer);
                 //print($"Obj Does have data {room.RoomDirector.SpawnCredits}");
-                room.RoomDirector.Init(room);
+                room.RoomDirector.Init();
 
             }
             else

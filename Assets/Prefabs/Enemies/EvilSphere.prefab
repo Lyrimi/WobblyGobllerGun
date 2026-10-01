@@ -80,13 +80,13 @@ MonoBehaviour:
   speed: 0
   spawnerType: 0
   firingRate: 10
+  firingRateVariation: 0
   burstAmount: 0
   burstRate: 0
   spreadAmount: 0
   spreadAngle: 0
   accuracy: 0
   shootSounds: 190000001a000000
-  shouldSpawn: 1
   finishedAttacking: 0
 --- !u!1 &1649002028620884986
 GameObject:
@@ -137,13 +137,13 @@ MonoBehaviour:
   speed: 0
   spawnerType: 0
   firingRate: 1
+  firingRateVariation: 0
   burstAmount: 2
   burstRate: 0.4
   spreadAmount: 8
   spreadAngle: 360
   accuracy: 10
   shootSounds: 160000001700000018000000
-  shouldSpawn: 0
   finishedAttacking: 0
 --- !u!1 &2158376698058439223
 GameObject:
@@ -194,13 +194,13 @@ MonoBehaviour:
   speed: 9
   spawnerType: 0
   firingRate: 1
+  firingRateVariation: 0
   burstAmount: 5
   burstRate: 0.1
   spreadAmount: 6
   spreadAngle: 80
   accuracy: 0
   shootSounds: 160000001700000018000000
-  shouldSpawn: 0
   finishedAttacking: 0
 --- !u!1 &4063607899461972207
 GameObject:
@@ -284,13 +284,13 @@ MonoBehaviour:
   speed: 8
   spawnerType: 1
   firingRate: 1
+  firingRateVariation: 0
   burstAmount: 9
   burstRate: 0.1
   spreadAmount: 17
   spreadAngle: 360
   accuracy: 0
   shootSounds: 160000001700000018000000
-  shouldSpawn: 0
   finishedAttacking: 0
 --- !u!1 &7331256613837599812
 GameObject:
@@ -301,7 +301,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6924126040900659941}
-  - component: {fileID: 9147339008763120866}
   - component: {fileID: 8082621761065730947}
   - component: {fileID: 1805461749008672099}
   - component: {fileID: 7223494237656656810}
@@ -336,28 +335,6 @@ Transform:
   - {fileID: 2449471341506594649}
   m_Father: {fileID: 5011610709006379602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9147339008763120866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7331256613837599812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 181e701352af82f4caf0a238fed49a56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EvilSphere
-  speed: 9
-  target: {fileID: 6751351349298918230}
-  attacks:
-  - {fileID: 4503825417906653313}
-  - {fileID: 1649002028620884986}
-  - {fileID: 2158376698058439223}
-  attackCooldown: 1
-  mask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &8082621761065730947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,8 +369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b50e489f94f946489201d8785124872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthSCript
-  health: 100
-  MaxHealth: 100
+  health: 4000
+  MaxHealth: 4000
   HealthUp: {fileID: 0}
   UiHeart: {fileID: 0}
   IFrames: 0

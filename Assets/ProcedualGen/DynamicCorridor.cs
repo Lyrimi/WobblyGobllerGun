@@ -127,9 +127,12 @@ public class DynamicCorridor : MonoBehaviour
     }
 
     [SerializeField] private float _stepTime = 0.1f;
-    public IEnumerator RevealTiles(Vector2 startPos)
+    public IEnumerator RevealTiles(Vector2 startPos, RoomData room = null)
     {
-
+        if (room != null && room._isEvilAssRoom)
+        {
+            yield break;
+        }
         Tilemap walls = Generation.Instance.GlobalWallTileMap;
         Tilemap ground = Generation.Instance.GlobalGroundTileMap;
 
