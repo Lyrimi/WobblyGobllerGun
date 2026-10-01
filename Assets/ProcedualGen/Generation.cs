@@ -82,14 +82,14 @@ public class Generation : MonoBehaviour
         _validRooms = _curRooms.ToList();
 
         Instance = this;
-        GenerateMap();
+
 
         //Step();
     }
 
     void Start()
     {
-
+        GenerateMap();
     }
 
     // Update is called once per frame

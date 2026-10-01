@@ -3534,7 +3534,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3280102416426210473, guid: 98ea3261adc8633468154733c2ce18a1, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280102416426210473, guid: 98ea3261adc8633468154733c2ce18a1, type: 3}
+      propertyPath: _isEndRoom
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6948215597538084340, guid: 98ea3261adc8633468154733c2ce18a1, type: 3}
       propertyPath: m_LocalPosition.x

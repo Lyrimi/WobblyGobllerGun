@@ -15,6 +15,7 @@ public class DynamicCorridor : MonoBehaviour
     [SerializeField] private Tilemap _groundTilemap;
 
     [SerializeField] private Tilemap _wallTilemap;
+    public int Length;
 
     [Header("Debug")]
 
@@ -54,6 +55,7 @@ public class DynamicCorridor : MonoBehaviour
 
     public void GenCorridor(RoomAttachPoint point, int len)
     {
+        Length = len;
         // If corrddior length is zero or less it kills it self
         if (len <= 0)
         {

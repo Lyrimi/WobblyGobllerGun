@@ -55,12 +55,9 @@ public class RoomDirector : MonoBehaviour
     void Start()
     {
         _roomData = GetComponent<RoomData>();
-
-
-
         if (_roomData._isEvilAssRoom)
         {
-            float corLength = 5;
+            float corLength = 34;
 
             foreach (var item in _roomData.ConnectedPoints)
             {
@@ -68,11 +65,15 @@ public class RoomDirector : MonoBehaviour
                 {
                     continue;
                 }
-                foreach (var attachitem in _roomData.AttachedCorridors)
+                foreach (var attachitem in item.Connected.AttachedCorridors)
                 {
-                    if (attachitem.Item1 == item)
+                    foreach (var oitem in _roomData.AttachedCorridors)
                     {
-                        corLength = attachitem.Item1.MaxCorridorLength;
+                        if (attachitem.Item2 == oitem.Item2)
+                        {
+                            corLength = attachitem.Item2.Length;
+                            break;
+                        }
                     }
                 }
             }
