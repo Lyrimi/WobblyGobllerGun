@@ -106,7 +106,7 @@ public class HealthSCript : MonoBehaviour
         {
             health -= damageAmount;
             Debug.Log("I've been hit aaaah");
-            manager.StartCoroutine(manager.PlayParticles(0,2));
+            
             OnHit?.Invoke();
         }
         if (UiHeart)

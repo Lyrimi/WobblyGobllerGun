@@ -15928,10 +15928,6 @@ PrefabInstance:
       value: Player 1
       objectReference: {fileID: 0}
     - target: {fileID: 6096513425576822026, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
-      propertyPath: ParticleSystem.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6096513425576822026, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
       propertyPath: 'ParticleSystem.Array.data[0]'
       value: 
       objectReference: {fileID: 1229445011}
