@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MusketTrigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
   BulletBehavoiurs: 
+  GunBehavoiurs: 
   StatDisplays:
   - TextColor: {r: 0, g: 1, b: 0, a: 1}
     Text: + 9 Damage
@@ -20,7 +21,10 @@ MonoBehaviour:
     Text: + 60 RPM
   - TextColor: {r: 1, g: 1, b: 0, a: 1}
     Text: "+ 15\xB0 Spread"
+  TurnSpeedMult: 1
   BaseDmg: 9
   FireRate: 1
   BaseSpreed: 15
   Projectiles: 1
+  AudioClip: {fileID: 8300000, guid: dae5bee9851aa804d94b86cfca681370, type: 3}
+  AudioVolume: 0.436

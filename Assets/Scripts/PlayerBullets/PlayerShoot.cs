@@ -44,6 +44,11 @@ class PlayerShoot : MonoBehaviour
     private float flashTime = 0.02f;
     void MuzzelFlash()
     {
+        if (GunData.audioClip != null)
+        {
+            StartCoroutine(AudioMonolith.instance.PlaySound(GunData.audioClip, GunData.AudioVolume));
+        }
+
         if (muzzelFlash == null)
         {
             return;

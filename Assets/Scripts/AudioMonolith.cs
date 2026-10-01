@@ -25,7 +25,6 @@ public class AudioMonolith : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
         //print(this.gameObject.name);
         //AudioData = GetComponent<AudioSource>();
         //Debug.Log($"{AudioData.name}");
@@ -51,41 +50,12 @@ public class AudioMonolith : MonoBehaviour
 
         AudioSource curAudio;
 
-
-
-        //Debug.Log($"Audiosources amount:{AudioSources.Count}");
-        int i = AudioSources.Count - 1;
-        //Debug.Log($"i: {i}");
-
         curAudio = gameObject.AddComponent<AudioSource>();
 
         curAudio.PlayOneShot(sources[AudioIndex], GlobalVolume * localVolume);
 
         yield return new WaitUntil(() => !curAudio.isPlaying);
         Destroy(curAudio);
-        //AudioSources.Remove(curAudio);
-
-
-
-
-
-
-
-        //Debug.Log($"{AudioSources[i].clip}");
-
-        //AudioSources[i].clip = sources[AudioIndex];
-        //Debug.Log($"AudioSources[i].clip = {AudioSources[i].clip}");
-        //AudioSources[i-1].GetComponent<AudioSource>();
-        //AudioSources[i].PlayOneShot(sources[AudioIndex]);
-        //AudioSources[i].clip = sources[AudioIndex];
-        //AudioSources[i].Play();
-        //AudioData.PlayOneShot(sources[AudioIndex]);
-
-
-
-
-
-
     }
 
 

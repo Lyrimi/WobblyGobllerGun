@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: KrissTrigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
   BulletBehavoiurs: 
+  GunBehavoiurs: 
   StatDisplays:
   - TextColor: {r: 1, g: 0.75416994, b: 0, a: 1}
     Text: + 6 Base Damage
@@ -25,3 +26,5 @@ MonoBehaviour:
   FireRate: 20
   BaseSpreed: 3
   Projectiles: 1
+  AudioClip: {fileID: 8300000, guid: 4e7cf74eb9a34a8499efde3d8b8b6a9d, type: 3}
+  AudioVolume: 1

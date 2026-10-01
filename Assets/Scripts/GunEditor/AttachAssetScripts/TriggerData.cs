@@ -10,6 +10,9 @@ public class TriggerAttachment : AttachmentData
     public float FireRate;
     public float BaseSpreed;
     public int Projectiles;
+    public AudioClip AudioClip;
+    [Range(0f, 1f)]
+    public float AudioVolume = 1;
 
     public override void ApplyValues()
     {
@@ -18,5 +21,7 @@ public class TriggerAttachment : AttachmentData
         GunData.bulletData.Spreed = BaseSpreed;
         GunData.FireRate = FireRate;
         GunData.bulletData.Projectiles = Projectiles;
+        GunData.audioClip = AudioClip;
+        GunData.AudioVolume = AudioVolume;
     }
 }

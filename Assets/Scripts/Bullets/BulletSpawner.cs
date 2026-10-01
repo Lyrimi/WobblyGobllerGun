@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using RangeAttribute = UnityEngine.RangeAttribute;
 
 public class BulletSpawner : MonoBehaviour
 {
@@ -24,7 +25,9 @@ public class BulletSpawner : MonoBehaviour
     [SerializeField] float spreadAngle; //0 is default and shoots straight forwards, anything above is for multiple shots at once and spreads out
     [SerializeField] float accuracy; //0 is perfectly accurate, above is how many degrees of inaccuracy it has
 
-    [SerializeField] new List<int> shootSounds = new List<int>();
+    [SerializeField] List<int> shootSounds = new List<int>();
+    [Range(0f, 1f)]
+    [SerializeField] float soundVolume = 1;
 
     private GameObject spawnedBullet;
     private float firerateTimer;
@@ -46,7 +49,7 @@ public class BulletSpawner : MonoBehaviour
         {
             //if (shouldSpawn == true)
             //{
-                StartCoroutine(Fire());
+            StartCoroutine(Fire());
             //}
             firerateTimer = 0;
         }
@@ -65,8 +68,8 @@ public class BulletSpawner : MonoBehaviour
         //This part does some straight bullshit
 
         int randchance = UnityEngine.Random.Range(0, shootSounds.Count);
-        StartCoroutine(AudioMonolith.instance.PlaySound(shootSounds[randchance]));
-        
+        StartCoroutine(AudioMonolith.instance.PlaySound(shootSounds[randchance], soundVolume));
+
 
         for (int i = 0; i < burstAmount; i++)
         {

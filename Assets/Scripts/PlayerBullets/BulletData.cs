@@ -78,4 +78,6 @@ public static class GunData
 
     public static BulletData bulletData = new();
     public static List<GunBehavoiur> GunBehavoiurs = new();
+    public static AudioClip audioClip;
+    public static float AudioVolume;
 }

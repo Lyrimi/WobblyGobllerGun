@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: K2Trigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
   BulletBehavoiurs: 
+  GunBehavoiurs: 
   StatDisplays:
   - TextColor: {r: 1, g: 1, b: 0, a: 1}
     Text: + 3 Damage
@@ -20,7 +21,10 @@ MonoBehaviour:
     Text: + 660 RPM
   - TextColor: {r: 1, g: 1, b: 0, a: 1}
     Text: "+ 11\xB0 Spread"
+  TurnSpeedMult: 1
   BaseDmg: 3
   FireRate: 11
   BaseSpreed: 11
   Projectiles: 1
+  AudioClip: {fileID: 8300000, guid: 32da1fecbf14cf641bb5097a118ed0bb, type: 3}
+  AudioVolume: 0.472

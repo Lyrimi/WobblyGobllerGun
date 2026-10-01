@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtFlash
   _flashTime: 0.2
+  _material: {fileID: 0}
   refreshGlow: 0
   refreshGlowIntensity: 0
 --- !u!114 &7667543608686018895
@@ -359,7 +360,7 @@ MonoBehaviour:
   spreadAngle: 80
   accuracy: 0
   shootSounds: 15000000
-  shouldSpawn: 0
+  soundVolume: 0.452
   finishedAttacking: 0
 --- !u!1 &4752735266897846392
 GameObject:

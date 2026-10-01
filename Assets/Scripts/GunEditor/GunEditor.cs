@@ -323,6 +323,8 @@ public class GunEditor : MonoBehaviour
         GunData.bulletData.Spreed = 0;
         GunData.bulletData.Projectiles = 0;
         GunData.GunBehavoiurs = new();
+        GunData.audioClip = null;
+        GunData.AudioVolume = 1;
 
         if (MainAttachmentParrent.Children.Length <= 0)
         {

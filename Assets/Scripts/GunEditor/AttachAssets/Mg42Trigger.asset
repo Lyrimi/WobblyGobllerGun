@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Mg42Trigger
   m_EditorClassIdentifier: Assembly-CSharp::TriggerAttachment
   BulletBehavoiurs: 
+  GunBehavoiurs: 
   StatDisplays:
   - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
     Text: + 360 RPM
@@ -27,3 +28,5 @@ MonoBehaviour:
   FireRate: 6
   BaseSpreed: 15
   Projectiles: 1
+  AudioClip: {fileID: 8300000, guid: af8869d3302c29847b315fd3d3b8ff43, type: 3}
+  AudioVolume: 0.538
