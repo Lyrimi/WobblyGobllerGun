@@ -127,7 +127,7 @@ public class PlayerMovementScript : MonoBehaviour
             canDash = false;
 
             DashFlash.StartCoroutine(DashFlash.ReverseFlash());
-            //ParticleManager.StartCoroutine(ParticleManager.PlayParticles(dashCooldown, 1));
+            
 
         }
 
