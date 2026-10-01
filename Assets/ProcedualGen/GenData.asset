@@ -32,7 +32,7 @@ MonoBehaviour:
     Count: 3
   CleanUpTypes: 
   StartRoom: {fileID: 7802808040852877096, guid: 6552510960573d5469b4af889cb29cf5, type: 3}
-  EndRoom: {fileID: 1657763631993471762, guid: 58877f4a7d48eea4a9c5c1cd7e856df2, type: 3}
+  EndRoom: {fileID: 8219524293765293031, guid: 6225209b7ffeb864dbc3b3e88769baa8, type: 3}
   WallTile: {fileID: 11400000, guid: c8b9e72b70d91ff4fb14312bac8441d3, type: 2}
   EnemyList:
   - Prefab: {fileID: 4222573743764496116, guid: 92129b6d0b72570469035f1a6ffe015e, type: 3}

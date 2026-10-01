@@ -12,7 +12,6 @@ using static FogManager;
 using Unity.VisualScripting;
 
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(RoomDirector))]
 public class RoomData : MonoBehaviour
 {
 
@@ -47,6 +46,7 @@ public class RoomData : MonoBehaviour
 
     [NonSerialized]
     public RoomDirector RoomDirector;
+    public bool _isEvilAssRoom;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Awake()

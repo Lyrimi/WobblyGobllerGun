@@ -15,19 +15,25 @@ public class ParticleManager : MonoBehaviour
     bool particlesRotationFromObject;
     ParticleSystem.ShapeModule shapeModule;
 
-    [SerializeField]
-    float _startSpeed;
+    HealthSCript healthSCript;
 
    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        healthSCript = GetComponent<HealthSCript>();
         foreach (ParticleSystem p in ParticleSystem)
         {
             p.Stop();
         }
+        healthSCript.OnHit += StartParticles;
        
+    }
+
+   public void StartParticles()
+    {
+        ParticleSystem[2].Play();
     }
 
     // Update is called once per frame
@@ -52,8 +58,9 @@ public class ParticleManager : MonoBehaviour
     }
     public IEnumerator PlayParticles(float waitTime,int Index)
     {
-        Debug.Log("PlayedPArticles");
+        
         ParticleSystem[Index].Play();
+        Debug.Log("PlayedPArticles");
         yield return new WaitForSeconds(waitTime);
         ParticleSystem[Index].Stop();
         yield return null;

@@ -15,6 +15,7 @@ public class DynamicCorridor : MonoBehaviour
     [SerializeField] private Tilemap _groundTilemap;
 
     [SerializeField] private Tilemap _wallTilemap;
+    public int Length;
 
     [Header("Debug")]
 
@@ -54,6 +55,7 @@ public class DynamicCorridor : MonoBehaviour
 
     public void GenCorridor(RoomAttachPoint point, int len)
     {
+        Length = len;
         // If corrddior length is zero or less it kills it self
         if (len <= 0)
         {
@@ -127,9 +129,12 @@ public class DynamicCorridor : MonoBehaviour
     }
 
     [SerializeField] private float _stepTime = 0.1f;
-    public IEnumerator RevealTiles(Vector2 startPos)
+    public IEnumerator RevealTiles(Vector2 startPos, RoomData room = null)
     {
-
+        if (room != null && room._isEvilAssRoom)
+        {
+            yield break;
+        }
         Tilemap walls = Generation.Instance.GlobalWallTileMap;
         Tilemap ground = Generation.Instance.GlobalGroundTileMap;
 

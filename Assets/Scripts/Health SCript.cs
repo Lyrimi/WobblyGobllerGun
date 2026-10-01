@@ -9,6 +9,7 @@ public class HealthSCript : MonoBehaviour
     [SerializeField]
     int MaxHealth;
 
+    ParticleManager manager;
 
     public GameObject HealthUp;
 
@@ -32,6 +33,7 @@ public class HealthSCript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        manager = GetComponent<ParticleManager>();
         if (UiHeart)
         {
             UiHeart.SetHealth(health);
@@ -41,7 +43,7 @@ public class HealthSCript : MonoBehaviour
             TempColor = HealthUp.GetComponent<SpriteRenderer>().color;
             HealthUp.SetActive(false);
         }
-
+        
     }
 
     // Update is called once per frame
@@ -103,6 +105,8 @@ public class HealthSCript : MonoBehaviour
         if (health > 0)
         {
             health -= damageAmount;
+            Debug.Log("I've been hit aaaah");
+            
             OnHit?.Invoke();
         }
         if (UiHeart)

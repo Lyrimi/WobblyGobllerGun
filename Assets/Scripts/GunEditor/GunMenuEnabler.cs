@@ -111,6 +111,7 @@ public class GunMenuEnabler : MonoBehaviour
             mat.SetInt("_Enabled", 0);
 
             RealObjs.Add(attachment.gameObject);
+            attachment.PickUpAction?.Invoke(attachment);
         }
     }
 
