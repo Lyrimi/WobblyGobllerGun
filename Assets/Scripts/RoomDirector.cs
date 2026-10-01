@@ -404,10 +404,8 @@ public class RoomDirector : MonoBehaviour
                 continue;
             }
             //This is shit, TOO BAD
-            if (!_roomData._isEvilAssRoom)
-            {
-                StartCoroutine(item.Item2.RevealTiles(item.Item1.transform.position, _roomData));
-            }
+
+            StartCoroutine(item.Item2.RevealTiles(item.Item1.transform.position, item.Item1.Connected));
 
         }
     }
