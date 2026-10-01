@@ -8379,7 +8379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4820001021669772493, guid: 88515946b99396346b872d85cedd87b9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -223.00002
+      value: -223
       objectReference: {fileID: 0}
     - target: {fileID: 5751953130589816308, guid: 88515946b99396346b872d85cedd87b9, type: 3}
       propertyPath: m_RenderPostProcessing
@@ -8671,6 +8671,8 @@ MonoBehaviour:
   mainCam: {fileID: 1615402908}
   bossSpawnCamPos: {fileID: 568030371}
   anim: {fileID: 1641585867}
+  evilSphereVoiceLine: {fileID: 8300000, guid: e67d55ae5087b0c4ebcba565ad573564, type: 3}
+  Volume: 1
 --- !u!95 &1641585867
 Animator:
   serializedVersion: 7

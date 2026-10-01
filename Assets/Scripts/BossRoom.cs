@@ -12,6 +12,9 @@ public class BossRoom : MonoBehaviour
     [SerializeField] private Camera mainCam;
     [SerializeField] private Transform bossSpawnCamPos;
     [SerializeField] private Animator anim;
+    [SerializeField] private AudioClip evilSphereVoiceLine;
+    [Range(0f, 1f)]
+    [SerializeField] private float Volume;
 
     Lerp camLerp;
 
@@ -97,6 +100,7 @@ public class BossRoom : MonoBehaviour
         float animationLength = stateInfo.length;
 
         yield return new WaitForSecondsRealtime(animationLength);
+        StartCoroutine(AudioMonolith.instance.PlaySound(evilSphereVoiceLine, Volume));
 
 
         yield return LerpCam(bossSpawnCamPos.position, _playerObj.transform.position, 2f);
