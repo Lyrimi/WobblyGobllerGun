@@ -29,6 +29,8 @@ public class Generation : MonoBehaviour
     [SerializeField] public Tilemap GlobalDecoTileMap;
     [SerializeField] private GameObject PlayerObj;
     [SerializeField] public Transform TeleportObj;
+    [SerializeField] private RoomData BossFightArea;
+    [SerializeField] public Animator TpAnim;
 
 
     [Header("Debug Options")]
@@ -999,6 +1001,7 @@ public class Generation : MonoBehaviour
 
     void StartTileMapMerge()
     {
+        _tileMapObject.Add(BossFightArea.gameObject);
         foreach (var room in _curRooms)
         {
             _tileMapObject.Add(room.gameObject);

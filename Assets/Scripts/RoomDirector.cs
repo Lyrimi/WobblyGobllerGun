@@ -23,6 +23,9 @@ public class RoomDirector : MonoBehaviour
 
     private GameObject _player;
 
+    public Action OnRoomStart;
+    public Action OnRoomReveled;
+
 
 
     [SerializeField] public int SpawnCredits = 0;
@@ -173,6 +176,7 @@ public class RoomDirector : MonoBehaviour
 
     void StartRoom(Vector2 postion)
     {
+        OnRoomStart?.Invoke();
         if (hasRoomBeenEntered)
         {
             return;
@@ -203,13 +207,9 @@ public class RoomDirector : MonoBehaviour
 
     void AfterReveal()
     {
+        OnRoomReveled?.Invoke();
         print("RevelEnded Spawning");
         print($"Roomtype: {_roomData.RoomType}");
-
-        if (_isEndRoom)
-        {
-            StartBossFight();
-        }
 
         if (_roomData.RoomType == RoomType.Treasure)
         {

@@ -8,30 +8,31 @@ using UnityEngine;
 
 public class AudioMonolith : MonoBehaviour
 {
-    
+
     AudioSource AudioData;
 
     [SerializeField]
-    int volume;
+    [Range(0f, 1f)]
+    float GlobalVolume;
 
     public Dictionary<string, int> dictionary = new Dictionary<string, int>();
 
-   
+
 
 
     public static AudioMonolith instance;
-    
+
     public List<AudioClip> sources = new List<AudioClip>();
     public List<AudioSource> AudioSources = new List<AudioSource>();
     void Awake()
     {
-            instance = this;
+        instance = this;
         //print(this.gameObject.name);
         //AudioData = GetComponent<AudioSource>();
         //Debug.Log($"{AudioData.name}");
 
 
-        dictionary.Add("C",1);
+        dictionary.Add("C", 1);
 
 
     }
@@ -40,19 +41,28 @@ public class AudioMonolith : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-         
-        
 
-        
+
+
+
     }
 
-    public IEnumerator PlaySound(int AudioIndex)
+    public IEnumerator PlaySound(AudioClip audioClip, float localVolume = 1)
+    {
+        AudioSource curAudio = gameObject.AddComponent<AudioSource>();
+
+        curAudio.PlayOneShot(audioClip, GlobalVolume * localVolume);
+
+        yield return new WaitUntil(() => !curAudio.isPlaying);
+    }
+
+    public IEnumerator PlaySound(int AudioIndex, float localVolume = 1)
     {
         //Debug.Log($"Name of the audio clip at index{sources[AudioIndex].name}");
         //Debug.Log($"AudioIndex{AudioIndex}");
@@ -60,28 +70,28 @@ public class AudioMonolith : MonoBehaviour
         //Debug.Log($"{AudioData.name}");
         //Debug.Log($"{sources.Count}");
         AudioSource curAudio;
-    
-        
+
+
 
         //Debug.Log($"Audiosources amount:{AudioSources.Count}");
-        int i = AudioSources.Count-1;
+        int i = AudioSources.Count - 1;
         //Debug.Log($"i: {i}");
 
         curAudio = gameObject.AddComponent<AudioSource>();
 
         //AudioSources[i].clip = sources[AudioIndex];
         //Debug.Log($"{AudioSources[i].name}");
-        curAudio.PlayOneShot(sources[AudioIndex]);
-        
+        curAudio.PlayOneShot(sources[AudioIndex], GlobalVolume * localVolume);
+
         yield return new WaitUntil(() => !curAudio.isPlaying);
         Destroy(curAudio);
         //AudioSources.Remove(curAudio);
 
 
-        
-            
-        
-        
+
+
+
+
 
         //Debug.Log($"{AudioSources[i].clip}");
 
@@ -99,8 +109,8 @@ public class AudioMonolith : MonoBehaviour
 
 
     }
-    
 
-    
+
+
 
 }

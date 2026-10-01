@@ -61,7 +61,7 @@ public class EvilSphere : MonoBehaviour
                 attackTimer = 0;
             }
         }
-        
+
 
         if (GetComponent<MeshRenderer>().isVisible == true)
         {
@@ -73,8 +73,8 @@ public class EvilSphere : MonoBehaviour
                 path.maxSpeed = speed;
                 outOfRange = false;
             }
-            
-             transform.up = playerTrans.position - this.transform.position;
+
+            transform.up = playerTrans.position - this.transform.position;
 
             Debug.Log(Vector2.Distance(this.transform.position, target.transform.position));
 
@@ -110,6 +110,6 @@ public class EvilSphere : MonoBehaviour
     //of you get hit take damage and ATOMIZE the bullet
     public void Die()
     {
-        Destroy(this.gameObject);
+        GetComponent<SphereDeath>().Death();
     }
 }

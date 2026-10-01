@@ -3,10 +3,13 @@ using UnityEngine;
 public class BossFightStarter : MonoBehaviour
 {
     private Transform _teleportPos;
+    private Animator _teleportAnim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _teleportPos = Generation.Instance.TeleportObj;
+        _teleportAnim = Generation.Instance.TpAnim;
+
     }
 
     // Update is called once per frame
@@ -14,12 +17,17 @@ public class BossFightStarter : MonoBehaviour
     {
 
     }
-
+    public void Teleport()
+    {
+        GameObject player = FindAnyObjectByType<PlayerMovementScript>(FindObjectsInactive.Include).gameObject;
+        StartBossFight(player);
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartBossFight(collision.gameObject);
+            _teleportAnim.SetTrigger("Start");
+            //StartBossFight(collision.gameObject);
         }
     }
 
