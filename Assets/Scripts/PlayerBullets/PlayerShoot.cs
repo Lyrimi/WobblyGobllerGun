@@ -46,6 +46,7 @@ class PlayerShoot : MonoBehaviour
     {
         if (GunData.audioClip != null)
         {
+            print("Bang Bang Audio");
             StartCoroutine(AudioMonolith.instance.PlaySound(GunData.audioClip, GunData.AudioVolume));
         }
 

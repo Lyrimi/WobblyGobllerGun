@@ -15,11 +15,11 @@ MonoBehaviour:
   BulletBehavoiurs: 
   GunBehavoiurs: 
   StatDisplays:
-  - TextColor: {r: 1, g: 1, b: 0, a: 1}
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
     Text: + 3 Damage
-  - TextColor: {r: 0, g: 1, b: 0, a: 1}
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
     Text: + 660 RPM
-  - TextColor: {r: 1, g: 1, b: 0, a: 1}
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
     Text: "+ 11\xB0 Spread"
   TurnSpeedMult: 1
   BaseDmg: 3

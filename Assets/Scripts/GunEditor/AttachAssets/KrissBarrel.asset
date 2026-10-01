@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: KrissBarrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
   BulletBehavoiurs: 
+  GunBehavoiurs: 
   StatDisplays:
-  - TextColor: {r: 0, g: 1, b: 0.028496742, a: 1}
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
     Text: '- 90% Spread'
-  - TextColor: {r: 1, g: 0.88197684, b: 0, a: 1}
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
     Text: + 7 Speed
-  - TextColor: {r: 1, g: 0.07502063, b: 0, a: 1}
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
     Text: '- 30% Damage'
   TurnSpeedMult: 1
   DamageMult: 0.7

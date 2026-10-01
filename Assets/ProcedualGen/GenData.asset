@@ -41,6 +41,12 @@ MonoBehaviour:
   - Prefab: {fileID: 4752735266897846392, guid: 8922339d1c9bb6f43af0c4b91ae75120, type: 3}
     Cost: 2
     Weight: 1
+  - Prefab: {fileID: 2137844217841569211, guid: c0c6de868764c994f9373882760736ab, type: 3}
+    Cost: 3
+    Weight: 0.3
+  - Prefab: {fileID: 2371145684995962855, guid: 0726a3a80b123424bb5413117dce1aca, type: 3}
+    Cost: 5
+    Weight: 1
   TresureList:
   - prefab: {fileID: 6281500051335936726, guid: 1fc4fff22fbff3d4996fd2201fe801d0, type: 3}
     Weight: 1
@@ -50,5 +56,29 @@ MonoBehaviour:
     Weight: 0.3
   - prefab: {fileID: 106897387193740494, guid: 9c3a6bd535b92284087c128b7bd30072, type: 3}
     Weight: 0.2
+  - prefab: {fileID: 6944340048337400761, guid: da69881ff0aa27443851491aadd92202, type: 3}
+    Weight: 1
+  - prefab: {fileID: 7669582127711337501, guid: 10cd66fa720765b4f8c34388b2caf80f, type: 3}
+    Weight: 1
+  - prefab: {fileID: 4166679495208642617, guid: da2f5061c820a7a4ba51e6e79ee48afb, type: 3}
+    Weight: 0.5
+  - prefab: {fileID: 5966697912441782013, guid: 1151914a36428c94d9fc95a43abbc207, type: 3}
+    Weight: 1
+  - prefab: {fileID: 7694905629698955015, guid: 50bc239eb3138af438f826c650b65b60, type: 3}
+    Weight: 1
+  - prefab: {fileID: 1105324779807185860, guid: af4d01251c682394781b917ee8f6b913, type: 3}
+    Weight: 0.4
+  - prefab: {fileID: 5174272475292062065, guid: 0b2d8450781648145b08a0ca0ecd3438, type: 3}
+    Weight: 1
+  - prefab: {fileID: 8515467652423743279, guid: 1a3458a0c2486394fadf62d6584e71c1, type: 3}
+    Weight: 1
+  - prefab: {fileID: 7833100443404835111, guid: f2fbb41995f6cb642809570bacb6cfcf, type: 3}
+    Weight: 0.3
+  - prefab: {fileID: 7543691210819060616, guid: ca41584e1ad526e40b06965618becced, type: 3}
+    Weight: 1
+  - prefab: {fileID: 2374958738983325001, guid: fd979514c3f93a7488fdf4e8e9e628fd, type: 3}
+    Weight: 1
+  - prefab: {fileID: 6937968710101920589, guid: e8d508624e3038746a346ca123467f01, type: 3}
+    Weight: 1
   DifScalingMultiplyer: 1.5
   StartingCredits: 3

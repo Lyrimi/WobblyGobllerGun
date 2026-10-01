@@ -34,7 +34,11 @@ public class EnemieEnabler : MonoBehaviour
     {
         enemyAI.enabled = false;
         aIPath.enabled = false;
-        bulletSpawner.enabled = false;
+        if (bulletSpawner != null)
+        {
+            bulletSpawner.enabled = false;
+        }
+
     }
 
     IEnumerator SpawnAnim()
@@ -64,7 +68,11 @@ public class EnemieEnabler : MonoBehaviour
 
         enemyAI.enabled = true;
         aIPath.enabled = true;
-        bulletSpawner.enabled = true;
+        if (bulletSpawner != null)
+        {
+            bulletSpawner.enabled = true;
+        }
+
 
     }
 

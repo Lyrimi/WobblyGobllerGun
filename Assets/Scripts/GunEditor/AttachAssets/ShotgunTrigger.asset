@@ -29,4 +29,4 @@ MonoBehaviour:
   BaseSpreed: 45
   Projectiles: 9
   AudioClip: {fileID: 8300000, guid: 2b5a4844713d92343b8cad2376dc6bc2, type: 3}
-  AudioVolume: 0.487
+  AudioVolume: 0.217

@@ -35,23 +35,39 @@ public class BulletSpawner : MonoBehaviour
     private float degreeBetween;
     public bool finishedAttacking;
     private float currentFiringRate;
+
+    private EnemyAI enemyAI;
+
+    private LayerMask mask;
     // Update is called once per frame
 
     private void Start()
     {
+        mask = LayerMask.GetMask("Walls");
+        enemyAI = GetComponentInParent<EnemyAI>();
         currentFiringRate = UnityEngine.Random.Range(firingRate - firingRateVariation, firingRate + firingRateVariation);
     }
-    void Update()
+    void FixedUpdate()
     {
         //animator.SetBool("shootingAnim", false);
         firerateTimer += Time.deltaTime;
         if (firerateTimer >= currentFiringRate)
         {
+            if (enemyAI != null && enemyAI.playerTrans != null)
+            {
+                Vector2 dif = enemyAI.playerTrans.position - enemyAI.transform.position;
+                RaycastHit2D hit = Physics2D.Raycast(enemyAI.transform.position, dif.normalized, dif.magnitude, mask);
+                if (hit.collider != null)
+                {
+                    return;
+                }
+            }
             //if (shouldSpawn == true)
             //{
             StartCoroutine(Fire());
             //}
             firerateTimer = 0;
+
         }
     }
 

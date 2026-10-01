@@ -5120,6 +5120,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2517771838660386975, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
+      propertyPath: mask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2517771838660386975, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
       propertyPath: dashCooldown
       value: 0.7
       objectReference: {fileID: 0}
@@ -5146,6 +5150,10 @@ PrefabInstance:
     - target: {fileID: 6448221285351528995, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
       propertyPath: MaxHealth
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6448221285351528995, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
+      propertyPath: IFrameAmount
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7335089762014063672, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
       propertyPath: anim
@@ -5187,7 +5195,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3896236827988443193, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7200,6 +7209,10 @@ PrefabInstance:
     - target: {fileID: 5237745583330856067, guid: ed2510f3010211e499c065d10cb8e42d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943744673509190788, guid: ed2510f3010211e499c065d10cb8e42d, type: 3}
+      propertyPath: GlobalVolume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9200067965907585784, guid: ed2510f3010211e499c065d10cb8e42d, type: 3}
       propertyPath: m_Name

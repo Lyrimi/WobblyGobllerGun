@@ -87,6 +87,7 @@ MonoBehaviour:
   spreadAngle: 0
   accuracy: 0
   shootSounds: 190000001a000000
+  soundVolume: 1
   finishedAttacking: 0
 --- !u!1 &1649002028620884986
 GameObject:
@@ -144,6 +145,7 @@ MonoBehaviour:
   spreadAngle: 360
   accuracy: 10
   shootSounds: 160000001700000018000000
+  soundVolume: 1
   finishedAttacking: 0
 --- !u!1 &2158376698058439223
 GameObject:
@@ -201,6 +203,7 @@ MonoBehaviour:
   spreadAngle: 80
   accuracy: 0
   shootSounds: 160000001700000018000000
+  soundVolume: 1
   finishedAttacking: 0
 --- !u!1 &4063607899461972207
 GameObject:
@@ -291,6 +294,7 @@ MonoBehaviour:
   spreadAngle: 360
   accuracy: 0
   shootSounds: 160000001700000018000000
+  soundVolume: 1
   finishedAttacking: 0
 --- !u!1 &7331256613837599812
 GameObject:
@@ -369,8 +373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b50e489f94f946489201d8785124872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthSCript
-  health: 4000
-  MaxHealth: 4000
+  health: 6000
+  MaxHealth: 6000
   HealthUp: {fileID: 0}
   UiHeart: {fileID: 0}
   IFrames: 0

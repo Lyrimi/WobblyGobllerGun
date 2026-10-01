@@ -140,14 +140,14 @@ public class PlayerMovementScript : MonoBehaviour
             DashFlash.StartCoroutine(DashFlash.Flash());
             ParticleManager.StartCoroutine(ParticleManager.PlayParticles(dashTime, 0));
 
-            PlayerHealth.IFrames = 10;
+            //PlayerHealth.IFrames = 10;
 
             rb.linearVelocity *= 5;
 
             canDash = false;
 
             DashFlash.StartCoroutine(DashFlash.ReverseFlash());
-            
+
 
         }
     }
@@ -157,12 +157,14 @@ public class PlayerMovementScript : MonoBehaviour
 
         yield return new WaitForSeconds(waitTime);
         dashing = false;
-        boxCollider.excludeLayers = startmask;
+        Invoke("EnableHitBox", 0.2f);
         yield return new WaitForSeconds(dashdelay);
         canDash = true;
+    }
 
-
-
+    void EnableHitBox()
+    {
+        boxCollider.excludeLayers = startmask;
     }
 
 

@@ -80,13 +80,14 @@ MonoBehaviour:
   speed: 2
   spawnerType: 0
   firingRate: 1.4
+  firingRateVariation: 0
   burstAmount: 1
   burstRate: 0
   spreadAmount: 1
   spreadAngle: 0
   accuracy: 25
   shootSounds: 14000000
-  shouldSpawn: 0
+  soundVolume: 1
   finishedAttacking: 0
 --- !u!1 &2137844217841569211
 GameObject:
@@ -139,6 +140,7 @@ GameObject:
   - component: {fileID: 6606200149788596114}
   - component: {fileID: 5393525789509327285}
   - component: {fileID: 2224042266580339992}
+  - component: {fileID: 1515629365212335280}
   m_Layer: 2
   m_Name: Flintlock fella
   m_TagString: Enemy
@@ -241,6 +243,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
+  playerTrans: {fileID: 0}
 --- !u!114 &5669493744477344907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,8 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b50e489f94f946489201d8785124872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthSCript
-  health: 100
-  MaxHealth: 100
+  health: 175
+  MaxHealth: 175
   HealthUp: {fileID: 0}
   UiHeart: {fileID: 0}
   IFrames: 0
@@ -369,6 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtFlash
   _flashTime: 0.2
+  _material: {fileID: 0}
   refreshGlow: 0
   refreshGlowIntensity: 0
 --- !u!58 &5393525789509327285
@@ -429,3 +433,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1515629365212335280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2426508158495228640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dddffbf0c0d73241a9342425ee3f119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemieEnabler
+  _hitFlash: {fileID: 2100000, guid: 2b654ba7679cfe1419aba14bf73923e3, type: 2}
+  _disolve: {fileID: -876546973899608171, guid: c7fd3f9fa3ad01f45905a0b3c45b27bc, type: 3}
+  _spawnTime: 1.2

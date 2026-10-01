@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: MusketBarrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
   BulletBehavoiurs: 
+  GunBehavoiurs: 
   StatDisplays:
-  - TextColor: {r: 0.18039216, g: 1, b: 0, a: 1}
-    Text: + 500% Damage
-  - TextColor: {r: 1, g: 0, b: 0, a: 1}
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 150% Damage
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
     Text: + 200% Spread
-  - TextColor: {r: 1, g: 1, b: 0, a: 1}
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
     Text: + 25 Speed
-  DamageMult: 5
+  TurnSpeedMult: 1
+  DamageMult: 2.5
   SpreedMult: 3
   LifeTime: 3
   Speed: 25

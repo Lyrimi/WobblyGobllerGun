@@ -4,11 +4,13 @@ public class BossFightStarter : MonoBehaviour
 {
     private Transform _teleportPos;
     private Animator _teleportAnim;
+    private static bool HasTrigered = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _teleportPos = Generation.Instance.TeleportObj;
         _teleportAnim = Generation.Instance.TpAnim;
+        HasTrigered = false;
 
     }
 
@@ -26,6 +28,11 @@ public class BossFightStarter : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            if (HasTrigered)
+            {
+                return;
+            }
+            HasTrigered = true;
             _teleportAnim.SetTrigger("Start");
             //StartBossFight(collision.gameObject);
         }

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: K2Barrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
   BulletBehavoiurs: 
+  GunBehavoiurs: 
   StatDisplays:
-  - TextColor: {r: 0, g: 1, b: 0, a: 1}
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
     Text: '- 40% Spread'
-  - TextColor: {r: 1, g: 1, b: 0, a: 1}
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
     Text: + 9 Speed
   TurnSpeedMult: 1
   DamageMult: 1

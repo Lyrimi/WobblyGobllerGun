@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
 
 
     private AIPath path; //im not really sure to be honest, think its just where my boy walks
-    Transform playerTrans; //wheres the player, used to find out where to put target and other things
+    public Transform playerTrans; //wheres the player, used to find out where to put target and other things
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -132,13 +132,17 @@ public class EnemyAI : MonoBehaviour
     //of you get hit take damage and ATOMIZE the bullet
     public void Die()
     {
-        int rand = Random.Range(1, 100);
-        if (rand <= dropChance)
+        if (drops.Count > 0)
         {
-            int randchance = Random.Range(0, drops.Count);
-            Instantiate(drops[randchance], transform.position, quaternion.identity);
+            int rand = Random.Range(1, 100);
+            if (rand <= dropChance)
+            {
+                int randchance = Random.Range(0, drops.Count);
+                Instantiate(drops[randchance], transform.position, quaternion.identity);
+            }
         }
-        //GameObject.Find("winCon").GetComponent<AreAllEnemiesDead>().enemyKills++;
         Destroy(this.gameObject);
+        //GameObject.Find("winCon").GetComponent<AreAllEnemiesDead>().enemyKills++;
+
     }
 }
