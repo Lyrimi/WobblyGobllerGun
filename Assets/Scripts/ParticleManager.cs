@@ -52,8 +52,9 @@ public class ParticleManager : MonoBehaviour
     }
     public IEnumerator PlayParticles(float waitTime,int Index)
     {
-        Debug.Log("PlayedPArticles");
+        
         ParticleSystem[Index].Play();
+        Debug.Log("PlayedPArticles");
         yield return new WaitForSeconds(waitTime);
         ParticleSystem[Index].Stop();
         yield return null;
