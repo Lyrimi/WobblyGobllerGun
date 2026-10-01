@@ -20,8 +20,8 @@ MonoBehaviour:
     Text: + 200% Spread
   - TextColor: {r: 1, g: 1, b: 0, a: 1}
     Text: + 25 Speed
-  DamageMult: 1000
-  SpreedMult: 0
+  DamageMult: 5
+  SpreedMult: 3
   LifeTime: 3
   Speed: 25
   TopDownBarrelPrefab: {fileID: 4862945310743846989, guid: 29f5e266131c3ee4692a26d95a9e810c, type: 3}

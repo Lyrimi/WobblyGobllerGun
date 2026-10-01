@@ -15,9 +15,10 @@ MonoBehaviour:
   BulletBehavoiurs: 
   StatDisplays:
   - TextColor: {r: 0, g: 1, b: 0, a: 1}
-    Text: '- 40% Spreed'
+    Text: '- 40% Spread'
   - TextColor: {r: 1, g: 1, b: 0, a: 1}
     Text: + 9 Speed
+  TurnSpeedMult: 1
   DamageMult: 1
   SpreedMult: 0.4
   LifeTime: 2

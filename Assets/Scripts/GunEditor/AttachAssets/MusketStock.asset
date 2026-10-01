@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9607a3d54f499c4c80b4fc6897f446b, type: 3}
   m_Name: MusketStock
   m_EditorClassIdentifier: Assembly-CSharp::StockAttachment
-  BulletBehavoiurs: 00000000
+  BulletBehavoiurs: 
+  GunBehavoiurs: 
+  StatDisplays:
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: '- 10% Turn Speed'
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: '- 40% Spreed'
+  TurnSpeedMult: 0.9
   SpreedMult: 0.6
-  TurnSpeedMult: 0.3

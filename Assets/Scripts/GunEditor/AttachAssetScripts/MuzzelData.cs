@@ -5,10 +5,14 @@ using static GunEnums;
 public class MuzzelAttachment : AttachmentData
 {
     public override AttachmentType AttachmentType => AttachmentType.Muzzel;
+    public int ProjectileMult = 1;
+    public int ProjectileAdd = 0;
 
     public override void ApplyValues()
     {
         base.ApplyValues();
-        throw new System.NotImplementedException();
+        GunData.bulletData.Projectiles += ProjectileAdd;
+        GunData.bulletData.Projectiles *= ProjectileMult;
+
     }
 }

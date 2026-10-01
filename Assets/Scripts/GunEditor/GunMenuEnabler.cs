@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -246,6 +247,8 @@ public class GunMenuEnabler : MonoBehaviour
             EnableMenu();
         }
     }
+    //bool is to check if the gun failed to build
+    public Action<bool> OnGunRebuild;
 
     void RebuildGun()
     {
@@ -254,6 +257,7 @@ public class GunMenuEnabler : MonoBehaviour
             Debug.Log("Barrel Missing, Can't fire");
             Destroy(GunObj);
             GunObj = null;
+            OnGunRebuild?.Invoke(false);
             return;
         }
 
@@ -273,6 +277,8 @@ public class GunMenuEnabler : MonoBehaviour
         Destroy(GunObj);
         GunObj = newObj;
         GunData.TopDownGunObj = newObj;
+        OnGunRebuild?.Invoke(true);
+        SpecialBehavourApplyer.ApplyGunBehavoiurs(newObj.GetComponent<TopDownGunData>());
     }
 
     // Update is called once per frame

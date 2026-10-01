@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9607a3d54f499c4c80b4fc6897f446b, type: 3}
   m_Name: PistolStock
   m_EditorClassIdentifier: Assembly-CSharp::StockAttachment
-  SpreedMult: 1
-  TurnSpeedMult: 1
+  BulletBehavoiurs: 
+  StatDisplays:
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 50% Spread
+  - TextColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    Text: + 100% Turn Speed
+  TurnSpeedMult: 2
+  SpreedMult: 1.5

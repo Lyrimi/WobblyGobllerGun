@@ -5,10 +5,13 @@ class PlayerShoot : MonoBehaviour
 {
     InputAction FireAction;
     float cooldownTime;
+    TopDownGunData topDownGunData;
 
     void Start()
     {
         FireAction = InputSystem.actions.FindAction("Fire");
+        topDownGunData = GetComponent<TopDownGunData>();
+        muzzelFlash = topDownGunData.EndPoints[0].GetComponent<SpriteRenderer>();
     }
 
     void FixedUpdate()
@@ -27,6 +30,7 @@ class PlayerShoot : MonoBehaviour
                 }
                 print("Bang");
                 GunData.bulletData.ShootBullets();
+                MuzzelFlash();
                 cooldownTime = 1f / GunData.FireRate;
             }
 
@@ -35,5 +39,23 @@ class PlayerShoot : MonoBehaviour
 
     }
 
+    private SpriteRenderer muzzelFlash;
+    [SerializeField]
+    private float flashTime = 0.02f;
+    void MuzzelFlash()
+    {
+        if (muzzelFlash == null)
+        {
+            return;
+        }
 
+        muzzelFlash.enabled = true;
+
+        Invoke("DisableMuzzelFlash", flashTime);
+    }
+
+    void DisableMuzzelFlash()
+    {
+        muzzelFlash.enabled = false;
+    }
 }

@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: KrissBarrel
   m_EditorClassIdentifier: Assembly-CSharp::BarrelAttachment
   BulletBehavoiurs: 
-  StatDisplays: []
-  DamageMult: 0
-  SpreedMult: 0
-  LifeTime: 0
-  Speed: 0
-  TopDownBarrelPrefab: {fileID: 0}
+  StatDisplays:
+  - TextColor: {r: 0, g: 1, b: 0.028496742, a: 1}
+    Text: '- 90% Spread'
+  - TextColor: {r: 1, g: 0.88197684, b: 0, a: 1}
+    Text: + 7 Speed
+  - TextColor: {r: 1, g: 0.07502063, b: 0, a: 1}
+    Text: '- 30% Damage'
+  TurnSpeedMult: 1
+  DamageMult: 0.7
+  SpreedMult: 0.1
+  LifeTime: 5
+  Speed: 7
+  TopDownBarrelPrefab: {fileID: 772856732516792479, guid: a4f1d8d98a1e4ed428d341691c02c54a, type: 3}

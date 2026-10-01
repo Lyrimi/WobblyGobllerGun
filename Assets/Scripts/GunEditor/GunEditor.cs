@@ -266,7 +266,16 @@ public class GunEditor : MonoBehaviour
 
             if (attachment.attachmentData.StatDisplays.Length > 0)
             {
-                _statTextManager.SetText(attachment.attachmentData.StatDisplays);
+                if (curObj == null)
+                {
+                    _statTextManager.SetText(attachment.attachmentData.StatDisplays);
+                    _statTextManager.SetPostion(attachment.transform.position);
+                }
+                else
+                {
+                    _statTextManager.ClearText();
+                }
+
             }
 
         }
@@ -306,13 +315,14 @@ public class GunEditor : MonoBehaviour
 
         GunData.bulletData = new();
         GunData.FireRate = 0;
-        GunData.TurnSpeedMult = 0;
+        GunData.TurnSpeedMult = 1;
         GunData.TopDownGunPrefab = null;
         GunData.TopDownGunObj = null;
         GunData.bulletData.Damage = 0;
         GunData.bulletData.LifeTime = 0;
         GunData.bulletData.Spreed = 0;
         GunData.bulletData.Projectiles = 0;
+        GunData.GunBehavoiurs = new();
 
         if (MainAttachmentParrent.Children.Length <= 0)
         {
