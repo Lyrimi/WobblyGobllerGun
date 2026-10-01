@@ -11,9 +11,18 @@ public class LaserTracking : SpecialGunBeheavoiur
     const float MAX_DISTANCE = 30;
     public override void OnStart()
     {
+        Init();
+    }
+
+    void Init()
+    {
         Instance = this;
         topDownGunData = GetComponent<TopDownGunData>();
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
+        lineRenderer = GetComponent<LineRenderer>();
+        if (lineRenderer == null)
+        {
+            lineRenderer = gameObject.AddComponent<LineRenderer>();
+        }
         lineRenderer.startColor = new(1, 0, 0, 0.4f);
         lineRenderer.endColor = new(1, 0, 0, 0.4f);
         lineRenderer.startWidth = 0.04f;
@@ -25,7 +34,10 @@ public class LaserTracking : SpecialGunBeheavoiur
 
     public override void OnUpdate()
     {
-
+        if (Instance == null)
+        {
+            Init();
+        }
         Vector2 startPos = topDownGunData.EndPoints[0].position;
 
         RaycastHit2D hit = Physics2D.Raycast(startPos, transform.up, MAX_DISTANCE, mask);
