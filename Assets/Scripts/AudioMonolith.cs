@@ -9,7 +9,7 @@ using UnityEngine;
 public class AudioMonolith : MonoBehaviour
 {
 
-    AudioSource AudioData;
+
 
     [SerializeField]
     [Range(0f, 1f)]
@@ -17,13 +17,12 @@ public class AudioMonolith : MonoBehaviour
 
     public Dictionary<string, int> dictionary = new Dictionary<string, int>();
 
-
-
-
     public static AudioMonolith instance;
 
     public List<AudioClip> sources = new List<AudioClip>();
     public List<AudioSource> AudioSources = new List<AudioSource>();
+
+
     void Awake()
     {
         instance = this;
@@ -31,27 +30,12 @@ public class AudioMonolith : MonoBehaviour
         //AudioData = GetComponent<AudioSource>();
         //Debug.Log($"{AudioData.name}");
 
+        instance = this;
 
         dictionary.Add("C", 1);
 
-
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-
-
-    }
 
     public IEnumerator PlaySound(AudioClip audioClip, float localVolume = 1)
     {
@@ -64,11 +48,7 @@ public class AudioMonolith : MonoBehaviour
 
     public IEnumerator PlaySound(int AudioIndex, float localVolume = 1)
     {
-        //Debug.Log($"Name of the audio clip at index{sources[AudioIndex].name}");
-        //Debug.Log($"AudioIndex{AudioIndex}");
-        //Debug.Log($"{AudioIndex}");
-        //Debug.Log($"{AudioData.name}");
-        //Debug.Log($"{sources.Count}");
+
         AudioSource curAudio;
 
 
@@ -77,10 +57,10 @@ public class AudioMonolith : MonoBehaviour
         int i = AudioSources.Count - 1;
         //Debug.Log($"i: {i}");
 
+        int i = AudioSources.Count - 1;
+
         curAudio = gameObject.AddComponent<AudioSource>();
 
-        //AudioSources[i].clip = sources[AudioIndex];
-        //Debug.Log($"{AudioSources[i].name}");
         curAudio.PlayOneShot(sources[AudioIndex], GlobalVolume * localVolume);
 
         yield return new WaitUntil(() => !curAudio.isPlaying);
@@ -113,4 +93,6 @@ public class AudioMonolith : MonoBehaviour
 
 
 
+}
+    
 }
