@@ -13,6 +13,7 @@ using Unity.Mathematics;
 [RequireComponent(typeof(RoomData))]
 public class RoomDirector : MonoBehaviour
 {
+
     private RoomData _roomData;
     private TileBase _wallTiles;
     private Tilemap _wallTilemap;
@@ -33,6 +34,7 @@ public class RoomDirector : MonoBehaviour
     private List<EnemyData> _enemyList;
     private List<TresureData> _tresureList;
     private bool hasRoomBeenEntered = false;
+    private List<Attachment> SpawnItems = new();
 
 
     [Header("Debug")]
@@ -165,7 +167,9 @@ public class RoomDirector : MonoBehaviour
         }
         foreach (GameObject item in _spawnPoints)
         {
-            _lootToSpawn.Add(GetWeightedRandomTresure().prefab);
+            TresureData tresureData = GetWeightedRandomTresure();
+            _lootToSpawn.Add(tresureData.prefab);
+            _tresureList.Remove(tresureData);
         }
     }
 
@@ -227,9 +231,23 @@ public class RoomDirector : MonoBehaviour
             Transform spawnPos = _spawnPoints[i].transform;
             Vector3 stPos = spawnPos.position;
             stPos.z = 0;
-            Instantiate(_lootToSpawn[i], stPos, spawnPos.rotation);
+            GameObject obj = Instantiate(_lootToSpawn[i], stPos, spawnPos.rotation);
+            Attachment attachment = obj.GetComponent<Attachment>();
+            SpawnItems.Add(attachment);
+            attachment.PickUpAction += ItemChosen;
         }
         RoomEnd();
+    }
+    [SerializeField] private GameObject Explosion;
+    void ItemChosen(Attachment attachment)
+    {
+        SpawnItems.Remove(attachment);
+        foreach (var item in SpawnItems)
+        {
+            GameObject.Instantiate(Explosion, item.transform.position, Quaternion.identity);
+            Destroy(item.gameObject);
+
+        }
     }
 
     void OnEnemieDeath()

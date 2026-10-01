@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1654565358684782559}
   - component: {fileID: 5956812508397366686}
   - component: {fileID: 5566695825864923498}
+  - component: {fileID: 6096513425576822026}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -348,6 +349,24 @@ MonoBehaviour:
   ObjectsToSpawn:
   - {fileID: 7643321882257581974, guid: d7aaba73936c96f4980151e6206113e9, type: 3}
   - {fileID: 7750772028740225311, guid: e8a1181d40046fe47812b59d0dde42b5, type: 3}
+--- !u!114 &6096513425576822026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808795421509843465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa351758f6d0af145838e403010960bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleManager
+  ParticleSystem:
+  - {fileID: 0}
+  - {fileID: 0}
+  particlesPositionFromObject: 1
+  particlesRotationFromObject: 1
+  _startSpeed: 0.5
 --- !u!1 &6044635807270403545
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class Attachment : MonoBehaviour
 
     public bool MoveAble = true;
 
+    public Action<Attachment> PickUpAction;
+
 
     public Transform ConnectingPoint;
 
