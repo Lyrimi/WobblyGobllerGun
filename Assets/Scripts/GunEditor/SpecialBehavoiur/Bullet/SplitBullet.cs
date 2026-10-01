@@ -6,6 +6,7 @@ public class SplitBullet : SpecialBulletBehavoiur
     private float _curTime;
     private float _splitTime = 0.2f;
     private BulletData _copyBullet = new();
+    const float VOLUME = 0.75f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void OnFire()
     {
@@ -26,9 +27,10 @@ public class SplitBullet : SpecialBulletBehavoiur
             Split();
         }
     }
-    
+
     void Split()
     {
+        StartCoroutine(AudioMonolith.instance.PlaySound(28, VOLUME));
         _copyBullet.OverideSpawnPoints = new Transform[] { transform };
         _copyBullet.ShootBullets();
         Destroy(gameObject);

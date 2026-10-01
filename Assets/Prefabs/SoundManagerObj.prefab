@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18d5d6699c67f44fba260bae2644bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioMonolith
-  volume: 100
+  GlobalVolume: 1
   sources:
   - {fileID: 8300000, guid: 25a9468c1b362d7479caec302fd48dd2, type: 3}
   - {fileID: 8300000, guid: 17e5250e37468a642881a823d2fb2be2, type: 3}
@@ -73,4 +73,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f0c4dd2c78190b54997515237db05d16, type: 3}
   - {fileID: 8300000, guid: 9ecde629a26502846bf3c5956524fa7f, type: 3}
   - {fileID: 8300000, guid: 4c6a25dc8f31c6541a61763a7b13e021, type: 3}
+  - {fileID: 8300000, guid: 51734950b2254394d83f3415d1a8017c, type: 3}
+  - {fileID: 8300000, guid: c3094d94f03c0a94bbf2ad36503f1f99, type: 3}
   AudioSources: []

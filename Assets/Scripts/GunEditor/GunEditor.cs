@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Pathfinding.Util;
 using Unity.Loading;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -28,6 +29,10 @@ public class GunEditor : MonoBehaviour
     LineRenderer lrend;
 
     [SerializeField] StatTextManager _statTextManager;
+
+    [SerializeField] private AudioClip _PartChangeAudio;
+    [Range(0f, 1f)]
+    [SerializeField] private float _Volume = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
@@ -69,6 +74,7 @@ public class GunEditor : MonoBehaviour
         {
             attachment.Parrent.RemoveChild(attachment.index, GunEditorParrent);
             RecalcData();
+            StartCoroutine(AudioMonolith.instance.PlaySound(_PartChangeAudio, _Volume));
         }
         curObj = attachment.gameObject;
         curAttach = attachment;
@@ -92,6 +98,7 @@ public class GunEditor : MonoBehaviour
     {
         curSnap.parrent.TryAddChild(curAttach, curSnap.index);
         RecalcData();
+        StartCoroutine(AudioMonolith.instance.PlaySound(_PartChangeAudio, _Volume));
 
     }
 

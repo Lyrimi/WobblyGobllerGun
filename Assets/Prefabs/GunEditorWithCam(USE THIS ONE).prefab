@@ -1584,6 +1584,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 1501895640505204811}
     m_Modifications:
     - target: {fileID: 3693215509086132318, guid: 6ef7ae93b3d78ef4a82027fad5fc8c3e, type: 3}
+      propertyPath: _Volume
+      value: 0.717
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693215509086132318, guid: 6ef7ae93b3d78ef4a82027fad5fc8c3e, type: 3}
+      propertyPath: _PartChangeAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: e03ad854b1b5d4b47af41b54d3aef93e, type: 3}
+    - target: {fileID: 3693215509086132318, guid: 6ef7ae93b3d78ef4a82027fad5fc8c3e, type: 3}
       propertyPath: _statTextManager
       value: 
       objectReference: {fileID: 1162312838325977965}

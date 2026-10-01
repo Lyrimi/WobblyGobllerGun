@@ -7210,10 +7210,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6943744673509190788, guid: ed2510f3010211e499c065d10cb8e42d, type: 3}
-      propertyPath: GlobalVolume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9200067965907585784, guid: ed2510f3010211e499c065d10cb8e42d, type: 3}
       propertyPath: m_Name
       value: SoundManagerObj
@@ -8383,7 +8379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4820001021669772493, guid: 88515946b99396346b872d85cedd87b9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -223
+      value: -223.00002
       objectReference: {fileID: 0}
     - target: {fileID: 5751953130589816308, guid: 88515946b99396346b872d85cedd87b9, type: 3}
       propertyPath: m_RenderPostProcessing
