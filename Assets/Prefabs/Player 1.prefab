@@ -364,6 +364,7 @@ MonoBehaviour:
   ParticleSystem:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   particlesPositionFromObject: 1
   particlesRotationFromObject: 1
   _startSpeed: 0.5
