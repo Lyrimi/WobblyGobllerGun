@@ -373,8 +373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b50e489f94f946489201d8785124872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthSCript
-  health: 6000
-  MaxHealth: 6000
+  health: 4000
+  MaxHealth: 4000
   HealthUp: {fileID: 0}
   UiHeart: {fileID: 0}
   IFrames: 0
