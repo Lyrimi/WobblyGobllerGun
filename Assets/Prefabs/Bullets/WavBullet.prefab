@@ -112,6 +112,7 @@ MonoBehaviour:
   lifetime: 5
   waveSpeed: 3
   bonusHeight: -1
+  explosionInstantiate: {fileID: 0}
 --- !u!58 &4022122746073682725
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -160,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f090ace2ff03784b9340297b2f8b1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageScript
+  dontDestroyOnHit: 0
   damageLevel: 1
 --- !u!50 &-2050395160973892431
 Rigidbody2D:
@@ -186,5 +188,5 @@ Rigidbody2D:
     m_Bits: 8
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
