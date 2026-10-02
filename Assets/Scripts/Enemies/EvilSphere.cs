@@ -76,8 +76,10 @@ public class EvilSphere : MonoBehaviour
                 Vector2 randomDir;
                 randomDir = Random.insideUnitCircle * 10;
 
-                RaycastHit2D hit = Physics2D.Raycast(this.transform.position, randomDir, 10);
+                RaycastHit2D hit = Physics2D.Raycast(this.transform.position, randomDir, 10, mask);
                 Debug.DrawRay(this.transform.position, randomDir, Color.red);
+
+            Debug.Log(hit.collider);
 
                 if (hit.collider == null)
                 {
