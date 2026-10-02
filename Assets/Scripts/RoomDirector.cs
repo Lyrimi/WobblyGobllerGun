@@ -321,9 +321,27 @@ public class RoomDirector : MonoBehaviour
     [SerializeField] private GameObject Explosion;
     void ItemChosen(Attachment attachment)
     {
+        StartCoroutine(WaitForExitGunMenu(attachment));
+    }
+
+    IEnumerator WaitForExitGunMenu(Attachment attachment)
+    {
+        float curtime = 0;
+        while (curtime > 0)
+        {
+            curtime += Time.deltaTime;
+            yield return null;
+        }
         SpawnItems.Remove(attachment);
         foreach (var item in SpawnItems)
         {
+            item.enabled = false;
+        }
+        yield return new WaitForSeconds(1.2f);
+
+        foreach (var item in SpawnItems)
+        {
+
             GameObject.Instantiate(Explosion, item.transform.position, Quaternion.identity);
             Destroy(item.gameObject);
 

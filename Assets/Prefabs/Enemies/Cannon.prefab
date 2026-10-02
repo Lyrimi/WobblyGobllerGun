@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletSpawner
   bullet: {fileID: 1011622799611913427, guid: d08efb256c62e8444acef8d85367f03d, type: 3}
-  bulletLife: 5
+  bulletLife: 1.9
   speed: 2
   spawnerType: 0
   firingRate: 1.4

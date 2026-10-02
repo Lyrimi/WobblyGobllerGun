@@ -121,7 +121,7 @@ MonoBehaviour:
   enemyType: 3
   speed: 8
   target: {fileID: 8004269213401787053}
-  dropChance: 20
+  dropChance: 50
   drops:
   - {fileID: 3795765158495974262, guid: 295ce1d9c0a308a469daf24f3b905509, type: 3}
   mask:

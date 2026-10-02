@@ -95,6 +95,7 @@ public class GunEditor : MonoBehaviour
 
     void SnapAttach()
     {
+        curAttach.PickUpAction?.Invoke(curAttach);
         curSnap.parrent.TryAddChild(curAttach, curSnap.index);
         RecalcData();
         StartCoroutine(AudioMonolith.instance.PlaySound(_PartChangeAudio, _Volume));

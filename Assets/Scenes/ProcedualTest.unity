@@ -5155,6 +5155,14 @@ PrefabInstance:
       propertyPath: IFrameAmount
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 6782507865472236527, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
+      propertyPath: m_Radius
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157955884146963624, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7335089762014063672, guid: 5f69633aab4922d4788dbffc5a2432e0, type: 3}
       propertyPath: anim
       value: 
