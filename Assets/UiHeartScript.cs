@@ -33,7 +33,11 @@ public class UiHeartScript : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
-        HpUp.SetActive(false);
+        if (HpUp != null)
+        {
+            HpUp.SetActive(false);
+        }
+
         //Animor = GetComponent<Animator>();
 
     }

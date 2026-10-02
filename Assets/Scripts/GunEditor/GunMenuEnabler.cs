@@ -225,6 +225,7 @@ public class GunMenuEnabler : MonoBehaviour
         EdtiorModeAction = InputSystem.actions.FindAction("EditMode");
         EdtiorModeAction.performed += EditButtonPressed;
         GEditorObj = gunEditor.gameObject;
+        gunEditor.RecalcData();
         RebuildGun();
     }
 

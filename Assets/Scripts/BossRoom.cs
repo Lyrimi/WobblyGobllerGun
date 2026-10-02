@@ -34,7 +34,7 @@ public class BossRoom : MonoBehaviour
 
     void OnRoomStart()
     {
-        Debug.LogWarning("Stuff Ran");
+
         _playerMoveScript.enabled = false;
         _gunEnabler.enabled = false;
         _playerObj.transform.up = Vector2.right;

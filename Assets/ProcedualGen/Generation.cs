@@ -27,7 +27,7 @@ public class Generation : MonoBehaviour
     [SerializeField] public Tilemap GlobalGroundTileMap;
     [SerializeField] public Tilemap GlobalWallTileMap;
     [SerializeField] public Tilemap GlobalDecoTileMap;
-    [SerializeField] private GameObject PlayerObj;
+    [SerializeField] private GameObject _PlayerObj;
     [SerializeField] public Transform TeleportObj;
     [SerializeField] private RoomData BossFightArea;
     [SerializeField] public Animator TpAnim;
@@ -84,6 +84,11 @@ public class Generation : MonoBehaviour
         _validRooms = _curRooms.ToList();
 
         Instance = this;
+
+        if (GenData == null)
+        {
+            throw new Exception("GenData IS MISSING");
+        }
 
 
         //Step();
@@ -161,7 +166,7 @@ public class Generation : MonoBehaviour
 
         Physics2D.SyncTransforms();
 
-        _gameStarter.PlayerObj = PlayerObj;
+        _gameStarter.PlayerObj = _PlayerObj;
         _gameStarter.StartGame();
 
     }
@@ -761,7 +766,7 @@ public class Generation : MonoBehaviour
                 furthestRoom = GetFurthestFromList(TraversedItems, out objData);
                 if (furthestRoom == null || TraversedItems.Count <= 0)
                 {
-                    Debug.LogError("Failed to find a valid room");
+
                     return null;
                 }
                 bool returnvalue = TryFindValidPrefabAndAttach(furthestRoom, out GameObject obj, out opoint, true, spawnPrefab);
@@ -808,7 +813,7 @@ public class Generation : MonoBehaviour
             {
                 if (item.Item1 == null)
                 {
-                    Debug.LogWarning("Item was null?");
+
                     continue;
                 }
                 distance = item.Item2;

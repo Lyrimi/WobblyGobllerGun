@@ -109,7 +109,7 @@ public class BulletSpawner : MonoBehaviour
             }
             yield return new WaitForSeconds(burstRate);
         }
-        Debug.Log("attack finished");
+
         currentFiringRate = UnityEngine.Random.Range(firingRate - firingRateVariation, firingRate + firingRateVariation);
         finishedAttacking = true;
         //

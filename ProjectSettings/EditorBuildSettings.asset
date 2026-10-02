@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Menui scene.unity
     guid: d29034c037c8d10459f5637837da4696
   - enabled: 1
+    path: Assets/Scenes/ProcedualTest.unity
+    guid: c58f1f910cc8a5b4995d84f32492f264
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 0
     path: Assets/Scenes/Movement Test Scene.unity
     guid: b1e168dd0545618428d1e7cb8b003dd6
-  - enabled: 1
-    path: Assets/Scenes/ProcedualTest.unity
-    guid: c58f1f910cc8a5b4995d84f32492f264
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
