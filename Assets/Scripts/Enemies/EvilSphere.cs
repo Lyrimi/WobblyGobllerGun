@@ -31,6 +31,7 @@ public class EvilSphere : MonoBehaviour
         playerTrans = GameObject.FindWithTag("Player").transform;
         HealthSCript healthScript = GetComponent<HealthSCript>();
         healthScript.OnDeath += Die;
+        path.maxSpeed = speed;
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class EvilSphere : MonoBehaviour
         if (playerTrans == null)
         {
             return;
+            
         }
 
 
@@ -63,16 +65,6 @@ public class EvilSphere : MonoBehaviour
         }
 
 
-        if (GetComponent<MeshRenderer>().isVisible == true)
-        {
-            Debug.Log("poob");
-            if (outOfRange == true)
-            {
-                Debug.Log("not out of range");
-                GetComponent<HealthSCript>().enabled = true;
-                path.maxSpeed = speed;
-                outOfRange = false;
-            }
 
             transform.up = playerTrans.position - this.transform.position;
 
@@ -95,21 +87,13 @@ public class EvilSphere : MonoBehaviour
 
             path.destination = target.position;
         }
-        //turn all the stuff off when out of range
-        if (!GetComponent<MeshRenderer>().isVisible)
-        {
-            Debug.Log("out of range");
-            path.maxSpeed = 0;
-            GetComponent<HealthSCript>().enabled = false;
-            outOfRange = true;
-        }
 
-
-    }
-
-    //of you get hit take damage and ATOMIZE the bullet
     public void Die()
     {
         GetComponent<SphereDeath>().Death();
     }
 }
+ 
+//of you get hit take damage and ATOMIZE the bullet
+
+
