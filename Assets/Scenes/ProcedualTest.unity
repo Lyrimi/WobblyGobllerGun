@@ -9880,7 +9880,7 @@ MonoBehaviour:
   GlobalGroundTileMap: {fileID: 486605463}
   GlobalWallTileMap: {fileID: 1898989005}
   GlobalDecoTileMap: {fileID: 919489650}
-  PlayerObj: {fileID: 571353310}
+  _PlayerObj: {fileID: 571353310}
   TeleportObj: {fileID: 1848518013}
   BossFightArea: {fileID: 1641585863}
   TpAnim: {fileID: 2104226865}

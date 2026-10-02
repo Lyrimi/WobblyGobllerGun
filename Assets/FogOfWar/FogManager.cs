@@ -18,14 +18,8 @@ public class FogManager : MonoBehaviour
 
     void Awake()
     {
-        if (!instance)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
+        instance = this;
+
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

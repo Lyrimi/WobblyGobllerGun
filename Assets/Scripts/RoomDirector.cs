@@ -88,18 +88,18 @@ public class RoomDirector : MonoBehaviour
                 scale.x = x;
                 item.transform.localScale = scale;
             }
-            Debug.LogWarning("Tried");
+
             if (_roomData.RoomAttachPoints.Length <= 0)
             {
-                Debug.LogWarning("List is 0");
+
             }
-            print("Evil");
+
             for (int i = 0; i < _roomData.RoomAttachPoints.Length; i++)
             {
                 if (_roomData.RoomAttachPoints[i].Connected == null)
                 {
                     Destroy(_evilAssGlows[i].gameObject);
-                    print("Tried to Destroy" + _evilAssGlows[i].name);
+
                 }
             }
         }
@@ -107,7 +107,7 @@ public class RoomDirector : MonoBehaviour
         {
             if (_roomData.RoomType == RoomType.FinalRoom)
             {
-                Debug.LogWarning("Tried but failed");
+
             }
         }
 
@@ -255,9 +255,9 @@ public class RoomDirector : MonoBehaviour
 
     void InitEnemies()
     {
-        _enemyList = _roomData.Generation.GenData.EnemyList.ToList();
+        _enemyList = Generation.Instance.GenData.EnemyList.ToList();
         _enemiesToSpawn = new();
-        if (_roomData.Generation.GenData.EnemyList.Length <= 0)
+        if (Generation.Instance.GenData.EnemyList.Length <= 0)
         {
             return;
         }

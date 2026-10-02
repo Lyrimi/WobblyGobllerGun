@@ -5088,7 +5088,9 @@ MonoBehaviour:
   - {fileID: 1742609067263243649}
   MaxEnemySpawnPrWave: 5
   MinDistanceToSpawn: 2
+  _isEvilAssRoom: 0
   _stepTime: 0.1
+  _stepTimeProcent: 0.01
 --- !u!60 &2877841788008409843
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5165,6 +5167,9 @@ MonoBehaviour:
   _debugButton: 0
   _genOveride: {fileID: 0}
   _maxIterations: 1000
+  _isEndRoom: 0
+  _evilAssGlows: []
+  Explosion: {fileID: 0}
 --- !u!1001 &1188302289710941714
 PrefabInstance:
   m_ObjectHideFlags: 0
